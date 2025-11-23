@@ -4,8 +4,8 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <!-- Logo Start -->
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/logo.svg" alt="Logo">
+                <a class="navbar-brand" href="{{ route('home')}}">
+                    <img src="{{ asset('assets/images/logo-white.png') }}" alt="Logo" style="width: 100%; height:10rem">
                 </a>
                 <!-- Logo End -->
 
@@ -15,15 +15,16 @@
                         <ul class="navbar-nav mr-auto" id="menu">
                             <li class="nav-item submenu"><a class="nav-link" href="#">Who We Are</a>
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link" href="service-single.html">About Us</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="blog-single.html">Vision & Mission</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="case-study.html">Our Model</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('about')}}">About Us</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="blog-single.html">Vision, Mission & Our Model</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('partners')}}">Partners</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('our-impact')}}">our Impact</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item submenu"><a class="nav-link" href="#">Programs</a>
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link" href="service-single.html">Mentorship Hub</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="blog-single.html">Research & Data Support</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('mentorship')}}">Mentorship Hub</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('research_data')}}">Research & Data Support</a></li>
                                     <li class="nav-item"><a class="nav-link" href="case-study.html">Capacity Building Workshops</a></li>
                                     <li class="nav-item"><a class="nav-link">Innovation Projects</a></li>
                                 </ul>
@@ -36,14 +37,9 @@
                                     <li class="nav-item"><a class="nav-link">Research Kits</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="services.html">News & Updates</a></li>
-                            <li class="nav-item submenu"><a class="nav-link" href="#">Partners & Impact</a>
-                                <ul>
-                                    <li class="nav-item"><a class="nav-link" href="service-single.html">Partners</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="blog-single.html">Impact</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('news')}}">News & Updates</a></li>
+                            
+                            <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
                         </ul>
                     </div>
 

@@ -7,7 +7,7 @@
                 <div class="about-footer">
                     <!-- Footer Logo Start -->
                     <div class="footer-logo">
-                        <img src="images/footer-logo.svg" alt="">
+                        <img src="{{ asset('assets/images/logo-white.png') }}" alt="">
                     </div>
                     <!-- Footer Logo End -->
 

@@ -85,7 +85,4 @@
     <script src="{{ asset('assets/js/function.js') }}"></script>
     <script src="../../demo.awaikenthemes.com/assets/js/theme-panel.js"></script>
 </body>
-
-<!-- Mirrored from html.awaikenthemes.com/labrix/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 21 Nov 2025 09:24:50 GMT -->
-
 </html>
