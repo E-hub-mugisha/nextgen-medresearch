@@ -42,15 +42,15 @@ class RescueSheetController extends Controller
         // Generate unique slug
         $slug = Str::slug($request->title) . '-' . time();
 
-        // Public URL for QR
-        $publicUrl = url('/rescue/' . $slug);
-
-        // Generate QR code and store
-        $qrFileName = $slug . '.png';
+        // Generate QR Code
+        $qrFileName = $slug . '.svg';
         $qrPath = 'qr_codes/' . $qrFileName;
-        QrCode::format('svg')
-            ->size(200)          // size in pixels
-            ->generate($publicUrl, storage_path('app/public/' . $qrPath));
+
+        $qrImage = QrCode::format('svg')
+            ->size(200)
+            ->generate(route('rescue.sheet.show', $slug));
+
+        Storage::disk('public')->put($qrPath, $qrImage);   // ✅ FIX
 
         // Save record
         RescueSheet::create([
@@ -64,6 +64,7 @@ class RescueSheetController extends Controller
 
         return back()->with('success', 'Rescue sheet uploaded successfully!');
     }
+
 
     /**
      * Show the form for editing the specified sheet (optional if using modal)
@@ -142,5 +143,19 @@ class RescueSheetController extends Controller
         $sheet = RescueSheet::where('slug', $slug)->firstOrFail();
         $sheet->increment('scan_count');
         return response()->file(storage_path('app/public/' . $sheet->file_path));
+    }
+
+    public function publicIndex(Request $request)
+    {
+        $query = RescueSheet::query()->where('status', 'published');
+
+        if ($request->search) {
+            $query->where('title', 'like', '%' . $request->search . '%')
+                ->orWhere('vehicle_model', 'like', '%' . $request->search . '%');
+        }
+
+        $sheets = $query->orderBy('created_at', 'desc')->paginate(12);
+
+        return view('front.rescue_sheets', compact('sheets'));
     }
 }

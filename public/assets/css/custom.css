@@ -47,13 +47,13 @@
 /************************************/
 
 :root{
-	--primary-color				: #172C45;
-	--secondary-color			: #BEF1DE;
+	--primary-color				: #0e4d97;
+	--secondary-color			: #0a7b51;
 	--bg-color					: #F8F8F8;
 	--text-color				: #45566A;
-	--accent-color				: #BEF1DE;
+	--accent-color				: #0a7b51;
 	--white-color				: #FFFFFF;
-	--divider-color				: #172C451A;
+	--divider-color				: #0e4d971A;
 	--dark-divider-color		: #FFFFFF1A;
 	--error-color				: rgb(230, 87, 87);
 	--default-font				: "Manrope", sans-serif;
@@ -2172,14 +2172,14 @@ header.main-header .header-sticky.active{
 }
 
 .pricing-body{
-	display: flex;
+	/* display: flex; */
 	flex-wrap: wrap;
 	gap: 30px;
 }
 
-.pricing-content{
+/* .pricing-content{
 	width: calc(55% - 15px);
-}
+} */
 
 .pricing-list{
 	width: calc(45% - 15px);

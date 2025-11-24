@@ -25,27 +25,28 @@
                                 <ul>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('mentorship')}}">Mentorship Hub</a></li>
                                     <li class="nav-item"><a class="nav-link" href="{{ route('research_data')}}">Research & Data Support</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="case-study.html">Capacity Building Workshops</a></li>
-                                    <li class="nav-item"><a class="nav-link">Innovation Projects</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('capacity_building')}}">Capacity Building Workshops</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('innovation_projects')}}">Innovation Projects</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item submenu"><a class="nav-link" href="#">Knowledge Hub</a>
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link" href="service-single.html">Blog Articles</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="blog-single.html">Free Resources</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="case-study.html">Ask a Mentor Q&A</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">Projects</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('resources') }}">Free Resources</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('mentor_qna.index') }}">Ask a Mentor Q&A</a></li>
                                     <li class="nav-item"><a class="nav-link">Research Kits</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item"><a class="nav-link" href="{{ route('news')}}">News & Updates</a></li>
-                            
+
                             <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
                         </ul>
                     </div>
 
                     <!-- Header Btn Start -->
                     <div class="header-btn">
-                        <a href="contact.html" class="btn-default btn-highlighted">Apply for Membership</a>
+                        <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal" class="btn-default btn-highlighted">Apply for Membership</a>
+                        <a href="{{ route('rescue.sheet.public') }}" class="btn-default btn-highlighted">Rescue sheets</a>
                     </div>
                     <!-- Header Btn End -->
                 </div>
@@ -57,3 +58,54 @@
     </div>
 </header>
 <!-- Header End -->
+
+<!-- Modal -->
+<div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form method="POST" action="{{ route('membership.store') }}">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="membershipModalLabel">Apply for Membership</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" name="full_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" name="phone">
+                    </div>
+                    <div class="mb-3">
+                        <label>Membership Type</label>
+                        <select class="form-control" name="type" required>
+                            <option value="individual">Individual</option>
+                            <option value="trainer">Trainer / Expert</option>
+                            <option value="institutional">Institutional</option>
+                            <option value="corporate">Corporate</option>
+                            <option value="honorary">Honorary / Support</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label>Organization (if any)</label>
+                        <input type="text" class="form-control" name="organization">
+                    </div>
+                    <div class="mb-3">
+                        <label>Why do you want to join?</label>
+                        <textarea class="form-control" name="motivation" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

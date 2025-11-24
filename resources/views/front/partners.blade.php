@@ -278,7 +278,7 @@
 
                     <!-- Pricing Button Start -->
                     <div class="our-pricing-btn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <a href="pricing.html" class="btn-default">Become a Partner</a>
+                        <a data-bs-toggle="modal" data-bs-target="#membershipModal" role="button" class="btn-default">Become a Partner</a>
                     </div>
                     <!-- Pricing Button End -->
                 </div>
@@ -316,4 +316,42 @@
         </div>
     </div>
 </div>
+
+<!-- PARTNERSHIPS SECTION -->
+<section id="partnerships" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">PARTNERSHIPS</h2>
+            <p class="lead">Our Collaborative Network</p>
+        </div>
+
+        <!-- Partner Logos / Names -->
+        <div class="row justify-content-center align-items-center mb-4">
+            @foreach($partners as $partner)
+                <div class="col-6 col-md-2 text-center mb-3">
+                    @if($partner->logo)
+                        <img src="{{ asset('storage/' . $partner->logo) }}" alt="{{ $partner->name }}" class="img-fluid">
+                    @else
+                        <p>{{ $partner->name }}</p>
+                    @endif
+                    <!-- <p class="mt-2">{{ $partner->name }}</p> -->
+                </div>
+            @endforeach
+        </div>
+
+        <!-- Testimonial (if any) -->
+        @foreach($partners as $partner)
+            @if($partner->testimonial)
+                <div class="row justify-content-center mb-4">
+                    <div class="col-md-8 text-center">
+                        <blockquote class="blockquote">
+                            <p class="mb-0">{{ $partner->testimonial }}</p>
+                        </blockquote>
+                    </div>
+                </div>
+            @endif
+        @endforeach
+    </div>
+</section>
+
 @endsection
