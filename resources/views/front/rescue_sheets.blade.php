@@ -82,14 +82,14 @@
                             <!-- Pricing Content End -->
                         </div>
                         <!-- Pricing List Start -->
-                        <div class="pricing-list">
+                        <!-- <div class="pricing-list">
                             <ul>
                                 <li>Custom design</li>
                                 <li>All Basic features</li>
                                 <li>Priority processing</li>
                                 <li>Access Online Portals</li>
                             </ul>
-                        </div>
+                        </div> -->
                         <!-- Pricing List End -->
                     </div>
                     <!-- Pricing Body End -->
@@ -112,7 +112,7 @@
                     <!-- Case Study Image Start-->
                     <div class="case-study-image">
                         <figure class="image-anime">
-                            <img src="{{ asset('assets/images/case-study-1.jpg') }}" alt="">
+                            <img src="{{ asset('storage/'.$sheet->qr_code_path) }}" alt="">
                         </figure>
 
                         <!-- Case Study Button Start-->
