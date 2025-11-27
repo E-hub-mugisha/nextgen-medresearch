@@ -6,6 +6,7 @@ use App\Http\Controllers\MentorQnAController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RescueSheetController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
@@ -65,5 +66,11 @@ Route::prefix('admin')->middleware(['auth','is_admin'])->group(function() {
 Route::prefix('admin')->middleware(['auth','is_admin'])->group(function() {
     Route::get('/memberships', [MembershipController::class,'index'])->name('membership.index');
     Route::post('/memberships/{membership}/status', [MembershipController::class,'updateStatus'])->name('membership.update_status');
+});
+
+Route::get('/run-setup', function () {
+    Artisan::call('migrate:fresh --seed');
+
+    return 'Database migrated and seeded successfully!';
 });
 require __DIR__.'/auth.php';
