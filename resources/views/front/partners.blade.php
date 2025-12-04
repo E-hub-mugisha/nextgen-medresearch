@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title','Home')
+@section('title','Partnership & Collaboration')
 @section('content')
 
 <!-- Page Header Start -->
@@ -9,13 +9,8 @@
             <div class="col-lg-12">
                 <!-- Page Header Box Start -->
                 <div class="page-header-box">
-                    <h1 class="text-anime-style-3" data-cursor="-opaque">Our partnership</h1>
-                    <nav class="wow fadeInUp">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Our blog</li>
-                        </ol>
-                    </nav>
+                    <h1 class="text-anime-style-3" data-cursor="-opaque">Partnership & Collaboration</h1>
+                    
                 </div>
                 <!-- Page Header Box End -->
             </div>
@@ -145,120 +140,6 @@
     </div>
 </div>
 
-<div class="our-testimonials bg-section dark-section parallaxie" style="background-image: none; background-size: cover; background-repeat: no-repeat; background-attachment: fixed; background-position: center -32.8078px;">
-        <div class="container">
-            <div class="row section-row align-items-center">
-                <div class="col-lg-12">
-                    <!-- Section Title Start -->
-                    <div class="section-title section-title-center">
-                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Our Testimonials</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;"><div class="split-line" style="display: block; text-align: center; position: relative;"><div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">W</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">h</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">a</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">t</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">o</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">u</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">r</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">c</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">l</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">i</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">n</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">t</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">s</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">s</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">a</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">y</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">a</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">b</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">o</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">u</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">t</div></div> </div><div class="split-line" style="display: block; text-align: center; position: relative;"><div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">t</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">h</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">i</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">r</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">x</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">p</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">r</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">i</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">n</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">c</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">w</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">i</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">t</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">h</div></div> <div style="position:relative;display:inline-block;"><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">u</div><div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">s</div></div></div></h2>
-                    </div>
-                    <!-- Section Title End -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Testimonial Slider Start -->
-                    <div class="testimonial-slider">
-                        <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden">
-                            <div class="swiper-wrapper" data-cursor-text="Drag" id="swiper-wrapper-d5e696652acca836" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-650px, 0px, 0px); transition-delay: 0ms;">
-                                <!-- Testimonial Slide Start -->
-                                
-                                <!-- Testimonial Slide End -->
-                                
-                                <!-- Testimonial Slide Start -->
-                                
-                                <!-- Testimonial Slide End -->
-                                
-                                <!-- Testimonial Slide Start -->
-                                
-                                <!-- Testimonial Slide End -->
-                            <div class="swiper-slide swiper-slide-prev" role="group" aria-label="3 / 3" data-swiper-slide-index="2" style="width: 620px; margin-right: 30px;">
-                                    <div class="testimonial-item">
-                                        <div class="author-image">
-                                            <figure class="image-anime">
-                                                <img src="images/author-3.jpg" alt="">
-                                            </figure>
-                                            <div class="video-play-button">
-                                                <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
-                                                    <i class="fa-solid fa-play"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="testimonial-content">
-                                            <div class="testimonial-quote">
-                                                <img src="images/testimonial-quote.svg" alt="">
-                                            </div>
-                                            <div class="testimonial-info">
-                                                <p>You'll meet with our scientific advisor to define your research goals, scope, and budget. You'll meet with our scientific advisors to define your research.</p>
-                                            </div>
-                                            <div class="author-content">
-                                                <h3>Emma Davis</h3>
-                                                <p>Project Coordinator</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 3" data-swiper-slide-index="0" style="width: 620px; margin-right: 30px;">
-                                    <div class="testimonial-item">
-                                        <div class="author-image">
-                                            <figure class="image-anime">
-                                                <img src="images/author-1.jpg" alt="">
-                                            </figure>
-                                            <div class="video-play-button">
-                                                <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
-                                                    <i class="fa-solid fa-play"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="testimonial-content">
-                                            <div class="testimonial-quote">
-                                                <img src="images/testimonial-quote.svg" alt="">
-                                            </div>
-                                            <div class="testimonial-info">
-                                                <p>You'll meet with our scientific advisor to define your research goals, scope, and budget. You'll meet with our scientific advisors to define your research.</p>
-                                            </div>
-                                            <div class="author-content">
-                                                <h3>Jenny Wilson</h3>
-                                                <p>Research Analyst</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 3" data-swiper-slide-index="1" style="width: 620px; margin-right: 30px;">
-                                    <div class="testimonial-item">
-                                        <div class="author-image">
-                                            <figure class="image-anime">
-                                                <img src="images/author-2.jpg" alt="">
-                                            </figure>
-                                            <div class="video-play-button">
-                                                <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
-                                                    <i class="fa-solid fa-play"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="testimonial-content">
-                                            <div class="testimonial-quote">
-                                                <img src="images/testimonial-quote.svg" alt="">
-                                            </div>
-                                            <div class="testimonial-info">
-                                                <p>You'll meet with our scientific advisor to define your research goals, scope, and budget. You'll meet with our scientific advisors to define your research.</p>
-                                            </div>
-                                            <div class="author-content">
-                                                <h3>Grace Martin</h3>
-                                                <p>Lab Supervisor</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></div>
-                            <div class="testimonial-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
-                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-                    </div>
-                    <!-- Testimonial Slider End -->
-                </div>
-            </div>
-        </div>
-    </div>
 
 <div class="our-pricing bg-section mt-4 mb-4">
     <div class="container">
@@ -328,28 +209,28 @@
         <!-- Partner Logos / Names -->
         <div class="row justify-content-center align-items-center mb-4">
             @foreach($partners as $partner)
-                <div class="col-6 col-md-2 text-center mb-3">
-                    @if($partner->logo)
-                        <img src="{{ asset('storage/' . $partner->logo) }}" alt="{{ $partner->name }}" class="img-fluid">
-                    @else
-                        <p>{{ $partner->name }}</p>
-                    @endif
-                    <!-- <p class="mt-2">{{ $partner->name }}</p> -->
-                </div>
+            <div class="col-6 col-md-2 text-center mb-3">
+                @if($partner->logo)
+                <img src="{{ asset('storage/' . $partner->logo) }}" alt="{{ $partner->name }}" class="img-fluid">
+                @else
+                <p>{{ $partner->name }}</p>
+                @endif
+                <!-- <p class="mt-2">{{ $partner->name }}</p> -->
+            </div>
             @endforeach
         </div>
 
         <!-- Testimonial (if any) -->
         @foreach($partners as $partner)
-            @if($partner->testimonial)
-                <div class="row justify-content-center mb-4">
-                    <div class="col-md-8 text-center">
-                        <blockquote class="blockquote">
-                            <p class="mb-0">{{ $partner->testimonial }}</p>
-                        </blockquote>
-                    </div>
-                </div>
-            @endif
+        @if($partner->testimonial)
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-8 text-center">
+                <blockquote class="blockquote">
+                    <p class="mb-0">{{ $partner->testimonial }}</p>
+                </blockquote>
+            </div>
+        </div>
+        @endif
         @endforeach
     </div>
 </section>

@@ -21,12 +21,12 @@
                                     <li class="nav-item"><a class="nav-link" href="{{ route('our-impact')}}">our Impact</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item submenu"><a class="nav-link" href="#">Programs</a>
+                            <li class="nav-item submenu"><a class="nav-link" href="{{ route('programs')}}">Programs</a>
                                 <ul>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('mentorship')}}">Mentorship Hub</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('research_data')}}">Research & Data Support</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('capacity_building')}}">Capacity Building Workshops</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('innovation_projects')}}">Innovation Projects</a></li>
+                                    @php $programs = \App\Models\Program::all(); @endphp
+                                    @foreach($programs as $program)
+                                    <li class="nav-item"><a class="nav-link" href="{{ route('programs.detail', $program->slug)}}">{{ $program->title }}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li class="nav-item submenu"><a class="nav-link" href="#">Knowledge Hub</a>

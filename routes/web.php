@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('our-value', [HomeController::class, 'ourValue'])->name('our-value');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('/news', [HomeController::class, 'news'])->name('news');
 Route::get('/news/detail/{slug}', [HomeController::class, 'newsDetail'])->name('news.detail');
@@ -30,6 +31,12 @@ Route::post('/ask-a-mentor', [MentorQnAController::class,'storeQuestion'])->midd
 Route::get('/mentor-qna', [MentorQnAController::class,'index'])->name('mentor_qna.index');
 Route::get('/apply-membership', [MembershipController::class,'create'])->name('membership.create');
 Route::post('/apply-membership', [MembershipController::class,'store'])->name('membership.store');
+Route::get('/programs', [HomeController::class, 'programs'])->name('programs');
+Route::get('/programs/detail/{slug}', [HomeController::class, 'programsDetail'])->name('programs.detail');
+Route::get('/research', [HomeController::class, 'research'])->name('research.index');
+Route::get('/research/detail/{slug}', [HomeController::class, 'researchDetail'])->name('research.detail');
+Route::get('/faq', [HomeController::class, 'faqPage'])->name('faq.page');
+Route::post('/faq/question', [HomeController::class, 'storeQuestion'])->name('faq.question.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

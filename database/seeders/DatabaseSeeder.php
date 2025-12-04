@@ -25,7 +25,10 @@ class DatabaseSeeder extends Seeder
             EventsTableSeeder::class,
             ProjectsTableSeeder::class,
             MentorQuestionsSeeder::class,
-            PartnersSeeder::class
+            PartnersSeeder::class,
+            ResearchSeeder::class,
+            FaqSeeder::class,
+            TestimonialSeeder::class
         ]);
     }
 }

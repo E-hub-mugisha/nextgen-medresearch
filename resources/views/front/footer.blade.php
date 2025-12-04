@@ -60,10 +60,10 @@
                     <div class="footer-links">
                         <h3>Our Programs</h3>
                         <ul>
-                            <li><a href="{{ route('mentorship')}}">Mentorship Hub</a></li>
-                            <li><a href="{{ route('research_data')}}">Research & Data Support</a></li>
-                            <li><a href="{{ route('capacity_building')}}">Capacity Building Workshops</a></li>
-                            <li><a href="{{ route('innovation_projects')}}">Innovation Projects</a></li>
+                            @php $programs = \App\Models\Program::all(); @endphp
+                            @foreach($programs as $program)
+                            <li><a href="{{ route('programs.detail', $program->slug)}}">{{ $program->title }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <!-- Footer Links End -->

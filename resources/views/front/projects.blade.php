@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title','projects & updates')
+@section('title','Projects & Updates')
 @section('content')
 
 <!-- Page Header Start -->
@@ -10,12 +10,7 @@
                 <!-- Page Header Box Start -->
                 <div class="page-header-box">
                     <h1 class="text-anime-style-3" data-cursor="-opaque">Our projects & updates</h1>
-                    <nav class="wow fadeInUp">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="{{ route('home')}}">home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Our projects & updates</li>
-                        </ol>
-                    </nav>
+                    
                 </div>
                 <!-- Page Header Box End -->
             </div>

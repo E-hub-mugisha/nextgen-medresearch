@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
             $table->text('description')->nullable();
             $table->string('icon')->nullable();

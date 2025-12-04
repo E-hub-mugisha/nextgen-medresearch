@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title','Home')
+@section('title','Impact That Matters')
 @section('content')
 
 <!-- Page Header Start -->
@@ -10,12 +10,7 @@
                 <!-- Page Header Box Start -->
                 <div class="page-header-box">
                     <h1 class="text-anime-style-3" data-cursor="-opaque">Our Impact That Matters</h1>
-                    <nav class="wow fadeInUp">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Impact That Matters</li>
-                        </ol>
-                    </nav>
+                    
                 </div>
                 <!-- Page Header Box End -->
             </div>
@@ -33,7 +28,7 @@
                     <!-- Why Choose Image Start -->
                     <div class="why-choose-image">
                         <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
-                            <img src="images/why-choose-image.jpg" alt="" style="transform: translate(0px, 0px);">
+                            <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="" style="transform: translate(0px, 0px);">
                         </figure>
                     </div>
                     <!-- Why Choose Image End -->
@@ -44,22 +39,22 @@
                         <div class="satisfy-client-images">
                             <div class="satisfy-client-image">
                                 <figure class="image-anime">
-                                    <img src="images/satisfy-client-img-1.jpg" alt="">
+                                    <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
                                 </figure>
                             </div>
                             <div class="satisfy-client-image">
                                 <figure class="image-anime">
-                                    <img src="images/satisfy-client-img-2.jpg" alt="">
+                                    <img src="{{ asset('assets/images/satisfy-client-img-2.jpg') }}" alt="">
                                 </figure>
                             </div>
                             <div class="satisfy-client-image">
                                 <figure class="image-anime">
-                                    <img src="images/satisfy-client-img-3.jpg" alt="">
+                                    <img src="{{ asset('assets/images/satisfy-client-img-3.jpg') }}" alt="">
                                 </figure>
                             </div>
                             <div class="satisfy-client-image">
                                 <figure class="image-anime">
-                                    <img src="images/satisfy-client-img-4.jpg" alt="">
+                                    <img src="{{ asset('assets/images/satisfy-client-img-4.jpg') }}" alt="">
                                 </figure>
                             </div>
                             <div class="satisfy-client-image add-more">
@@ -104,7 +99,7 @@
                                 <div class="why-choose-item wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                                     <div class="why-choose-item-header">
                                         <div class="icon-box">
-                                            <img src="images/icon-why-choose-1.svg" alt="">
+                                            <img src="{{ asset('assets/images/icon-why-choose-1.svg') }}" alt="">
                                         </div>
                                         <div class="why-choose-item-title">
                                             <h3>Proven Track Record</h3>
@@ -120,7 +115,7 @@
 
                             <!-- Why choose Button Start -->
                             <div class="why-choose-btn wow fadeInUp" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInUp;">
-                                <a href="contact.html" class="btn-default">contact us</a>
+                                <a href="{{ route('contact') }}" class="btn-default">contact us</a>
                             </div>
                             <!-- Why choose Button End -->
                         </div>
@@ -129,7 +124,7 @@
                         <!-- Why Choose Body Image Start -->
                         <div class="why-choose-body-image">
                             <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
-                                <img src="images/why-choose-body-image.jpg" alt="" style="transform: translate(0px, 0px);">
+                                <img src="{{ asset('assets/images/why-choose-body-image.jpg') }}" alt="" style="transform: translate(0px, 0px);">
                             </figure>
                         </div>
                         <!-- Why Choose Body Image End -->
@@ -172,7 +167,7 @@
 
                     <!-- What We Button Start -->
                     <div class="what-we-btn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <a href="contact.html" class="btn-default btn-highlighted">Rescue Sheet</a>
+                        <a href="{{ route('rescue.sheet.public') }}" class="btn-default btn-highlighted">Rescue Sheet</a>
                     </div>
                     <!-- What We Button End -->
 
@@ -204,7 +199,7 @@
 
                     <!-- Our Faqs Button Start -->
                     <div class="our-faqs-btn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <a href="faqs.html" class="btn-default">Partner With Us</a>
+                        <a href="{{ route('partners') }}" class="btn-default">Partner With Us</a>
                     </div>
                     <!-- Our Faqs Button End -->
                 </div>

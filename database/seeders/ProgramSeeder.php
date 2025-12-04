@@ -19,6 +19,7 @@ class ProgramSeeder extends Seeder
         $programs = [
             [
                 'title' => 'Mentorship Hub',
+                'slug' => 'mentorship-hub',
                 'description' => "We match senior researchers and clinicians with young professionals to accelerate academic and clinical growth.\n\nFeatures:\n• Mentor–Mentee Matching Portal\n• Profile system by specialty, goals, and research interest\n• Progress tracking dashboard",
                 'icon' => 'bi-people-fill', // bootstrap icon
                 'featured' => true,
@@ -26,6 +27,7 @@ class ProgramSeeder extends Seeder
             ],
             [
                 'title' => 'Research & Data Support',
+                'slug' => 'research-data-support',
                 'description' => "Services:\n• Data collection & management\n• Proposal and publication mentorship\n• Audit & survey design\n• Statistical analysis and visualization",
                 'icon' => 'bi-bar-chart-line-fill',
                 'featured' => false,
@@ -33,6 +35,7 @@ class ProgramSeeder extends Seeder
             ],
             [
                 'title' => 'Capacity Building Workshops',
+                'slug' => 'capacity-building-workshops',
                 'description' => "Topics:\n• Research methods\n• Scientific writing\n• Data analysis\n• Ethics & IRB application\n\nFeature: Interactive Training Calendar with “Register Now” buttons.",
                 'icon' => 'bi-journal-text',
                 'featured' => false,
@@ -40,6 +43,7 @@ class ProgramSeeder extends Seeder
             ],
             [
                 'title' => 'Innovation Projects',
+                'slug' => 'innovation-projects',
                 'description' => "Examples:\n• Digital Mentorship Dashboard\n• Road Safety & Post-Crash Care Project\n• Rescue Sheet (English–Kinyarwanda) for emergency response",
                 'icon' => 'bi-lightbulb-fill',
                 'featured' => false,
@@ -50,6 +54,7 @@ class ProgramSeeder extends Seeder
         foreach ($programs as $program) {
             Program::create([
                 'title' => $program['title'],
+                'slug' => $program['slug'],
                 'category_id' => $category->id,
                 'description' => $program['description'],
                 'icon' => $program['icon'],

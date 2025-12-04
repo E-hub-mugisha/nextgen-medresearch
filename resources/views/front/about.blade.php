@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title','Home')
+@section('title','WHO WE ARE')
 @section('content')
 
 <!-- Page Header Start -->
@@ -10,12 +10,6 @@
                 <!-- Page Header Box Start -->
                 <div class="page-header-box">
                     <h1 class="text-anime-style-3" data-cursor="-opaque">About us</h1>
-                    <nav class="wow fadeInUp">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">About us</li>
-                        </ol>
-                    </nav>
                 </div>
                 <!-- Page Header Box End -->
             </div>
@@ -182,7 +176,7 @@
 
                     <!-- Approach Button Start -->
                     <div class="approach-button wow fadeInUp" data-wow-delay="0.8s">
-                        <a href="pricing.html" class="btn-default">our model</a>
+                        <a href="#model" class="btn-default">our model</a>
                     </div>
                     <!-- Approach Button End -->
                 </div>
@@ -192,98 +186,6 @@
     </div>
 </div>
 <!-- Our Approach Section End -->
-
-
-
-<!-- What We Do Section Start -->
-<div class="what-we-do bg-section dark-section mt-4">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <!-- What We Content Start -->
-                <div class="what-we-contant">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">Our Model</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Our Model</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s">We operate through three interlocking pillars that reinforce each other</p>
-                    </div>
-                    <!-- Section Title End -->
-
-                    <!-- What We Button Start -->
-                    <div class="what-we-btn wow fadeInUp" data-wow-delay="0.4s">
-                        <a href="contact.html" class="btn-default btn-highlighted">contact us</a>
-                    </div>
-                    <!-- What We Button End -->
-
-                    <!-- What We Counter Box Start -->
-                    <div class="what-we-counter-box">
-                        <h2><span class="counter">98</span>%</h2>
-                        <h3>Environmental Science</h3>
-                        <p>This integrated model creates sustainable growth and measurable impact.</p>
-                    </div>
-                    <!-- What We Counter Box End -->
-                </div>
-                <!-- What We Content End -->
-            </div>
-
-            <div class="col-lg-6">
-                <!-- What We Item List Start -->
-                <div class="what-we-item-list">
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp">
-                        <div class="icon-box">
-                            <img src="{{ asset('assets/images/icon-what-we-item-1.svg')}}" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Mentorship</h3>
-                            <p>Personalized guidance from experienced researchers and clinicians</p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="icon-box">
-                            <img src="{{ asset('assets/images/icon-what-we-item-2.svg')}}" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Research Collaboration</h3>
-                            <p>Supporting teams to design, conduct, and publish studies</p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="icon-box">
-                            <img src="{{ asset('assets/images/icon-what-we-item-3.svg')}}" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Capacity Building & Innovation</h3>
-                            <p>Workshops, digital learning, and tools that enable practical research skills</p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="icon-box">
-                            <img src="images/icon-what-we-item-4.svg" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Collaborative Scientific Partnerships</h3>
-                            <p>We work closely with academic institutions, private industries, and government agencies to co-develop innovative research.</p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-                </div>
-                <!-- What We Item List End -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- What We Do Section End -->
 
 <div class="about-us">
     <div class="container">
@@ -376,7 +278,6 @@
                         <!-- About Counter Title Start -->
                         <div class="about-counter-title">
                             <h2>Our Core Values</h2>
-                            <h3>We are driven by</h3>
                         </div>
                         <!-- About Counter Title End -->
 
@@ -395,7 +296,7 @@
 
                                 <li>Impact-oriented action</li>
                             </ul>
-                            <a href="about.html" class="readmore-btn">Learn More</a>
+                            <a href="{{ route('about') }}" class="readmore-btn">Learn More</a>
                         </div>
                         <!-- About Counter Content End -->
                     </div>
@@ -429,6 +330,98 @@
         </div>
     </div>
 </div>
+
+<!-- What We Do Section Start -->
+<div class="what-we-do bg-section dark-section mt-4" id="model">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <!-- What We Content Start -->
+                <div class="what-we-contant">
+                    <!-- Section Title Start -->
+                    <div class="section-title">
+                        <h3 class="wow fadeInUp">Our Model</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Our Model</h2>
+                        <p class="wow fadeInUp" data-wow-delay="0.2s">We operate through three interlocking pillars that reinforce each other</p>
+                    </div>
+                    <!-- Section Title End -->
+
+                    <!-- What We Button Start -->
+                    <div class="what-we-btn wow fadeInUp" data-wow-delay="0.4s">
+                        <a href="{{ route('contact') }}" class="btn-default btn-highlighted">contact us</a>
+                    </div>
+                    <!-- What We Button End -->
+
+                    <!-- What We Counter Box Start -->
+                    <div class="what-we-counter-box">
+                        <h2><span class="counter">98</span>%</h2>
+                        <h3>Environmental Science</h3>
+                        <p>This integrated model creates sustainable growth and measurable impact.</p>
+                    </div>
+                    <!-- What We Counter Box End -->
+                </div>
+                <!-- What We Content End -->
+            </div>
+
+            <div class="col-lg-6">
+                <!-- What We Item List Start -->
+                <div class="what-we-item-list">
+                    <!-- What We Item Start -->
+                    <div class="what-we-item wow fadeInUp">
+                        <div class="icon-box">
+                            <img src="{{ asset('assets/images/icon-what-we-item-1.svg')}}" alt="">
+                        </div>
+                        <div class="what-we-content">
+                            <h3>Mentorship</h3>
+                            <p>Personalized guidance from experienced researchers and clinicians</p>
+                        </div>
+                    </div>
+                    <!-- What We Item End -->
+
+                    <!-- What We Item Start -->
+                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="icon-box">
+                            <img src="{{ asset('assets/images/icon-what-we-item-2.svg')}}" alt="">
+                        </div>
+                        <div class="what-we-content">
+                            <h3>Research Collaboration</h3>
+                            <p>Supporting teams to design, conduct, and publish studies</p>
+                        </div>
+                    </div>
+                    <!-- What We Item End -->
+
+                    <!-- What We Item Start -->
+                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="icon-box">
+                            <img src="{{ asset('assets/images/icon-what-we-item-3.svg')}}" alt="">
+                        </div>
+                        <div class="what-we-content">
+                            <h3>Capacity Building & Innovation</h3>
+                            <p>Workshops, digital learning, and tools that enable practical research skills</p>
+                        </div>
+                    </div>
+                    <!-- What We Item End -->
+
+                    <!-- What We Item Start -->
+                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.6s">
+                        <div class="icon-box">
+                            <img src="images/icon-what-we-item-4.svg" alt="">
+                        </div>
+                        <div class="what-we-content">
+                            <h3>Collaborative Scientific Partnerships</h3>
+                            <p>We work closely with academic institutions, private industries, and government agencies to co-develop innovative research.</p>
+                        </div>
+                    </div>
+                    <!-- What We Item End -->
+                </div>
+                <!-- What We Item List End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- What We Do Section End -->
+
+
 
 <div class="how-it-work">
     <div class="container">
@@ -600,7 +593,7 @@
 
                     <!-- Pricing Button Start -->
                     <div class="our-pricing-btn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <a href="pricing.html" class="btn-default">Partner With Us</a>
+                        <a href="{{ route('partners')}}" class="btn-default">Partner With Us</a>
                     </div>
                     <!-- Pricing Button End -->
                 </div>
@@ -624,7 +617,7 @@
                             <div class="pricing-content">
                                 <!-- Pricing Button Start -->
                                 <div class="pricing-btn">
-                                    <a href="contact.html" class="btn-default">Apply for Membership</a>
+                                    <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal" class="btn-default">Apply for Membership</a>
                                 </div>
                                 <!-- Pricing Button End -->
                             </div>
@@ -657,7 +650,7 @@
 
                     <!-- Our Faqs Button Start -->
                     <div class="our-faqs-btn wow fadeInUp" data-wow-delay="0.4s">
-                        <a href="faqs.html" class="btn-default">View All Faqs</a>
+                        <a href="{{ route('faq.page') }}" class="btn-default">View All Faqs</a>
                     </div>
                     <!-- Our Faqs Button End -->
                 </div>
@@ -667,80 +660,22 @@
             <div class="col-lg-7">
                 <!-- FAQ Accordion Start -->
                 <div class="faq-accordion" id="accordion">
+                    @foreach($faqs as $faq)
                     <!-- FAQ Item Start -->
                     <div class="accordion-item wow fadeInUp">
-                        <h2 class="accordion-header" id="heading1">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                Q1. What types of research services do you offer?
+                        <h2 class="accordion-header" id="heading{{ $loop->index + 1 }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $loop->index + 1 }}" aria-expanded="true" aria-controls="collapse{{ $loop->index + 1 }}">
+                                {{ $faq->question }}
                             </button>
                         </h2>
-                        <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordion">
+                        <div id="collapse{{ $loop->index + 1 }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $loop->index + 1 }}" data-bs-parent="#accordion">
                             <div class="accordion-body">
-                                <p>We specialize in laboratory testing, analytical research, scientific custom experiments and data interpretation.</p>
+                                <p>{{ $faq->answer }}</p>
                             </div>
                         </div>
                     </div>
                     <!-- FAQ Item End -->
-
-                    <!-- FAQ Item Start -->
-                    <div class="accordion-item wow fadeInUp" data-wow-delay="0.2s">
-                        <h2 class="accordion-header" id="heading2">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                Q2. Can I request a custom research project?
-                            </button>
-                        </h2>
-                        <div id="collapse2" class="accordion-collapse collapse show" aria-labelledby="heading2" data-bs-parent="#accordion">
-                            <div class="accordion-body">
-                                <p>We specialize in laboratory testing, analytical research, scientific custom experiments and data interpretation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FAQ Item End -->
-
-                    <!-- FAQ Item Start -->
-                    <div class="accordion-item wow fadeInUp" data-wow-delay="0.4s">
-                        <h2 class="accordion-header" id="heading3">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                                Q3. How long does a typical research project take?
-                            </button>
-                        </h2>
-                        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordion">
-                            <div class="accordion-body">
-                                <p>We specialize in laboratory testing, analytical research, scientific custom experiments and data interpretation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FAQ Item End -->
-
-                    <!-- FAQ Item Start -->
-                    <div class="accordion-item wow fadeInUp" data-wow-delay="0.6s">
-                        <h2 class="accordion-header" id="heading4">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                Q4. Are your labs certified or accredited?
-                            </button>
-                        </h2>
-                        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordion">
-                            <div class="accordion-body">
-                                <p>We specialize in laboratory testing, analytical research, scientific custom experiments and data interpretation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FAQ Item End -->
-
-                    <!-- FAQ Item Start -->
-                    <div class="accordion-item wow fadeInUp" data-wow-delay="0.8s">
-                        <h2 class="accordion-header" id="heading5">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                Q5. How do I submit a sample or start a project?
-                            </button>
-                        </h2>
-                        <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordion">
-                            <div class="accordion-body">
-                                <p>We specialize in laboratory testing, analytical research, scientific custom experiments and data interpretation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FAQ Item End -->
+                    @endforeach
                 </div>
                 <!-- FAQ Accordion End -->
             </div>

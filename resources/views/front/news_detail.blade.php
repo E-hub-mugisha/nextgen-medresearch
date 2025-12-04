@@ -10,12 +10,7 @@
                 <!-- Page Header Box Start -->
                 <div class="page-header-box">
                     <h1 class="text-anime-style-3" data-cursor="-opaque">{{ $new->title}}</h1>
-                    <div class="post-single-meta wow fadeInUp">
-                        <ol class="breadcrumb">
-                            <li><i class="fa-regular fa-user"></i> Admin</li>
-                            <li><i class="fa-regular fa-clock"></i> 13 June, 2025</li>
-                        </ol>
-                    </div>
+                    
                 </div>
                 <!-- Page Header Box End -->
             </div>

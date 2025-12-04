@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title','Home')
+@section('title','Researches & Case Studies')
 @section('content')
 
 <!-- Page Header Start -->
@@ -9,13 +9,7 @@
             <div class="col-lg-12">
                 <!-- Page Header Box Start -->
                 <div class="page-header-box">
-                    <h1 class="text-anime-style-3" data-cursor="-opaque">Research & Data Support</h1>
-                    <nav class="wow fadeInUp">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Research & Data Support</li>
-                        </ol>
-                    </nav>
+                    <h1 class="text-anime-style-3" data-cursor="-opaque">Researches & Case Studies</h1>
                 </div>
                 <!-- Page Header Box End -->
             </div>
@@ -23,6 +17,74 @@
     </div>
 </div>
 <!-- Page Header End -->
+
+<!-- Scrolling Ticker Section Start -->
+<div class="our-scrolling-ticker">
+    <!-- Scrolling Ticker Start -->
+    <div class="scrolling-ticker-box">
+        <div class="scrolling-content">
+            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
+        </div>
+
+        <div class="scrolling-content">
+            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
+            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
+        </div>
+    </div>
+    <!-- Scrolling Ticker End -->
+</div>
+<!-- Scrolling Ticker Section End -->
+
+<!-- Page Case Study Start -->
+<div class="page-case-study">
+    <div class="container">
+        <div class="row">
+            @foreach($researches as $research)
+            <div class="col-lg-4 col-md-6">
+                <!-- Case Study Item Start -->
+                <div class="case-study-item wow fadeInUp">
+                    <!-- Case Study Image Start-->
+                    <div class="case-study-image">
+                        <figure class="image-anime">
+                            <img src="{{ asset('assets/images/case-study-1.jpg') }}" alt="">
+                        </figure>
+
+                        <!-- Case Study Button Start-->
+                        <div class="case-study-btn">
+                            <a href="{{ route('research.detail', $research->slug) }}"><img src="{{ asset('assets/images/arrow-primary.svg') }}" alt=""></a>
+                        </div>
+                        <!-- Case Study Button End-->
+                    </div>
+                    <!-- Case Study Image End -->
+
+                    <!-- Case Study Content Start -->
+                    <div class="case-study-content">
+                        <h2><a href="{{ route('research.detail', $research->slug) }}">{{ $research->title }}</a></h2>
+                    </div>
+                    <!-- Case Study Content End -->
+                </div>
+                <!-- Case Study Item End -->
+            </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+<!-- Page Case Study End -->
 
 <div class="how-it-work">
     <div class="container">
@@ -132,9 +194,9 @@
                             </div>
                         </div>
                         <!-- How Steps Item End -->
-                         <div class="approach-button wow fadeInUp" data-wow-delay="0.8s">
-                        <a href="pricing.html" class="btn-default">Join as Mentee</a>
-                    </div>
+                        <div class="approach-button wow fadeInUp" data-wow-delay="0.8s">
+                            <a href="pricing.html" class="btn-default">Join as Mentee</a>
+                        </div>
                     </div>
                     <!-- Work Steps List End -->
                 </div>

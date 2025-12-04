@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title','Home')
+@section('title','Get To Know')
 @section('content')
 
 <!-- Hero Section Start -->
@@ -19,57 +19,11 @@
 
                     <!-- Hero Button Start -->
                     <div class="hero-btn wow fadeInUp" data-wow-delay="0.4s">
-                        <a href="contact.html" class="btn-default btn-highlighted">Learn more</a>
-                        <a href="services.html" class="btn-default btn-border">Apply for Membership</a>
+                        <a href="{{ route('about') }}" class="btn-default btn-highlighted">Learn more</a>
+                        <a href="{{ route('programs') }}" class="btn-default btn-border">Our Programs</a>
                     </div>
                     <!-- Hero Button End -->
 
-                    <!-- Hero Body Start -->
-                    <div class="hero-body wow fadeInUp" data-wow-delay="0.6s">
-                        <!-- Hero Experience Box Start -->
-                        <div class="hero-experience-box">
-                            <h2><span class="counter">15</span>+</h2>
-                            <p>Years Of Experience</p>
-                        </div>
-                        <!-- Hero Experience Box End -->
-
-                        <!-- Satisfy Client Box Start -->
-                        <div class="satisfy-client-box">
-                            <!-- Satisfy Client Images Start -->
-                            <div class="satisfy-client-images">
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
-                                    </figure>
-                                </div>
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="{{ asset('assets/images/satisfy-client-img-2.jpg') }}" alt="">
-                                    </figure>
-                                </div>
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="{{ asset('assets/images/satisfy-client-img-3.jpg') }}" alt="">
-                                    </figure>
-                                </div>
-                                <div class="satisfy-client-image">
-                                    <figure class="image-anime">
-                                        <img src="{{ asset('assets/images/satisfy-client-img-4.jpg') }}" alt="">
-                                    </figure>
-                                </div>
-                            </div>
-                            <!-- Satisfy Client Images End -->
-
-                            <!-- Satisfy Client Content Start -->
-                            <div class="satisfy-client-content">
-                                <p>Trusted By</p>
-                                <h3>5k+ Satisfied Clients</h3>
-                            </div>
-                            <!-- Satisfy Client Content End -->
-                        </div>
-                        <!-- Satisfy Client Box End -->
-                    </div>
-                    <!-- Hero Body End -->
                 </div>
                 <!-- Hero Content End -->
             </div>
@@ -219,7 +173,7 @@
                         <!-- About Counter Content Start -->
                         <div class="about-counter-content">
                             <p>We connect clinicians, researchers, and mentors to build capacity, conduct impactful studies, and shape future healthcare leaders</p>
-                            <a href="about.html" class="readmore-btn">Learn More</a>
+                            <a href="{{ route('our-value') }}" class="readmore-btn">Learn More</a>
                         </div>
                         <!-- About Counter Content End -->
                     </div>
@@ -277,9 +231,10 @@
         </div>
 
         <div class="row service-list">
+            @foreach($programs as $program)
             <div class="col-lg-3 col-md-6">
                 <!-- Service Item Start -->
-                <div class="service-item active wow fadeInUp">
+                <div class="service-item wow fadeInUp">
                     <!-- Service Image Start -->
                     <div class="service-image">
                         <img src="{{ asset('assets/images/service-1.jpg') }}" alt="">
@@ -298,7 +253,7 @@
 
                             <!-- Service Readmore Button Start -->
                             <div class="service-readmore-btn">
-                                <a href="service-single.html"><img src="{{ asset('assets/images/arrow-white.svg') }}" alt=""></a>
+                                <a href="{{ route('programs.detail', $program->slug ) }}"><img src="{{ asset('assets/images/arrow-white.svg') }}" alt=""></a>
                             </div>
                             <!-- Service Readmore Button End -->
                         </div>
@@ -306,8 +261,8 @@
 
                         <!-- Service Content Start -->
                         <div class="service-content">
-                            <h3><a href="service-single.html">Mentorship Hub</a></h3>
-                            <p>Applying biological systems and organisms</p>
+                            <h3><a href="{{ route('programs.detail', $program->slug ) }}">{{ $program->title }}</a></h3>
+                            <p>{{ Str::limit($program->description, 100) }}</p>
                         </div>
                         <!-- Service Content End -->
                     </div>
@@ -315,128 +270,12 @@
                 </div>
                 <!-- Service Item End -->
             </div>
-
-            <div class="col-lg-3 col-md-6">
-                <!-- Service Item Start -->
-                <div class="service-item wow fadeInUp" data-wow-delay="0.2s">
-                    <!-- Service Image Start -->
-                    <div class="service-image">
-                        <img src="{{ asset('assets/images/service-1.jpg') }}" alt="">
-                    </div>
-                    <!-- Service Image End -->
-
-                    <!-- Service Body Start -->
-                    <div class="service-body">
-                        <!-- Service Body Header Start -->
-                        <div class="service-body-header">
-                            <!-- Icon Box Start -->
-                            <div class="icon-box">
-                                <img src="{{ asset('assets/images/icon-service-2.svg') }}" alt="">
-                            </div>
-                            <!-- Icon Box End -->
-
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="service-single.html"><img src="{{ asset('assets/images/arrow-white.svg') }}" alt=""></a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>
-                        <!-- Service Body Header End -->
-
-                        <!-- Service Content Start -->
-                        <div class="service-content">
-                            <h3><a href="service-single.html">Research & Data Support</a></h3>
-                            <p>Investigating the properties and applications</p>
-                        </div>
-                        <!-- Service Content End -->
-                    </div>
-                    <!-- Service Body End -->
-                </div>
-                <!-- Service Item End -->
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <!-- Service Item Start -->
-                <div class="service-item wow fadeInUp" data-wow-delay="0.4s">
-                    <!-- Service Image Start -->
-                    <div class="service-image">
-                        <img src="{{ asset('assets/images/service-1.jpg') }}" alt="">
-                    </div>
-                    <!-- Service Image End -->
-
-                    <!-- Service Body Start -->
-                    <div class="service-body">
-                        <!-- Service Body Header Start -->
-                        <div class="service-body-header">
-                            <!-- Icon Box Start -->
-                            <div class="icon-box">
-                                <img src="{{ asset('assets/images/icon-service-3.svg') }}" alt="">
-                            </div>
-                            <!-- Icon Box End -->
-
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="service-single.html"><img src="{{ asset('assets/images/arrow-white.svg') }}" alt=""></a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>
-                        <!-- Service Body Header End -->
-
-                        <!-- Service Content Start -->
-                        <div class="service-content">
-                            <h3><a href="service-single.html">Capacity Building Workshops</a></h3>
-                            <p>Assessing the impact of substances</p>
-                        </div>
-                        <!-- Service Content End -->
-                    </div>
-                    <!-- Service Body End -->
-                </div>
-                <!-- Service Item End -->
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <!-- Service Item Start -->
-                <div class="service-item wow fadeInUp" data-wow-delay="0.6s">
-                    <!-- Service Image Start -->
-                    <div class="service-image">
-                        <img src="{{ asset('assets/images/service-1.jpg') }}" alt="">
-                    </div>
-                    <!-- Service Image End -->
-
-                    <!-- Service Body Start -->
-                    <div class="service-body">
-                        <!-- Service Body Header Start -->
-                        <div class="service-body-header">
-                            <!-- Icon Box Start -->
-                            <div class="icon-box">
-                                <img src="{{ asset('assets/images/icon-service-4.svg') }}" alt="">
-                            </div>
-                            <!-- Icon Box End -->
-
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="service-single.html"><img src="{{ asset('assets/images/arrow-white.svg') }}" alt=""></a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>
-                        <!-- Service Body Header End -->
-
-                        <!-- Service Content Start -->
-                        <div class="service-content">
-                            <h3><a href="service-single.html">Innovation Projects</a></h3>
-                            <p>Applying scientific methods for legal investigations</p>
-                        </div>
-                        <!-- Service Content End -->
-                    </div>
-                    <!-- Service Body End -->
-                </div>
-                <!-- Service Item End -->
-            </div>
+            @endforeach
 
             <div class="col-lg-12">
                 <!-- Section Footer Text Start-->
                 <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                    <p><span>Free</span>Explore the science that shapes tomorrow - <a href="contact.html">Pith Your Idea!</a></p>
+                    <p><span>Free</span>Explore the research that shapes tomorrow - <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal">Apply for Membership!</a></p>
                 </div>
                 <!-- Section Footer Text End-->
             </div>
@@ -455,7 +294,7 @@
                     <!-- Why Choose Image Start -->
                     <div class="why-choose-image">
                         <figure class="image-anime reveal">
-                            <img src="images/why-choose-image.jpg" alt="">
+                            <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
                         </figure>
                     </div>
                     <!-- Why Choose Image End -->
@@ -466,22 +305,22 @@
                         <div class="satisfy-client-images">
                             <div class="satisfy-client-image">
                                 <figure class="image-anime">
-                                    <img src="images/satisfy-client-img-1.jpg" alt="">
+                                    <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
                                 </figure>
                             </div>
                             <div class="satisfy-client-image">
                                 <figure class="image-anime">
-                                    <img src="images/satisfy-client-img-2.jpg" alt="">
+                                    <img src="{{ asset('assets/images/satisfy-client-img-2.jpg') }}" alt="">
                                 </figure>
                             </div>
                             <div class="satisfy-client-image">
                                 <figure class="image-anime">
-                                    <img src="images/satisfy-client-img-3.jpg" alt="">
+                                    <img src="{{ asset('assets/images/satisfy-client-img-3.jpg') }}" alt="">
                                 </figure>
                             </div>
                             <div class="satisfy-client-image">
                                 <figure class="image-anime">
-                                    <img src="images/satisfy-client-img-4.jpg" alt="">
+                                    <img src="{{ asset('assets/images/satisfy-client-img-4.jpg') }}" alt="">
                                 </figure>
                             </div>
                             <div class="satisfy-client-image add-more">
@@ -522,7 +361,7 @@
                                 <div class="why-choose-item wow fadeInUp" data-wow-delay="0.4s">
                                     <div class="why-choose-item-header">
                                         <div class="icon-box">
-                                            <img src="images/icon-why-choose-1.svg" alt="">
+                                            <img src="{{ asset('assets/images/icon-why-choose-1.svg') }}" alt="">
                                         </div>
                                         <div class="why-choose-item-title">
                                             <h3>Proven Track Record</h3>
@@ -538,7 +377,7 @@
                                 <div class="why-choose-item wow fadeInUp" data-wow-delay="0.6s">
                                     <div class="why-choose-item-header">
                                         <div class="icon-box">
-                                            <img src="images/icon-why-choose-2.svg" alt="">
+                                            <img src="{{ asset('assets/images/icon-why-choose-2.svg') }}" alt="">
                                         </div>
                                         <div class="why-choose-item-title">
                                             <h3>Collaborative Approach</h3>
@@ -554,7 +393,7 @@
 
                             <!-- Why choose Button Start -->
                             <div class="why-choose-btn wow fadeInUp" data-wow-delay="0.8s">
-                                <a href="contact.html" class="btn-default">contact us</a>
+                                <a href="{{ route('contact') }}" class="btn-default">contact us</a>
                             </div>
                             <!-- Why choose Button End -->
                         </div>
@@ -563,7 +402,7 @@
                         <!-- Why Choose Body Image Start -->
                         <div class="why-choose-body-image">
                             <figure class="image-anime reveal">
-                                <img src="images/why-choose-body-image.jpg" alt="">
+                                <img src="{{ asset('assets/images/why-choose-body-image.jpg') }}" alt="">
                             </figure>
                         </div>
                         <!-- Why Choose Body Image End -->
@@ -594,7 +433,7 @@
 
                     <!-- What We Button Start -->
                     <div class="what-we-btn wow fadeInUp" data-wow-delay="0.4s">
-                        <a href="contact.html" class="btn-default btn-highlighted">Apply for Membership</a>
+                        <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal" class="btn-default btn-highlighted">Apply for Membership</a>
                     </div>
                     <!-- What We Button End -->
 
@@ -691,8 +530,8 @@
             <div class="col-lg-6">
                 <!-- Section Title Start -->
                 <div class="section-title">
-                    <h3 class="wow fadeInUp">Our Case Studies</h3>
-                    <h2 class="text-anime-style-3" data-cursor="-opaque">Innovative solution backed by scientific rigor</h2>
+                    <h3 class="wow fadeInUp">Our Research Studies</h3>
+                    <h2 class="text-anime-style-3" data-cursor="-opaque"> Research Studies</h2>
                 </div>
                 <!-- Section Title End -->
             </div>
@@ -700,13 +539,14 @@
             <div class="col-lg-6">
                 <!-- Section Button Start -->
                 <div class="section-btn wow fadeInUp" data-wow-delay="0.2s">
-                    <a href="case-study.html" class="btn-default">Explore All Studies</a>
+                    <a href="{{ route('research.index') }}" class="btn-default">Explore All Research</a>
                 </div>
                 <!-- Section Button End -->
             </div>
         </div>
 
         <div class="row">
+            @foreach($researches as $research)
             <div class="col-lg-4 col-md-6">
                 <!-- Case Study Item Start -->
                 <div class="case-study-item wow fadeInUp">
@@ -718,7 +558,7 @@
 
                         <!-- Case Study Button Start-->
                         <div class="case-study-btn">
-                            <a href="case-study-single.html"><img src="{{ asset('assets/images/arrow-primary.svg') }}" alt=""></a>
+                            <a href="{{ route('research.detail', $research->slug) }}"><img src="{{ asset('assets/images/arrow-primary.svg') }}" alt=""></a>
                         </div>
                         <!-- Case Study Button End-->
                     </div>
@@ -726,64 +566,13 @@
 
                     <!-- Case Study Content Start -->
                     <div class="case-study-content">
-                        <h2><a href="case-study-single.html">Genomic Research Unlocks Drought-Resistant Crop Varieties</a></h2>
+                        <h2><a href="{{ route('research.detail', $research->slug) }}">{{ $research->title }}</a></h2>
                     </div>
                     <!-- Case Study Content End -->
                 </div>
                 <!-- Case Study Item End -->
             </div>
-
-            <div class="col-lg-4 col-md-6">
-                <!-- Case Study Item Start -->
-                <div class="case-study-item wow fadeInUp" data-wow-delay="0.2s">
-                    <!-- Case Study Image Start-->
-                    <div class="case-study-image">
-                        <figure class="image-anime">
-                            <img src="{{ asset('assets/images/case-study-2.jpg') }}" alt="">
-                        </figure>
-
-                        <!-- Case Study Button Start-->
-                        <div class="case-study-btn">
-                            <a href="case-study-single.html"><img src="{{ asset('assets/images/arrow-primary.svg') }}" alt=""></a>
-                        </div>
-                        <!-- Case Study Button End-->
-                    </div>
-                    <!-- Case Study Image End -->
-
-                    <!-- Case Study Content Start -->
-                    <div class="case-study-content">
-                        <h2><a href="case-study-single.html">Detecting Water Contaminants Using Advanced Spectroscopy</a></h2>
-                    </div>
-                    <!-- Case Study Content End -->
-                </div>
-                <!-- Case Study Item End -->
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <!-- Case Study Item Start -->
-                <div class="case-study-item wow fadeInUp" data-wow-delay="0.4s">
-                    <!-- Case Study Image Start-->
-                    <div class="case-study-image">
-                        <figure class="image-anime">
-                            <img src="{{ asset('assets/images/case-study-3.jpg') }}" alt="">
-                        </figure>
-
-                        <!-- Case Study Button Start-->
-                        <div class="case-study-btn">
-                            <a href="case-study-single.html"><img src="{{ asset('assets/images/arrow-primary.svg') }}" alt=""></a>
-                        </div>
-                        <!-- Case Study Button End-->
-                    </div>
-                    <!-- Case Study Image End -->
-
-                    <!-- Case Study Content Start -->
-                    <div class="case-study-content">
-                        <h2><a href="case-study-single.html">Accelerating Vaccine Development with Rapid Antigen Testing</a></h2>
-                    </div>
-                    <!-- Case Study Content End -->
-                </div>
-                <!-- Case Study Item End -->
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
@@ -835,7 +624,7 @@
 
                     <!-- Our Faqs Button Start -->
                     <div class="our-faqs-btn wow fadeInUp" data-wow-delay="0.4s">
-                        <a href="faqs.html" class="btn-default">View All Faqs</a>
+                        <a href="{{ route('faq.page') }}" class="btn-default">View All Faqs</a>
                     </div>
                     <!-- Our Faqs Button End -->
                 </div>
@@ -845,80 +634,22 @@
             <div class="col-lg-7">
                 <!-- FAQ Accordion Start -->
                 <div class="faq-accordion" id="accordion">
+                    @foreach($faqs as $faq)
                     <!-- FAQ Item Start -->
                     <div class="accordion-item wow fadeInUp">
-                        <h2 class="accordion-header" id="heading1">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                Q1. What types of research services do you offer?
+                        <h2 class="accordion-header" id="heading{{ $loop->index + 1 }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $loop->index + 1 }}" aria-expanded="true" aria-controls="collapse{{ $loop->index + 1 }}">
+                                {{ $faq->question }}
                             </button>
                         </h2>
-                        <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordion">
+                        <div id="collapse{{ $loop->index + 1 }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $loop->index + 1 }}" data-bs-parent="#accordion">
                             <div class="accordion-body">
-                                <p>We specialize in laboratory testing, analytical research, scientific custom experiments and data interpretation.</p>
+                                <p>{{ $faq->answer }}</p>
                             </div>
                         </div>
                     </div>
                     <!-- FAQ Item End -->
-
-                    <!-- FAQ Item Start -->
-                    <div class="accordion-item wow fadeInUp" data-wow-delay="0.2s">
-                        <h2 class="accordion-header" id="heading2">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                Q2. Can I request a custom research project?
-                            </button>
-                        </h2>
-                        <div id="collapse2" class="accordion-collapse collapse show" aria-labelledby="heading2" data-bs-parent="#accordion">
-                            <div class="accordion-body">
-                                <p>We specialize in laboratory testing, analytical research, scientific custom experiments and data interpretation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FAQ Item End -->
-
-                    <!-- FAQ Item Start -->
-                    <div class="accordion-item wow fadeInUp" data-wow-delay="0.4s">
-                        <h2 class="accordion-header" id="heading3">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                                Q3. How long does a typical research project take?
-                            </button>
-                        </h2>
-                        <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordion">
-                            <div class="accordion-body">
-                                <p>We specialize in laboratory testing, analytical research, scientific custom experiments and data interpretation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FAQ Item End -->
-
-                    <!-- FAQ Item Start -->
-                    <div class="accordion-item wow fadeInUp" data-wow-delay="0.6s">
-                        <h2 class="accordion-header" id="heading4">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                Q4. Are your labs certified or accredited?
-                            </button>
-                        </h2>
-                        <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordion">
-                            <div class="accordion-body">
-                                <p>We specialize in laboratory testing, analytical research, scientific custom experiments and data interpretation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FAQ Item End -->
-
-                    <!-- FAQ Item Start -->
-                    <div class="accordion-item wow fadeInUp" data-wow-delay="0.8s">
-                        <h2 class="accordion-header" id="heading5">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                Q5. How do I submit a sample or start a project?
-                            </button>
-                        </h2>
-                        <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordion">
-                            <div class="accordion-body">
-                                <p>We specialize in laboratory testing, analytical research, scientific custom experiments and data interpretation.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FAQ Item End -->
+                    @endforeach
                 </div>
                 <!-- FAQ Accordion End -->
             </div>
@@ -947,6 +678,7 @@
                 <div class="testimonial-slider">
                     <div class="swiper">
                         <div class="swiper-wrapper" data-cursor-text="Drag">
+                            @foreach($testimonials as $testimonial)
                             <!-- Testimonial Slide Start -->
                             <div class="swiper-slide">
                                 <div class="testimonial-item">
@@ -965,74 +697,17 @@
                                             <img src="{{ asset('assets/images/testimonial-quote.svg') }}" alt="">
                                         </div>
                                         <div class="testimonial-info">
-                                            <p>You'll meet with our scientific advisor to define your research goals, scope, and budget. You'll meet with our scientific advisors to define your research.</p>
+                                            <p>{{ $testimonial->testimonial }}</p>
                                         </div>
                                         <div class="author-content">
-                                            <h3>Jenny Wilson</h3>
-                                            <p>Research Analyst</p>
+                                            <h3>{{ $testimonial->name }}</h3>
+                                            <p>{{ $testimonial->role }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- Testimonial Slide End -->
-
-                            <!-- Testimonial Slide Start -->
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <div class="author-image">
-                                        <figure class="image-anime">
-                                            <img src="{{ asset('assets/images/author-2.jpg') }}" alt="">
-                                        </figure>
-                                        <div class="video-play-button">
-                                            <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
-                                                <i class="fa-solid fa-play"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="testimonial-content">
-                                        <div class="testimonial-quote">
-                                            <img src="{{ asset('assets/images/testimonial-quote.svg') }}" alt="">
-                                        </div>
-                                        <div class="testimonial-info">
-                                            <p>You'll meet with our scientific advisor to define your research goals, scope, and budget. You'll meet with our scientific advisors to define your research.</p>
-                                        </div>
-                                        <div class="author-content">
-                                            <h3>Grace Martin</h3>
-                                            <p>Lab Supervisor</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial Slide End -->
-
-                            <!-- Testimonial Slide Start -->
-                            <div class="swiper-slide">
-                                <div class="testimonial-item">
-                                    <div class="author-image">
-                                        <figure class="image-anime">
-                                            <img src="{{ asset('assets/images/author-3.jpg') }}" alt="">
-                                        </figure>
-                                        <div class="video-play-button">
-                                            <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
-                                                <i class="fa-solid fa-play"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="testimonial-content">
-                                        <div class="testimonial-quote">
-                                            <img src="{{ asset('assets/images/testimonial-quote.svg') }}" alt="">
-                                        </div>
-                                        <div class="testimonial-info">
-                                            <p>You'll meet with our scientific advisor to define your research goals, scope, and budget. You'll meet with our scientific advisors to define your research.</p>
-                                        </div>
-                                        <div class="author-content">
-                                            <h3>Emma Davis</h3>
-                                            <p>Project Coordinator</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Testimonial Slide End -->
+                            @endforeach
                         </div>
                         <div class="testimonial-pagination"></div>
                     </div>
@@ -1060,19 +735,20 @@
             <div class="col-lg-6">
                 <!-- Section Button Start -->
                 <div class="section-btn wow fadeInUp" data-wow-delay="0.2s">
-                    <a href="blog.html" class="btn-default">view all blogs</a>
+                    <a href="{{ route('news')}}" class="btn-default">view all blogs</a>
                 </div>
                 <!-- Section Button End -->
             </div>
         </div>
 
         <div class="row">
+            @foreach($news as $new)
             <div class="col-lg-4 col-md-6">
                 <!-- Post Item Start -->
                 <div class="post-item wow fadeInUp">
                     <!-- Post Featured Image Start-->
                     <div class="post-featured-image">
-                        <a href="blog-single.html" data-cursor-text="View">
+                        <a href="{{ route('news.detail', $new->slug )}}" data-cursor-text="View">
                             <figure class="image-anime">
                                 <img src="{{ asset('assets/images/post-1.jpg') }}" alt="">
                             </figure>
@@ -1084,13 +760,13 @@
                     <div class="post-item-body">
                         <!-- Post Item Content Start -->
                         <div class="post-item-content">
-                            <h2><a href="blog-single.html">The Role of Environmental Labs in Climate Change Monitoring</a></h2>
+                            <h2><a href="{{ route('news.detail', $new->slug )}}">{{ $new->title }}</a></h2>
                         </div>
                         <!-- Post Item Content End -->
 
                         <!-- Post Item Readmore Button Start-->
                         <div class="post-item-btn">
-                            <a href="blog-single.html" class="readmore-btn">learn more</a>
+                            <a href="{{ route('news.detail', $new->slug )}}" class="readmore-btn">learn more</a>
                         </div>
                         <!-- Post Item Readmore Button End-->
                     </div>
@@ -1098,70 +774,7 @@
                 </div>
                 <!-- Post Item End -->
             </div>
-
-            <div class="col-lg-4 col-md-6">
-                <!-- Post Item Start -->
-                <div class="post-item wow fadeInUp" data-wow-delay="0.2s">
-                    <!-- Post Featured Image Start-->
-                    <div class="post-featured-image">
-                        <a href="blog-single.html" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{{ asset('assets/images/post-2.jpg') }}" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Post Featured Image End -->
-
-                    <!-- Post Item Body Start -->
-                    <div class="post-item-body">
-                        <!-- Post Item Content Start -->
-                        <div class="post-item-content">
-                            <h2><a href="blog-single.html">From Samples to Solutions How Our Lab Supports Public Health</a></h2>
-                        </div>
-                        <!-- Post Item Content End -->
-
-                        <!-- Post Item Readmore Button Start-->
-                        <div class="post-item-btn">
-                            <a href="blog-single.html" class="readmore-btn">learn more</a>
-                        </div>
-                        <!-- Post Item Readmore Button End-->
-                    </div>
-                    <!-- Post Item Body End -->
-                </div>
-                <!-- Post Item End -->
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <!-- Post Item Start -->
-                <div class="post-item wow fadeInUp" data-wow-delay="0.4s">
-                    <!-- Post Featured Image Start-->
-                    <div class="post-featured-image">
-                        <a href="blog-single.html" data-cursor-text="View">
-                            <figure class="image-anime">
-                                <img src="{{ asset('assets/images/post-3.jpg') }}" alt="">
-                            </figure>
-                        </a>
-                    </div>
-                    <!-- Post Featured Image End -->
-
-                    <!-- Post Item Body Start -->
-                    <div class="post-item-body">
-                        <!-- Post Item Content Start -->
-                        <div class="post-item-content">
-                            <h2><a href="blog-single.html">Case Spotlight Water Quality Research That Saved a Community</a></h2>
-                        </div>
-                        <!-- Post Item Content End -->
-
-                        <!-- Post Item Readmore Button Start-->
-                        <div class="post-item-btn">
-                            <a href="blog-single.html" class="readmore-btn">learn more</a>
-                        </div>
-                        <!-- Post Item Readmore Button End-->
-                    </div>
-                    <!-- Post Item Body End -->
-                </div>
-                <!-- Post Item End -->
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

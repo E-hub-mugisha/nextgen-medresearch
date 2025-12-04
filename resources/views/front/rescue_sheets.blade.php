@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-
+@section('title', 'Vehicle Rescue Sheets')
 @section('content')
 
 <div class="page-header parallaxie">
@@ -9,14 +9,8 @@
                 <!-- Page Header Box Start -->
                 <div class="page-header-box">
                     <h1 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                        Our rescue sheets
+                        Vehicle Rescue Sheets
                     </h1>
-                    <nav class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Vehicle Rescue Sheets</li>
-                        </ol>
-                    </nav>
                 </div>
                 <!-- Page Header Box End -->
             </div>
@@ -32,7 +26,7 @@
                 <div class="our-pricing-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Our rescue sheets</h3>
+                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Vehicle Rescue Sheets</h3>
                         <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
                             Vehicle Rescue Sheets
                         </h2>

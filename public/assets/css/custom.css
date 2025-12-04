@@ -47,11 +47,11 @@
 /************************************/
 
 :root{
-	--primary-color				: #0e4d97;
-	--secondary-color			: #0a7b51;
+	--primary-color				: #1b4965d4;
+	--secondary-color			: #65aa8a;
 	--bg-color					: #F8F8F8;
 	--text-color				: #45566A;
-	--accent-color				: #0a7b51;
+	--accent-color				: #65aa8a;
 	--white-color				: #FFFFFF;
 	--divider-color				: #0e4d971A;
 	--dark-divider-color		: #FFFFFF1A;
