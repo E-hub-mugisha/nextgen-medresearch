@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\MentorQnAController;
@@ -39,7 +41,7 @@ Route::get('/faq', [HomeController::class, 'faqPage'])->name('faq.page');
 Route::post('/faq/question', [HomeController::class, 'storeQuestion'])->name('faq.question.store');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -74,6 +76,51 @@ Route::prefix('admin')->middleware(['auth','is_admin'])->group(function() {
     Route::get('/memberships', [MembershipController::class,'index'])->name('membership.index');
     Route::post('/memberships/{membership}/status', [MembershipController::class,'updateStatus'])->name('membership.update_status');
 });
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::put('/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::put('/admin/users/{id}/reset-password',  [UserController::class, 'resetPassword'])->name('admin.users.resetPassword');
+});
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/categories', [CategoryController::class, 'index'])->name('admin.categories.index');
+    Route::post('/categories', [CategoryController::class, 'store'])->name('admin.categories.store');
+    Route::put('/categories/{id}', [CategoryController::class, 'update'])->name('admin.categories.update');
+    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('admin.categories.destroy');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('posts', App\Http\Controllers\Admin\PostController::class);
+});
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::resource('programs', \App\Http\Controllers\Admin\ProgramController::class);
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('stories', \App\Http\Controllers\Admin\StoryController::class);
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+
+    Route::resource('resources', \App\Http\Controllers\Admin\ResourceController::class);
+
+});
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class);
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('events', \App\Http\Controllers\Admin\EventController::class);
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
+});
+
 
 Route::get('/run-setup', function () {
     Artisan::call('migrate:fresh --seed');

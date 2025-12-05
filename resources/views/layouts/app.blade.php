@@ -1,29 +1,48 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="zxx" class="js">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>Dashboard | {{ config('app.name') }}</title>
+    <link rel="stylesheet" href="{{ asset('admin/assets/css/dashlitee1e3.css?ver=3.2.4') }}">
+    <link id="skin-default" rel="stylesheet" href="{{ asset('admin/assets/css/themee1e3.css?ver=3.2.4') }}">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91615293-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-        <!-- Scripts -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-91615293-4');
+    </script>
 </head>
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
 
-            <!-- Page Content -->
-            <main>
-                @yield('content')
-            </main>
+<body class="nk-body bg-lighter npc-general has-sidebar ">
+    <div class="nk-app-root">
+        <div class="nk-main ">
+            @include('layouts.admin.sidebar')
+            <div class="nk-wrap ">
+                @include('layouts.admin.header')
+                <!-- Page Content -->
+                <div class="nk-content ">
+                    @yield('content')
+                </div>
+                @include('layouts.admin.footer')
+            </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+    </div>
+    <script src="{{ asset('admin/assets/js/bundlee1e3.js?ver=3.2.4') }}"></script>
+    <script src="{{ asset('admin/assets/js/scriptse1e3.js?ver=3.2.4') }}"></script>
+    <script src="{{ asset('admin/assets/js/demo-settingse1e3.js?ver=3.2.4') }}"></script>
+    <script src="{{ asset('admin/assets/js/charts/gd-defaulte1e3.js?ver=3.2.4') }}"></script>
+</body>
+
 </html>
