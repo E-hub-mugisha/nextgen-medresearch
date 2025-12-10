@@ -1,15 +1,15 @@
 @extends('layouts.app')
-@section('title', 'Stories')
+@section('title', 'Testimonials')
 
 @section('content')
 <div class="container mt-4">
 
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4>Stories</h4>
+        <h4>Testimonials</h4>
 
-        <!-- Add Story Button -->
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStoryModal">
-            <i class="fas fa-plus"></i> Add Story
+        <!-- Add Testimonial Button -->
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTestimonialModal">
+            <i class="fas fa-plus"></i> Add Testimonial
         </button>
     </div>
 
@@ -30,8 +30,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Organization</th>
+                        <th>Rating</th>
                         <th>Status</th>
                         <th>Featured</th>
                         <th>Actions</th>
@@ -39,16 +41,18 @@
                 </thead>
 
                 <tbody>
-                    @foreach($stories as $story)
+                    @foreach($testimonials as $testimonial)
                     <tr>
-                        <td>{{ $story->id }}</td>
-                        <td>{{ $story->title }}</td>
-                        <td>{{ $story->category->name ?? '-' }}</td>
+                        <td>{{ $testimonial->id }}</td>
+                        <td>{{ $testimonial->name }}</td>
+                        <td>{{ $testimonial->role ?? '-' }}</td>
+                        <td>{{ $testimonial->organization ?? '-' }}</td>
+                        <td>{{ $testimonial->rating ?? '-' }}</td>
                         <td>
-                            <span class="badge bg-info">{{ ucfirst($story->status) }}</span>
+                            <span class="badge bg-info">{{ ucfirst($testimonial->status) }}</span>
                         </td>
                         <td>
-                            @if($story->featured)
+                            @if($testimonial->featured)
                                 <span class="badge bg-success">Yes</span>
                             @else
                                 <span class="badge bg-secondary">No</span>
@@ -57,13 +61,13 @@
                         <td>
                             <button class="btn btn-sm btn-warning"
                                 data-bs-toggle="modal"
-                                data-bs-target="#editStoryModal{{ $story->id }}">
+                                data-bs-target="#editTestimonialModal{{ $testimonial->id }}">
                                 Edit
                             </button>
 
                             <button class="btn btn-sm btn-danger"
                                 data-bs-toggle="modal"
-                                data-bs-target="#deleteStoryModal{{ $story->id }}">
+                                data-bs-target="#deleteTestimonialModal{{ $testimonial->id }}">
                                 Delete
                             </button>
                         </td>
@@ -76,14 +80,14 @@
 
 </div>
 
-@foreach($stories as $story)
+@foreach($testimonials as $testimonial)
     <!-- Edit Modal INCLUDE -->
-    @include('admin.stories.modals.edit', ['story' => $story])
+    @include('admin.testimonials.modals.edit', ['testimonial' => $testimonial])
     <!-- Delete Modal INCLUDE -->
-    @include('admin.stories.modals.delete', ['story' => $story])
+    @include('admin.testimonials.modals.delete', ['testimonial' => $testimonial])
 @endforeach
 
 <!-- Add Modal INCLUDE -->
-@include('admin.stories.modals.create')
+@include('admin.testimonials.modals.create')
 
 @endsection

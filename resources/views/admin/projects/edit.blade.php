@@ -6,6 +6,18 @@
 
 <div class="card p-3 shadow-sm">
     <h3>Edit Project</h3>
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>There were some errors:</strong>
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <form action="{{ route('admin.projects.update',$project->id) }}" method="POST" enctype="multipart/form-data">
         @csrf @method('PUT')
 
@@ -19,7 +31,7 @@
             <select name="category_id" class="form-control">
                 <option value="">Select...</option>
                 @foreach($categories as $cat)
-                    <option value="{{ $cat->id }}" {{ $project->category_id==$cat->id?'selected':'' }}>{{ $cat->name }}</option>
+                <option value="{{ $cat->id }}" {{ $project->category_id==$cat->id?'selected':'' }}>{{ $cat->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -38,7 +50,7 @@
             <label>Banner</label>
             <input type="file" name="banner" class="form-control">
             @if($project->banner)
-                <img src="{{ asset('uploads/projects/'.$project->banner) }}" class="img-fluid mt-2" height="100">
+            <img src="{{ asset('uploads/projects/'.$project->banner) }}" class="img-fluid mt-2" height="100">
             @endif
         </div>
 

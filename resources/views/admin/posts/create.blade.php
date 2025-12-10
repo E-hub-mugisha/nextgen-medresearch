@@ -3,6 +3,16 @@
 @section('content')
 
 <h2 class="mb-4">Create Post</h2>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>There were some errors:</strong>
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
     @csrf

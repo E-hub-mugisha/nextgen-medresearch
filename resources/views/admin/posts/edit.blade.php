@@ -15,6 +15,16 @@
 
     <div class="card">
         <div class="card-body">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>There were some errors:</strong>
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -26,8 +36,8 @@
                     <div class="col-md-12 mb-3">
                         <label class="form-label">Title *</label>
                         <input type="text" name="title" value="{{ old('title', $post->title) }}"
-                               class="form-control @error('title') is-invalid @enderror"
-                               placeholder="Enter title">
+                            class="form-control @error('title') is-invalid @enderror"
+                            placeholder="Enter title">
                         @error('title') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
 
@@ -51,10 +61,10 @@
                         <label class="form-label">Status *</label>
                         <select name="status" class="form-control">
                             @foreach(['draft','pending_review','scheduled','published','archived'] as $status)
-                                <option value="{{ $status }}"
-                                    {{ $post->status == $status ? 'selected' : '' }}>
-                                    {{ ucfirst(str_replace('_', ' ', $status)) }}
-                                </option>
+                            <option value="{{ $status }}"
+                                {{ $post->status == $status ? 'selected' : '' }}>
+                                {{ ucfirst(str_replace('_', ' ', $status)) }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -72,8 +82,8 @@
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Publish Date (optional)</label>
                         <input type="datetime-local"
-                               name="publish_at" class="form-control"
-                                value="{{ old('publish_at', $post->publish_at ? \Carbon\Carbon::parse($post->publish_at)->format('Y-m-d\TH:i') : '') }}">
+                            name="publish_at" class="form-control"
+                            value="{{ old('publish_at', $post->publish_at ? \Carbon\Carbon::parse($post->publish_at)->format('Y-m-d\TH:i') : '') }}">
                     </div>
 
                     {{-- EXCERPT --}}
@@ -95,9 +105,9 @@
                         <label class="form-label">Featured Image</label>
 
                         @if($post->featured_image)
-                            <div class="mb-2">
-                                <img src="{{ asset('uploads/posts/' . $post->featured_image) }}" height="120" class="rounded">
-                            </div>
+                        <div class="mb-2">
+                            <img src="{{ asset('uploads/posts/' . $post->featured_image) }}" height="120" class="rounded">
+                        </div>
                         @endif
 
                         <input type="file" name="featured_image" class="form-control">

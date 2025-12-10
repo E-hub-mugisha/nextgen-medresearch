@@ -10,9 +10,19 @@ class Research extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'slug', 'category_id', 'summary', 'content',
-        'document', 'featured_image', 'status', 'featured',
-        'view_count', 'download_count', 'created_by', 'updated_by'
+        'title',
+        'slug',
+        'category_id',
+        'summary',
+        'content',
+        'document',
+        'featured_image',
+        'status',
+        'featured',
+        'view_count',
+        'download_count',
+        'created_by',
+        'updated_by'
     ];
 
     public function category()
@@ -23,5 +33,15 @@ class Research extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updater()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
     }
 }

@@ -7,7 +7,7 @@
             <div class="nk-block-head-content">
                 <h4 class="nk-block-title">Sign up</h4>
                 <div class="nk-block-des">
-                    <p>Create New Dashlite Account</p>
+                    <p>Happy to see you back!</p>
                 </div>
             </div>
         </div>
@@ -24,9 +24,8 @@
                         placeholder="Enter your email address or username"></div>
             </div>
             <div class="form-group"><label class="form-label" for="password">Passcode</label>
-                <div class="form-control-wrap"><a href="#"
-                        class="form-icon form-icon-right passcode-switch lg"
-                        data-target="password"><em
+                <div class="form-control-wrap">
+                    <a href="#" class="form-icon form-icon-right passcode-switch lg" data-target="password"><em
                             class="passcode-icon icon-show icon ni ni-eye"></em><em
                             class="passcode-icon icon-hide icon ni ni-eye-off"></em></a><input
                         type="password" class="form-control form-control-lg" id="password" name="password"

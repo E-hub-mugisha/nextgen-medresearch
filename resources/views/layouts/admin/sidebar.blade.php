@@ -50,19 +50,19 @@
                                         <li class="nk-menu-item"><a href="#" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-growth"></em></span><span
                                                                 class="nk-menu-text">Mentors</span></a></li>
-                                        <li class="nk-menu-item"><a href="#" class="nk-menu-link"><span
+                                        <li class="nk-menu-item"><a href="{{ route('admin.memberships.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-coins"></em></span><span
                                                                 class="nk-menu-text">Memberships</span></a></li>
-                                        <li class="nk-menu-item"><a href="#" class="nk-menu-link"><span
+                                        <li class="nk-menu-item"><a href="{{ route('admin.research.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span><span
                                                                 class="nk-menu-text">Research</span></a></li>
-                                        <li class="nk-menu-item"><a href="#" class="nk-menu-link"><span
+                                        <li class="nk-menu-item"><a href="{{ route('admin.faqs.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-bitcoin-cash"></em></span><span
                                                                 class="nk-menu-text">FAQs</span></a></li>
-                                        <li class="nk-menu-item"><a href="#}" class="nk-menu-link"><span
+                                        <li class="nk-menu-item"><a href="{{ route('admin.testimonials.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-growth"></em></span><span
                                                                 class="nk-menu-text">Testimonials</span></a></li>
-                                        <li class="nk-menu-item"><a href="#" class="nk-menu-link"><span
+                                        <li class="nk-menu-item"><a href="{{ route('admin.team.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-coins"></em></span><span
                                                                 class="nk-menu-text">Team members</span></a></li>
                                 </ul>

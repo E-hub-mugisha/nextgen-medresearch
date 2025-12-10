@@ -32,8 +32,8 @@
                     <div class="nk-block nk-block-middle nk-auth-body wide-xs">
                         <div class="brand-logo pb-4 text-center">
                             <a href="#" class="logo-link">
-                                <img class="logo-light logo-img logo-img-lg" src="{{ asset('admin/images/logo.png') }}" alt="logo">
-                                <img class="logo-dark logo-img logo-img-lg" src="{{ asset('admin/images/logo-dark.png') }}" alt="logo-dark">
+                                <img class="logo-light logo-img logo-img-lg" src="{{ asset('assets/images/logo-color.png') }}" alt="logo">
+                                <img class="logo-dark logo-img logo-img-lg" src="{{ asset('assets/images/logo-color.png') }}" alt="logo-dark">
                             </a>
                         </div>
 

@@ -18,4 +18,22 @@ class Membership extends Model
         'motivation',
         'status',
     ];
+
+    /**
+     * Status helpers for Blade
+     */
+    public function isPending()
+    {
+        return $this->status === 'pending';
+    }
+
+    public function isApproved()
+    {
+        return $this->status === 'approved';
+    }
+
+    public function isRejected()
+    {
+        return $this->status === 'rejected';
+    }
 }

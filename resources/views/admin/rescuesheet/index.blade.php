@@ -8,6 +8,16 @@
             + Add Rescue Sheet
         </button>
     </div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>There were some errors:</strong>
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <table class="table table-bordered table-striped align-middle">
         <thead>

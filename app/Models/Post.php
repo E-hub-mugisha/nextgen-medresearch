@@ -10,17 +10,30 @@ class Post extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title','slug','category_id','excerpt','content','featured_image',
-        'status','featured','publish_at','created_by','updated_by'
+        'title',
+        'slug',
+        'category_id',
+        'excerpt',
+        'content',
+        'featured_image',
+        'status',
+        'featured',
+        'publish_at',
+        'created_by',
+        'updated_by'
     ];
 
     // Add this line
-    protected $dates = [
-        'publish_at',
+    protected $casts = [
+        'publish_at' => 'datetime',
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

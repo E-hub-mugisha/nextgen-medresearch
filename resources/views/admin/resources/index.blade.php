@@ -14,6 +14,16 @@
 @if(session('success'))
 <div class="alert alert-success">{{ session('success') }}</div>
 @endif
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>There were some errors:</strong>
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <div class="card shadow-sm p-3">
     <table class="table table-bordered table-striped">

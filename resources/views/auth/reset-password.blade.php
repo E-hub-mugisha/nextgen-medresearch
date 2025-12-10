@@ -1,39 +1,49 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('password.store') }}">
-        @csrf
-
-        <!-- Password Reset Token -->
-        <input type="hidden" name="token" value="{{ $request->route('token') }}">
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email', $request->email)" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+@extends('layouts.auth')
+@section('title','Reset Password')
+@section('content')
+<div class="card card-bordered">
+    <div class="card-inner card-inner-lg">
+        <div class="nk-block-head">
+            <div class="nk-block-head-content">
+                <h4 class="nk-block-title">Reset Password</h4>
+            </div>
         </div>
+        <form method="POST" action="{{ route('password.store') }}">
+            @csrf
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+            <!-- Password Reset Token -->
+            <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <div class="form-group"><label class="form-label" for="email">Email or
+                    Username</label>
+                <div class="form-control-wrap"><input type="text"
+                        class="form-control form-control-lg" id="email" name="email"
+                        placeholder="Enter your email address or username"></div>
+            </div>
+            <div class="form-group"><label class="form-label" for="password">Passcode</label>
+                <div class="form-control-wrap"><a href="#"
+                        class="form-icon form-icon-right passcode-switch lg"
+                        data-target="password"><em
+                            class="passcode-icon icon-show icon ni ni-eye"></em><em
+                            class="passcode-icon icon-hide icon ni ni-eye-off"></em></a><input
+                        type="password" class="form-control form-control-lg" id="password" name="password"
+                        placeholder="Enter your passcode"></div>
+            </div>
+            <div class="form-group"><label class="form-label" for="password">Confirm Passcode</label>
+                <div class="form-control-wrap"><a href="#"
+                        class="form-icon form-icon-right passcode-switch lg"
+                        data-target="password"><em
+                            class="passcode-icon icon-show icon ni ni-eye"></em><em
+                            class="passcode-icon icon-hide icon ni ni-eye-off"></em></a><input
+                        type="password" class="form-control form-control-lg" id="password_confirmation" name="password_confirmation"
+                        placeholder="Re-Enter your passcode"></div>
+            </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required autocomplete="new-password" />
+            <div class="form-group">
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Reset Password</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Reset Password') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+@endsection

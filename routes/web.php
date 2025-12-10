@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\MembershipController;
@@ -28,11 +29,11 @@ Route::get('/projects', [HomeController::class, 'projects'])->name('projects');
 Route::get('/projects/detail/{id}', [HomeController::class, 'projectsDetail'])->name('projects.detail');
 Route::get('/resources', [HomeController::class, 'resources'])->name('resources');
 Route::get('/resources/detail/{id}', [HomeController::class, 'resourcesDetail'])->name('resources.detail');
-Route::get('/ask-a-mentor', [MentorQnAController::class,'askForm'])->name('mentor_qna.ask');
-Route::post('/ask-a-mentor', [MentorQnAController::class,'storeQuestion'])->middleware('auth')->name('mentor_qna.store');
-Route::get('/mentor-qna', [MentorQnAController::class,'index'])->name('mentor_qna.index');
-Route::get('/apply-membership', [MembershipController::class,'create'])->name('membership.create');
-Route::post('/apply-membership', [MembershipController::class,'store'])->name('membership.store');
+Route::get('/ask-a-mentor', [MentorQnAController::class, 'askForm'])->name('mentor_qna.ask');
+Route::post('/ask-a-mentor', [MentorQnAController::class, 'storeQuestion'])->middleware('auth')->name('mentor_qna.store');
+Route::get('/mentor-qna', [MentorQnAController::class, 'index'])->name('mentor_qna.index');
+Route::get('/apply-membership', [MembershipController::class, 'create'])->name('membership.create');
+Route::post('/apply-membership', [MembershipController::class, 'store'])->name('membership.store');
 Route::get('/programs', [HomeController::class, 'programs'])->name('programs');
 Route::get('/programs/detail/{slug}', [HomeController::class, 'programsDetail'])->name('programs.detail');
 Route::get('/research', [HomeController::class, 'research'])->name('research.index');
@@ -40,16 +41,12 @@ Route::get('/research/detail/{slug}', [HomeController::class, 'researchDetail'])
 Route::get('/faq', [HomeController::class, 'faqPage'])->name('faq.page');
 Route::post('/faq/question', [HomeController::class, 'storeQuestion'])->name('faq.question.store');
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
@@ -60,21 +57,20 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::get('/rescue-sheets/{id}/edit', [RescueSheetController::class, 'edit'])->name('rescue.edit');
     Route::put('/rescue-sheets/{id}', [RescueSheetController::class, 'update'])->name('rescue.update');
     Route::delete('/rescue-sheets/{id}', [RescueSheetController::class, 'destroy'])->name('rescue.destroy');
-
 });
 
 // Admin / Mentor (protected)
-Route::prefix('admin')->middleware(['auth','is_admin'])->group(function() {
-    Route::get('/mentor-qna', [MentorQnAController::class,'adminIndex'])->name('mentor_qna.admin_index');
-    Route::get('/mentor-qna/{question}/answer', [MentorQnAController::class,'answerForm'])->name('mentor_qna.answer_form');
-    Route::post('/mentor-qna/{question}/answer', [MentorQnAController::class,'storeAnswer'])->name('mentor_qna.store_answer');
-    Route::post('/mentor-qna/{question}/archive', [MentorQnAController::class,'archive'])->name('mentor_qna.archive');
+Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/mentor-qna', [MentorQnAController::class, 'adminIndex'])->name('mentor_qna.admin_index');
+    Route::get('/mentor-qna/{question}/answer', [MentorQnAController::class, 'answerForm'])->name('mentor_qna.answer_form');
+    Route::post('/mentor-qna/{question}/answer', [MentorQnAController::class, 'storeAnswer'])->name('mentor_qna.store_answer');
+    Route::post('/mentor-qna/{question}/archive', [MentorQnAController::class, 'archive'])->name('mentor_qna.archive');
 });
 
 // Admin routes
-Route::prefix('admin')->middleware(['auth','is_admin'])->group(function() {
-    Route::get('/memberships', [MembershipController::class,'index'])->name('membership.index');
-    Route::post('/memberships/{membership}/status', [MembershipController::class,'updateStatus'])->name('membership.update_status');
+Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/memberships', [MembershipController::class, 'index'])->name('membership.index');
+    Route::post('/memberships/{membership}/status', [MembershipController::class, 'updateStatus'])->name('membership.update_status');
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
@@ -107,7 +103,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
     Route::resource('resources', \App\Http\Controllers\Admin\ResourceController::class);
-
 });
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('partners', \App\Http\Controllers\Admin\PartnerController::class);
@@ -121,6 +116,29 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('projects', \App\Http\Controllers\Admin\ProjectController::class);
 });
 
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('testimonials', \App\Http\Controllers\Admin\TestimonialsController::class);
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('faqs', \App\Http\Controllers\Admin\FaqsController::class);
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('team', \App\Http\Controllers\Admin\TeamMemberController::class);
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('memberships', \App\Http\Controllers\Admin\MembershipController::class);
+    Route::put(
+        'memberships/{membership}/status',
+        [\App\Http\Controllers\Admin\MembershipController::class, 'updateStatus']
+    )->name('memberships.status');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('research', \App\Http\Controllers\Admin\ResearchController::class);
+});
 
 Route::get('/run-setup', function () {
     Artisan::call('migrate:fresh --seed');
@@ -132,4 +150,4 @@ Route::get('/run-storage-link', function () {
     Artisan::call('storage:link');
     return 'Storage link created!';
 });
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

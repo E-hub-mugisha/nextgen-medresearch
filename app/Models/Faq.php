@@ -17,4 +17,9 @@ class Faq extends Model
         'status',
         'display_order'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
