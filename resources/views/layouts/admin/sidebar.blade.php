@@ -29,6 +29,9 @@
                                         <li class="nk-menu-item"><a href="{{ route('admin.posts.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-coins"></em></span><span
                                                                 class="nk-menu-text">Posts</span></a></li>
+                                        <li class="nk-menu-item"><a href="{{ route('admin.programs.index')}}" class="nk-menu-link"><span
+                                                                class="nk-menu-icon"><em class="icon ni ni-coins"></em></span><span
+                                                                class="nk-menu-text">Programs</span></a></li>
                                         <li class="nk-menu-item"><a href="{{ route('admin.stories.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span><span
                                                                 class="nk-menu-text">Stories</span></a></li>

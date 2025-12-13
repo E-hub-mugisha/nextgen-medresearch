@@ -2,65 +2,17 @@
 @section('title','WHO WE ARE')
 @section('content')
 
-<!-- Page Header Start -->
-<div class="page-header parallaxie">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Page Header Box Start -->
-                <div class="page-header-box">
-                    <h1 class="text-anime-style-3" data-cursor="-opaque">About us</h1>
-                </div>
-                <!-- Page Header Box End -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Page Header End -->
-
-<!-- Scrolling Ticker Section Start -->
-<div class="our-scrolling-ticker">
-    <!-- Scrolling Ticker Start -->
-    <div class="scrolling-ticker-box">
-        <div class="scrolling-content">
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-        </div>
-
-        <div class="scrolling-content">
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-        </div>
-    </div>
-    <!-- Scrolling Ticker End -->
-</div>
-<!-- Scrolling Ticker Section End -->
-
 <!-- Our Core Value Section Start -->
-<div class="our-core-value">
+<div class="our-core-value mt-10">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <!-- Core Value Image Start -->
-                <div class="core-value-image">
+                <div class="core-value-image" style="padding-top: 50px;">
                     <div class="value-image-box-1">
                         <div class="value-img-1">
                             <figure class="image-anime reveal">
-                                <img src="{{ asset('assets/images/value-img-1.jpg') }}" alt="">
+                                <img src="{{ asset('assets/images/IYP_6213.jpg') }}" alt="">
                             </figure>
                         </div>
                     </div>
@@ -79,7 +31,7 @@
 
                         <div class="value-img-2">
                             <figure class="image-anime">
-                                <img src="{{ asset('assets/images/value-img-2.jpg') }}" alt="">
+                                <img src="{{ asset('assets/images/banner_New1.jpg') }}" alt="">
                             </figure>
                         </div>
                     </div>
@@ -125,24 +77,24 @@
 <div class="our-approach bg-section mb-4">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <!-- Approach Image Start -->
                 <div class="approach-image">
                     <figure class="image-anime reveal">
-                        <img src="{{ asset('assets/images/approach-image.jpg') }}" alt="">
+                        <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
                     </figure>
                 </div>
                 <!-- Approach Image End -->
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <!-- Approach Content Start -->
                 <div class="approach-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
                         <h3 class="wow fadeInUp">Our Approach</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Rooted in collaboration and community, we bring</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s">Together, we are shaping a stronger, evidence-driven healthcare future for Africa.</p>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="font-size: 30px;">Timely, Personalized, and Accessible research mentorship</h2>
+                        <p class="wow fadeInUp" data-wow-delay="0.2s">We provide timely, personalized, and accessible research mentorship that connects all levels and drives impactful research.</p>
                     </div>
                     <!-- Section Title End -->
 
@@ -155,7 +107,7 @@
                             </div>
                             <div class="mission-vision-content">
                                 <h3>Our vision</h3>
-                                <p>To transform medical education and research in Africa through mentorship, innovation, and collaboration.</p>
+                                <p>To transform medical research in Africa through mentorship, innovation, and collaboration.</p>
                             </div>
                         </div>
                         <!-- Mission Vision Item End -->
@@ -167,7 +119,7 @@
                             </div>
                             <div class="mission-vision-content">
                                 <h3>Our Mission</h3>
-                                <p>We connect clinicians, researchers, and mentors to build capacity, conduct impactful studies, and shape future healthcare leaders.</p>
+                                <p>We connect mentees, and mentors to build capacity, conduct impactful research projects, and shape future medical research leaders.</p>
                             </div>
                         </div>
                         <!-- Mission Vision Item End -->
@@ -193,30 +145,9 @@
             <div class="col-lg-7">
                 <!-- Section Title Start -->
                 <div class="section-title">
-                    <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Founder's message</h3>
+                    <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Message</h3>
                     <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                        <div class="split-line" style="display: block; text-align: start; position: relative;">
-                            <div style="position:relative;display:inline-block;">
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">F</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">o</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">u</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">n</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">d</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">r</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">'</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">s</div>
-                            </div>
-                            <div style="position:relative;display:inline-block;">
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">m</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">s</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">s</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">a</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">g</div>
-                                <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div>
-                            </div>
-                        </div>
+                        Founder's message
                     </h2>
                 </div>
                 <!-- Section Title End -->
@@ -277,26 +208,23 @@
                     <div class="about-counter-box">
                         <!-- About Counter Title Start -->
                         <div class="about-counter-title">
-                            <h2>Our Core Values</h2>
+                            <h2>Our Model</h2>
                         </div>
                         <!-- About Counter Title End -->
 
                         <!-- About Counter Content Start -->
                         <div class="about-counter-content">
                             <ul>
-                                <li>Excellence in research and education</li>
 
-                                <li>Collaboration and shared knowledge</li>
+                                <li>Mentorship</li>
 
-                                <li>Innovation and technology-driven solutions</li>
+                                <li>Research Collaboration</li>
 
-                                <li>Integrity and transparency</li>
+                                <li>Capacity Building & Innovation</li>
 
-                                <li>Community empowerment</li>
-
-                                <li>Impact-oriented action</li>
+                                <li>Collaborative Scientific Partnerships</li>
                             </ul>
-                            <a href="{{ route('about') }}" class="readmore-btn">Learn More</a>
+                            <a href="{{ route('our-impact') }}" class="readmore-btn">Our Impact</a>
                         </div>
                         <!-- About Counter Content End -->
                     </div>
@@ -331,357 +259,5 @@
     </div>
 </div>
 
-<!-- What We Do Section Start -->
-<div class="what-we-do bg-section dark-section mt-4" id="model">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <!-- What We Content Start -->
-                <div class="what-we-contant">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">Our Model</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Our Model</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s">We operate through three interlocking pillars that reinforce each other</p>
-                    </div>
-                    <!-- Section Title End -->
-
-                    <!-- What We Button Start -->
-                    <div class="what-we-btn wow fadeInUp" data-wow-delay="0.4s">
-                        <a href="{{ route('contact') }}" class="btn-default btn-highlighted">contact us</a>
-                    </div>
-                    <!-- What We Button End -->
-
-                    <!-- What We Counter Box Start -->
-                    <div class="what-we-counter-box">
-                        <h2><span class="counter">98</span>%</h2>
-                        <h3>Environmental Science</h3>
-                        <p>This integrated model creates sustainable growth and measurable impact.</p>
-                    </div>
-                    <!-- What We Counter Box End -->
-                </div>
-                <!-- What We Content End -->
-            </div>
-
-            <div class="col-lg-6">
-                <!-- What We Item List Start -->
-                <div class="what-we-item-list">
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp">
-                        <div class="icon-box">
-                            <img src="{{ asset('assets/images/icon-what-we-item-1.svg')}}" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Mentorship</h3>
-                            <p>Personalized guidance from experienced researchers and clinicians</p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="icon-box">
-                            <img src="{{ asset('assets/images/icon-what-we-item-2.svg')}}" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Research Collaboration</h3>
-                            <p>Supporting teams to design, conduct, and publish studies</p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="icon-box">
-                            <img src="{{ asset('assets/images/icon-what-we-item-3.svg')}}" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Capacity Building & Innovation</h3>
-                            <p>Workshops, digital learning, and tools that enable practical research skills</p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="icon-box">
-                            <img src="images/icon-what-we-item-4.svg" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Collaborative Scientific Partnerships</h3>
-                            <p>We work closely with academic institutions, private industries, and government agencies to co-develop innovative research.</p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-                </div>
-                <!-- What We Item List End -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- What We Do Section End -->
-
-
-
-<div class="how-it-work">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <!-- How Work Image Box Start -->
-                <div class="how-work-image-box">
-                    <!-- How Work Image Start -->
-                    <div class="how-work-image image-anime">
-                        <figure>
-                            <img src="{{ asset('assets/images/how-work-image.jpg') }}" alt="">
-                        </figure>
-                    </div>
-                    <!-- How Work Image End -->
-
-                    <!-- Satisfy Client Box Start -->
-                    <div class="satisfy-client-box">
-                        <!-- Satisfy Client Images Start -->
-                        <div class="satisfy-client-images">
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-2.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-3.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-4.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-5.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- Satisfy Client Images End -->
-
-                        <!-- Satisfy Client Content Start -->
-                        <div class="satisfy-client-content">
-                            <h3>5K+ Satisfied partners</h3>
-                            <p>Trusted by organizations, institutions, and researchers worldwide.</p>
-                        </div>
-                        <!-- Satisfy Client Content End -->
-                    </div>
-                    <!-- Satisfy Client Box End -->
-                </div>
-                <!-- How Work Image Box End -->
-            </div>
-
-            <div class="col-lg-6">
-                <!-- How Work Content Start -->
-                <div class="how-work-content">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Our Impact</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                            <div class="split-line" style="display: block; text-align: start; position: relative;">
-                                <div style="position:relative;display:inline-block;">
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">O</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">u</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">r</div>
-                                </div>
-                                <div style="position:relative;display:inline-block;">
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">I</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">m</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">p</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">a</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">c</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">t</div>
-                                </div>
-                            </div>
-                        </h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                            Our growing ecosystem has supported
-                        </p>
-                    </div>
-                    <!-- Section Title End -->
-
-                    <!-- Work Steps List Start -->
-                    <div class="work-steps-list">
-                        <!-- How Steps Item Start -->
-                        <div class="work-steps-item wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                            <div class="work-step-no">
-                                <h3>250+</h3>
-                            </div>
-                            <div class="work-step-content">
-                                <p>health professionals trained</p>
-                            </div>
-                        </div>
-                        <!-- How Steps Item End -->
-
-                        <!-- How Steps Item Start -->
-                        <div class="work-steps-item wow fadeInUp" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
-                            <div class="work-step-no">
-                                <h3>15 </h3>
-                            </div>
-                            <div class="work-step-content">
-                                <p>institutional partners</p>
-                            </div>
-                        </div>
-                        <!-- How Steps Item End -->
-
-                        <!-- How Steps Item Start -->
-                        <div class="work-steps-item wow fadeInUp" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInUp;">
-                            <div class="work-step-no">
-                                <h3>10 </h3>
-                            </div>
-                            <div class="work-step-content">
-                                <p>active research collaborations</p>
-                            </div>
-                        </div>
-                        <!-- How Steps Item End -->
-                    </div>
-                    <!-- Work Steps List End -->
-                </div>
-                <!-- How Work Content End -->
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="our-pricing bg-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <!-- Our Pricing Content Start -->
-                <div class="our-pricing-content">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Get started</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                            <div class="split-line" style="display: block; text-align: start; position: relative;">
-                                <div style="position:relative;display:inline-block;">
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">j</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">o</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">i</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">n</div>
-                                </div>
-                                <div style="position:relative;display:inline-block;">
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">t</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">h</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div>
-                                </div>
-                                <div style="position:relative;display:inline-block;">
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">m</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">o</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">v</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">m</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">e</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">n</div>
-                                    <div style="position: relative; display: inline-block; transform: translate(0px, 0px); opacity: 1;">t</div>
-                                </div>
-                            </div>
-                        </h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Whether you are a learner, mentor, institution, or supporter, you have a place in this ecosystem.</p>
-                    </div>
-                    <!-- Section Title End -->
-
-                    <!-- Pricing Button Start -->
-                    <div class="our-pricing-btn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <a href="{{ route('partners')}}" class="btn-default">Partner With Us</a>
-                    </div>
-                    <!-- Pricing Button End -->
-                </div>
-                <!-- Our Pricing Content End -->
-            </div>
-
-            <div class="col-lg-6">
-                <!-- Pricing Box Start -->
-                <div class="pricing-box">
-                    <!-- Pricing Item Start -->
-                    <div class="pricing-item wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <!-- Pricing Header Start -->
-                        <div class="pricing-header">
-                            <h3>Help build the next generation of African medical researchers</h3>
-                        </div>
-                        <!-- Pricing Header End -->
-
-                        <!-- Pricing Body Start -->
-                        <div class="pricing-body">
-                            <!-- Pricing Content Start -->
-                            <div class="pricing-content">
-                                <!-- Pricing Button Start -->
-                                <div class="pricing-btn">
-                                    <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal" class="btn-default">Apply for Membership</a>
-                                </div>
-                                <!-- Pricing Button End -->
-                            </div>
-                            <!-- Pricing Content End -->
-                        </div>
-                        <!-- Pricing Body End -->
-                    </div>
-                    <!-- Pricing Item End -->
-                </div>
-                <!-- Pricing Box End -->
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Our FAQs Section Start -->
-<div class="our-faqs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-5">
-                <!-- FAQs Content Start -->
-                <div class="faqs-content">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">Frequently Asked Questions</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Browse our most asked questions</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s">We've compiled answers to the most common questions about our lab services, research process, and capabilities.</p>
-                    </div>
-                    <!-- Section Title End -->
-
-                    <!-- Our Faqs Button Start -->
-                    <div class="our-faqs-btn wow fadeInUp" data-wow-delay="0.4s">
-                        <a href="{{ route('faq.page') }}" class="btn-default">View All Faqs</a>
-                    </div>
-                    <!-- Our Faqs Button End -->
-                </div>
-                <!-- FAQs Content End -->
-            </div>
-
-            <div class="col-lg-7">
-                <!-- FAQ Accordion Start -->
-                <div class="faq-accordion" id="accordion">
-                    @foreach($faqs as $faq)
-                    <!-- FAQ Item Start -->
-                    <div class="accordion-item wow fadeInUp">
-                        <h2 class="accordion-header" id="heading{{ $loop->index + 1 }}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $loop->index + 1 }}" aria-expanded="true" aria-controls="collapse{{ $loop->index + 1 }}">
-                                {{ $faq->question }}
-                            </button>
-                        </h2>
-                        <div id="collapse{{ $loop->index + 1 }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $loop->index + 1 }}" data-bs-parent="#accordion">
-                            <div class="accordion-body">
-                                <p>{{ $faq->answer }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- FAQ Item End -->
-                    @endforeach
-                </div>
-                <!-- FAQ Accordion End -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Our FAQs Section End -->
 
 @endsection

@@ -11,16 +11,16 @@
             <i class="fas fa-plus"></i> Add Program
         </a>
     </div>
-@if ($errors->any())
+    @if ($errors->any())
     <div class="alert alert-danger">
         <strong>There were some errors:</strong>
         <ul class="mb-0">
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+            <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
-@endif
+    @endif
 
     <div class="card">
         <div class="card-body p-0">
@@ -48,23 +48,23 @@
                         </td>
                         <td>
                             @if($program->featured)
-                                <span class="badge bg-success">Yes</span>
+                            <span class="badge bg-success">Yes</span>
                             @else
-                                <span class="badge bg-secondary">No</span>
+                            <span class="badge bg-secondary">No</span>
                             @endif
                         </td>
                         <td>{{ $program->display_order }}</td>
 
                         <td>
                             <a href="{{ route('admin.programs.edit', $program->id) }}"
-                               class="btn btn-sm btn-warning">
+                                class="btn btn-sm btn-warning">
                                 Edit
                             </a>
 
                             <form action="{{ route('admin.programs.destroy', $program->id) }}"
-                                  method="POST"
-                                  class="d-inline"
-                                  onsubmit="return confirm('Delete this program?');">
+                                method="POST"
+                                class="d-inline"
+                                onsubmit="return confirm('Delete this program?');">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-sm btn-danger">

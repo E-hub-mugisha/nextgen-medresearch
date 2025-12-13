@@ -2,53 +2,29 @@
 @section('title', 'Vehicle Rescue Sheets')
 @section('content')
 
-<div class="page-header parallaxie">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Page Header Box Start -->
-                <div class="page-header-box">
-                    <h1 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                        Vehicle Rescue Sheets
-                    </h1>
-                </div>
-                <!-- Page Header Box End -->
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="our-pricing bg-section" style="margin-top: 5rem;">
+<!-- Our Services Section Start -->
+<div class="our-core-value mt-10 pb-10">
     <div class="container">
-        <div class="row">
+        <div class="row section-row align-items-center">
             <div class="col-lg-6">
-                <!-- Our Pricing Content Start -->
-                <div class="our-pricing-content">
-                    <!-- Section Title Start -->
+                <!-- Section Title Start -->
+                <div class="core-value-image" style="padding-top: 50px;">
                     <div class="section-title">
-                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Vehicle Rescue Sheets</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                            Vehicle Rescue Sheets
-                        </h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                            Search and download rescue sheets for various vehicle models.
-                            Scan the QR code for quick access.
-                        </p>
+                        <h3 class="wow fadeInUp" style="border: 1px solid #fff">Vehicle Rescue Sheets</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Vehicle Rescue Sheets </h2>
                     </div>
                     <!-- Section Title End -->
-
-                    <!-- Pricing Button Start -->
-                    <div class="our-pricing-btn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <a href="#rescue-sheets" class="btn-default">View Rescue Sheets</a>
-                    </div>
-                    <!-- Pricing Button End -->
+                    <p class="wow fadeInUp text-anime-style-3" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                        Search and download rescue sheets for various vehicle models.
+                        Scan the QR code for quick access.
+                    </p>
+                    <!-- Section Content Button End -->
+                    <a href="#rescue-sheets" class="btn-default" style="border: 1px solid #00697E;">View Rescue Sheets</a>
                 </div>
-                <!-- Our Pricing Content End -->
             </div>
-
             <div class="col-lg-6">
-                <!-- Pricing Box Start -->
-                <div class="pricing-box">
+                <div class="pricing-box" style="padding-top: 50px;">
                     <!-- Pricing Item Start -->
                     <div class="pricing-item wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <!-- Pricing Header Start -->
@@ -66,82 +42,72 @@
                                     <div class="input-group">
                                         <input type="text" name="search" class="form-control rounded-3 gap-2"
                                             placeholder="Search by title or vehicle model..."
-                                            value="{{ request('search') }}">
+                                            value="{{ request('search') }}" style="border: 1px solid #00697E;">
                                         <div class="pricing-btn">
-                                            <button class="btn-default">Search</button>
+                                            <button class="btn-default" style="border: 1px solid #00697E; margin-left: 10px;">Search</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
                             <!-- Pricing Content End -->
                         </div>
-                        <!-- Pricing List Start -->
-                        <!-- <div class="pricing-list">
-                            <ul>
-                                <li>Custom design</li>
-                                <li>All Basic features</li>
-                                <li>Priority processing</li>
-                                <li>Access Online Portals</li>
-                            </ul>
-                        </div> -->
-                        <!-- Pricing List End -->
                     </div>
                     <!-- Pricing Body End -->
                 </div>
-                <!-- Pricing Item End -->
             </div>
-            <!-- Pricing Box End -->
         </div>
     </div>
 </div>
-</div>
+
 
 <div class="page-case-study" id="rescue-sheets">
     <div class="container">
-        <div class="row">
-            @forelse($sheets as $sheet)
-            <div class="col-lg-4 col-md-6">
-                <!-- Case Study Item Start -->
-                <div class="case-study-item wow fadeInUp rounded-3 shadow-sm" style="visibility: visible; animation-name: fadeInUp;">
-                    <!-- Case Study Image Start-->
-                    <div class="case-study-image">
-                        <figure class="image-anime">
-                            <img src="{{ asset('storage/'.$sheet->qr_code_path) }}" alt="">
-                        </figure>
-
-                        <!-- Case Study Button Start-->
-                        <div class="case-study-btn">
-                            <a href="{{ asset('storage/'.$sheet->qr_code_path) }}"><img src="{{ asset('assets/images/arrow-primary.svg') }}" alt=""></a>
-                        </div>
-                        <!-- Case Study Button End-->
-                    </div>
-                    <!-- Case Study Image End -->
-
-                    <!-- Case Study Content Start -->
-                    <div class="case-study-content p-2">
-                        <h2><a href="{{ route('rescue.sheet.show', $sheet->slug) }}">{{ $sheet->title }}</a></h2>
-                    </div>
-                    <div class="mt-3 small text-muted p-2">
-                        Scans: {{ $sheet->scan_count ?? 0 }} |
-                        Downloads: {{ $sheet->download_count ?? 0 }}
-                    </div>
-                    <!-- Case Study Content End -->
-                    <div class="d-grid gap-2 p-2">
-                        <a href="{{ route('rescue.sheet.show', $sheet->slug) }}"
-                            class="btn-default"
-                            target="_blank">
-                            View Sheet
-                        </a>
-                    </div>
-                </div>
-                <!-- Case Study Item End -->
-            </div>
-            @empty
-            <p class="text-center text-muted">No rescue sheets available.</p>
-            @endforelse
+        <div class="section-title">
+            <h2 class="text-anime-style-3">Here is the lists of Vehicle Rescue Sheets </h2>
         </div>
-        <div class="mt-4">
-            {{ $sheets->links() }}
+        <div class="row">
+            <table class="table table-bordered table-striped align-middle">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Vehicle Model</th>
+                        <th>QR Code</th>
+                        <th>Scans</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($sheets as $sheet)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $sheet->title }}</td>
+                        <td>{{ $sheet->vehicle_model ?? '-' }}</td>
+                        <td>
+                            @if($sheet->qr_code_path)
+                            <a href="{{ route('rescue.sheet.show',$sheet->slug) }}" target="_blank">
+                                <img src="{{ asset('storage/'.$sheet->qr_code_path) }}" width="60" alt="QR Code">
+                            </a>
+                            @endif
+                        </td>
+                        <td>{{ $sheet->scan_count ?? 0 }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                                data-bs-target="#editModal{{ $sheet->id }}">Scan</button>
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal{{ $sheet->id }}">Print</button>
+                        </td>
+                    </tr>
+
+
+                    @empty
+                    <tr>
+                        <td colspan="6" class="text-center">No rescue sheets added yet.</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+            
         </div>
     </div>
 </div>

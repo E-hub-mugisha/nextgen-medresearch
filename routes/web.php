@@ -125,6 +125,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('programs', \App\Http\Controllers\Admin\ProgramController::class);
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('team', \App\Http\Controllers\Admin\TeamMemberController::class);
 });
 

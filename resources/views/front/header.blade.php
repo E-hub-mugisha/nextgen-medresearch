@@ -1,58 +1,130 @@
+@php
+
+if (! function_exists('activeRoute')) {
+function activeRoute($routes)
+{
+return request()->routeIs($routes) ? 'active' : '';
+}
+}
+$programs = \App\Models\Program::where('status', 'published')->orderBy('title')->get();
+@endphp
+
 <!-- Header Start -->
 <header class="main-header">
     <div class="header-sticky">
         <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <!-- Logo Start -->
-                <a class="navbar-brand" href="{{ route('home')}}">
-                    <img src="{{ asset('assets/images/logo-white.png') }}" alt="Logo" style="width: 100%; height:10rem">
-                </a>
-                <!-- Logo End -->
 
-                <!-- Main Menu Start -->
-                <div class="collapse navbar-collapse main-menu">
-                    <div class="nav-menu-wrapper">
-                        <ul class="navbar-nav mr-auto" id="menu">
-                            <li class="nav-item submenu"><a class="nav-link" href="#">Who We Are</a>
-                                <ul>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('about')}}">About Us</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="blog-single.html">Vision, Mission & Our Model</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('partners')}}">Partners</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('our-impact')}}">our Impact</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item submenu"><a class="nav-link" href="{{ route('programs')}}">Programs</a>
-                                <ul>
-                                    @php $programs = \App\Models\Program::all(); @endphp
-                                    @foreach($programs as $program)
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('programs.detail', $program->slug)}}">{{ $program->title }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                            <li class="nav-item submenu"><a class="nav-link" href="#">Knowledge Hub</a>
-                                <ul>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('projects') }}">Projects</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('resources') }}">Free Resources</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="{{ route('mentor_qna.index') }}">Ask a Mentor Q&A</a></li>
-                                    <li class="nav-item"><a class="nav-link">Research Kits</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('news')}}">News & Updates</a></li>
+            <!-- Logo Start -->
+            <a class="navbar-brand" href="{{ route('home')}}">
+                <img src="{{ asset('assets/images/logo-white.png') }}" alt="Logo" style="width: 100%; height:6rem">
+            </a>
+            <!-- Logo End -->
 
-                            <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact Us</a></li>
-                        </ul>
-                    </div>
+            <!-- Main Menu Start -->
+            <div class="collapse navbar-collapse main-menu">
+                <div class="nav-menu-wrapper">
+                    <ul class="navbar-nav mr-auto" id="menu">
 
-                    <!-- Header Btn Start -->
-                    <div class="header-btn">
-                        <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal" class="btn-default btn-highlighted">Apply for Membership</a>
-                        <a href="{{ route('rescue.sheet.public') }}" class="btn-default btn-highlighted">Rescue sheets</a>
-                    </div>
-                    <!-- Header Btn End -->
+                        {{-- WHO WE ARE --}}
+                        <li class="nav-item submenu {{ activeRoute(['about','partners','our-impact']) }}">
+                            <a class="nav-link" href="#">Who We Are</a>
+                            <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ activeRoute('about') }}"
+                                        href="{{ route('about') }}">About Us</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                        href="#">Vision, Mission & Our Model</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ activeRoute('partners') }}"
+                                        href="{{ route('partners') }}">Partners</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ activeRoute('our-impact') }}"
+                                        href="{{ route('our-impact') }}">Our Impact</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        {{-- PROGRAMS --}}
+                        <li class="nav-item submenu {{ activeRoute(['programs','programs.detail']) }}">
+                            <a class="nav-link {{ activeRoute('programs') }}"
+                                href="{{ route('programs') }}">Programs</a>
+
+                            <ul>
+                                @foreach($programs as $program)
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('programs.detail') && request()->slug === $program->slug ? 'active' : '' }}"
+                                        href="{{ route('programs.detail', $program->slug) }}">
+                                        {{ $program->title }}
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </li>
+
+                        {{-- KNOWLEDGE HUB --}}
+                        <li class="nav-item submenu {{ activeRoute(['projects','resources','mentor_qna.*']) }}">
+                            <a class="nav-link" href="#">Knowledge Hub</a>
+                            <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ activeRoute('projects') }}"
+                                        href="{{ route('projects') }}">Projects</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ activeRoute('resources') }}"
+                                        href="{{ route('resources') }}">Free Resources</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link {{ activeRoute('mentor_qna.*') }}"
+                                        href="{{ route('mentor_qna.index') }}">Ask a Mentor Q&A</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Research Kits</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        {{-- NEWS --}}
+                        <li class="nav-item">
+                            <a class="nav-link {{ activeRoute('news') }}"
+                                href="{{ route('news') }}">News & Updates</a>
+                        </li>
+
+                        {{-- RESEARCH SPACE --}}
+                        <li class="nav-item">
+                            <a class="nav-link #"
+                                href="#">Research Space</a>
+                        </li>
+
+                        {{-- CONTACT --}}
+                        <li class="nav-item">
+                            <a class="nav-link {{ activeRoute('contact') }}"
+                                href="{{ route('contact') }}">Contact Us</a>
+                        </li>
+
+                    </ul>
+
                 </div>
-                <!-- Main Menu End -->
-                <div class="navbar-toggle"></div>
+
+                <!-- Header Btn Start -->
+                <div class="header-btn">
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal" class="btn-default-2 btn-highlighted">Apply for Membership</a>
+                    <a href="{{ route('rescue.sheet.public') }}" class="btn-default btn-highlighted">Rescue sheets</a>
+                </div>
+                <!-- Header Btn End -->
             </div>
+            <!-- Main Menu End -->
+            <div class="navbar-toggle"></div>
+
         </nav>
         <div class="responsive-menu"></div>
     </div>

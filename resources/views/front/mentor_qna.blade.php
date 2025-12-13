@@ -39,7 +39,7 @@
                     <div class="sidebar-cta-box wow fadeInUp" data-wow-delay="0.25s" style="visibility: visible; animation-delay: 0.25s; animation-name: fadeInUp;">
                         <!-- Sidebar CTA Content Start -->
                         <div class="sidebar-cta-logo">
-                            <img src="images/logo.svg" alt="">
+                            <img src="{{ asset('assets/images/logo-white.png') }}" alt="">
                         </div>
                         <!-- Sidebar CTA Content End -->
 
@@ -94,17 +94,17 @@
                             @foreach($questions as $q)
                             <div class="accordion-item wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                                 <h2 class="accordion-header" id="heading1">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                    <button class="accordion-button text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                                         Q{{ $q->id }}. {{ $q->title }}?
                                     </button>
                                 </h2>
                                 <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1" data-bs-parent="#accordion" style="">
                                     <div class="accordion-body">
-                                        <p>{{ $q->question }}</p>
+                                        <p class="text-white">{{ $q->question }}</p>
                                         @foreach($q->answers as $a)
                                         <div>
-                                            <strong>Answer by {{ $a->mentor->name ?? 'Mentor' }}:</strong>
-                                            <p>{{ $a->answer }}</p>
+                                            <strong class="text-white">Answer by {{ $a->mentor->name ?? 'Mentor' }}:</strong>
+                                            <p class="text-white">{{ $a->answer }}</p>
                                         </div>
                                         @endforeach
                                     </div>

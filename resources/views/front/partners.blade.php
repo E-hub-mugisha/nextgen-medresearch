@@ -2,33 +2,17 @@
 @section('title','Partnership & Collaboration')
 @section('content')
 
-<!-- Page Header Start -->
-<div class="page-header parallaxie">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Page Header Box Start -->
-                <div class="page-header-box">
-                    <h1 class="text-anime-style-3" data-cursor="-opaque">Partnership & Collaboration</h1>
-                    
-                </div>
-                <!-- Page Header Box End -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Page Header End -->
 
 <div class="how-it-work">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6">
+            <div class="col-lg-5">
                 <!-- How Work Image Box Start -->
-                <div class="how-work-image-box">
+                <div class="how-work-image-box" style="padding-top: 50px;">
                     <!-- How Work Image Start -->
                     <div class="how-work-image image-anime">
                         <figure>
-                            <img src="{{ asset('assets/images/how-work-image.jpg') }}" alt="">
+                            <img src="{{ asset('assets/images/why-choose-body-image.jpg') }}" alt="">
                         </figure>
                     </div>
                     <!-- How Work Image End -->
@@ -67,7 +51,7 @@
 
                         <!-- Satisfy Client Content Start -->
                         <div class="satisfy-client-content">
-                            <h3>5K+ Satisfied Clients</h3>
+                            <h3>5+ Partners</h3>
                             <p>Trusted by organizations, institutions, and researchers worldwide.</p>
                         </div>
                         <!-- Satisfy Client Content End -->
@@ -77,14 +61,14 @@
                 <!-- How Work Image Box End -->
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 <!-- How Work Content Start -->
                 <div class="how-work-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
                         <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">our partnership</h3>
                         <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                            Our Collaborative Network
+                            Partnership & Collaboration
                         </h2>
                         <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                             At NextGen MedResearch, we believe that meaningful impact in Africa’s health sector is achieved through collaboration.
@@ -98,10 +82,10 @@
                         <!-- How Steps Item Start -->
                         <div class="work-steps-item wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
                             <div class="work-step-no">
-                                <h3>Step 01</h3>
+                                <h3 class="text-white"><img src="{{ asset('assets/images/users.png') }}" alt="Step 01"></h3>
                             </div>
                             <div class="work-step-content">
-                                <p>expand training opportunities and support high-impact research</p>
+                                <p>Expand training opportunities and support high-impact research</p>
                             </div>
                         </div>
                         <!-- How Steps Item End -->
@@ -109,14 +93,11 @@
                         <!-- How Steps Item Start -->
                         <div class="work-steps-item wow fadeInUp" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">
                             <div class="work-step-no">
-                                <h3>Step 02</h3>
+                                <h3 class="text-white"><img src="{{ asset('assets/images/microscope.png') }}" alt="Step 02"></h3>
                             </div>
                             <div class="work-step-content">
-                                <p>improve clinical practice
-
-                                    connect experts across regions
-
-                                    influence policy and healthcare outcomes</p>
+                                <p>
+                                    Improve clinical practice connect experts across regions influence policy and healthcare outcomes</p>
                             </div>
                         </div>
                         <!-- How Steps Item End -->
@@ -124,7 +105,7 @@
                         <!-- How Steps Item Start -->
                         <div class="work-steps-item wow fadeInUp" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInUp;">
                             <div class="work-step-no">
-                                <h3>Step 03</h3>
+                                <h3 class="text-white"><img src="{{ asset('assets/images/globe.png') }}" alt="Step 03"></h3>
                             </div>
                             <div class="work-step-content">
                                 <p>Together, we are shaping the future of medical research in Africa.</p>
@@ -149,11 +130,11 @@
                 <div class="our-pricing-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Why Partner With Us?</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
+                        <h3 class="wow fadeInUp text-white" style="visibility: visible; animation-name: fadeInUp;" style="border: 1px solid #fff">Partnership</h3>
+                        <h2 class="text-anime-style-3 text-white" data-cursor="-opaque" style="perspective: 400px;">
                             Why Partner With Us?
                         </h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Partner with us to expand mentorship and digital training across Africa.</p>
+                        <p class="wow fadeInUp text-white" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Partner with us to expand mentorship and digital training across Africa.</p>
                     </div>
                     <!-- Section Title End -->
 
@@ -206,6 +187,13 @@
             <p class="lead">Our Collaborative Network</p>
         </div>
 
+        @if($partners->isEmpty())
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-8 text-center">
+                <p class="text-muted">No partners available at the moment. Please check back later.</p>
+            </div>
+        </div>
+        @else
         <!-- Partner Logos / Names -->
         <div class="row justify-content-center align-items-center mb-4">
             @foreach($partners as $partner)
@@ -232,6 +220,8 @@
         </div>
         @endif
         @endforeach
+
+        @endif
     </div>
 </section>
 

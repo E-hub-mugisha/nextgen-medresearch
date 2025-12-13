@@ -2,29 +2,13 @@
 @section('title','Impact That Matters')
 @section('content')
 
-<!-- Page Header Start -->
-<div class="page-header parallaxie">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Page Header Box Start -->
-                <div class="page-header-box">
-                    <h1 class="text-anime-style-3" data-cursor="-opaque">Our Impact That Matters</h1>
-                    
-                </div>
-                <!-- Page Header Box End -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Page Header End -->
 
 <div class="why-choose-us">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5">
                 <!-- Why Choose Image Box Start -->
-                <div class="why-choose-image-box">
+                <div class="why-choose-image-box" style="padding-top: 50px;">
                     <!-- Why Choose Image Start -->
                     <div class="why-choose-image">
                         <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
@@ -81,7 +65,7 @@
                     <div class="section-title">
                         <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Impact That Matters</h3>
                         <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                            Our mission is not just to train — but to transform.
+                            Our Impact That Matters
                         </h2>
                         <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                             NextGen MedResearch measures success through real-world outcomes: stronger research capacity, published studies, improved clinical practice, and empowered healthcare professionals.
@@ -137,52 +121,6 @@
     </div>
 </div>
 
-<div class="what-we-do bg-section dark-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-9">
-                <!-- What We Content Start -->
-                <div class="what-we-contant">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">What We Do</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                            Community Impact
-                        </h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Beyond academia, our work reaches communities through</p>
-                    </div>
-                    <!-- Section Title End -->
-                    <div class="what-we-item-list mb-4">
-                        <!-- What We Item Start -->
-                        <div class="what-we-item wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                            <div class="icon-box">
-                                <img src="{{ asset('assets/images/icon-what-we-item-1.svg') }}" alt="">
-                            </div>
-                            <div class="what-we-content">
-                                <p>training programs, action research and emergency response tools</p>
-                            </div>
-                        </div>
-                        <!-- What We Item End -->
-                    </div>
-
-                    <!-- What We Button Start -->
-                    <div class="what-we-btn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <a href="{{ route('rescue.sheet.public') }}" class="btn-default btn-highlighted">Rescue Sheet</a>
-                    </div>
-                    <!-- What We Button End -->
-
-                    <!-- What We Counter Box Start -->
-                    <div class="what-we-counter-box">
-                        <p>Including the Rescue Sheet initiative used in hospitals and ambulances.</p>
-                    </div>
-                    <!-- What We Counter Box End -->
-                </div>
-                <!-- What We Content End -->
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="our-faqs">
     <div class="container">
         <div class="row">
@@ -192,8 +130,8 @@
                     <!-- Section Title Start -->
                     <div class="section-title">
                         <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Help us expand our reach and empower more researchers.</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">Support the growth of Africa’s next generation of medical innovators.</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Help us expand our reach and empower more researchers. Support the growth of Africa’s next generation of medical innovators.</p>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">Support the growth of Africa’s next generation of medical researchers.</h2>
+                        <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Help us expand our reach and empower more researchers. Support the growth of Africa’s next generation of medical researchers.</p>
                     </div>
                     <!-- Section Title End -->
 

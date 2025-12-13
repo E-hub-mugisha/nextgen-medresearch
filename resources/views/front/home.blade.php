@@ -3,7 +3,7 @@
 @section('content')
 
 <!-- Hero Section Start -->
-<div class="hero dark-section parallaxie">
+<div class="hero dark-section parallaxie 100vh">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-8">
@@ -42,37 +42,6 @@
 </div>
 <!-- Hero Section End -->
 
-<!-- Scrolling Ticker Section Start -->
-<div class="our-scrolling-ticker">
-    <!-- Scrolling Ticker Start -->
-    <div class="scrolling-ticker-box">
-        <div class="scrolling-content">
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-        </div>
-
-        <div class="scrolling-content">
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-        </div>
-    </div>
-    <!-- Scrolling Ticker End -->
-</div>
-<!-- Scrolling Ticker Section End -->
 
 <!-- About Us Section Start -->
 <div class="about-us">
@@ -82,7 +51,7 @@
                 <!-- Section Title Start -->
                 <div class="section-title">
                     <h3 class="wow fadeInUp">About Our Vision</h3>
-                    <h2 class="text-anime-style-3" data-cursor="-opaque">To transform medical education and research in Africa through mentorship, innovation, and collaboration</h2>
+                    <h2 class="text-anime-style-3" data-cursor="-opaque">To transform medical research in Africa through mentorship, innovation, and collaboration</h2>
                 </div>
                 <!-- Section Title End -->
             </div>
@@ -100,14 +69,6 @@
                     <div class="customer-rating-box">
                         <!-- Customer Rating Content Start -->
                         <div class="customer-rating-content">
-                            <div class="customer-rating-star">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <h3>4.9/5 Rating</h3>
                             <p>Founder’s Message</p>
                         </div>
                         <!-- Customer Rating Content End -->
@@ -116,7 +77,7 @@
                         <div class="satisfy-client-images customer-rating-images">
                             <div class="satisfy-client-image">
                                 <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
+                                    <img src="{{ asset('assets/images/founder.jpg') }}" alt="">
                                 </figure>
                             </div>
                         </div>
@@ -137,7 +98,7 @@
                         <!-- About Us Image Start -->
                         <div class="about-image">
                             <figure>
-                                <img src="{{ asset('assets/images/about-us-image-1.jpg') }}" alt="">
+                                <img src="{{ asset('assets/images/banner_New1.jpg') }}" alt="">
                             </figure>
                         </div>
                         <!-- About Us Image End -->
@@ -184,7 +145,7 @@
                         <!-- About Us Image Start -->
                         <div class="about-image">
                             <figure>
-                                <img src="{{ asset('assets/images/about-us-image-2.jpg') }}" alt="">
+                                <img src="{{ asset('assets/images/IYP_6213.jpg') }}" alt="">
                             </figure>
                         </div>
                         <!-- About Us Image End -->
@@ -215,8 +176,8 @@
             <div class="col-lg-6">
                 <!-- Section Title Start -->
                 <div class="section-title">
-                    <h3 class="wow fadeInUp">Key Research Fields</h3>
-                    <h2 class="text-anime-style-3" data-cursor="-opaque">OUR PROGRAMS </h2>
+                    <h3 class="wow fadeInUp text-white" style="border: 1px solid #fff">Key Research Fields</h3>
+                    <h2 class="text-anime-style-3 text-white" data-cursor="-opaque">OUR PROGRAMS </h2>
                 </div>
                 <!-- Section Title End -->
             </div>
@@ -224,7 +185,7 @@
             <div class="col-lg-6">
                 <!-- Section Title Content Start -->
                 <div class="section-title-content wow fadeInUp" data-wow-delay="0.2s">
-                    <p>Each research field is supported by expert teams and cutting-edge technologies, ensuring precision, innovation, and real-world relevance. our work is rooted in curiosity, driven by data, and designed to deliver meaningful impact.</p>
+                    <p class="text-white">Each research field is supported by expert teams and cutting-edge technologies, ensuring precision, innovation, and real-world relevance. our work is rooted in curiosity, driven by data, and designed to deliver meaningful impact.</p>
                 </div>
                 <!-- Section Content Button End -->
             </div>
@@ -275,7 +236,7 @@
             <div class="col-lg-12">
                 <!-- Section Footer Text Start-->
                 <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                    <p><span>Free</span>Explore the research that shapes tomorrow - <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal">Apply for Membership!</a></p>
+                    <p class="text-white"><span>Free</span>Explore the research that shapes tomorrow - <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal">Apply for Membership!</a></p>
                 </div>
                 <!-- Section Footer Text End-->
             </div>
@@ -346,8 +307,8 @@
                     <!-- Section Title Start -->
                     <div class="section-title">
                         <h3 class="wow fadeInUp">Why choose us</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Powered by technology, driven by scientific curiosity</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s">With access to advanced instrumentation and data analytics, our laboratory stays at the forefront of scientific progress. Our research solutions are as innovative as they are accurate - designed to keep you ahead</p>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Building a Connected, Collaborative and Impactful Research Ecosystem</h2>
+                        <p class="wow fadeInUp" data-wow-delay="0.2s">Join a connected research community linking medical professionals, researchers, and institutions to foster innovation and collaboration.</p>
                     </div>
                     <!-- Section Title End -->
 
@@ -368,7 +329,7 @@
                                         </div>
                                     </div>
                                     <div class="why-choose-item-content">
-                                        <p>Portfolio of successful studies and satisfied</p>
+                                        <p>Evidenced mentorship, collaborative work and research impact</p>
                                     </div>
                                 </div>
                                 <!-- Why Choose Item End -->
@@ -384,7 +345,7 @@
                                         </div>
                                     </div>
                                     <div class="why-choose-item-content">
-                                        <p>We work closely with clients to understand</p>
+                                        <p>We work closely with members of the research community to understand their needs and challenges.</p>
                                     </div>
                                 </div>
                                 <!-- Why Choose Item End -->
@@ -434,14 +395,15 @@
                     <!-- What We Button Start -->
                     <div class="what-we-btn wow fadeInUp" data-wow-delay="0.4s">
                         <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal" class="btn-default btn-highlighted">Apply for Membership</a>
+                        <p class="mt-3 text-white">Unlock your potential. Connect, contribute, and lead Africa’s next generation of medical researchers</p>
                     </div>
                     <!-- What We Button End -->
 
                     <!-- What We Counter Box Start -->
-                    <div class="what-we-counter-box">
+                    <!-- <div class="what-we-counter-box">
                         <h3>Environmental Science</h3>
                         <p>Unlock your potential. Connect, contribute, and lead Africa’s next generation of medical researchers</p>
-                    </div>
+                    </div> -->
                     <!-- What We Counter Box End -->
                 </div>
                 <!-- What We Content End -->
@@ -578,35 +540,6 @@
 </div>
 <!-- Case Study Section End -->
 
-<!-- Intro Video Section Start -->
-<div class="intro-video bg-section">
-    <div class="container-fluid">
-        <div class="row no-gutters align-items-center">
-            <div class="col-lg-12">
-                <!-- Intro Video Box Start -->
-                <div class="intro-video-box">
-                    <!-- Intro Video Image Start -->
-                    <div class="intro-video-image">
-                        <figure>
-                            <img src="{{ asset('assets/images/intro-video-image.jpg') }}" alt="">
-                        </figure>
-                    </div>
-                    <!-- Intro Video Image End -->
-
-                    <!-- Video Play Button Start -->
-                    <div class="video-play-border-button">
-                        <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">Play</a>
-                    </div>
-                    <!-- Video Play Button End -->
-                </div>
-                <!-- Intro Video Box End -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Intro Video Section End -->
-
-
 <!-- Our FAQs Section Start -->
 <div class="our-faqs">
     <div class="container">
@@ -637,14 +570,14 @@
                     @foreach($faqs as $faq)
                     <!-- FAQ Item Start -->
                     <div class="accordion-item wow fadeInUp">
-                        <h2 class="accordion-header" id="heading{{ $loop->index + 1 }}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $loop->index + 1 }}" aria-expanded="true" aria-controls="collapse{{ $loop->index + 1 }}">
+                        <h2 class="accordion-header" id="heading{{ $loop->index + 1 }} text-white">
+                            <button class="accordion-button collapsed text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $loop->index + 1 }}" aria-expanded="true" aria-controls="collapse{{ $loop->index + 1 }}">
                                 {{ $faq->question }}
                             </button>
                         </h2>
                         <div id="collapse{{ $loop->index + 1 }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $loop->index + 1 }}" data-bs-parent="#accordion">
                             <div class="accordion-body">
-                                <p>{{ $faq->answer }}</p>
+                                <p class="text-white">{{ $faq->answer }}</p>
                             </div>
                         </div>
                     </div>
@@ -666,7 +599,7 @@
                 <!-- Section Title Start -->
                 <div class="section-title section-title-center">
                     <h3 class="wow fadeInUp">Our Testimonials</h3>
-                    <h2 class="text-anime-style-3" data-cursor="-opaque">What our clients say about their experience with us</h2>
+                    <h2 class="text-anime-style-3" data-cursor="-opaque">What our community say about their experience with us</h2>
                 </div>
                 <!-- Section Title End -->
             </div>
@@ -686,11 +619,11 @@
                                         <figure class="image-anime">
                                             <img src="{{ asset('assets/images/author-1.jpg') }}" alt="">
                                         </figure>
-                                        <div class="video-play-button">
+                                        <!-- <div class="video-play-button">
                                             <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
                                                 <i class="fa-solid fa-play"></i>
                                             </a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="testimonial-content">
                                         <div class="testimonial-quote">
