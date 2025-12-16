@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\MentorController;
 use App\Http\Controllers\MentorQnAController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RescueSheetController;
@@ -142,6 +143,23 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::resource('research', \App\Http\Controllers\Admin\ResearchController::class);
+});
+
+// Role-based onboarding
+Route::get('/onboarding/{role}', [MentorController::class, 'index'])->name('onboarding.index');
+Route::post('/onboarding/save-step', [MentorController::class, 'saveStep'])->name('onboarding.saveStep');
+Route::post('/onboarding/register', [MentorController::class, 'registerUser'])->name('onboarding.register');
+
+// Mentor listing & request
+Route::get('/mentors', [MentorController::class, 'mentorLists'])->name('mentors.list');
+Route::get('/mentors/{id}', [MentorController::class, 'profile'])->name('mentors.profile');
+Route::post('/mentors/{id}/request', [MentorController::class, 'requestMentor'])->name('mentors.request');
+
+// Onboarding routes
+Route::prefix('mentor-onboarding')->group(function(){
+    Route::get('/{role}', [MentorController::class, 'showWizard'])->name('mentor.onboarding');
+    Route::post('/save-step', [MentorController::class, 'saveStepMentor'])->name('mentor.onboarding.saveStep');
+    Route::post('/register', [MentorController::class, 'registerMentor'])->name('mentor.onboarding.register');
 });
 
 Route::get('/run-setup', function () {

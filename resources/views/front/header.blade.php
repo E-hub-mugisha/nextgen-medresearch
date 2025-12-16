@@ -117,7 +117,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
 
                 <!-- Header Btn Start -->
                 <div class="header-btn">
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal" class="btn-default-2 btn-highlighted">Apply for Membership</a>
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal" class="btn-default-2 btn-highlighted">Apply for Membership</a>
                     <a href="{{ route('rescue.sheet.public') }}" class="btn-default btn-highlighted">Rescue sheets</a>
                 </div>
                 <!-- Header Btn End -->
@@ -131,53 +131,116 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
 </header>
 <!-- Header End -->
 
-<!-- Modal -->
-<div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <form method="POST" action="{{ route('membership.store') }}">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="membershipModalLabel">Apply for Membership</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<!-- Glass Role Selection Modal -->
+<div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content glass-modal border-0 rounded-4">
+
+            <!-- Header -->
+            <div class="modal-header border-0 px-4 pt-4">
+                <div>
+                    <h3 class="fw-bold mb-1" id="roleModalLabel">Welcome 👋</h3>
+                    <p class="text-muted mb-0">Choose how you want to join</p>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label>Full Name</label>
-                        <input type="text" class="form-control" name="full_name" required>
+                <button type="button" class="btn-close"></button>
+            </div>
+
+            <!-- Body -->
+            <div class="modal-body px-4 pb-4">
+                <div class="row g-4">
+
+                    <!-- Mentee -->
+                    <div class="col-md-6">
+                        <div class="role-card mentee text-center p-4 rounded-4 h-100"
+                             id="join-mentee" role="button">
+                            <div class="icon mb-3">
+                                <i class="bi bi-mortarboard-fill"></i>
+                            </div>
+                            <h5 class="fw-bold">Join as Mentee</h5>
+                            <p class="text-muted small">
+                                Get guidance, explore research, and grow faster.
+                            </p>
+                            <span class="badge bg-success px-3 py-2">Get Mentored</span>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label>Email</label>
-                        <input type="email" class="form-control" name="email" required>
+
+                    <!-- Mentor -->
+                    <div class="col-md-6">
+                        <div class="role-card mentor text-center p-4 rounded-4 h-100"
+                             id="join-mentor" role="button">
+                            <div class="icon mb-3">
+                                <i class="bi bi-person-workspace"></i>
+                            </div>
+                            <h5 class="fw-bold">Join as Mentor</h5>
+                            <p class="text-muted small">
+                                Share expertise and shape future researchers.
+                            </p>
+                            <span class="badge bg-info px-3 py-2">Become a Guide</span>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" name="phone">
-                    </div>
-                    <div class="mb-3">
-                        <label>Membership Type</label>
-                        <select class="form-control" name="type" required>
-                            <option value="individual">Individual</option>
-                            <option value="trainer">Trainer / Expert</option>
-                            <option value="institutional">Institutional</option>
-                            <option value="corporate">Corporate</option>
-                            <option value="honorary">Honorary / Support</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label>Organization (if any)</label>
-                        <input type="text" class="form-control" name="organization">
-                    </div>
-                    <div class="mb-3">
-                        <label>Why do you want to join?</label>
-                        <textarea class="form-control" name="motivation" rows="4"></textarea>
-                    </div>
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit Application</button>
-                </div>
-            </form>
+            </div>
+
         </div>
     </div>
 </div>
+
+<style>
+/* Glass Modal Effect */
+.glass-modal {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+}
+
+/* Role Cards */
+.role-card {
+    cursor: pointer;
+    transition: all 0.35s ease;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.6);
+}
+
+.role-card .icon {
+    font-size: 3rem;
+    color: #6c757d;
+}
+
+.role-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+}
+
+.role-card.mentee:hover {
+    border-color: #28a745;
+}
+.role-card.mentee:hover .icon {
+    color: #28a745;
+}
+
+.role-card.mentor:hover {
+    border-color: #0dcaf0;
+}
+.role-card.mentor:hover .icon {
+    color: #0dcaf0;
+}
+
+/* Modal Backdrop (subtle blur) */
+.modal-backdrop.show {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0,0,0,0.35);
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('join-mentee').addEventListener('click', function() {
+            window.location.href = "{{ route('onboarding.index', 'mentee') }}";
+        });
+        document.getElementById('join-mentor').addEventListener('click', function() {
+            window.location.href = "{{ route('mentor.onboarding', 'mentor') }}";
+        });
+    });
+</script>
