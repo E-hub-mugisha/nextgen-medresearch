@@ -5,10 +5,12 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\Mentor\MentorDashboardController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\MentorQnAController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RescueSheetController;
+use App\Http\Controllers\ResearchProjectController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
@@ -153,13 +155,33 @@ Route::post('/onboarding/register', [MentorController::class, 'registerUser'])->
 // Mentor listing & request
 Route::get('/mentors', [MentorController::class, 'mentorLists'])->name('mentors.list');
 Route::get('/mentors/{id}', [MentorController::class, 'profile'])->name('mentors.profile');
-Route::post('/mentors/{id}/request', [MentorController::class, 'requestMentor'])->name('mentors.request');
+Route::post('mentor/{id}/request', [MentorController::class, 'requestMentor'])->name('mentor.request');
+Route::get('/mentors/{mentor}/details', [MentorController::class, 'mentorDetails'])->name('mentor.profile');
 
 // Onboarding routes
 Route::prefix('mentor-onboarding')->group(function(){
     Route::get('/{role}', [MentorController::class, 'showWizard'])->name('mentor.onboarding');
     Route::post('/save-step', [MentorController::class, 'saveStepMentor'])->name('mentor.onboarding.saveStep');
     Route::post('/register', [MentorController::class, 'registerMentor'])->name('mentor.onboarding.register');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mentee/dashboard', [MentorDashboardController::class, 'menteeDashboard'])->name('mentee.dashboard');
+    Route::get('/mentor/dashboard', [MentorDashboardController::class, 'mentorDashboard'])->name('mentor.dashboard');
+    Route::get('/portal/dashboard', [MentorDashboardController::class, 'dashboard'])->name('portal.dashboard');
+
+    // Requests
+    Route::get('/requests', [MentorController::class, 'index'])->name('requests.index');
+    Route::post('/requests/{id}/action', [MentorController::class, 'action'])->name('requests.action');
+
+    // Projects
+    Route::get('/projects', [ResearchProjectController::class, 'index'])->name('projects.index');
+    Route::post('/projects', [ResearchProjectController::class, 'store'])->name('projects.store');
+    Route::get('/projects/{id}', [ResearchProjectController::class, 'show'])->name('projects.show');
+
+    // Messages
+    Route::get('/projects/{id}/messages', [ResearchProjectController::class, 'index'])->name('messages.index');
+    Route::post('/projects/{id}/messages', [ResearchProjectController::class, 'send'])->name('messages.send');
 });
 
 Route::get('/run-setup', function () {

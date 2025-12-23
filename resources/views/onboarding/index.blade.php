@@ -99,7 +99,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Short bio</label>
-                <textarea name="bio" class="form-control form-control-lg" rows="2"></textarea>
+                <textarea name="bio" id="bio" class="form-control form-control-lg" rows="2"></textarea>
             </div>
 
             <div class="mb-3">
@@ -247,7 +247,7 @@
             };
             if (step == 3) return {
                 step: 3,
-                bio: $('input[name=bio]').val(),
+                bio: $('textarea[name=bio]').val(),
                 research_goal: $('input[name=research_goal]').val(),
                 education_level: $('input[name=education_level]').val()
             };
@@ -273,7 +273,7 @@
                         $('#preview').html(`
                         <p><strong>Name:</strong> ${$('input[name=name]').val()}</p>
                         <p><strong>Email:</strong> ${$('input[name=email]').val()}</p>
-                        <p><strong>Bio:</strong> ${$('input[name=bio]').val()}</p>
+                        <p><strong>Bio:</strong> ${$('textarea[name=bio]').val()}</p>
                         <p><strong>Research Goal:</strong> ${$('input[name=research_goal]').val()}</p>
                         <p><strong>Education:</strong> ${$('input[name=education_level]').val()}</p>
                         <p><strong>Interests:</strong> ${interestsText}</p>
@@ -309,7 +309,7 @@
             let summary = `
         <p><strong>Name:</strong> ${$('input[name=name]').val()}</p>
         <p><strong>Email:</strong> ${$('input[name=email]').val()}</p>
-        <p><strong>Bio:</strong> ${$('input[name=bio]').val()}</p>
+        <p><strong>Bio:</strong> ${$('textarea[name=bio]').val()}</p>
         <p><strong>Research Goal:</strong> ${$('input[name=research_goal]').val()}</p>
         <p><strong>Education:</strong> ${$('input[name=education_level]').val()}</p>
         <p><strong>Interests:</strong> ${interestsText}</p>
@@ -347,7 +347,7 @@
                             email: $('input[name=email]').val(),
                             password: $('input[name=password]').val(),
                             password_confirmation: $('input[name=password_confirmation]').val(),
-                            bio: $('input[name=bio]').val(),
+                            bio: $('textarea[name=bio]').val(),
                             research_goal: $('input[name=research_goal]').val(),
                             education_level: $('input[name=education_level]').val(),
                             interests: $('#interests').val()

@@ -76,4 +76,28 @@ class User extends Authenticatable
             ->withPivot('status')
             ->withTimestamps();
     }
+    // Check if this mentor has been requested by a given mentee
+    public function requestedBy($menteeId)
+    {
+        return $this->requestedByMentees()->where('mentee_id', $menteeId)->exists();
+    }
+
+    // Reverse relation: mentees who requested this mentor
+    public function requestedByMentees()
+    {
+        return $this->belongsToMany(User::class, 'mentor_requests', 'mentor_id', 'mentee_id')
+            ->withPivot('status')
+            ->withTimestamps();
+    }
+    // For mentors
+    public function reviews()
+    {
+        return $this->hasMany(MentorReview::class, 'mentor_id');
+    }
+
+    // For mentees
+    public function givenReviews()
+    {
+        return $this->hasMany(MentorReview::class, 'mentee_id');
+    }
 }

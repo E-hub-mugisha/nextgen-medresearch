@@ -10,6 +10,7 @@ use App\Models\ResearchInterest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class MentorController extends Controller
 {
@@ -78,11 +79,40 @@ class MentorController extends Controller
             'education_level' => $data['education_level'] ?? null,
         ]);
 
-        // Save interests if mentee
         if ($user->role == 'mentee' && !empty($data['interests'])) {
-            $user->interests()->sync($data['interests']);
-        }
 
+            $interestIds = [];
+
+            foreach ($data['interests'] as $interest) {
+
+                if (is_numeric($interest)) {
+                    // already existing interest
+                    $interestIds[] = $interest;
+                    continue;
+                }
+
+                // Normalize text
+                $name = trim($interest);
+                $slug = Str::slug($name);
+
+                // Case-insensitive + slug uniqueness
+                $existing = ResearchInterest::whereRaw('LOWER(name) = ?', [strtolower($name)])
+                    ->orWhere('slug', $slug)
+                    ->first();
+
+                if ($existing) {
+                    $interestIds[] = $existing->id;
+                } else {
+                    $newInterest = ResearchInterest::create([
+                        'name' => $name,
+                        'slug' => $slug
+                    ]);
+                    $interestIds[] = $newInterest->id;
+                }
+            }
+
+            $user->interests()->sync($interestIds);
+        }
 
         auth()->login($user);
         Session::forget('onboarding');
@@ -101,27 +131,75 @@ class MentorController extends Controller
             abort(403, 'Only mentees can view mentors');
         }
 
-        // Fetch mentors who have at least one matching interest
+        // Get mentee interests IDs
+        $menteeInterestIds = $mentee->interests()->pluck('research_interest_id');
+
+        // Fetch mentors that share at least ONE matching interest
         $mentors = User::where('role', 'mentor')
+            ->with([
+                'mentorProfile',
+                'reviews'
+            ])
+            ->withAvg('reviews', 'rating')
+            ->withCount('reviews')
             ->get();
 
-        // Get already requested mentors
+        // Filter dropdown data
+        $expertiseList = MentorProfile::pluck('expertise')->unique();
+        $countries = MentorProfile::pluck('country')->unique();
 
-        return view('portal.mentors', compact('mentors','mentee'));
+        return view('portal.mentors', compact(
+            'mentors',
+            'mentee',
+            'expertiseList',
+            'countries'
+        ));
     }
 
-    // Request mentorship
-    public function requestMentor(Request $request)
+    public function mentorDetails(User $mentor)
+    {
+        $mentor->load('mentorProfile', 'reviews.mentee');
+        $mentor->reviews_avg_rating = $mentor->reviews->avg('rating');
+        $mentor->reviews_count = $mentor->reviews->count();
+
+        // Fetch similar mentors: same expertise or at least one shared interest
+        $similarMentors = User::where('role', 'mentor')
+            ->where('id', '!=', $mentor->id)
+            ->where(function ($q) use ($mentor) {
+                if ($mentor->mentorProfile->expertise) {
+                    $q->whereHas('mentorProfile', fn($q2) => $q2->where('expertise', $mentor->mentorProfile->expertise));
+                }
+                // Also include mentors with shared research interests
+                $interestIds = $mentor->interests()->pluck('research_interest_id');
+                if ($interestIds->count() > 0) {
+                    $q->orWhereHas('interests', fn($q3) => $q3->whereIn('research_interest_id', $interestIds));
+                }
+            })
+            ->with(['mentorProfile'])
+            ->withAvg('reviews', 'rating')
+            ->withCount('reviews')
+            ->take(10) // limit to 10 similar mentors
+            ->get();
+
+        return view('portal.mentor-profile', compact('mentor', 'similarMentors'));
+    }
+
+    public function requestMentor(Request $request, $mentorId)
     {
         $user = Auth::user();
 
         // Prevent duplicate requests
-        if (!$user->requestedMentors()->where('mentor_id', $request->mentor_id)->exists()) {
-            $user->requestedMentors()->attach($request->mentor_id, ['status' => 'pending']);
+        if (!$user->requestedMentors()->where('mentor_id', $mentorId)->exists()) {
+            $user->requestedMentors()->attach($mentorId, ['status' => 'pending']);
         }
 
-        return response()->json(['success' => true, 'message' => 'Mentor requested successfully']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Mentor requested successfully'
+        ]);
+
     }
+
 
     // Show wizard for mentor onboarding
     public function showWizard($role)

@@ -28,7 +28,9 @@ class DatabaseSeeder extends Seeder
             PartnersSeeder::class,
             ResearchSeeder::class,
             FaqSeeder::class,
-            TestimonialSeeder::class
+            TestimonialSeeder::class,
+            MentorSeeder::class,
+            MentorReviewSeeder::class
         ]);
     }
 }
