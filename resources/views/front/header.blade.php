@@ -179,6 +179,10 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                         </div>
                     </div>
 
+                    <div class="d-flex justify-content-center text-center">
+                        <p class="mb-3 px-2">already joined the platform? click below to enter into the account!</p>
+                        <a href="{{ route('login') }}" class="btn-default mb-3">Login</a>
+                    </div>
                 </div>
             </div>
 

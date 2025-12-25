@@ -65,9 +65,9 @@
     <div class="sidebar">
         <h4 class="text-center mt-2">Portal</h4>
         <a href="{{ route('portal.dashboard') }}"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
-        <a href="{{ route('requests.index') }}"><i class="fa-solid fa-envelope"></i> Requests</a>
+        <a href="{{ route('mentor.requests.index') }}"><i class="fa-solid fa-envelope"></i> Requests</a>
         <a href="{{ route('projects.index') }}"><i class="fa-solid fa-folder"></i> Projects</a>
-        <a href="#"><i class="fa-solid fa-comments"></i> Messages</a>
+        <a href="{{ route('messages.index') }}"><i class="fa-solid fa-comments"></i> Messages</a>
         <a href="#"><i class="fa-solid fa-user"></i> Profile</a>
         <a href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
     </div>

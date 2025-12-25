@@ -8,9 +8,13 @@ use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\Mentor\MentorDashboardController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\MentorQnAController;
+use App\Http\Controllers\Portal\MenteeProjectController ;
+use App\Http\Controllers\Portal\MentorPortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RescueSheetController;
 use App\Http\Controllers\ResearchProjectController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\Portal\PortalMessageController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
@@ -159,7 +163,7 @@ Route::post('mentor/{id}/request', [MentorController::class, 'requestMentor'])->
 Route::get('/mentors/{mentor}/details', [MentorController::class, 'mentorDetails'])->name('mentor.profile');
 
 // Onboarding routes
-Route::prefix('mentor-onboarding')->group(function(){
+Route::prefix('mentor-onboarding')->group(function () {
     Route::get('/{role}', [MentorController::class, 'showWizard'])->name('mentor.onboarding');
     Route::post('/save-step', [MentorController::class, 'saveStepMentor'])->name('mentor.onboarding.saveStep');
     Route::post('/register', [MentorController::class, 'registerMentor'])->name('mentor.onboarding.register');
@@ -171,18 +175,35 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/portal/dashboard', [MentorDashboardController::class, 'dashboard'])->name('portal.dashboard');
 
     // Requests
-    Route::get('/requests', [MentorController::class, 'index'])->name('requests.index');
-    Route::post('/requests/{id}/action', [MentorController::class, 'action'])->name('requests.action');
+    Route::get('/mentor/requests', [MentorPortalController::class, 'index'])->name('mentor.requests.index');
+    Route::post('/requests/{id}/action', [MentorPortalController::class, 'action'])->name('requests.action');
+    Route::delete('/requests/{id}/cancel', [MentorPortalController::class, 'cancel'])
+        ->name('mentee.request.cancel');
+    Route::get('/mentors/{mentor}/profile', [MentorPortalController::class, 'mentorProfile'])->name('mentor.details');
+    
+    Route::get('/portal/projects', [MenteeProjectController::class, 'index'])->name('projects.index'); // list all projects
+    Route::get('/portal/projects/create', [MenteeProjectController::class, 'create'])->name('projects.create'); // form to create
+    Route::post('/portal/projects', [MenteeProjectController::class, 'store'])->name('projects.store'); // save new project
+    Route::get('/portal/projects/{project}', [MenteeProjectController::class, 'show'])->name('projects.show'); // view project details
 
-    // Projects
-    Route::get('/projects', [ResearchProjectController::class, 'index'])->name('projects.index');
-    Route::post('/projects', [ResearchProjectController::class, 'store'])->name('projects.store');
-    Route::get('/projects/{id}', [ResearchProjectController::class, 'show'])->name('projects.show');
+    // Milestones
+    Route::get('/portal/projects/{project}/milestones/create', [MenteeProjectController::class, 'createMilestone'])->name('milestones.create'); // form to add milestone
+    Route::post('/portal/projects/{project}/milestones', [MenteeProjectController::class, 'storeMilestone'])->name('milestones.store'); // save milestone
 
-    // Messages
-    Route::get('/projects/{id}/messages', [ResearchProjectController::class, 'index'])->name('messages.index');
-    Route::post('/projects/{id}/messages', [ResearchProjectController::class, 'send'])->name('messages.send');
+    // Collaborators
+    Route::get('/portal/projects/{project}/collaborators/create', [MenteeProjectController::class, 'createCollaborator'])->name('collaborators.create'); // form to add collaborator
+    Route::post('/portal/projects/{project}/collaborators', [MenteeProjectController::class, 'storeCollaborator'])->name('collaborators.store'); // save collaborator
+
+    // Comments
+    Route::post('/portal/milestones/{milestone}/comments', [MenteeProjectController::class, 'storeComment'])->name('comments.store'); // add comment
 });
+
+Route::prefix('messages')->middleware('auth')->group(function() {
+    Route::get('/', [PortalMessageController::class, 'index'])->name('messages.index');
+    Route::get('/{user}', [PortalMessageController::class, 'show'])->name('messages.show');
+    Route::post('/{user}', [PortalMessageController::class, 'store'])->name('messages.store');
+});
+
 
 Route::get('/run-setup', function () {
     Artisan::call('migrate:fresh --seed');
