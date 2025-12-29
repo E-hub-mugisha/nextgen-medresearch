@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Models\ResearchProject;
 use App\Models\ResearchMilestone;
@@ -105,4 +106,59 @@ class MenteeProjectController extends Controller
 
         return redirect()->back()->with('success', 'Comment added successfully.');
     }
+
+    public function storeSend(Request $request, $projectId)
+    {
+        $request->validate([
+            'message' => 'required|string'
+        ]);
+
+        Message::create([
+            'project_id' => $projectId,
+            'user_id' => auth()->id(),
+            'message' => $request->message
+        ]);
+
+        return back()->with('success', 'Message sent successfully');
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $mentee = User::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $mentee->id,
+            'location' => 'nullable|string|max:255',
+            'bio' => 'nullable|string|max:1000',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $mentee->name = $request->name;
+        $mentee->email = $request->email;
+        $mentee->location = $request->location;
+        $mentee->bio = $request->bio;
+
+        if ($request->hasFile('image')) {
+            $fileName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('uploads/images'), $fileName);
+            $mentee->image = 'uploads/images/' . $fileName;
+        }
+
+        $mentee->save();
+
+        return redirect()->back()->with('success', 'Profile updated successfully.');
+    }
+
+    public function showProfile()
+    {
+        $mentee = auth()->user();
+        $requests = $mentee->requestedMentors ?? collect();
+        $projects = ResearchProject::with('milestones', 'collaborators.user')
+            ->where('mentee_id', $mentee->id)
+            ->get();
+
+        return view('portal.profile.index', compact('mentee', 'requests', 'projects'));
+    }
+
 }

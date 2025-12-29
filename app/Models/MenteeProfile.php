@@ -10,5 +10,14 @@ class MenteeProfile extends Model
         'user_id',
         'research_goals',
         'education_level',
+        'bio',            // bio/about section
+        'location',
+        'image'
     ];
+
+    // Relationship to the user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

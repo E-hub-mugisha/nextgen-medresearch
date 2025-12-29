@@ -23,7 +23,7 @@ class MentorReviewSeeder extends Seeder
 
         foreach ($mentors as $mentor) {
             // Assign 2-5 random reviews per mentor
-            $randomMentees = $mentees->random(rand(2));
+            $randomMentees = $mentees->random(rand(2, 5));
 
             foreach ($randomMentees as $mentee) {
                 MentorReview::updateOrCreate(

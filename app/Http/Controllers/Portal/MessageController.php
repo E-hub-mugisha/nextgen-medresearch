@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class MessageController extends Controller
 {
     // Show chat list with all conversations
-    public function index() {
+    public function index()
+    {
         $user = Auth::user();
 
         // Get distinct users this user has exchanged messages with
@@ -19,7 +20,7 @@ class MessageController extends Controller
             ->orWhere('receiver_id', $user->id)
             ->with(['sender', 'receiver'])
             ->get()
-            ->map(function($m) use ($user) {
+            ->map(function ($m) use ($user) {
                 return $m->sender_id == $user->id ? $m->receiver : $m->sender;
             })
             ->unique('id');
@@ -28,23 +29,31 @@ class MessageController extends Controller
     }
 
     // Show conversation with a specific user
-    public function show(User $user) {
+    public function show(User $user)
+    {
         $auth = Auth::user();
 
-        $messages = Message::where(function($q) use ($auth, $user) {
-                $q->where('sender_id', $auth->id)->where('receiver_id', $user->id);
-            })
-            ->orWhere(function($q) use ($auth, $user) {
-                $q->where('sender_id', $user->id)->where('receiver_id', $auth->id);
-            })
-            ->orderBy('created_at', 'asc')
-            ->get();
+        $contacts = User::where('id', '!=', auth()->id())->get(); // Example: all users except self
 
-        return view('portal.messages.show', compact('user', 'messages'));
+        // Set first contact as active chat (or null if no contacts)
+        $activeChat = $contacts->first() ?? null;
+
+        $messages = $activeChat
+            ? Message::where(function ($q) use ($activeChat) {
+                $q->where('sender_id', auth()->id())
+                    ->where('receiver_id', $activeChat->id);
+            })->orWhere(function ($q) use ($activeChat) {
+                $q->where('sender_id', $activeChat->id)
+                    ->where('receiver_id', auth()->id());
+            })->orderBy('created_at')->get()
+            : collect();
+
+        return view('portal.messages.show', compact('user', 'contacts', 'activeChat', 'messages'));
     }
 
     // Send message
-    public function store(Request $request, User $user) {
+    public function store(Request $request, User $user)
+    {
         $request->validate([
             'body' => 'required|string|max:1000'
         ]);

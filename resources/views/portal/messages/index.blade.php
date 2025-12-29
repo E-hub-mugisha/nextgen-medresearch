@@ -2,98 +2,115 @@
 
 @section('content')
 <div class="container-fluid mt-4">
-    <div class="row" style="height: 80vh;">
-
-        <!-- Contacts List -->
-        <div class="col-md-4 col-lg-3 border-end p-0" style="height: 100%; overflow-y: auto;">
-            <div class="list-group list-group-flush">
-                @foreach($contacts as $contact)
-                    <a href="{{ route('messages.show', $contact->id) }}"
-                       class="list-group-item list-group-item-action d-flex justify-content-between align-items-center
-                       {{ request()->segment(2) == $contact->id ? 'active' : '' }}">
-                        <div>
-                            <strong>{{ $contact->name }}</strong>
-                        </div>
-                        <small class="text-muted">{{ $contact->messages_count ?? 0 }} msgs</small>
-                    </a>
-                @endforeach
+    <div class="row">
+        {{-- Contacts List --}}
+        <div class="col-md-4 col-lg-3 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white">
+                    <h6 class="mb-0">Contacts</h6>
+                </div>
+                <ul class="list-group list-group-flush" style="max-height: 75vh; overflow-y:auto;">
+                    @foreach($contacts as $contact)
+                    <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center
+                        @if(isset($activeChat) && $activeChat->id == $contact->id) active @endif">
+                        <a href="{{ route('messages.chat', $contact->id) }}" class="text-decoration-none text-dark w-100">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ $contact->avatar ?? 'https://via.placeholder.com/40' }}"
+                                    class="rounded-circle me-2" width="40" height="40" alt="avatar">
+                                <div>
+                                    <div class="fw-bold">{{ $contact->name }}</div>
+                                    <small class="text-muted">{{ $contact->latestMessage?->body ?? '' }}</small>
+                                </div>
+                            </div>
+                        </a>
+                        @if($contact->unread_count > 0)
+                        <span class="badge bg-danger rounded-pill">{{ $contact->unread_count }}</span>
+                        @endif
+                    </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
 
-        <!-- Chat Area -->
-        <div class="col-md-8 col-lg-9 d-flex flex-column p-0" style="height: 100%;">
-            @if(isset($user))
-            <div class="border-bottom p-3 bg-white sticky-top d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">{{ $user->name }}</h5>
-                <a href="{{ route('messages.index') }}" class="btn btn-outline-secondary btn-sm">← Back</a>
-            </div>
-
-            <div class="flex-grow-1 p-3" style="overflow-y: auto;" id="chatArea">
-                @foreach($messages as $message)
-                    @if($message->sender_id == auth()->id())
-                        <div class="text-end mb-2">
-                            <span class="badge bg-primary text-wrap p-2">{{ $message->body }}</span>
-                            <small class="d-block text-muted">{{ $message->created_at->format('H:i') }}</small>
-                        </div>
-                    @else
-                        <div class="text-start mb-2">
-                            <span class="badge bg-secondary text-wrap p-2">{{ $message->body }}</span>
-                            <small class="d-block text-muted">{{ $message->created_at->format('H:i') }}</small>
-                        </div>
+        {{-- Chat Window --}}
+        <div class="col-md-8 col-lg-9 mb-3">
+            <div class="card shadow-sm h-100 d-flex flex-column">
+                <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                    <div class="fw-bold">{{ $activeChat->name ?? 'Select a contact' }}</div>
+                    @if(isset($activeChat))
+                    <small class="text-muted">{{ $activeChat->online ? 'Online' : 'Offline' }}</small>
                     @endif
-                @endforeach
-            </div>
+                </div>
 
-            <!-- Message Input -->
-            <div class="p-3 border-top bg-light">
-                <form action="{{ route('messages.store', $user->id) }}" method="POST" class="d-flex">
-                    @csrf
-                    <input type="text" name="body" class="form-control me-2" placeholder="Type a message..." required>
-                    <button class="btn btn-gradient-primary">Send</button>
-                </form>
+                <div class="card-body flex-grow-1 overflow-auto" id="chatBox" style="height: 60vh;">
+                    @if(isset($messages) && $messages->count() > 0)
+                    @foreach($messages as $message)
+                    <div class="d-flex mb-3 
+            @if($message->sender_id == auth()->id()) justify-content-end @else justify-content-start @endif">
+                        <div class="p-2 rounded 
+                @if($message->sender_id == auth()->id()) bg-primary text-white @else bg-light text-dark @endif"
+                            style="max-width: 70%;">
+                            {{ $message->body }}
+                            <div class="text-end text-muted" style="font-size:0.7rem;">
+                                {{ $message->created_at->format('H:i') }}
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    @else
+                    <div class="text-center text-muted mt-4">
+                        Select a contact to start chatting.
+                    </div>
+                    @endif
+                </div>
+
+                @if(isset($activeChat))
+                <div class="card-footer bg-light">
+                    <form id="messageForm" action="{{ route('messages.send', $activeChat->id) }}" method="POST">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" name="body" class="form-control" placeholder="Type a message..." required>
+                            <button class="btn btn-gradient-primary" type="submit">Send</button>
+                        </div>
+                    </form>
+                </div>
+                @endif
+
             </div>
-            @else
-            <div class="d-flex justify-content-center align-items-center h-100">
-                <p class="text-muted">Select a contact to start messaging</p>
-            </div>
-            @endif
         </div>
     </div>
 </div>
 
+{{-- Styles --}}
 <style>
-    /* Gradient Buttons */
     .btn-gradient-primary {
         background: linear-gradient(90deg, #4e54c8, #8f94fb);
         color: #fff;
         border: none;
     }
+
     .btn-gradient-primary:hover {
-        opacity: 0.9;
+        opacity: .9;
     }
 
-    /* Chat badges */
-    .badge {
-        border-radius: 15px;
-        max-width: 75%;
-        display: inline-block;
+    .list-group-item.active {
+        background: #4e54c8 !important;
+        color: #fff;
     }
 
-    /* Scrollbar styling */
-    #chatArea::-webkit-scrollbar {
+    #chatBox::-webkit-scrollbar {
         width: 6px;
     }
-    #chatArea::-webkit-scrollbar-thumb {
-        background-color: rgba(0,0,0,0.2);
+
+    #chatBox::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
         border-radius: 3px;
     }
 </style>
 
+{{-- Optional: Auto-scroll chat to bottom --}}
 <script>
-    // Scroll to bottom of chat on load
-    window.addEventListener('load', function() {
-        var chat = document.getElementById('chatArea');
-        if(chat) chat.scrollTop = chat.scrollHeight;
-    });
+    const chatBox = document.getElementById('chatBox');
+    if (chatBox) chatBox.scrollTop = chatBox.scrollHeight;
 </script>
 @endsection

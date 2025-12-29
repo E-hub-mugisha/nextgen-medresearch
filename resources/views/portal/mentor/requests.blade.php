@@ -9,52 +9,65 @@
             <div class="text-center p-4">
                 <h5>No Mentorship Requests Yet</h5>
                 <p class="text-muted">Start exploring mentors and request mentorship.</p>
-                <a href="{{ route('mentors.list') }}" class="btn btn-primary">
+                <a href="{{ route('mentors.list') }}" class="btn btn-gradient-primary">
                     Find Mentors
                 </a>
             </div>
         @else
-        <div class="row">
-            @foreach($requests as $mentor)
-                <div class="col-md-4 mb-4">
-                    <div class="card shadow-sm p-3 request-card">
-
-                        <h5 class="fw-bold">{{ $mentor->name }}</h5>
-                        <p class="text-muted mb-1">
-                            {{ $mentor->mentorProfile->expertise ?? 'No expertise provided' }}
-                        </p>
-
-                        <span class="badge 
-                            @if($mentor->pivot->status == 'pending') bg-warning
-                            @elseif($mentor->pivot->status == 'approved') bg-success
-                            @else bg-danger
-                            @endif
-                        ">
-                            {{ ucfirst($mentor->pivot->status) }}
-                        </span>
-
-                        <div class="d-flex justify-content-between mt-3">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mentor Name</th>
+                        <th>Expertise</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($requests as $mentor)
+                    <tr>
+                        <td>{{ $mentor->name }}</td>
+                        <td>{{ $mentor->mentorProfile->expertise ?? 'No expertise provided' }}</td>
+                        <td>
+                            <span class="badge 
+                                @if($mentor->pivot->status == 'pending') bg-warning text-dark
+                                @elseif($mentor->pivot->status == 'approved') bg-success
+                                @else bg-danger
+                                @endif">
+                                {{ ucfirst($mentor->pivot->status) }}
+                            </span>
+                        </td>
+                        <td>
                             <a href="{{ route('mentor.details', $mentor->id) }}"
-                               class="btn btn-outline-primary btn-sm">
+                               class="btn btn-outline-primary btn-sm me-2">
                                 View Profile
                             </a>
-
                             @if($mentor->pivot->status == 'pending')
                             <button class="btn btn-danger btn-sm cancel-btn"
                                     data-id="{{ $mentor->id }}">
-                                Cancel Request
+                                Cancel
                             </button>
                             @endif
-                        </div>
-
-                    </div>
-                </div>
-            @endforeach
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
         @endif
     </div>
 </div>
 
+{{-- Styles --}}
+<style>
+.btn-gradient-primary{
+    background: linear-gradient(90deg,#4e54c8,#8f94fb);
+    color:#fff;border:none;
+}
+.btn-gradient-primary:hover{opacity:.9;}
+.table-hover tbody tr:hover{background:#f8f9ff;}
+</style>
 
 {{-- SweetAlert --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

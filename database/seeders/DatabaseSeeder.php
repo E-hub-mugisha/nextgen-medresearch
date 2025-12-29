@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
             FaqSeeder::class,
             TestimonialSeeder::class,
             MentorSeeder::class,
-            MentorReviewSeeder::class
+            MenteeProfileSeeder::class,
+            MentorReviewSeeder::class,
         ]);
     }
 }

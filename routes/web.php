@@ -8,7 +8,7 @@ use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\Mentor\MentorDashboardController;
 use App\Http\Controllers\MentorController;
 use App\Http\Controllers\MentorQnAController;
-use App\Http\Controllers\Portal\MenteeProjectController ;
+use App\Http\Controllers\Portal\MenteeProjectController;
 use App\Http\Controllers\Portal\MentorPortalController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RescueSheetController;
@@ -174,14 +174,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/mentee/dashboard', [MentorDashboardController::class, 'menteeDashboard'])->name('mentee.dashboard');
     Route::get('/mentor/dashboard', [MentorDashboardController::class, 'mentorDashboard'])->name('mentor.dashboard');
     Route::get('/portal/dashboard', [MentorDashboardController::class, 'dashboard'])->name('portal.dashboard');
+    Route::get('/mentee/profile', [MenteeProjectController::class, 'showProfile'])->name('mentee.profile');
 
+    // Update mentee profile (modal form submission)
+    Route::put('/mentee/profile/{id}', [MenteeProjectController::class, 'updateProfile'])->name('mentee.update');
     // Requests
     Route::get('/mentor/requests', [MentorPortalController::class, 'index'])->name('mentor.requests.index');
     Route::post('/requests/{id}/action', [MentorPortalController::class, 'action'])->name('requests.action');
     Route::delete('/requests/{id}/cancel', [MentorPortalController::class, 'cancel'])
         ->name('mentee.request.cancel');
     Route::get('/mentors/{mentor}/profile', [MentorPortalController::class, 'mentorProfile'])->name('mentor.details');
-    
+
     Route::get('/portal/projects', [MenteeProjectController::class, 'index'])->name('projects.index'); // list all projects
     Route::get('/portal/projects/create', [MenteeProjectController::class, 'create'])->name('projects.create'); // form to create
     Route::post('/portal/projects', [MenteeProjectController::class, 'store'])->name('projects.store'); // save new project
@@ -190,16 +193,24 @@ Route::middleware(['auth'])->group(function () {
     // Milestones
     Route::get('/portal/projects/{project}/milestones/create', [MenteeProjectController::class, 'createMilestone'])->name('milestones.create'); // form to add milestone
     Route::post('/portal/projects/{project}/milestones', [MenteeProjectController::class, 'storeMilestone'])->name('milestones.store'); // save milestone
+    // Update milestone
+    Route::put('milestones/{milestone}', [MenteeProjectController::class, 'updateMilestone'])
+        ->name('milestones.update');
 
+    // Delete milestone
+    Route::delete('milestones/{milestone}', [MenteeProjectController::class, 'destroyMilestone'])
+        ->name('milestones.destroy');
     // Collaborators
     Route::get('/portal/projects/{project}/collaborators/create', [MenteeProjectController::class, 'createCollaborator'])->name('collaborators.create'); // form to add collaborator
     Route::post('/portal/projects/{project}/collaborators', [MenteeProjectController::class, 'storeCollaborator'])->name('collaborators.store'); // save collaborator
-
+    Route::delete('/portal/projects/{project}/collaborators', [MenteeProjectController::class, 'destroyCollaborator'])->name('collaborators.destroy'); // save collaborator
+    Route::post('/projects/{project}/messages', [MenteeProjectController::class, 'storeSend'])
+        ->name('messages.send');
     // Comments
     Route::post('/portal/milestones/{milestone}/comments', [MenteeProjectController::class, 'storeComment'])->name('comments.store'); // add comment
 });
 
-Route::prefix('messages')->middleware('auth')->group(function() {
+Route::prefix('messages')->middleware('auth')->group(function () {
     Route::get('/', [PortalMessageController::class, 'index'])->name('messages.index');
     Route::get('/{user}', [PortalMessageController::class, 'show'])->name('messages.show');
     Route::post('/{user}', [PortalMessageController::class, 'store'])->name('messages.store');
