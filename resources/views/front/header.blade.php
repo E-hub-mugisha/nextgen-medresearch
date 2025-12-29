@@ -102,7 +102,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                         {{-- RESEARCH SPACE --}}
                         <li class="nav-item">
                             <a class="nav-link #"
-                                href="#">Research Space</a>
+                                href="{{ route('research.space')}}">Research Space</a>
                         </li>
 
                         {{-- CONTACT --}}

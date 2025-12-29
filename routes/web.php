@@ -47,6 +47,7 @@ Route::get('/research', [HomeController::class, 'research'])->name('research.ind
 Route::get('/research/detail/{slug}', [HomeController::class, 'researchDetail'])->name('research.detail');
 Route::get('/faq', [HomeController::class, 'faqPage'])->name('faq.page');
 Route::post('/faq/question', [HomeController::class, 'storeQuestion'])->name('faq.question.store');
+Route::get('/research_space', [HomeController::class, 'space'])->name('research.space');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 

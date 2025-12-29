@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('research_area')->nullable();
-            $table->enum('status', ['active', 'under review', 'completed'])->default('active');
+            $table->enum('status', ['active', 'under review', 'completed','ongoing'])->default('active');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();

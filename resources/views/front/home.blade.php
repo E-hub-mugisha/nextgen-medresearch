@@ -11,7 +11,7 @@
                 <div class="hero-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp">The next generation medsearch</h3>
+                        <!-- <h3 class="wow fadeInUp">The next generation medsearch</h3> -->
                         <h1 class="text-anime-style-3" data-cursor="-opaque">Building the Next Generation of Medical Researchers in Africa</h1>
                         <p class="wow fadeInUp" data-wow-delay="0.2s">A social innovation platform connecting clinicians, mentors, and institutions for research, mentorship, and capacity building</p>
                     </div>
