@@ -124,8 +124,8 @@
                 <div class="what-we-contant">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp">Join the NextGen MedResearch Community</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Empower your journey. Shape Africa’s medical research future.</h2>
+                        <h3 class="wow fadeInUp">Sample Dissertation Topic</h3>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque">Sample Dissertation Topic</h2>
                         <p class="wow fadeInUp" data-wow-delay="0.2s">NextGen MedResearch membership connects you to mentorship, research collaboration, workshops, and innovation opportunities across Africa. Choose the membership tier that fits your role and impact goals.</p>
                     </div>
                     <!-- Section Title End -->
