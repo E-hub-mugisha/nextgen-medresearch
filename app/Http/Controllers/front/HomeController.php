@@ -124,4 +124,8 @@ class HomeController extends Controller
 
         return redirect()->route('faq.page')->with('success', 'Your question has been submitted successfully. We will get back to you soon.');
     }
+    public function space()
+    {
+        return view('front.research_space');
+    }
 }

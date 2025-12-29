@@ -30,21 +30,13 @@
     <!-- Magnific Popup Core Css File -->
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
     <!-- Mouse Cursor Css File -->
-    <link rel="stylesheet" href="{{ asset('assets/css/mousecursor.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('assets/css/mousecursor.css') }}"> -->
     <!-- Main Custom Css -->
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" media="screen">
 </head>
 
 <body>
 
-    <!-- Preloader Start -->
-    <!-- <div class="preloader">
-        <div class="loading-container">
-            <div class="loading"></div>
-            <div id="loading-icon"><img src="images/loader.svg" alt=""></div>
-        </div>
-    </div> -->
-    <!-- Preloader End -->
 
     @include('front.header')
 
