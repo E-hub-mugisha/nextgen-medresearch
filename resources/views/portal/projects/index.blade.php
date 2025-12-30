@@ -123,8 +123,47 @@
     </div>
 </div>
 
+<!-- New Project Modal -->
+<div class="modal fade" id="newProjectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="POST" action="{{ route('projects.store') }}">
+            @csrf
+            <div class="modal-content modern-modal">
 
-<!-- MODAL REMAINS SAME AS YOUR LAST VERSION -->
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold">Create New Project</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body pt-0">
+                    <div class="mb-3">
+                        <label class="fw-semibold">Project Title</label>
+                        <input type="text" name="title" class="form-control modern-input" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-semibold">Description</label>
+                        <textarea name="description"
+                            class="form-control modern-input"
+                            rows="3"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="fw-semibold">Research Area</label>
+                        <input type="text" name="research_area"
+                            class="form-control modern-input" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0">
+                    <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button class="btn btn-primary">Create Project</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
 
 
 <style>

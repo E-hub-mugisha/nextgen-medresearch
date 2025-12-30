@@ -16,6 +16,12 @@
         <a href="{{ route('projects.index') }}" class="btn btn-light shadow-sm">
             <i class="fa-solid fa-arrow-left"></i> Back
         </a>
+        <button class="btn btn-primary shadow-sm"
+            data-bs-toggle="modal"
+            data-bs-target="#exportProjectModal">
+            <i class="fa-solid fa-file-export"></i>
+            Export Project
+        </button>
     </div>
 
     <!-- Project Overview -->
@@ -77,7 +83,7 @@
                     @endif
 
                     <!-- Actions -->
-                    <div class="text-end">
+                    <div class="text-end mt-4">
                         <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
                             data-bs-target="#editMilestoneModal{{ $milestone->id }}">Edit</button>
 
@@ -188,7 +194,7 @@
                         <strong>{{ $collab->user->name }}</strong>
                         <p class="text-muted small mb-0">{{ $collab->role }}</p>
                     </div>
-                    <div>
+                    <div class="mt-4">
                         <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#messageModal{{ $collab->id }}">
                             Message
                         </button>
@@ -235,7 +241,7 @@
 
 <!-- Add Milestone -->
 <div class="modal fade" id="addMilestoneModal" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog">
         <form action="{{ route('milestones.store', $project->id) }}" method="POST">
             @csrf
             <div class="modal-content rounded-4">
@@ -278,7 +284,7 @@
 
 <!-- Add Collaborator -->
 <div class="modal fade" id="addCollaboratorModal" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog">
         <form action="{{ route('collaborators.store', $project->id) }}" method="POST">
             @csrf
             <div class="modal-content rounded-4">
@@ -318,6 +324,60 @@
     </div>
 </div>
 
+<div class="modal fade" id="exportProjectModal" tabindex="-1">
+    <div class="modal-dialog">
+        <form action="{{ route('projects.export', $project->id) }}" method="POST">
+            @csrf
+            <div class="modal-content rounded-4">
+
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">
+                        Export Project Document
+                    </h5>
+                    <button type="button" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <p>Select the document format you want to generate:</p>
+
+                    <div class="form-check mb-2">
+                        <input class="form-check-input"
+                            type="radio"
+                            name="format"
+                            value="pdf"
+                            checked>
+                        <label class="form-check-label">
+                            Generate PDF
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input"
+                            type="radio"
+                            name="format"
+                            value="word">
+                        <label class="form-check-label">
+                            Generate Word (.docx)
+                        </label>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-light"
+                        data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+
+                    <button class="btn btn-primary">
+                        Generate
+                    </button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
 
 <style>
     .card {

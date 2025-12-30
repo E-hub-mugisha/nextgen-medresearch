@@ -208,6 +208,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('messages.send');
     // Comments
     Route::post('/portal/milestones/{milestone}/comments', [MenteeProjectController::class, 'storeComment'])->name('comments.store'); // add comment
+    Route::post('/projects/{project}/export', [MenteeProjectController::class, 'export'])
+     ->name('projects.export');
 });
 
 Route::prefix('messages')->middleware('auth')->group(function () {

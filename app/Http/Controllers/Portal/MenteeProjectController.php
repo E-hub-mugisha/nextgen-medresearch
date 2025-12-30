@@ -10,7 +10,10 @@ use App\Models\ResearchMilestone;
 use App\Models\ProjectCollaborator;
 use App\Models\User;
 use App\Models\MilestoneComment;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\IOFactory;
 
 class MenteeProjectController extends Controller
 {
@@ -160,5 +163,40 @@ class MenteeProjectController extends Controller
 
         return view('portal.profile.index', compact('mentee', 'requests', 'projects'));
     }
+    public function export(ResearchProject $project, Request $request)
+    {
+        $format = $request->format;
 
+        if ($format === 'pdf') {
+
+            $pdf = Pdf::loadView('exports.project-pdf', [
+                'project' => $project,
+                'collaborators' => $project->collaborators
+            ])->setPaper('A4', 'portrait');
+
+            return $pdf->download($project->title . '.pdf');
+        }
+
+        if ($format === 'word') {
+
+            $phpWord = new PhpWord();
+            $section = $phpWord->addSection();
+
+            $section->addText($project->title, ['bold' => true, 'size' => 18]);
+            $section->addText("Research Area: " . $project->research_area);
+            $section->addTextBreak();
+            $section->addText($project->description);
+
+            $fileName = $project->title . '.docx';
+            $tempFile = tempnam(sys_get_temp_dir(), 'word');
+
+            $objWriter = IOFactory::createWriter($phpWord, 'Word2007');
+            $objWriter->save($tempFile);
+
+            return response()->download($tempFile, $fileName)
+                ->deleteFileAfterSend(true);
+        }
+
+        return back()->with('error', 'Invalid export option selected.');
+    }
 }

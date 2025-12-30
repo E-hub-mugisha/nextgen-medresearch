@@ -117,7 +117,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
 
                 <!-- Header Btn Start -->
                 <div class="header-btn">
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal" class="btn-default-2 btn-highlighted">Apply for Membership</a>
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal" class="btn-default-2 btn-highlighted">Join Us</a>
                     <a href="{{ route('rescue.sheet.public') }}" class="btn-default btn-highlighted">Rescue sheets</a>
                 </div>
                 <!-- Header Btn End -->

@@ -30,7 +30,7 @@
     <!-- Magnific Popup Core Css File -->
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
     <!-- Mouse Cursor Css File -->
-    <!-- <link rel="stylesheet" href="{{ asset('assets/css/mousecursor.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('assets/css/mousecursor.css') }}">
     <!-- Main Custom Css -->
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" media="screen">
 </head>

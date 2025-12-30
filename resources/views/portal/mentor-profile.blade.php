@@ -132,11 +132,15 @@
                                 <ul class="list-group">
                                     @foreach($mentor->reviews as $review)
                                     <li class="list-group-item">
-                                        <strong>{{ $review->user->name }}</strong>
+                                        <strong>{{ $review->mentee?->name ?? 'Anonymous' }}</strong>
+
                                         <span class="text-warning">
-                                            @for($i=0;$i<round($review->rating);$i++) ★ @endfor
+                                            @for($i = 0; $i < round($review->rating); $i++)
+                                                ★
+                                                @endfor
                                         </span>
-                                        <p>{{ $review->comment }}</p>
+
+                                        <p>{{ $review->review }}</p>
                                     </li>
                                     @endforeach
                                 </ul>
