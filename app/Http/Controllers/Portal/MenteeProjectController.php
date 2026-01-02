@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Portal;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NewMessageMail;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Models\ResearchProject;
@@ -12,6 +13,7 @@ use App\Models\User;
 use App\Models\MilestoneComment;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\IOFactory;
 
@@ -110,17 +112,31 @@ class MenteeProjectController extends Controller
         return redirect()->back()->with('success', 'Comment added successfully.');
     }
 
-    public function storeSend(Request $request, $projectId)
+    public function storeSend(Request $request)
     {
         $request->validate([
-            'message' => 'required|string'
+            'body' => 'required|string|max:1000',
+            'project_id' => 'required|exists:research_projects,id',
+            'project_title' => 'required|string|max:255',
+            'receiver_id' => 'required|exists:users,id',
         ]);
 
         Message::create([
-            'project_id' => $projectId,
-            'user_id' => auth()->id(),
-            'message' => $request->message
+            'sender_id'   => Auth::id(),
+            'receiver_id' => $request->receiver_id,
+            'body'        => $request->body,
+            'project_id'  => $request->project_id,
         ]);
+
+        $projectTitle = $request->project_title;
+        // OR: $collab->project->title
+        $user = User::find($request->receiver_id);
+
+        if ($user->email) {
+            Mail::to($user->email)->send(
+                new NewMessageMail(Auth::user(), $request->body, $projectTitle)
+            );
+        }
 
         return back()->with('success', 'Message sent successfully');
     }

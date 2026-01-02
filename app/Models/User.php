@@ -100,4 +100,25 @@ class User extends Authenticatable
     {
         return $this->hasMany(MentorReview::class, 'mentee_id');
     }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    /**
+     * All messages (sent + received)
+     */
+    public function messages()
+    {
+        return Message::where(function ($q) {
+            $q->where('sender_id', $this->id)
+                ->orWhere('receiver_id', $this->id);
+        });
+    }
 }

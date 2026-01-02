@@ -184,7 +184,16 @@
                         <i class="fa-solid fa-user-plus"></i> Add
                     </button>
                 </h5>
-
+                {{-- Validation Errors --}}
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 @forelse($project->collaborators as $collab)
                 <div class="d-flex align-items-center mb-3">
                     <img src="{{ $collab->user->profile_photo ?? 'https://ui-avatars.com/api/?name='.urlencode($collab->user->name).'&background=0D6EFD&color=fff' }}"
@@ -209,24 +218,32 @@
                 <!-- Messaging Modal -->
                 <div class="modal fade" id="messageModal{{ $collab->id }}" tabindex="-1">
                     <div class="modal-dialog">
-                        <form action="{{ route('messages.send',$collab->user->id) }}" method="POST">
+                        <form action="{{ route('messages.send') }}" method="POST">
                             @csrf
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5>Message {{ $collab->user->name }}</h5>
                                     <button class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
-
+                                <input type="hidden" name="project_title" value="{{ $project->title }}">
+                                <input type="hidden" name="receiver_id" value="{{ $collab->user->id }}">
+                                <input type="hidden" name="project_id" value="{{ $project->id }}">
                                 <div class="modal-body">
-                                    <textarea name="message" class="form-control" rows="4" placeholder="Type your message..." required></textarea>
+                                    <textarea name="body" class="form-control" rows="4"
+                                        placeholder="Type your message..." required></textarea>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button class="btn btn-secondary">Close</button>
-                                    <button class="btn btn-gradient-primary">Send</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="submit" class="btn btn-gradient-primary">
+                                        Send
+                                    </button>
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
                 @empty

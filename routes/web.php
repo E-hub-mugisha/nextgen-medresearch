@@ -204,7 +204,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/portal/projects/{project}/collaborators/create', [MenteeProjectController::class, 'createCollaborator'])->name('collaborators.create'); // form to add collaborator
     Route::post('/portal/projects/{project}/collaborators', [MenteeProjectController::class, 'storeCollaborator'])->name('collaborators.store'); // save collaborator
     Route::delete('/portal/projects/{project}/collaborators', [MenteeProjectController::class, 'destroyCollaborator'])->name('collaborators.destroy'); // save collaborator
-    Route::post('/projects/{project}/messages', [MenteeProjectController::class, 'storeSend'])
+    Route::post('/projects/messages', [MenteeProjectController::class, 'storeSend'])
         ->name('messages.send');
     // Comments
     Route::post('/portal/milestones/{milestone}/comments', [MenteeProjectController::class, 'storeComment'])->name('comments.store'); // add comment
@@ -214,8 +214,11 @@ Route::middleware(['auth'])->group(function () {
 
 Route::prefix('messages')->middleware('auth')->group(function () {
     Route::get('/', [PortalMessageController::class, 'index'])->name('messages.index');
-    Route::get('/{user}', [PortalMessageController::class, 'show'])->name('messages.show');
-    Route::post('/{user}', [PortalMessageController::class, 'store'])->name('messages.store');
+    Route::get('/messages/chat/{user}', [PortalMessageController::class, 'chat'])
+        ->name('messages.chat');
+
+    Route::post('/messages/send/{user}', [PortalMessageController::class, 'store'])
+        ->name('messages.send');
 });
 
 
