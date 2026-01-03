@@ -349,4 +349,20 @@
 
 </div>
 
+<div class="our-approach mb-4">
+    <div class="container">
+        <div class="row">
+            <div class="section-title">
+                <h3 class="wow fadeInUp">Why This Matters</h3>
+                <h2 class="text-anime-style-3" data-cursor="-opaque" style="font-size: 30px;">Why This Space is Important</h2>
+                <p class="wow fadeInUp mb-4" data-wow-delay="0.2s">
+                    Many students struggle with unclear topics, lack of direction, or choosing research ideas that are either too broad or not academically relevant.
+                </p>
+                <button data-bs-toggle="modal" data-bs-target="#roleModal" class="btn-default">
+                    Confirm with a Mentor
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
