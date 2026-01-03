@@ -78,7 +78,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Research Kits</a>
+                                    <a class="nav-link" href="{{ route('kits.index') }}">Research Kits</a>
                                 </li>
                             </ul>
                         </li>

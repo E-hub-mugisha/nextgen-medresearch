@@ -16,6 +16,7 @@ use App\Http\Controllers\RescueSheetController;
 use App\Http\Controllers\ResearchProjectController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Portal\PortalMessageController;
+use App\Http\Controllers\ResearchKitController;
 use App\Http\Controllers\ResearchSpaceController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -55,6 +56,9 @@ Route::get('/research-space', [ResearchSpaceController::class, 'index'])
 
 Route::post('/contact/send', [HomeController::class, 'send'])->name('contact.send');
 
+Route::get('/research-kits', [ResearchKitController::class, 'index'])->name('kits.index');
+Route::get('/research-kits/{id}', [ResearchKitController::class, 'show'])->name('kits.show');
+Route::get('/research-kits/{id}/download', [ResearchKitController::class, 'download'])->name('kits.download');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -163,6 +167,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('research_spaces', AdminResearchSpaceController::class);
     Route::get('admin/research-spaces/{researchSpace}/users', [AdminResearchSpaceController::class, 'showUsers'])
         ->name('research_spaces.users');
+});
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/research-kits', [ResearchKitController::class, 'indexAdmin'])->name('research_kits.index');
+    Route::post('/research-kits', [ResearchKitController::class, 'store'])->name('research_kits.store');
+    Route::put('/research-kits/{researchKit}', [ResearchKitController::class, 'update'])->name('research_kits.update');
+    Route::delete('/research-kits/{researchKit}', [ResearchKitController::class, 'destroy'])->name('research_kits.destroy');
 });
 
 // Role-based onboarding
