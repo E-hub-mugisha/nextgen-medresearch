@@ -4,7 +4,7 @@
 
 
 <!-- Our Services Section Start -->
-<div class="our-core-value mt-10 pb-10">
+<div class="our-core-value mt-10">
     <div class="container">
         <div class="row section-row align-items-center">
             <div class="col-lg-6">
