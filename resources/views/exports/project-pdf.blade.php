@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>{{ $project->title }}</title>
@@ -68,93 +69,91 @@
         .milestone {
             margin-bottom: 10px;
         }
-
     </style>
 </head>
 
 <body>
 
-{{-- ---------------- TITLE PAGE ---------------- --}}
-<div class="title-page">
-    <h1>{{ $project->title }}</h1>
+    {{-- ---------------- TITLE PAGE ---------------- --}}
+    <div class="title-page">
+        <h1>{{ $project->title }}</h1>
 
-    <div class="meta">
-        <p><strong>Research Area:</strong> {{ $project->research_area }}</p>
+        <div class="meta">
+            <p><strong>Research Area:</strong> {{ $project->research_area }}</p>
 
-        <p><strong>Lead Researcher:</strong>
-            {{ $project->mentee->name ?? 'N/A' }}
-        </p>
+            <p><strong>Lead Researcher:</strong>
+                {{ $project->mentee->name ?? 'N/A' }}
+            </p>
 
-        @if(isset($collaborators) && $collaborators->count())
+            @if(isset($collaborators) && $collaborators->count())
             <p><strong>Collaborators:</strong></p>
             <ul class="collaborators">
                 @foreach($collaborators as $col)
-                    <li>
-                        {{ $col->user->name }}
-                        @if($col->user->email)
-                            — {{ $col->user->email }}
-                        @endif
-                    </li>
+                <li>
+                    {{ $col->user->name }}
+                    @if($col->user->email)
+                    — {{ $col->user->email }}
+                    @endif
+                </li>
                 @endforeach
             </ul>
-        @endif
+            @endif
 
-        <p><strong>Generated On:</strong> {{ now()->format('F d, Y') }}</p>
-    </div>
-</div>
-
-<div style="page-break-after: always;"></div>
-
-
-{{-- ---------------- ABSTRACT ---------------- --}}
-<div>
-    <div class="section-title">Abstract</div>
-    <p class="content">
-        {{ $project->abstract ?? 'No abstract provided.' }}
-    </p>
-</div>
-
-
-{{-- ---------------- DESCRIPTION ---------------- --}}
-<div>
-    <div class="section-title">Research Description</div>
-    <p class="content">
-        {{ $project->description }}
-    </p>
-</div>
-
-
-{{-- ---------------- OBJECTIVES ---------------- --}}
-@if($project->objectives ?? false)
-<div>
-    <div class="section-title">Research Objectives</div>
-    <p class="content">
-        {!! nl2br(e($project->objectives)) !!}
-    </p>
-</div>
-@endif
-
-
-{{-- ---------------- MILESTONES ---------------- --}}
-@if($project->milestones && $project->milestones->count())
-<div>
-    <div class="section-title">Project Milestones</div>
-
-    @foreach($project->milestones as $m)
-        <div class="milestone">
-            <strong>{{ $m->title }}</strong><br>
-            Status: {{ ucfirst($m->status) }}<br>
-            Description: {{ $m->description }}
+            <p><strong>Generated On:</strong> {{ now()->format('F d, Y') }}</p>
         </div>
-    @endforeach
-</div>
-@endif
+    </div>
+
+    <div style="page-break-after: always;"></div>
 
 
-{{-- ---------------- FOOTER ---------------- --}}
-<div class="footer">
-    {{ $project->title }} — Academic Project Report
-</div>
+    {{-- ---------------- ABSTRACT ---------------- --}}
+    <div>
+        <div class="section-title">Abstract</div>
+        <p class="content">
+            {{ $project->abstract ?? 'No abstract provided.' }}
+        </p>
+    </div>
+
+
+    {{-- ---------------- DESCRIPTION ---------------- --}}
+    <div>
+        <div class="section-title">Research Description</div>
+        <p class="content">
+            {{ $project->description }}
+        </p>
+    </div>
+
+
+    {{-- ---------------- OBJECTIVES ---------------- --}}
+    @if($project->objectives ?? false)
+    <div>
+        <div class="section-title">Research Objectives</div>
+        <p class="content">
+            {!! nl2br(e($project->objectives)) !!}
+        </p>
+    </div>
+    @endif
+
+
+    {{-- ---------------- MILESTONES ---------------- --}}
+    @if($project->milestones && $project->milestones->count())
+    <div>
+        @foreach($project->milestones as $m)
+        <div class="section-title">{{ $m->title }}</div>
+
+        <div class="content">
+            {{ $m->description }}
+        </div>
+        @endforeach
+    </div>
+    @endif
+
+
+    {{-- ---------------- FOOTER ---------------- --}}
+    <div class="footer">
+        {{ $project->title }} — Academic Project Report
+    </div>
 
 </body>
+
 </html>
