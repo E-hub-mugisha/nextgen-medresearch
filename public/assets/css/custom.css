@@ -757,7 +757,7 @@ header.main-header .header-sticky.active {
 }
 
 .slicknav_btn {
-	background: var(--accent-color);
+	background: #fff;
 	padding: 0;
 	display: flex;
 	align-items: center;
@@ -766,6 +766,7 @@ header.main-header .header-sticky.active {
 	height: 38px;
 	margin: 0;
 	border-radius: 6px;
+	color: var(--bg-color);
 }
 
 .slicknav_icon .slicknav_icon-bar {
@@ -821,7 +822,7 @@ header.main-header .header-sticky.active {
 	font-weight: 500;
 	text-transform: capitalize;
 	padding: 7px 20px;
-	color: var(--primary-color);
+	color: #fff;
 	line-height: normal;
 	margin: 0;
 	border-radius: 0 !important;
