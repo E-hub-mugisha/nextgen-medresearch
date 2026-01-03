@@ -224,7 +224,7 @@
 
                             <!-- Why choose Button Start -->
                             <div class="why-choose-btn wow fadeInUp" data-wow-delay="0.8s">
-                                <a href="{{ route('contact') }}" class="btn-default">Join us</a>
+                                <a data-bs-toggle="modal" data-bs-target="#roleModal" class="btn-default">Join us</a>
                             </div>
                             <!-- Why choose Button End -->
                         </div>
@@ -272,7 +272,7 @@
                     </p>
                     <!-- Approach Button Start -->
                     <div class="approach-button wow fadeInUp" data-wow-delay="0.8s">
-                        <a href="#model" class="btn-default">Get Mentorship</a>
+                        <a data-bs-toggle="modal" data-bs-target="#roleModal" class="btn-default">Get Mentorship</a>
                     </div>
                     <!-- Approach Button End -->
                 </div>
@@ -349,20 +349,4 @@
 
 </div>
 
-<div class="our-approach mb-4">
-    <div class="container">
-        <div class="row">
-            <div class="section-title">
-                <h3 class="wow fadeInUp">Why This Matters</h3>
-                <h2 class="text-anime-style-3" data-cursor="-opaque" style="font-size: 30px;">Why This Space is Important</h2>
-                <p class="wow fadeInUp mb-4" data-wow-delay="0.2s">
-                    Many students struggle with unclear topics, lack of direction, or choosing research ideas that are either too broad or not academically relevant.
-                </p>
-                <button class="btn-default">
-                    Confirm with a Mentor
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 @endsection
