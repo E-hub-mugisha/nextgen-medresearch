@@ -141,7 +141,7 @@ class HomeController extends Controller
             'message' => 'required|string',
         ]);
 
-        $data = $request->only('fname','lname','email','phone','message');
+        $data = $request->only('fname', 'lname', 'email', 'phone', 'message');
 
         Mail::send(new ContactFormMail($data));
 
@@ -149,5 +149,24 @@ class HomeController extends Controller
             'success' => true,
             'message' => 'Thank you! Your message has been sent.'
         ]);
+    }
+
+    public function subscribe(Request $request)
+    {
+        $validated = $request->validate([
+            'email'   => 'required|email',
+            'privacy' => 'accepted',
+        ]);
+
+        // Send notification email
+        Mail::raw(
+            "New newsletter subscription:\n\nEmail: {$validated['email']}",
+            function ($message) {
+                $message->to('info@nextgenmedresearch.org')
+                    ->subject('New Newsletter Subscription');
+            }
+        );
+
+        return response()->json(['success' => true]);
     }
 }

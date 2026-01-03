@@ -151,7 +151,7 @@ class RescueSheetController extends Controller
 
         if ($request->search) {
             $query->where('title', 'like', '%' . $request->search . '%')
-                ->orWhere('vehicle_model', 'like', '%' . $request->search . '%');
+                ->orWhere('slug', 'like', '%' . $request->search . '%');
         }
 
         $sheets = $query->orderBy('created_at', 'desc')->paginate(12);

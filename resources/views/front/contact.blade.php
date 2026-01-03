@@ -58,6 +58,38 @@
                                 </div>
                             </div>
                             <!-- Contact Info Item End -->
+                            <style>
+                                .footer-social-links ul {
+                                    list-style: none;
+                                    padding: 0;
+                                    display: flex;
+                                    gap: 15px;
+                                }
+
+                                .footer-social-links ul li a {
+                                    color: #00697E;
+                                    font-size: 16px;
+                                    transition: color 0.3s;
+                                }
+
+                                .footer-social-links ul li a:hover {
+                                    color: #007bff;
+                                }
+                            </style>
+                            <div class="footer-social-links mt-4">
+                                <h3 class=" mb-3">Follow Us</h3>
+                                <ul>
+                                    <li><a href="https://x.com/HomegrownMR" style="color: #00697E;"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="https://www.linkedin.com/in/nextgen-medresearchers-840987366?utm_source=share_via&utm_content=profile&utm_medium=member_android" style="color: #00697E;"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li>
+                                        <a href="https://bsky.app/profile/mugangamukuru.bsky.social" target="_blank" aria-label="Bluesky" style="color: #00697E;">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 11.39c-.67-1.3-2.5-3.9-4.46-5.28C5.66 4.77 4.93 4.5 4.23 4.5c-.7 0-1.23.36-1.23 1.33 0 .97.52 8.15.86 9.31.42 1.4 1.9 1.88 3.25 1.64-1.96.33-3.7 1.14-3.7 3.23 0 2.09 1.16 2.63 2.6 2.63 2.6 0 4.1-3.35 4.99-5.13.9 1.78 2.28 5.13 4.99 5.13 1.44 0 2.6-.54 2.6-2.63 0-2.09-1.74-2.9-3.7-3.23 1.35.24 2.83-.24 3.25-1.64.34-1.16.86-8.34.86-9.31 0-.97-.53-1.33-1.23-1.33-.7 0-1.43.27-3.31 1.61-1.96 1.38-3.79 3.98-4.46 5.28z" />
+                                            </svg>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <!-- Contact Info List End -->
                     </div>

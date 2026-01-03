@@ -57,18 +57,71 @@
 
                     <!-- Footer Newsletter Form Start -->
                     <div class="footer-newsletter-form">
-                        <form id="newslettersForm" action="#" method="POST">
-                            <div class="form-group">
-                                <input type="email" name="mail" class="form-control" id="mail" placeholder="Enter Your E-mail Address" required>
-                                <button type="submit" class="newsletter-btn text-white"><img src="{{ asset('assets/images/arrow-primary.svg') }}" alt=""></button>
+                        <form id="newsletterForm" method="POST">
+                            @csrf
+
+                            <div class="form-group d-flex align-items-center position-relative">
+                                <input
+                                    type="email"
+                                    name="email"
+                                    class="form-control"
+                                    placeholder="Enter your email address"
+                                    required>
+                                <button type="submit" class="newsletter-btn text-white">
+                                    <img src="{{ asset('assets/images/arrow-primary.svg') }}" style="color: white;" alt="Submit">
+                                </button>
                             </div>
-                            <div class="form-group">
-                                <input type="checkbox" id="#" name="#">
-                                <label class="form-label">I agree to the <a href="#">Privacy Policy</a>.</label>
+
+                            <div class="form-group mt-2">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <label for="privacy" style="color: white;">
+                                    I agree to the <a href="#" style="color: white;">Privacy Policy</a>.
+                                </label>
                             </div>
+
+                            <small class="text-success d-none" id="newsletterSuccess">
+                                Thank you for subscribing!
+                            </small>
                         </form>
+
+
                     </div>
                     <!-- Footer Newsletter Form End -->
+
+                    <!-- footer social links -->
+
+                    <style>
+                        .footer-social-links ul {
+                            list-style: none;
+                            padding: 0;
+                            display: flex;
+                            gap: 15px;
+                        }
+
+                        .footer-social-links ul li a {
+                            color: #ffffff;
+                            font-size: 16px;
+                            transition: color 0.3s;
+                        }
+
+                        .footer-social-links ul li a:hover {
+                            color: #007bff;
+                        }
+                    </style>
+                    <div class="footer-social-links mt-4">
+                        <h2 class="h5 text-white mb-3">Follow Us</h2>
+                        <ul>
+                            <li><a href="https://x.com/HomegrownMR"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/nextgen-medresearchers-840987366?utm_source=share_via&utm_content=profile&utm_medium=member_android"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li>
+                                <a href="https://bsky.app/profile/mugangamukuru.bsky.social" target="_blank" aria-label="Bluesky">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 11.39c-.67-1.3-2.5-3.9-4.46-5.28C5.66 4.77 4.93 4.5 4.23 4.5c-.7 0-1.23.36-1.23 1.33 0 .97.52 8.15.86 9.31.42 1.4 1.9 1.88 3.25 1.64-1.96.33-3.7 1.14-3.7 3.23 0 2.09 1.16 2.63 2.6 2.63 2.6 0 4.1-3.35 4.99-5.13.9 1.78 2.28 5.13 4.99 5.13 1.44 0 2.6-.54 2.6-2.63 0-2.09-1.74-2.9-3.7-3.23 1.35.24 2.83-.24 3.25-1.64.34-1.16.86-8.34.86-9.31 0-.97-.53-1.33-1.23-1.33-.7 0-1.43.27-3.31 1.61-1.96 1.38-3.79 3.98-4.46 5.28z" />
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -83,3 +136,25 @@
     </div>
 </footer>
 <!-- Footer End -->
+
+<script>
+$('#newsletterForm').on('submit', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: "{{ route('newsletter.subscribe') }}",
+        method: "POST",
+        data: $(this).serialize(),
+        success: function () {
+            $('#newsletterSuccess').removeClass('d-none');
+            $('#newsletterForm')[0].reset();
+        },
+        error: function (xhr) {
+            alert(
+                xhr.responseJSON?.message ??
+                'Subscription failed. Please try again.'
+            );
+        }
+    });
+});
+</script>

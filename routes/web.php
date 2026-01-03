@@ -55,6 +55,8 @@ Route::get('/research-space', [ResearchSpaceController::class, 'index'])
     ->name('research.space');
 
 Route::post('/contact/send', [HomeController::class, 'send'])->name('contact.send');
+Route::post('/newsletter/subscribe', [HomeController::class, 'subscribe'])
+    ->name('newsletter.subscribe');
 
 Route::get('/research-kits', [ResearchKitController::class, 'index'])->name('kits.index');
 Route::get('/research-kits/{id}', [ResearchKitController::class, 'show'])->name('kits.show');
