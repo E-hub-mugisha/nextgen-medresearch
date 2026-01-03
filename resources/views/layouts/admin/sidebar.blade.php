@@ -59,6 +59,9 @@
                                         <li class="nk-menu-item"><a href="{{ route('admin.research.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-dashlite"></em></span><span
                                                                 class="nk-menu-text">Research</span></a></li>
+                                        <li class="nk-menu-item"><a href="{{ route('admin.research_spaces.index')}}" class="nk-menu-link"><span
+                                                                class="nk-menu-icon"><em class="icon ni ni-bitcoin-cash"></em></span><span
+                                                                class="nk-menu-text">Research Spaces</span></a></li>
                                         <li class="nk-menu-item"><a href="{{ route('admin.faqs.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-bitcoin-cash"></em></span><span
                                                                 class="nk-menu-text">FAQs</span></a></li>

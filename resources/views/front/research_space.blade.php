@@ -115,109 +115,6 @@
 </div>
 <!-- Why Choose Us Section End -->
 
-<!-- What We Do Section Start -->
-<div class="what-we-do bg-section dark-section">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-5">
-                <!-- What We Content Start -->
-                <div class="what-we-contant">
-                    <!-- Section Title Start -->
-                    <div class="section-title">
-                        <h3 class="wow fadeInUp">Sample Dissertation Topic</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Sample Dissertation Topic</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.2s">
-                            Dissertation-Ready Topics are developed through literature reviews, University of Rwanda research portal analysis,
-                            and expert consultations with clinicians and researchers to ensure feasibility, relevance, and academic quality.
-                        </p>
-                    </div>
-                    <!-- Section Title End -->
-
-                    <!-- What We Button Start -->
-                    <div class="what-we-btn wow fadeInUp" data-wow-delay="0.4s">
-                        <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal" class="btn-default btn-highlighted">Join Us</a>
-                        <p class="mt-3 text-white">Unlock your potential. Connect, contribute, and lead Africa’s next generation of medical researchers</p>
-                    </div>
-                    <!-- What We Button End -->
-
-                </div>
-                <!-- What We Content End -->
-            </div>
-
-            <div class="col-lg-7">
-                <!-- What We Item List Start -->
-                <div class="what-we-item-list">
-
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="icon-box">
-                            <img src="{{ asset('assets/images/icon-what-we-item-2.svg') }}" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Title</h3>
-                            <p>
-                                Assessing the Impact of Digital Health Solutions on Patient Follow-Up and Treatment Compliance
-                                in Public Hospitals.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="icon-box">
-                            <img src="{{ asset('assets/images/icon-what-we-item-3.svg') }}" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Who It’s For</h3>
-                            <p>
-                                Medical Students, Public Health Students, Residents, Fellows, Health Informatics Students,
-                                and other Healthcare Professionals seeking strong, publication-ready research topics.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="icon-box">
-                            <img src="{{ asset('assets/images/icon-what-we-item-4.svg') }}" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Why This Is Important</h3>
-                            <p>
-                                Many health systems struggle with patient follow-up, missed appointments, delayed treatment,
-                                and poor continuity of care. Understanding whether digital tools such as SMS reminders,
-                                telemedicine platforms, and electronic follow-up systems improve outcomes can help guide policy,
-                                enhance patient care, and reduce preventable complications.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-                    <!-- What We Item Start -->
-                    <div class="what-we-item wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="icon-box">
-                            <img src="{{ asset('assets/images/icon-what-we-item-4.svg') }}" alt="">
-                        </div>
-                        <div class="what-we-content">
-                            <h3>Confirm with a Mentor</h3>
-                            <p>
-                                Confirming with a mentor ensures your topic is academically sound, ethically feasible,
-                                methodologically strong, and aligned with available data and institutional priorities.
-                                Mentor guidance helps refine objectives, study design, data collection strategy, and
-                                statistical analysis approach.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- What We Item End -->
-                </div>
-                <!-- What We Item List End -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- What We Do Section End -->
-
 <!-- Why Choose Us Section Start -->
 <div class="why-choose-us">
     <div class="container">
@@ -294,23 +191,34 @@
                         <div class="why-choose-item-box">
                             <!-- Why Choose Item List Start -->
                             <div class="why-choose-item-list">
-                                <!-- Why Choose Item Start -->
-                                <div class="why-choose-item wow fadeInUp" data-wow-delay="0.4s">
 
-                                    <div class="why-choose-item-content">
-                                        <p> Undergraduate and Postgraduate Students</p>
-                                    </div>
-                                    <div class="why-choose-item-content">
-                                        <p>Medical Residents and Fellows</p>
-                                    </div>
-                                    <div class="why-choose-item-content">
-                                        <p>Public Health and Health Policy Students</p>
-                                    </div>
-                                    <div class="why-choose-item-content">
-                                        <p>Clinical and Applied Health Researchers</p>
-                                    </div>
-                                </div>
-                                <!-- Why Choose Item End -->
+                                <p class="wow fadeInUp" data-wow-delay="0.2s">
+                                    1. Medical students & interns
+                                </p>
+                                <p class="wow fadeInUp" data-wow-delay="0.2s">
+                                    2. Residents & fellows
+                                </p>
+
+                                <p class="wow fadeInUp" data-wow-delay="0.2s">
+                                    3. Early-career clinicians
+                                </p>
+                                <p class="wow fadeInUp" data-wow-delay="0.2s">
+                                    4. Allied health professionals
+                                </p>
+
+                                <p class="wow fadeInUp" data-wow-delay="0.2s">
+                                    5. Academic institutions
+                                </p>
+
+                                <p class="wow fadeInUp" data-wow-delay="0.2s">
+                                    6. Public health researchers
+                                </p>
+
+                                <p class="wow fadeInUp" data-wow-delay="0.2s">
+                                    7. NGOs & policy partners
+                                </p>
+
+                                <p class="wow fadeInUp" data-wow-delay="0.2s"> 8. Independent researchers</p>
                             </div>
                             <!-- Why Choose Item List End -->
 
@@ -374,6 +282,72 @@
     </div>
 </div>
 <!-- Our Approach Section End -->
+
+<div class="container py-4">
+
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">📚 Research Space</h2>
+        <p class="text-muted">Explore research topics and their impact</p>
+    </div>
+
+    <div class="row g-4">
+        @forelse($researchSpaces as $research)
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-semibold">{{ $research->title }}</h5>
+
+                    <p class="text-muted small">
+                        {{ Str::limit($research->description, 100) }}
+                    </p>
+
+                    <p>
+                        <strong>Target Area:</strong> {{ $research->target_area }}
+                    </p>
+                </div>
+
+                <div class="card-footer bg-white text-muted small">
+                    Added on {{ $research->created_at->format('d M Y') }}
+                    <button type="button" class="btn-default btn-sm float-end" data-bs-toggle="modal" data-bs-target="#researchModal{{ $research->id }}">
+                        Read More
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal --}}
+        <div class="modal fade" id="researchModal{{ $research->id }}" tabindex="-1" aria-labelledby="researchModalLabel{{ $research->id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="researchModalLabel{{ $research->id }}">{{ $research->title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Description:</strong><br>{!! nl2br(e($research->description)) !!}</p>
+                        <p><strong>Target Area:</strong><br>{!! nl2br(e($research->target_area)) !!}</p>
+                        <p><strong>Importance:</strong><br>{!! nl2br(e($research->importance)) !!}</p>
+                        <p><strong>Impact:</strong><br>{!! nl2br(e($research->impact)) !!}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @empty
+        <div class="col-12 text-center text-muted">
+            No research entries available.
+        </div>
+        @endforelse
+
+    </div>
+
+    <div class="mt-4">
+        {{ $researchSpaces->links() }}
+    </div>
+
+</div>
 
 <div class="our-approach mb-4">
     <div class="container">

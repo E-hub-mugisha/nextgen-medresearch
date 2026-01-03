@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminResearchSpaceController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\RescueSheetController;
 use App\Http\Controllers\ResearchProjectController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Portal\PortalMessageController;
+use App\Http\Controllers\ResearchSpaceController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
@@ -47,7 +49,11 @@ Route::get('/research', [HomeController::class, 'research'])->name('research.ind
 Route::get('/research/detail/{slug}', [HomeController::class, 'researchDetail'])->name('research.detail');
 Route::get('/faq', [HomeController::class, 'faqPage'])->name('faq.page');
 Route::post('/faq/question', [HomeController::class, 'storeQuestion'])->name('faq.question.store');
-Route::get('/research_space', [HomeController::class, 'space'])->name('research.space');
+// Route::get('/research_space', [HomeController::class, 'space'])->name('research.space');
+Route::get('/research-space', [ResearchSpaceController::class, 'index'])
+    ->name('research.space');
+
+Route::post('/contact/send', [HomeController::class, 'send'])->name('contact.send');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -152,6 +158,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('research', \App\Http\Controllers\Admin\ResearchController::class);
 });
 
+// admin research space routes
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::resource('research_spaces', AdminResearchSpaceController::class);
+    Route::get('admin/research-spaces/{researchSpace}/users', [AdminResearchSpaceController::class, 'showUsers'])
+        ->name('research_spaces.users');
+});
+
 // Role-based onboarding
 Route::get('/onboarding/{role}', [MentorController::class, 'index'])->name('onboarding.index');
 Route::post('/onboarding/save-step', [MentorController::class, 'saveStep'])->name('onboarding.saveStep');
@@ -209,7 +222,17 @@ Route::middleware(['auth'])->group(function () {
     // Comments
     Route::post('/portal/milestones/{milestone}/comments', [MenteeProjectController::class, 'storeComment'])->name('comments.store'); // add comment
     Route::post('/projects/{project}/export', [MenteeProjectController::class, 'export'])
-     ->name('projects.export');
+        ->name('projects.export');
+
+    //  Research Spaces
+    Route::get('/portal/research-spaces', [ResearchSpaceController::class, 'listResearchSpaces'])
+        ->name('portal.research_spaces.index');
+    Route::post('/portal/research-spaces/{researchSpace}/select', [ResearchSpaceController::class, 'selectResearchSpace'])
+        ->name('portal.research_spaces.select');
+    Route::get('/my-topics', [ResearchSpaceController::class, 'myTopics'])
+        ->name('portal.research_spaces.my_topics');
+    Route::post('/research-spaces/{researchSpace}/deselect', [ResearchSpaceController::class, 'deselectTopic'])
+        ->name('portal.research_spaces.deselect');
 });
 
 Route::prefix('messages')->middleware('auth')->group(function () {

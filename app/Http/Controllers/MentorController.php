@@ -21,106 +21,49 @@ class MentorController extends Controller
         $researchInterests = ResearchInterest::all();
         return view('onboarding.index', compact('role', 'researchInterests'));
     }
-
-    // Save step data in session
-    public function saveStep(Request $request)
+public function registerMentor(Request $request)
     {
-        $step = $request->step;
+        // Validate incoming request
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+            'bio' => 'required|string',
+            'expertise' => 'required|string|max:255',
+            'organization' => 'required|string|max:255',
+            'country' => 'required|string|max:100',
+            'experience_years' => 'required|integer|min:0',
+            'max_mentees' => 'required|integer|min:1',
+        ]);
 
-        switch ($step) {
-            case 1:
-                $request->validate([
-                    'name' => 'required|string',
-                    'email' => 'required|email|unique:users,email',
-                    'password' => 'required|min:6|confirmed'
-                ]);
-                Session::put('onboarding.name', $request->name);
-                Session::put('onboarding.email', $request->email);
-                Session::put('onboarding.password', $request->password);
-                break;
-
-            case 2:
-                $request->validate([
-                    'interests' => 'required|array|min:1'
-                ]);
-                Session::put('onboarding.interests', $request->interests);
-                break;
-
-            case 3:
-                $request->validate([
-                    'bio' => 'required|string',
-                    'research_goal' => 'required|string',
-                    'education_level' => 'required|string',
-                ]);
-                Session::put('onboarding.bio', $request->bio);
-                Session::put('onboarding.research_goal', $request->research_goal);
-                Session::put('onboarding.education_level', $request->education_level);
-                break;
-        }
-
-        return response()->json(['success' => true]);
-    }
-
-    // Final registration
-    public function registerUser(Request $request)
-    {
-        $data = Session::get('onboarding');
-
+        // Create the mentor user
         $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'role' => $request->role,
-            'password' => Hash::make($data['password']),
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'role' => 'mentor',
+            'password' => Hash::make($request->input('password')),
         ]);
 
-        MenteeProfile::create([
+        // Create mentor profile
+        MentorProfile::create([
             'user_id' => $user->id,
-            'research_goals' => $data['research_goal'] ?? null,
-            'education_level' => $data['education_level'] ?? null,
+            'bio' => $request->input('bio'),
+            'expertise' => $request->input('expertise'),
+            'organization' => $request->input('organization'),
+            'country' => $request->input('country'),
+            'experience_years' => $request->input('experience_years'),
+            'max_mentees' => $request->input('max_mentees'),
+            'available' => $request->has('available'), // checkbox handling
         ]);
 
-        if ($user->role == 'mentee' && !empty($data['interests'])) {
-
-            $interestIds = [];
-
-            foreach ($data['interests'] as $interest) {
-
-                if (is_numeric($interest)) {
-                    // already existing interest
-                    $interestIds[] = $interest;
-                    continue;
-                }
-
-                // Normalize text
-                $name = trim($interest);
-                $slug = Str::slug($name);
-
-                // Case-insensitive + slug uniqueness
-                $existing = ResearchInterest::whereRaw('LOWER(name) = ?', [strtolower($name)])
-                    ->orWhere('slug', $slug)
-                    ->first();
-
-                if ($existing) {
-                    $interestIds[] = $existing->id;
-                } else {
-                    $newInterest = ResearchInterest::create([
-                        'name' => $name,
-                        'slug' => $slug
-                    ]);
-                    $interestIds[] = $newInterest->id;
-                }
-            }
-
-            $user->interests()->sync($interestIds);
-        }
-
+        // Log the user in
         auth()->login($user);
-        Session::forget('onboarding');
 
-        $redirect = $user->role == 'mentee'
-            ? route('mentors.list', ['user' => $user->id])
-            : route('home');
-        return response()->json(['success' => true, 'redirect' => $redirect]);
+        // Return JSON for AJAX
+        return response()->json([
+            'success' => true,
+            'redirect' => route('portal.dashboard'), // redirect after successful registration
+        ]);
     }
 
     public function mentorLists(Request $request)
@@ -197,7 +140,6 @@ class MentorController extends Controller
             'success' => true,
             'message' => 'Mentor requested successfully'
         ]);
-
     }
 
 
@@ -210,68 +152,5 @@ class MentorController extends Controller
         return view('onboarding.mentor', compact('researchInterests', 'role'));
     }
 
-    // Save step data in session
-    public function saveStepMentor(Request $request)
-    {
-        $step = $request->step;
-
-        switch ($step) {
-            case 1:
-                $request->validate([
-                    'name' => 'required|string',
-                    'email' => 'required|email|unique:users,email',
-                    'password' => 'required|min:6|confirmed'
-                ]);
-                Session::put('onboarding.name', $request->name);
-                Session::put('onboarding.email', $request->email);
-                Session::put('onboarding.password', $request->password);
-                break;
-
-            case 2:
-                $request->validate([
-                    'interests' => 'required|array|min:1'
-                ]);
-                Session::put('onboarding.interests', $request->interests);
-                break;
-
-            case 3:
-                $request->validate([
-                    'bio' => 'nullable|string',
-                    'institution' => 'nullable|string',
-                ]);
-                Session::put('onboarding.bio', $request->bio);
-                Session::put('onboarding.institution', $request->institution);
-                break;
-        }
-
-        return response()->json(['success' => true]);
-    }
-
-    // Final registration of mentor
-    public function registerMentor(Request $request)
-    {
-        $data = Session::get('mentor_onboarding');
-
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'role' => 'mentor',
-            'password' => Hash::make($data['password']),
-        ]);
-
-        MentorProfile::create([
-            'user_id' => $user->id,
-            'bio' => $data['bio'] ?? null,
-            'institution' => $data['institution'] ?? null,
-        ]);
-
-        if (!empty($data['interests'])) {
-            $user->interests()->sync($data['interests']);
-        }
-
-        auth()->login($user);
-        Session::forget('mentor_onboarding');
-
-        return response()->json(['success' => true, 'redirect' => route('home')]);
-    }
+    
 }

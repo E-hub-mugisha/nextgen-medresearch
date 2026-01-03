@@ -2,53 +2,7 @@
 @section('title','CONTACT US')
 @section('content')
 
-<!-- Page Header Start -->
-<div class="page-header parallaxie">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Page Header Box Start -->
-                <div class="page-header-box">
-                    <h1 class="text-anime-style-3" data-cursor="-opaque">Contact us</h1>
-                </div>
-                <!-- Page Header Box End -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Page Header End -->
 
-<!-- Scrolling Ticker Section Start -->
-<div class="our-scrolling-ticker">
-    <!-- Scrolling Ticker Start -->
-    <div class="scrolling-ticker-box">
-        <div class="scrolling-content">
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-        </div>
-
-        <div class="scrolling-content">
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-        </div>
-    </div>
-    <!-- Scrolling Ticker End -->
-</div>
-<!-- Scrolling Ticker Section End -->
 
 <!-- Page Contact Us Start -->
 <div class="page-contact-us">
@@ -56,7 +10,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <!-- Contact Us Box Start -->
-                <div class="contact-us-box">
+                <div class="contact-us-box" style="margin-top: 40px;">
                     <!-- Contact Us Content Start -->
                     <div class="contact-us-content">
                         <!-- Section Title Start -->
@@ -76,7 +30,7 @@
                                 </div>
                                 <div class="contact-item-content">
                                     <p>Contact</p>
-                                    <h3><a href="tel:246333085">+1 (246) 333-085</a></h3>
+                                    <h3><a href="tel:+250788409237">+250 788 409 237</a></h3>
                                 </div>
                             </div>
                             <!-- Contact Info Item End -->
@@ -88,7 +42,7 @@
                                 </div>
                                 <div class="contact-item-content">
                                     <p>Email</p>
-                                    <h3><a href="mailto:info@domain.com">info@domain.com</a></h3>
+                                    <h3><a href="mailto:info@nextgenmedresearch.org">info@nextgenmedresearch.org</a></h3>
                                 </div>
                             </div>
                             <!-- Contact Info Item End -->
@@ -163,46 +117,71 @@
 
                         <!-- Contact Form Start -->
                         <div class="contact-form wow fadeInUp" data-wow-delay="0.4s">
-                            <form id="contactForm" action="#" method="POST" data-toggle="validator">
+                            <form id="contactForm" method="POST" action="{{ route('contact.send') }}">
+                                @csrf
                                 <div class="row">
                                     <div class="form-group col-md-6 mb-4">
-                                        <input type="text" name="fname" class="form-control" id="fname" placeholder="First Name" required>
-                                        <div class="help-block with-errors"></div>
+                                        <input type="text" name="fname" class="form-control form-control-lg" placeholder="First Name" required>
                                     </div>
 
                                     <div class="form-group col-md-6 mb-4">
-                                        <input type="text" name="lname" class="form-control" id="lname" placeholder="Last Name" required>
-                                        <div class="help-block with-errors"></div>
+                                        <input type="text" name="lname" class="form-control form-control-lg" placeholder="Last Name" required>
                                     </div>
 
                                     <div class="form-group col-md-6 mb-4">
-                                        <input type="email" name="email" class="form-control" id="email" placeholder="Email" required>
-                                        <div class="help-block with-errors"></div>
+                                        <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" required>
                                     </div>
 
                                     <div class="form-group col-md-6 mb-4">
-                                        <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone" required>
-                                        <div class="help-block with-errors"></div>
+                                        <input type="text" name="phone" class="form-control form-control-lg" placeholder="Phone" required>
                                     </div>
 
                                     <div class="form-group col-md-12 mb-5">
-                                        <textarea name="message" class="form-control" id="message" rows="4" placeholder="Message..."></textarea>
-                                        <div class="help-block with-errors"></div>
+                                        <textarea name="message" class="form-control" rows="4" placeholder="Message..." required></textarea>
                                     </div>
 
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn-default btn-highlighted"><span>Submit Message</span></button>
-                                        <div id="msgSubmit" class="h3 hidden"></div>
+                                        <button type="submit" class="btn-default btn-highlighted">Submit Message</button>
                                     </div>
                                 </div>
                             </form>
+
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    $('#contactForm').submit(function(e) {
+                                        e.preventDefault();
+                                        let form = $(this);
+                                        $.ajax({
+                                            url: form.attr('action'),
+                                            method: 'POST',
+                                            data: form.serialize(),
+                                            success: function(res) {
+                                                if (res.success) {
+                                                    Swal.fire('Success', res.message, 'success');
+                                                    form[0].reset();
+                                                }
+                                            },
+                                            error: function(xhr) {
+                                                let msg = 'Something went wrong';
+                                                if (xhr.responseJSON && xhr.responseJSON.errors) {
+                                                    msg = Object.values(xhr.responseJSON.errors).map(e => e.join(',')).join('\n');
+                                                }
+                                                Swal.fire('Error', msg, 'error');
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
+
                         </div>
                         <!-- Contact Form End -->
                     </div>
 
                     <!-- Google Map Start -->
                     <div class="google-map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96737.10562045308!2d-74.08535042841811!3d40.739265258395164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sin!4v1703158537552!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127601.78934010678!2d30.044843255949928!3d-1.9295970340479436!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca4258ed8e797%3A0xf32b36a5411d0bc8!2sKigali!5e0!3m2!1sen!2srw!4v1767443617880!5m2!1sen!2srw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     <!-- Google Map End -->
                 </div>

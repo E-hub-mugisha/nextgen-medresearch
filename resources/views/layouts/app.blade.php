@@ -43,6 +43,8 @@
     <script src="{{ asset('admin/assets/js/scriptse1e3.js?ver=3.2.4') }}"></script>
     <script src="{{ asset('admin/assets/js/demo-settingse1e3.js?ver=3.2.4') }}"></script>
     <script src="{{ asset('admin/assets/js/charts/gd-defaulte1e3.js?ver=3.2.4') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

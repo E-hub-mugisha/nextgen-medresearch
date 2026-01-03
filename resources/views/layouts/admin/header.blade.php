@@ -38,7 +38,8 @@
                                         <span class="lead-text">
                                             {{ Auth::user()->name }}
                                         </span><span
-                                            class="sub-text">{{ Auth::user()->email }}</span></div>
+                                            class="sub-text">{{ Auth::user()->email }}</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="dropdown-inner">
@@ -56,11 +57,14 @@
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li> <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item">
-                                        <i class="fa-solid fa-right-from-bracket"></i> Logout
-                                    </button></li>
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">
+                                                <i class="fa-solid fa-right-from-bracket"></i> Logout
+                                            </button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

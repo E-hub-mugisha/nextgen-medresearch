@@ -35,8 +35,8 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link"
-                                        href="#">Vision, Mission & Our Model</a>
+                                    <a class="nav-link {{ activeRoute('about') }}"
+                                        href="{{ route('about') }}">Vision, Mission</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -73,16 +73,6 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                             <a class="nav-link" href="#">Knowledge Hub</a>
                             <ul>
                                 <li class="nav-item">
-                                    <a class="nav-link {{ activeRoute('projects') }}"
-                                        href="{{ route('projects') }}">Projects</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link {{ activeRoute('resources') }}"
-                                        href="{{ route('resources') }}">Free Resources</a>
-                                </li>
-
-                                <li class="nav-item">
                                     <a class="nav-link {{ activeRoute('mentor_qna.*') }}"
                                         href="{{ route('mentor_qna.index') }}">Ask a Mentor Q&A</a>
                                 </li>
@@ -100,12 +90,23 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                         </li>
 
                         {{-- RESEARCH SPACE --}}
-                        <li class="nav-item">
-                            <a class="nav-link #"
+                        <li class="nav-item  {{ activeRoute('research.space') }}">
+                            <a class="nav-link "
                                 href="{{ route('research.space')}}">Research Space</a>
-                        </li>
 
-                        {{-- CONTACT --}}
+                            <!-- <ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">
+                                        Capacity Building workshops
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('research.space')}}"> Dissertation ready Research Topics</a>
+                                </li>
+                            </ul>
+                        </li>
+-->
+                            {{-- CONTACT --}}
                         <li class="nav-item">
                             <a class="nav-link {{ activeRoute('contact') }}"
                                 href="{{ route('contact') }}">Contact Us</a>
@@ -152,7 +153,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                     <!-- Mentee -->
                     <div class="col-md-6">
                         <div class="role-card mentee text-center p-4 rounded-4 h-100"
-                             id="join-mentee" role="button">
+                            id="join-mentee" role="button">
                             <div class="icon mb-3">
                                 <i class="bi bi-mortarboard-fill"></i>
                             </div>
@@ -167,7 +168,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                     <!-- Mentor -->
                     <div class="col-md-6">
                         <div class="role-card mentor text-center p-4 rounded-4 h-100"
-                             id="join-mentor" role="button">
+                            id="join-mentor" role="button">
                             <div class="icon mb-3">
                                 <i class="bi bi-person-workspace"></i>
                             </div>
@@ -191,51 +192,53 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
 </div>
 
 <style>
-/* Glass Modal Effect */
-.glass-modal {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
-}
+    /* Glass Modal Effect */
+    .glass-modal {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+    }
 
-/* Role Cards */
-.role-card {
-    cursor: pointer;
-    transition: all 0.35s ease;
-    border: 1px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.6);
-}
+    /* Role Cards */
+    .role-card {
+        cursor: pointer;
+        transition: all 0.35s ease;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.6);
+    }
 
-.role-card .icon {
-    font-size: 3rem;
-    color: #6c757d;
-}
+    .role-card .icon {
+        font-size: 3rem;
+        color: #6c757d;
+    }
 
-.role-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.18);
-}
+    .role-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+    }
 
-.role-card.mentee:hover {
-    border-color: #28a745;
-}
-.role-card.mentee:hover .icon {
-    color: #28a745;
-}
+    .role-card.mentee:hover {
+        border-color: #28a745;
+    }
 
-.role-card.mentor:hover {
-    border-color: #0dcaf0;
-}
-.role-card.mentor:hover .icon {
-    color: #0dcaf0;
-}
+    .role-card.mentee:hover .icon {
+        color: #28a745;
+    }
 
-/* Modal Backdrop (subtle blur) */
-.modal-backdrop.show {
-    backdrop-filter: blur(10px);
-    background-color: rgba(0,0,0,0.35);
-}
+    .role-card.mentor:hover {
+        border-color: #0dcaf0;
+    }
+
+    .role-card.mentor:hover .icon {
+        color: #0dcaf0;
+    }
+
+    /* Modal Backdrop (subtle blur) */
+    .modal-backdrop.show {
+        backdrop-filter: blur(10px);
+        background-color: rgba(0, 0, 0, 0.35);
+    }
 </style>
 
 <script>

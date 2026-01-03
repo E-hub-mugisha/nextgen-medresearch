@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactFormMail;
 use App\Models\Faq;
 use App\Models\Partner;
 use App\Models\Post;
@@ -12,6 +13,7 @@ use App\Models\Research;
 use App\Models\Resource;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -127,5 +129,25 @@ class HomeController extends Controller
     public function space()
     {
         return view('front.research_space');
+    }
+
+    public function send(Request $request)
+    {
+        $request->validate([
+            'fname' => 'required|string|max:255',
+            'lname' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'message' => 'required|string',
+        ]);
+
+        $data = $request->only('fname','lname','email','phone','message');
+
+        Mail::send(new ContactFormMail($data));
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Thank you! Your message has been sent.'
+        ]);
     }
 }

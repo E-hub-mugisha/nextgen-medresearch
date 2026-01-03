@@ -121,4 +121,10 @@ class User extends Authenticatable
                 ->orWhere('receiver_id', $this->id);
         });
     }
+
+    public function researchSpaces()
+    {
+        return $this->belongsToMany(ResearchSpace::class, 'research_users')
+            ->withTimestamps();
+    }
 }

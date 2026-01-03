@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             MentorSeeder::class,
             MenteeProfileSeeder::class,
             MentorReviewSeeder::class,
+            ResearchSpaceSeeder::class,
         ]);
     }
 }

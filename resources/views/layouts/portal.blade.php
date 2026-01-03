@@ -93,7 +93,10 @@
                         <a class="nav-link" href="{{ route('projects.index') }}">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('messages.index') }}">Messages</a>
+                        <a class="nav-link" href="{{ route('portal.research_spaces.index') }}">Research topics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('portal.research_spaces.my_topics') }}">My Topics</a>
                     </li>
                 </ul>
 
