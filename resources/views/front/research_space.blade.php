@@ -258,7 +258,7 @@
                 <div class="approach-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp">Why This Matters</h3>
+                        
                         <h2 class="text-anime-style-3" data-cursor="-opaque" style="font-size: 30px;">Why This Space is Important</h2>
                         <p class="wow fadeInUp" data-wow-delay="0.2s">
                             Many students struggle with unclear topics, lack of direction, or choosing research ideas that are either too broad or not academically relevant.
