@@ -10,7 +10,7 @@ class MenteeProfile extends Model
         'user_id',
         'research_goals',
         'education_level',
-        'bio',            // bio/about section
+        'bio',
         'location',
         'image'
     ];

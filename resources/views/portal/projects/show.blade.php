@@ -326,8 +326,12 @@
 
                     <div class="mb-3">
                         <label class="fw-semibold">Role</label>
-                        <input type="text" name="role"
-                            class="form-control rounded-pill" required>
+                        <select name="role"
+                            class="form-select rounded-pill" required>
+                            <option value="mentee">mentee</option>
+                            <option value="mentor">mentor</option>
+                            <option value="collaborator">collaborator</option>
+                        </select>
                     </div>
                 </div>
 

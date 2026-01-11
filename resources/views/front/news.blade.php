@@ -1,5 +1,5 @@
 @extends('layouts.guest')
-@section('title','news & updates')
+@section('title','news')
 @section('content')
 
 <!-- Page Header Start -->
@@ -9,7 +9,7 @@
             <div class="col-lg-12">
                 <!-- Page Header Box Start -->
                 <div class="page-header-box">
-                    <h1 class="text-anime-style-3" data-cursor="-opaque">Our news & updates</h1>
+                    <h1 class="text-anime-style-3" data-cursor="-opaque">Our news</h1>
                 </div>
                 <!-- Page Header Box End -->
             </div>
@@ -18,37 +18,6 @@
 </div>
 <!-- Page Header End -->
 
-<!-- Scrolling Ticker Section Start -->
-<div class="our-scrolling-ticker">
-    <!-- Scrolling Ticker Start -->
-    <div class="scrolling-ticker-box">
-        <div class="scrolling-content">
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-        </div>
-
-        <div class="scrolling-content">
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-        </div>
-    </div>
-    <!-- Scrolling Ticker End -->
-</div>
-<!-- Scrolling Ticker Section End -->
 
 <!-- Page Blog Start -->
 <div class="page-blog">

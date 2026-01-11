@@ -57,7 +57,7 @@
             </div>
 
             <div class="d-grid">
-                <button type="button" class="btn btn-gradient-primary btn-lg" id="submitBtn">Register</button>
+                <button type="button" class="btn-default" id="submitBtn">Register</button>
             </div>
             <div class="text-danger mt-3" id="errorMsg"></div>
         </form>

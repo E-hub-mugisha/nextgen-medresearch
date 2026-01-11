@@ -127,4 +127,12 @@ class User extends Authenticatable
         return $this->belongsToMany(ResearchSpace::class, 'research_users')
             ->withTimestamps();
     }
+
+    public function researchInterests()
+    {
+        return $this->belongsToMany(
+            ResearchInterest::class,
+            'research_interest_user' // pivot table
+        );
+    }
 }

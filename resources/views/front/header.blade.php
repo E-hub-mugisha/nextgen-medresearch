@@ -27,12 +27,12 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
 
                         {{-- WHO WE ARE --}}
                         <li class="nav-item submenu {{ activeRoute(['about','partners','our-impact']) }}">
-                            <a class="nav-link" href="#">Who We Are</a>
+                            <a class="nav-link" href="#">About</a>
                             <ul>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link {{ activeRoute('about') }}"
                                         href="{{ route('about') }}">About Us</a>
-                                </li>
+                                </li> -->
 
                                 <li class="nav-item">
                                     <a class="nav-link {{ activeRoute('about') }}"
@@ -74,7 +74,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                             <ul>
                                 <li class="nav-item">
                                     <a class="nav-link {{ activeRoute('mentor_qna.*') }}"
-                                        href="{{ route('mentor_qna.index') }}">Ask a Mentor Q&A</a>
+                                        href="{{ route('mentor_qna.index') }}">Ask a Mentor</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -86,7 +86,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                         {{-- NEWS --}}
                         <li class="nav-item">
                             <a class="nav-link {{ activeRoute('news') }}"
-                                href="{{ route('news') }}">News & Updates</a>
+                                href="{{ route('news') }}">News</a>
                         </li>
 
                         {{-- RESEARCH SPACE --}}
@@ -109,7 +109,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                             {{-- CONTACT --}}
                         <li class="nav-item">
                             <a class="nav-link {{ activeRoute('contact') }}"
-                                href="{{ route('contact') }}">Contact Us</a>
+                                href="{{ route('contact') }}">Contact</a>
                         </li>
 
                     </ul>
@@ -118,7 +118,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
 
                 <!-- Header Btn Start -->
                 <div class="header-btn">
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal" class="btn-default-2 btn-highlighted">Join Us</a>
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal" class="btn-default-2 btn-highlighted">Join</a>
                     <a href="{{ route('rescue.sheet.public') }}" class="btn-default btn-highlighted">Rescue sheets</a>
                 </div>
                 <!-- Header Btn End -->

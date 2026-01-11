@@ -21,7 +21,7 @@
                 <!-- About Footer End -->
             </div>
 
-            <div class="col-lg-5 col-md-7">
+            <div class="col-lg-4 col-md-4">
                 <!-- Footer Links Box Start -->
                 <div class="footer-links-box">
                     <!-- Footer Links Start -->
@@ -37,7 +37,7 @@
                     <!-- Footer Links End -->
 
                     <!-- Footer Links Start -->
-                    <div class="footer-links">
+                    <!-- <div class="footer-links">
                         <h3>Our Programs</h3>
                         <ul>
                             @php $programs = \App\Models\Program::all(); @endphp
@@ -45,13 +45,13 @@
                             <li><a href="{{ route('programs.detail', $program->slug)}}">{{ $program->title }}</a></li>
                             @endforeach
                         </ul>
-                    </div>
+                    </div> -->
                     <!-- Footer Links End -->
                 </div>
                 <!-- Footer Links Box End -->
             </div>
 
-            <div class="col-lg-3 col-md-5">
+            <div class="col-lg-4 col-md-4">
                 <div class="footer-newsletter-box">
                     <h3>Subscribe to our newsletter</h3>
 
@@ -128,7 +128,7 @@
             <div class="col-lg-12">
                 <!-- Footer Copyright Start -->
                 <div class="footer-copyright-text">
-                    <p>Copyright © 2025 {{ config('app.name') }} All Rights Reserved.</p>
+                    <p>Copyright © {{ date('Y') }} {{ config('app.name') }} All Rights Reserved.</p>
                 </div>
                 <!-- Footer Copyright End -->
             </div>

@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\ResearchInterest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -21,7 +23,7 @@ class MentorController extends Controller
         $researchInterests = ResearchInterest::all();
         return view('onboarding.index', compact('role', 'researchInterests'));
     }
-public function registerMentor(Request $request)
+    public function registerMentor(Request $request)
     {
         // Validate incoming request
         $request->validate([
@@ -152,5 +154,56 @@ public function registerMentor(Request $request)
         return view('onboarding.mentor', compact('researchInterests', 'role'));
     }
 
-    
+    public function registerUser(Request $request)
+    {
+        // Validation
+        $validated = $request->validate([
+            'role'            => 'required|in:mentee',
+            'name'            => 'required|string|max:255',
+            'email'           => 'required|email|unique:users,email',
+            'password'        => ['required', 'confirmed', Password::min(8)],
+            'bio'             => 'nullable|string',
+            'research_goal'   => 'nullable|string|max:255',
+            'education_level' => 'nullable|string|max:255',
+            'interests'       => 'nullable|array',
+            'interests.*'     => 'string|max:255',
+        ]);
+
+        // 1️⃣ Create User
+        $user = User::create([
+            'name'     => $validated['name'],
+            'email'    => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role'     => 'mentee',
+        ]);
+
+        // 2️⃣ Create Mentee Profile
+        MenteeProfile::create([
+            'user_id'         => $user->id,
+            'bio'             => $validated['bio'] ?? null,
+            'research_goals'  => $validated['research_goal'] ?? null,
+            'education_level' => $validated['education_level'] ?? null,
+        ]);
+
+        // 3️⃣ Handle Interests (auto-create)
+        if (!empty($validated['interests'])) {
+            $interestIds = [];
+
+            foreach ($validated['interests'] as $name) {
+                $interest = ResearchInterest::firstOrCreate(['name' => $name]);
+                $interestIds[] = $interest->id;
+            }
+
+            $user->researchInterests()->sync($interestIds);
+        }
+
+        // 4️⃣ Auto Login
+        auth()->login($user);
+
+
+        return response()->json([
+            'success'  => true,
+            'redirect' => route('portal.dashboard'),
+        ]);
+    }
 }

@@ -95,34 +95,6 @@
                     </div>
                     <!-- Contact Us Content End -->
 
-                    <!-- Contact Us Image Start -->
-                    <div class="contact-us-image">
-                        <div class="contact-us-img">
-                            <figure class="image-anime">
-                                <img src="{{ asset('assets/images/contact-us-image.jpg') }}" alt="">
-                            </figure>
-                        </div>
-                        <!-- Working Hours Box Start -->
-                        <div class="working-hours-box">
-                            <!-- Working Hours Header Start -->
-                            <div class="working-hours-header">
-                                <h3>Working Hours:</h3>
-                            </div>
-                            <!-- Working Hours Header End -->
-
-                            <!-- Working Hours Body Start -->
-                            <div class="working-hours-body">
-                                <ul>
-                                    <li>Mon - Fri: <span>10:00AM - 07:00PM</span></li>
-                                    <li>Saturday: <span>12:00AM - 05:00PM</span></li>
-                                    <li>Sunday: <span>closed</span></li>
-                                </ul>
-                            </div>
-                            <!-- Working Hours Body End -->
-                        </div>
-                        <!-- Working Hours Box End -->
-                    </div>
-                    <!-- Contact Us Image End -->
                 </div>
                 <!-- Contact Us Box End -->
             </div>
@@ -173,7 +145,7 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn-default btn-highlighted">Submit Message</button>
+                                        <button type="submit" class="btn-default btn-highlighted">Submit</button>
                                     </div>
                                 </div>
                             </form>
