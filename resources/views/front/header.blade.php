@@ -140,7 +140,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
             <!-- Header -->
             <div class="modal-header border-0 px-4 pt-4">
                 <div>
-                    <h3 class="fw-bold mb-1" id="roleModalLabel">Welcome 👋</h3>
+                    <h3 class="fw-bold mb-1" id="roleModalLabel">Welcome!</h3>
                     <p class="text-muted mb-0">Choose how you want to join</p>
                 </div>
                 <button type="button" class="btn-close"></button>
