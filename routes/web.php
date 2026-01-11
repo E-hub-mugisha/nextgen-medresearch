@@ -18,6 +18,7 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Portal\PortalMessageController;
 use App\Http\Controllers\ResearchKitController;
 use App\Http\Controllers\ResearchSpaceController;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
@@ -274,4 +275,7 @@ Route::get('/clear-cache', function () {
     return 'Cache cleared';
 });
 
+Route::get('/pdf-test', function () {
+    return Pdf::loadHTML('<h1>PDF OK</h1>')->download('test.pdf');
+});
 require __DIR__ . '/auth.php';
