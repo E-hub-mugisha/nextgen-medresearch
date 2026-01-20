@@ -48,7 +48,7 @@ class PostController extends Controller
             'created_by'   => auth()->id(),
         ]);
 
-        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
+        return redirect()->route('admin.posts.index')->with('success', 'Post created successfully!');
     }
 
     public function edit(Post $post)
@@ -83,7 +83,12 @@ class PostController extends Controller
             'updated_by'   => auth()->id(),
         ]);
 
-        return redirect()->route('posts.index')->with('success', 'Post updated successfully!');
+        return redirect()->route('admin.posts.index')->with('success', 'Post updated successfully!');
+    }
+
+    public function show(Post $post)
+    {
+        return view('admin.posts.show', compact('post'));
     }
 
     public function destroy(Post $post)
@@ -92,4 +97,3 @@ class PostController extends Controller
         return back()->with('success', 'Post deleted!');
     }
 }
-

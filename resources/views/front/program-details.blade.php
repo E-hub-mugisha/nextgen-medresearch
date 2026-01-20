@@ -11,7 +11,7 @@
                     <!-- How Work Image Start -->
                     <div class="how-work-image image-anime">
                         <figure>
-                            <img src="{{ asset('assets/images/why-choose-body-image.jpg') }}" alt="">
+                            <img src="{{ asset('storage/' . $program->icon) }}" alt="">
                         </figure>
                     </div>
                     <!-- How Work Image End -->

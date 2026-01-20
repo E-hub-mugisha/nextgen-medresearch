@@ -107,7 +107,7 @@
                         <div class="about-image-content">
                             <!-- Video Play Button Start -->
                             <div class="video-play-button">
-                                <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
+                                <a href="#" class="popup-video" data-cursor-text="Play">
                                     <i class="fa-solid fa-play"></i>
                                 </a>
                             </div>
@@ -198,7 +198,7 @@
                 <div class="service-item wow fadeInUp">
                     <!-- Service Image Start -->
                     <div class="service-image">
-                        <img src="{{ asset('assets/images/service-1.jpg') }}" alt="">
+                        <img src="{{ asset('storage/' . $program->icon) }}" alt="">
                     </div>
                     <!-- Service Image End -->
 
@@ -515,7 +515,7 @@
                     <!-- Case Study Image Start-->
                     <div class="case-study-image">
                         <figure class="image-anime">
-                            <img src="{{ asset('assets/images/case-study-1.jpg') }}" alt="">
+                            <img src="{{ asset('storage/'.$research->featured_image) }}" alt="">
                         </figure>
 
                         <!-- Case Study Button Start-->
@@ -683,7 +683,11 @@
                     <div class="post-featured-image">
                         <a href="{{ route('news.detail', $new->slug )}}" data-cursor-text="View">
                             <figure class="image-anime">
-                                <img src="{{ asset('assets/images/post-1.jpg') }}" alt="">
+                                @if ($new->featured_image)
+                                <img src="{{ asset('storage/'.$new->featured_image) }}" alt="">
+                                @else
+                                <span class="text-muted">No Image</span>
+                                @endif
                             </figure>
                         </a>
                     </div>

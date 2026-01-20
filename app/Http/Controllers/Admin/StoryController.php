@@ -32,7 +32,7 @@ class StoryController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $filename = time().'.'.$request->image->extension();
+            $filename = time() . '.' . $request->image->extension();
             $request->image->move('uploads/stories/', $filename);
             $data['image'] = $filename;
         }
@@ -56,11 +56,11 @@ class StoryController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            if ($story->image && file_exists('uploads/stories/'.$story->image)) {
-                unlink('uploads/stories/'.$story->image);
+            if ($story->image && file_exists('uploads/stories/' . $story->image)) {
+                unlink('uploads/stories/' . $story->image);
             }
 
-            $filename = time().'.'.$request->image->extension();
+            $filename = time() . '.' . $request->image->extension();
             $request->image->move('uploads/stories/', $filename);
             $data['image'] = $filename;
         }
@@ -72,13 +72,17 @@ class StoryController extends Controller
 
     public function destroy(Story $story)
     {
-        if ($story->image && file_exists('uploads/stories/'.$story->image)) {
-            unlink('uploads/stories/'.$story->image);
+        if ($story->image && file_exists('uploads/stories/' . $story->image)) {
+            unlink('uploads/stories/' . $story->image);
         }
 
         $story->delete();
 
         return back()->with('success', 'Story deleted.');
     }
-}
 
+    public function show(Story $story)
+    {
+        return view('admin.stories.show', compact('story'));
+    }
+}

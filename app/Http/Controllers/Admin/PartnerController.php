@@ -25,11 +25,8 @@ class PartnerController extends Controller
             'logo'           => 'required|image|mimes:png,jpg,jpeg,webp|max:3000',
         ]);
 
-        if ($request->hasFile('logo')) {
-            $file = $request->file('logo');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads/partners/', $filename);
-            $data['logo'] = $filename;
+        if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
+            $data['logo'] = $request->file('logo')->store('partners', 'public');
         }
 
         Partner::create($data);
@@ -47,17 +44,8 @@ class PartnerController extends Controller
             'logo'           => 'nullable|image|mimes:png,jpg,jpeg,webp|max:3000',
         ]);
 
-        if ($request->hasFile('logo')) {
-
-            // delete old logo
-            if ($partner->logo && file_exists('uploads/partners/'.$partner->logo)) {
-                unlink('uploads/partners/'.$partner->logo);
-            }
-
-            $file = $request->file('logo');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads/partners/', $filename);
-            $data['logo'] = $filename;
+        if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
+            $data['logo'] = $request->file('logo')->store('partners', 'public');
         }
 
         $partner->update($data);

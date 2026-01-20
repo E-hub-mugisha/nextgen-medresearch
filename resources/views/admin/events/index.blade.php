@@ -15,14 +15,14 @@
 <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>There were some errors:</strong>
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <strong>There were some errors:</strong>
+    <ul class="mb-0">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
 
 <div class="card p-3 shadow-sm">
@@ -54,6 +54,9 @@
                     </span>
                 </td>
                 <td>
+                    <a href="{{ route('admin.events.show', $event->id) }}" class="btn btn-outline-secondary btn-sm">
+                        show
+                    </a>
                     <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editEventModal{{ $event->id }}">Edit</button>
                     <form action="{{ route('admin.events.destroy',$event->id) }}" method="POST" class="d-inline">
                         @csrf @method('DELETE')
@@ -84,7 +87,7 @@
                                     <select name="category_id" class="form-control" required>
                                         <option value="">Select...</option>
                                         @foreach($categories as $cat)
-                                            <option value="{{ $cat->id }}" {{ $event->category_id==$cat->id?'selected':'' }}>{{ $cat->name }}</option>
+                                        <option value="{{ $cat->id }}" {{ $event->category_id==$cat->id?'selected':'' }}>{{ $cat->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -124,7 +127,7 @@
                                     <label>Banner</label>
                                     <input type="file" name="banner" class="form-control">
                                     @if($event->banner)
-                                        <img src="{{ asset('uploads/events/'.$event->banner) }}" class="img-fluid mt-2" height="100">
+                                    <img src="{{ asset('uploads/events/'.$event->banner) }}" class="img-fluid mt-2" height="100">
                                     @endif
                                 </div>
 
@@ -185,7 +188,7 @@
                         <select name="category_id" class="form-control" required>
                             <option value="">Select...</option>
                             @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                             @endforeach
                         </select>
                     </div>

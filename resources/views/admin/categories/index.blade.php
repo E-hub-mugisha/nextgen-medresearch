@@ -27,7 +27,7 @@
                 <tr>
                     <th>#ID</th>
                     <th>Name</th>
-                    <th>Slug</th>
+                    <th>Description</th>
                     <th>Type</th>
                     <th>Status</th>
                     <th>Created</th>
@@ -39,7 +39,7 @@
                 <tr>
                     <td>{{ $cat->id }}</td>
                     <td>{{ $cat->name }}</td>
-                    <td>{{ $cat->slug }}</td>
+                    <td>{{ $cat->description }}</td>
                     <td>{{ $cat->type ?? '-' }}</td>
                     <td>
                         <span class="badge bg-{{ $cat->status == 'active' ? 'success' : 'secondary' }}">

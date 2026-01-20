@@ -2,34 +2,18 @@
 @section('title','Projects & Updates')
 @section('content')
 
-<!-- Page Header Start -->
-<div class="page-header parallaxie">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- Page Header Box Start -->
-                <div class="page-header-box">
-                    <h1 class="text-anime-style-3" data-cursor="-opaque">Our projects & updates</h1>
-                    
-                </div>
-                <!-- Page Header Box End -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Page Header End -->
 
-<div class="page-case-study">
+<div class="page-case-study" style="margin-top: 2rem;">
     <div class="container">
         <div class="row">
             @forelse($projects as $project)
             <div class="col-lg-4 col-md-6">
                 <!-- Case Study Item Start -->
-                <div class="case-study-item wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                <div class="case-study-item wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; margin-top: 2rem;">
                     <!-- Case Study Image Start-->
                     <div class="case-study-image">
                         <figure class="image-anime">
-                            <img src="{{ asset('assets/images/case-study-1.jpg') }}" alt="">
+                            <img src="{{ asset('storage/' . $project->banner) }}" alt="">
                         </figure>
 
                         <!-- Case Study Button Start-->

@@ -61,6 +61,7 @@
                     <td>{{ $post->publish_at ? $post->publish_at : '-' }}</td>
 
                     <td>
+                        <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-sm btn-info">view</a>
                         <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-sm btn-warning">Edit</a>
 
                         <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" class="d-inline">

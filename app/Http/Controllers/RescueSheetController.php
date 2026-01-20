@@ -29,6 +29,7 @@ class RescueSheetController extends Controller
             'title' => 'required|string|max:255',
             'vehicle_model' => 'nullable|string|max:255',
             'file' => 'required|file|mimes:pdf,png,jpg,jpeg',
+            'language' => 'nullable',
         ]);
 
         // Ensure qr_codes folder exists
@@ -56,6 +57,7 @@ class RescueSheetController extends Controller
         RescueSheet::create([
             'title' => $request->title,
             'vehicle_model' => $request->vehicle_model,
+            'langugage' => $request->language,
             'slug' => $slug,
             'file_path' => $filePath,
             'qr_code_path' => $qrPath,
@@ -84,12 +86,14 @@ class RescueSheetController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:255',
+            'language' => 'nullable',
             'vehicle_model' => 'nullable|string|max:255',
             'file' => 'nullable|file|mimes:pdf,png,jpg,jpeg',
         ]);
 
         $sheet->title = $request->title;
         $sheet->vehicle_model = $request->vehicle_model;
+        $sheet->language = $request->language;
 
         // If a new file is uploaded
         if ($request->hasFile('file')) {

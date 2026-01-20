@@ -128,7 +128,7 @@
             <div class="col-lg-12">
                 <!-- Footer Copyright Start -->
                 <div class="footer-copyright-text">
-                    <p>Copyright © {{ date('Y') }} {{ config('app.name') }} All Rights Reserved.</p>
+                    <p>Copyright © {{ date('Y') }} {{ config('app.name') }} • Mentorship • Collaboration • Research Excellence</p>
                 </div>
                 <!-- Footer Copyright End -->
             </div>

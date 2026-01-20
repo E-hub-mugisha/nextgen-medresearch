@@ -12,8 +12,8 @@ class EventController extends Controller
     public function index()
     {
         return view('admin.events.index', [
-            'events' => Event::with('category')->orderBy('start_date','desc')->get(),
-            'categories' => Category::where('status','active')->get()
+            'events' => Event::with('category')->orderBy('start_date', 'desc')->get(),
+            'categories' => Category::where('status', 'active')->get()
         ]);
     }
 
@@ -34,16 +34,21 @@ class EventController extends Controller
             'publish_at'        => 'nullable|date',
         ]);
 
-        if($request->hasFile('banner')){
-            $file = $request->file('banner');
-            $filename = time().'.'.$file->getClientOriginalExtension();
-            $file->move('uploads/events/',$filename);
-            $data['banner'] = $filename;
+
+        if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
+            $data['banner'] = $request
+                ->file('banner')
+                ->store('events', 'public');
         }
 
         Event::create($data);
 
-        return back()->with('success','Event created successfully.');
+        return back()->with('success', 'Event created successfully.');
+    }
+
+    public function show(Event $event)
+    {
+        return view('admin.events.show', compact('event'));
     }
 
     public function update(Request $request, Event $event)
@@ -63,30 +68,22 @@ class EventController extends Controller
             'publish_at'        => 'nullable|date',
         ]);
 
-        if($request->hasFile('banner')){
-            if($event->banner && file_exists('uploads/events/'.$event->banner)){
-                unlink('uploads/events/'.$event->banner);
-            }
-            $file = $request->file('banner');
-            $filename = time().'.'.$file->getClientOriginalExtension();
-            $file->move('uploads/events/',$filename);
-            $data['banner'] = $filename;
+        if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
+            $data['banner'] = $request
+                ->file('banner')
+                ->store('events', 'public');
         }
 
         $event->update($data);
 
-        return back()->with('success','Event updated successfully.');
+        return back()->with('success', 'Event updated successfully.');
     }
 
     public function destroy(Event $event)
     {
-        if($event->banner && file_exists('uploads/events/'.$event->banner)){
-            unlink('uploads/events/'.$event->banner);
-        }
 
         $event->delete();
 
-        return back()->with('success','Event deleted successfully.');
+        return back()->with('success', 'Event deleted successfully.');
     }
 }
-

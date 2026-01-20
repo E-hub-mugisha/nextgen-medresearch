@@ -8,16 +8,16 @@
             + Add Rescue Sheet
         </button>
     </div>
-@if ($errors->any())
+    @if ($errors->any())
     <div class="alert alert-danger">
         <strong>There were some errors:</strong>
         <ul class="mb-0">
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+            <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
-@endif
+    @endif
 
     <table class="table table-bordered table-striped align-middle">
         <thead>
@@ -25,6 +25,7 @@
                 <th>#</th>
                 <th>Title</th>
                 <th>Vehicle Model</th>
+                <th>language</th>
                 <th>QR Code</th>
                 <th>Scans</th>
                 <th>Actions</th>
@@ -36,6 +37,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $sheet->title }}</td>
                 <td>{{ $sheet->vehicle_model ?? '-' }}</td>
+                <td>{{ $sheet->language ?? '-' }}</td>
                 <td>
                     @if($sheet->qr_code_path)
                     <a href="{{ route('rescue.sheet.show',$sheet->slug) }}" target="_blank">
@@ -85,6 +87,11 @@
                     <label>Vehicle Model</label>
                     <input type="text" name="vehicle_model" class="form-control"
                         value="{{ $sheet->vehicle_model }}">
+                </div>
+                <div class="mb-2">
+                    <label>language</label>
+                    <input type="text" name="language" class="form-control"
+                        value="{{ $sheet->language }}">
                 </div>
                 <div class="mb-2">
                     <label>PDF File (optional)</label>
@@ -143,6 +150,11 @@
                 <div class="mb-2">
                     <label>Vehicle Model</label>
                     <input type="text" name="vehicle_model" class="form-control">
+                </div>
+                <div class="mb-2">
+                    <label>language</label>
+                    <input type="text" name="language" class="form-control"
+                        >
                 </div>
                 <div class="mb-2">
                     <label>Upload PDF File</label>

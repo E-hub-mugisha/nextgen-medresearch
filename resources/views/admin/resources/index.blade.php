@@ -15,14 +15,14 @@
 <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>There were some errors:</strong>
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <strong>There were some errors:</strong>
+    <ul class="mb-0">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
 
 <div class="card shadow-sm p-3">
@@ -52,11 +52,11 @@
 
                 <td>
                     @if($item->file_path)
-                        <a href="{{ asset('uploads/resources/'.$item->file_path) }}" target="_blank" class="btn btn-sm btn-secondary">
-                            View File
-                        </a>
+                    <a href="{{ asset('storage/' . $item->file_path) }}" target="_blank" class="btn btn-sm btn-secondary">
+                        View File
+                    </a>
                     @else
-                        <span class="text-muted">No file</span>
+                    <span class="text-muted">No file</span>
                     @endif
                 </td>
 
@@ -68,7 +68,7 @@
                     </button>
 
                     <form action="{{ route('admin.resources.destroy', $item->id) }}" method="POST" class="d-inline">
-                        @csrf 
+                        @csrf
                         @method('DELETE')
                         <button onclick="return confirm('Delete this resource?')" class="btn btn-sm btn-danger">
                             Delete
@@ -101,7 +101,7 @@
                                     <select name="category_id" class="form-control" required>
                                         <option value="">Select...</option>
                                         @foreach($categories as $cat)
-                                        <option value="{{ $cat->id }}" 
+                                        <option value="{{ $cat->id }}"
                                             {{ $item->category_id == $cat->id ? 'selected' : '' }}>
                                             {{ $cat->name }}
                                         </option>
@@ -119,7 +119,7 @@
                                     <input type="file" name="file_path" class="form-control">
 
                                     @if($item->file_path)
-                                        <small class="text-muted">Current File: {{ $item->file_path }}</small>
+                                    <small class="text-muted">Current File: {{ $item->file_path }}</small>
                                     @endif
                                 </div>
 

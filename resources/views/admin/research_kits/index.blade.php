@@ -1,4 +1,4 @@
-@extends('layouts.portal')
+@extends('layouts.app')
 
 @section('content')
 <div class="container-fluid py-4">
@@ -125,7 +125,7 @@
 <div class="modal fade" id="createModal">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <form method="POST" action="{{ route('admin.kits.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.research_kits.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h5>Create Research Kit</h5>

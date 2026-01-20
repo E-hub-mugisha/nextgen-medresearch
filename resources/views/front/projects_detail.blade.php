@@ -34,26 +34,11 @@
                             <li>Location :<span>Rwanda</span></li>
                             <li>Duration :<span>6 Month</span></li>
                             <li>Date :<span>{{ $project->created_at->format('d M Y') ?? 'N/A' }}</span></li>
+                            <li><a href="{{ $project->project_link }}" class="btn-default btn-highlighted">Project Link</a></li>
                         </ul>
                     </div>
                     <!-- Page Category List End -->
 
-                    <!-- Sidebar CTA Box Start -->
-                    <div class="sidebar-cta-box wow fadeInUp" data-wow-delay="0.25s" style="visibility: visible; animation-delay: 0.25s; animation-name: fadeInUp;">
-                        <!-- Sidebar CTA Content Start -->
-                        <div class="sidebar-cta-logo">
-                            <img src="{{ asset('assets/images/logo-white.png') }}" alt="">
-                        </div>
-                        <!-- Sidebar CTA Content End -->
-
-                        <!-- Sidebar CTA Contact Start -->
-                        <div class="sidebar-cta-content">
-                            <p>Partner with us to drive innovation and shape a healthier future.</p>
-                            <a href="{{ $project->project_link }}" class="btn-default btn-highlighted">Project Link</a>
-                        </div>
-                        <!-- Sidebar CTA Contact End -->
-                    </div>
-                    <!-- Sidebar CTA Box End -->
                 </div>
                 <!-- Page Single Sidebar End -->
             </div>
@@ -64,7 +49,7 @@
                     <!-- Page Single image Start -->
                     <div class="page-single-image">
                         <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
-                            <img src="{{ asset('assets/images/case-study-1.jpg') }}" alt="" style="transform: translate(0px, 0px);">
+                            <img src="{{ asset('storage/' . $project->banner) }}" alt="" style="transform: translate(0px, 0px);">
                         </figure>
                     </div>
                     <!-- Page Single image End -->

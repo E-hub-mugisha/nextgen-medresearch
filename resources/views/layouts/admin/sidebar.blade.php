@@ -50,9 +50,7 @@
                                         <li class="nk-menu-item"><a href="{{ route('admin.projects.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-bitcoin-cash"></em></span><span
                                                                 class="nk-menu-text">Projects</span></a></li>
-                                        <li class="nk-menu-item"><a href="#" class="nk-menu-link"><span
-                                                                class="nk-menu-icon"><em class="icon ni ni-growth"></em></span><span
-                                                                class="nk-menu-text">Mentors</span></a></li>
+                                        
                                         <li class="nk-menu-item"><a href="{{ route('admin.memberships.index')}}" class="nk-menu-link"><span
                                                                 class="nk-menu-icon"><em class="icon ni ni-coins"></em></span><span
                                                                 class="nk-menu-text">Memberships</span></a></li>

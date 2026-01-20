@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('file_path'); // PDF or image
             $table->string('language')->nullable(); // EN, Kinyarwanda, etc.
+            $table->string('vehicle_model')->nullable();
             $table->string('qr_code_path')->nullable(); // stored QR image
             $table->integer('download_count')->default(0);
             $table->integer('scan_count')->default(0);

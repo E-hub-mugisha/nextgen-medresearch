@@ -15,16 +15,16 @@
 
     <div class="card">
         <div class="card-body p-0">
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>There were some errors:</strong>
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>There were some errors:</strong>
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             <table class="table table-striped mb-0">
                 <thead>
@@ -49,12 +49,16 @@
                         </td>
                         <td>
                             @if($story->featured)
-                                <span class="badge bg-success">Yes</span>
+                            <span class="badge bg-success">Yes</span>
                             @else
-                                <span class="badge bg-secondary">No</span>
+                            <span class="badge bg-secondary">No</span>
                             @endif
                         </td>
                         <td>
+                            <a href="{{ route('admin.stories.show', $story->id) }}"
+                                class="btn btn-sm btn-info">
+                                view
+                            </a>
                             <button class="btn btn-sm btn-warning"
                                 data-bs-toggle="modal"
                                 data-bs-target="#editStoryModal{{ $story->id }}">
@@ -77,10 +81,10 @@
 </div>
 
 @foreach($stories as $story)
-    <!-- Edit Modal INCLUDE -->
-    @include('admin.stories.modals.edit', ['story' => $story])
-    <!-- Delete Modal INCLUDE -->
-    @include('admin.stories.modals.delete', ['story' => $story])
+<!-- Edit Modal INCLUDE -->
+@include('admin.stories.modals.edit', ['story' => $story])
+<!-- Delete Modal INCLUDE -->
+@include('admin.stories.modals.delete', ['story' => $story])
 @endforeach
 
 <!-- Add Modal INCLUDE -->

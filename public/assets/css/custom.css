@@ -3579,9 +3579,9 @@ header.main-header .header-sticky.active {
 }
 
 .post-image img {
-	width: 100%;
+	/* width: 100%;
 	aspect-ratio: 1 / 0.50;
-	object-fit: cover;
+	object-fit: cover; */
 	border-radius: 20px;
 }
 

@@ -18,38 +18,6 @@
 </div>
 <!-- Page Header End -->
 
-<!-- Scrolling Ticker Section Start -->
-<div class="our-scrolling-ticker">
-    <!-- Scrolling Ticker Start -->
-    <div class="scrolling-ticker-box">
-        <div class="scrolling-content">
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-        </div>
-
-        <div class="scrolling-content">
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Environment</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Testing</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Research</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Diagnostics</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Innovation</span>
-            <span><img src="images/icon-sparkle.svg" alt="">Biotech</span>
-        </div>
-    </div>
-    <!-- Scrolling Ticker End -->
-</div>
-<!-- Scrolling Ticker Section End -->
-
 <!-- Page Service Single Start -->
 <div class="page-case-study-single">
     <div class="container">
@@ -95,8 +63,8 @@
                 <div class="case-study-single-content">
                     <!-- Page Single image Start -->
                     <div class="page-single-image">
-                        <figure class="image-anime reveal">
-                            <img src="{{ asset('assets/images/case-study-1.jpg') }}" alt="">
+                        <figure class="image-anime">
+                            <img src="{{ asset('storage/'.$research->featured_image) }}" alt="">
                         </figure>
                     </div>
                     <!-- Page Single image End -->
@@ -115,7 +83,7 @@
                                     <!-- Empowering Item Start -->
                                     <div class="empowering-item">
                                         <div class="empowering-item-content">
-                                            <p> {{ $research->summary ?? '' }}</p>
+                                            <p class="text-white"> {{ $research->summary ?? '' }}</p>
                                         </div>
                                     </div>
                                 </div>

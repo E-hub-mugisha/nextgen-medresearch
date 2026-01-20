@@ -29,6 +29,10 @@ class ProgramController extends Controller
 
         return view('admin.programs.create', compact('categories'));
     }
+    public function show(Program $program)
+    {
+        return view('admin.programs.show', compact('program'));
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -40,27 +44,25 @@ class ProgramController extends Controller
             'category_id'   => 'required|exists:categories,id',
             'description'   => 'nullable|string',
             'icon'          => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'status'        => 'required|string|in:draft,published,archived',
+            'status'        => 'required|in:draft,published,archived',
             'featured'      => 'boolean',
             'display_order' => 'integer|min:0',
         ]);
 
-        // Slug
-        $data['slug'] = Str::slug($request->title);
+        $data['slug'] = Str::slug($data['title']);
+        $data['featured'] = $request->boolean('featured');
 
-        // Upload icon
-        if ($request->hasFile('icon')) {
-            $file = $request->file('icon');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads/programs/', $filename);
-            $data['icon'] = $filename;
+        if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
+            $data['icon'] = $request->file('icon')->store('programs', 'public');
         }
 
         Program::create($data);
 
-        return redirect()->route('admin.programs.index')
+        return redirect()
+            ->route('admin.programs.index')
             ->with('success', 'Program created successfully.');
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -93,17 +95,8 @@ class ProgramController extends Controller
         }
 
         // Handle icon upload
-        if ($request->hasFile('icon')) {
-
-            // delete old icon
-            if ($program->icon && file_exists('uploads/programs/' . $program->icon)) {
-                unlink('uploads/programs/' . $program->icon);
-            }
-
-            $file = $request->file('icon');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads/programs/', $filename);
-            $data['icon'] = $filename;
+        if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
+            $data['icon'] = $request->file('icon')->store('programs', 'public');
         }
 
         $program->update($data);

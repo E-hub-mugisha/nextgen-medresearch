@@ -172,7 +172,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
         ->name('research_spaces.users');
 });
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/research-kits', [ResearchKitController::class, 'indexAdmin'])->name('research_kits.index');
     Route::post('/research-kits', [ResearchKitController::class, 'store'])->name('research_kits.store');
     Route::put('/research-kits/{researchKit}', [ResearchKitController::class, 'update'])->name('research_kits.update');

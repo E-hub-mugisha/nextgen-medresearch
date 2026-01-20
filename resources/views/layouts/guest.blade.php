@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="eng-8">
 
 <head>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="Mentorship • Collaboration • Research Excellence">
     <meta name="keywords" content="">
-    <meta name="author" content="Awaiken">
+    <meta name="author" content="Homiez">
     <!-- Page Title -->
-    <title>@yield('title') | NextGen - MedSearch</title>
+    <title>@yield('title') | NextGen MedSearch</title>
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
     <!-- Google Fonts Css-->
@@ -30,7 +30,7 @@
     <!-- Magnific Popup Core Css File -->
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
     <!-- Mouse Cursor Css File -->
-    <link rel="stylesheet" href="{{ asset('assets/css/mousecursor.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('assets/css/mousecursor.css') }}"> -->
     <!-- Main Custom Css -->
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" media="screen">
 </head>
@@ -64,8 +64,8 @@
     <!-- Parallax js -->
     <script src="{{ asset('assets/js/parallaxie.js') }}"></script>
     <!-- MagicCursor js file -->
-    <script src="{{ asset('assets/js/gsap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/magiccursor.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/gsap.min.js') }}"></script> -->
+    <!-- <script src="{{ asset('assets/js/magiccursor.js') }}"></script> -->
     <!-- Text Effect js file -->
     <script src="{{ asset('assets/js/SplitText.js') }}"></script>
     <script src="{{ asset('assets/js/ScrollTrigger.min.js') }}"></script>

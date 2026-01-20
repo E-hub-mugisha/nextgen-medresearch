@@ -12,16 +12,16 @@
 
     <div class="card">
         <div class="card-body">
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>There were some errors:</strong>
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>There were some errors:</strong>
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             <form action="{{ route('admin.programs.update', $program->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -33,7 +33,7 @@
                     <div class="col-md-12 mb-3">
                         <label>Title *</label>
                         <input type="text" name="title" value="{{ old('title', $program->title) }}"
-                               class="form-control @error('title') is-invalid @enderror">
+                            class="form-control @error('title') is-invalid @enderror">
                         @error('title') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
 
@@ -41,13 +41,13 @@
                     <div class="col-md-6 mb-3">
                         <label>Category *</label>
                         <select name="category_id"
-                                class="form-control @error('category_id') is-invalid @enderror">
+                            class="form-control @error('category_id') is-invalid @enderror">
 
                             @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}"
-                                    {{ $program->category_id == $cat->id ? 'selected' : '' }}>
-                                    {{ $cat->name }}
-                                </option>
+                            <option value="{{ $cat->id }}"
+                                {{ $program->category_id == $cat->id ? 'selected' : '' }}>
+                                {{ $cat->name }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -57,10 +57,10 @@
                         <label>Status *</label>
                         <select name="status" class="form-control">
                             @foreach(['draft','published','archived'] as $status)
-                                <option value="{{ $status }}"
-                                   {{ $program->status == $status ? 'selected' : '' }}>
-                                   {{ ucfirst($status) }}
-                                </option>
+                            <option value="{{ $status }}"
+                                {{ $program->status == $status ? 'selected' : '' }}>
+                                {{ ucfirst($status) }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -78,8 +78,8 @@
                     <div class="col-md-4 mb-3">
                         <label>Display Order</label>
                         <input type="number" name="display_order"
-                               value="{{ $program->display_order }}"
-                               class="form-control">
+                            value="{{ $program->display_order }}"
+                            class="form-control">
                     </div>
 
                     <!-- ICON -->
@@ -87,8 +87,8 @@
                         <label>Icon</label><br>
 
                         @if($program->icon)
-                            <img src="{{ asset('uploads/programs/'.$program->icon) }}"
-                                 height="80" class="mb-2 rounded">
+                        <img src="{{ asset('storage/' . $program->icon) }}"
+                            height="80" class="mb-2 rounded">
                         @endif
 
                         <input type="file" name="icon" class="form-control mt-2">
@@ -98,7 +98,7 @@
                     <div class="col-md-12 mb-3">
                         <label>Description</label>
                         <textarea name="description" rows="5"
-                                  class="form-control">{{ old('description', $program->description) }}</textarea>
+                            class="form-control">{{ old('description', $program->description) }}</textarea>
                     </div>
 
                 </div>

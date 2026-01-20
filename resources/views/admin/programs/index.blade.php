@@ -56,6 +56,10 @@
                         <td>{{ $program->display_order }}</td>
 
                         <td>
+                            <a href="{{ route('admin.programs.show', $program->id) }}"
+                                class="btn btn-sm btn-info">
+                                view
+                            </a>
                             <a href="{{ route('admin.programs.edit', $program->id) }}"
                                 class="btn btn-sm btn-warning">
                                 Edit

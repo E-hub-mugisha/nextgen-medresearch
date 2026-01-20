@@ -37,23 +37,20 @@ class ProjectController extends Controller
             'display_order' => 'integer|min:0',
         ]);
 
-        if($request->hasFile('banner')){
-            $file = $request->file('banner');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads/projects/', $filename);
-            $data['banner'] = $filename;
+        if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
+            $data['banner'] = $request->file('banner')->store('projects', 'public');
         }
 
         Project::create($data);
 
-        return redirect()->route('projects.index')->with('success','Project created successfully.');
+        return redirect()->route('admin.projects.index')->with('success', 'Project created successfully.');
     }
 
     public function edit(Project $project)
     {
         return view('admin.projects.edit', [
             'project' => $project,
-            'categories' => Category::where('status','active')->get()
+            'categories' => Category::where('status', 'active')->get()
         ]);
     }
 
@@ -71,29 +68,27 @@ class ProjectController extends Controller
             'display_order' => 'integer|min:0',
         ]);
 
-        if($request->hasFile('banner')){
-            if($project->banner && file_exists('uploads/projects/'.$project->banner)){
-                unlink('uploads/projects/'.$project->banner);
-            }
-            $file = $request->file('banner');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads/projects/', $filename);
-            $data['banner'] = $filename;
+        if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
+            $data['banner'] = $request->file('banner')->store('projects', 'public');
         }
 
         $project->update($data);
 
-        return redirect()->route('projects.index')->with('success','Project updated successfully.');
+        return redirect()->route('admin.projects.index')->with('success', 'Project updated successfully.');
     }
 
     public function destroy(Project $project)
     {
-        if($project->banner && file_exists('uploads/projects/'.$project->banner)){
-            unlink('uploads/projects/'.$project->banner);
+        if ($project->banner && file_exists('uploads/projects/' . $project->banner)) {
+            unlink('uploads/projects/' . $project->banner);
         }
 
         $project->delete();
 
-        return redirect()->route('projects.index')->with('success','Project deleted successfully.');
+        return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
+    }
+    public function show(Project $project)
+    {
+        return view('admin.projects.show', compact('project'));
     }
 }

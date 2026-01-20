@@ -27,11 +27,10 @@ class ResourceController extends Controller
             'status'        => 'required|string',
         ]);
 
-        if ($request->hasFile('file_path')) {
-            $file = $request->file('file_path');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads/resources/', $filename);
-            $data['file_path'] = $filename;
+        if ($request->hasFile('file_path') && $request->file('file_path')->isValid()) {
+            $data['file_path'] = $request
+                ->file('file_path')
+                ->store('resources', 'public');
         }
 
         Resource::create($data);
@@ -49,17 +48,10 @@ class ResourceController extends Controller
             'status'        => 'required|string',
         ]);
 
-        if ($request->hasFile('file_path')) {
-
-            // delete old file
-            if ($resource->file_path && file_exists('uploads/resources/'.$resource->file_path)) {
-                unlink('uploads/resources/'.$resource->file_path);
-            }
-
-            $file = $request->file('file_path');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('uploads/resources/', $filename);
-            $data['file_path'] = $filename;
+        if ($request->hasFile('file_path') && $request->file('file_path')->isValid()) {
+            $data['file_path'] = $request
+                ->file('file_path')
+                ->store('resources', 'public');
         }
 
         $resource->update($data);
@@ -69,10 +61,6 @@ class ResourceController extends Controller
 
     public function destroy(Resource $resource)
     {
-        if ($resource->file_path && file_exists('uploads/resources/'.$resource->file_path)) {
-            unlink('uploads/resources/'.$resource->file_path);
-        }
-
         $resource->delete();
 
         return back()->with('success', 'Resource deleted successfully!');

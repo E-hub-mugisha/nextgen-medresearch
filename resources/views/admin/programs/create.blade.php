@@ -12,16 +12,16 @@
 
     <div class="card">
         <div class="card-body">
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>There were some errors:</strong>
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>There were some errors:</strong>
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             <form action="{{ route('admin.programs.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -32,7 +32,7 @@
                     <div class="col-md-12 mb-3">
                         <label>Title *</label>
                         <input type="text" name="title" value="{{ old('title') }}"
-                               class="form-control @error('title') is-invalid @enderror">
+                            class="form-control @error('title') is-invalid @enderror">
                         @error('title') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
 
@@ -40,10 +40,10 @@
                     <div class="col-md-6 mb-3">
                         <label>Category *</label>
                         <select name="category_id"
-                                class="form-control @error('category_id') is-invalid @enderror">
+                            class="form-control @error('category_id') is-invalid @enderror">
                             <option value="">Select</option>
                             @foreach($categories as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                            <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                             @endforeach
                         </select>
                         @error('category_id') <small class="text-danger">{{ $message }}</small> @enderror
@@ -72,12 +72,12 @@
                     <div class="col-md-4 mb-3">
                         <label>Display Order</label>
                         <input type="number" name="display_order" value="0"
-                               class="form-control">
+                            class="form-control">
                     </div>
 
                     <!-- ICON -->
                     <div class="col-md-12 mb-3">
-                        <label>Icon (image)</label>
+                        <label>image</label>
                         <input type="file" name="icon" class="form-control">
                     </div>
 
@@ -85,7 +85,7 @@
                     <div class="col-md-12 mb-3">
                         <label>Description</label>
                         <textarea name="description" rows="5"
-                                  class="form-control">{{ old('description') }}</textarea>
+                            class="form-control">{{ old('description') }}</textarea>
                     </div>
 
                 </div>

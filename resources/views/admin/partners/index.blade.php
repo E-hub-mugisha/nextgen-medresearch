@@ -13,17 +13,17 @@
 </div>
 
 @if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
+<div class="alert alert-success">{{ session('success') }}</div>
 @endif
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>There were some errors:</strong>
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <strong>There were some errors:</strong>
+    <ul class="mb-0">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
 
 <div class="card shadow-sm p-3">
@@ -43,13 +43,13 @@
             @foreach($partners as $item)
             <tr>
                 <td>{{ $loop->iteration }}</td>
-                
+
                 <td>
                     @if($item->logo)
-                        <img src="{{ asset('uploads/partners/'.$item->logo) }}" 
-                             width="70" class="rounded shadow-sm">
+                    <img src="{{ asset('storage/'.$item->logo) }}"
+                        width="70" class="rounded shadow-sm">
                     @else
-                        <span class="text-muted">No logo</span>
+                    <span class="text-muted">No logo</span>
                     @endif
                 </td>
 
@@ -70,12 +70,12 @@
                         Edit
                     </button>
 
-                    <form action="{{ route('admin.partners.destroy', $item->id) }}" 
-                          method="POST" class="d-inline">
+                    <form action="{{ route('admin.partners.destroy', $item->id) }}"
+                        method="POST" class="d-inline">
                         @csrf
-                       @method('DELETE')
-                        <button onclick="return confirm('Delete this partner?')" 
-                                class="btn btn-sm btn-danger">
+                        @method('DELETE')
+                        <button onclick="return confirm('Delete this partner?')"
+                            class="btn btn-sm btn-danger">
                             Delete
                         </button>
                     </form>
@@ -87,8 +87,8 @@
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
 
-                        <form action="{{ route('admin.partners.update', $item->id) }}" 
-                              method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.partners.update', $item->id) }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -101,8 +101,8 @@
 
                                 <div class="mb-3">
                                     <label>Partner Name</label>
-                                    <input type="text" name="name" class="form-control" 
-                                           value="{{ $item->name }}" required>
+                                    <input type="text" name="name" class="form-control"
+                                        value="{{ $item->name }}" required>
                                 </div>
 
                                 <div class="mb-3">
@@ -110,16 +110,16 @@
                                     <input type="file" name="logo" class="form-control">
 
                                     @if($item->logo)
-                                        <small class="text-muted d-block mt-2">
-                                            Current: {{ $item->logo }}
-                                        </small>
+                                    <small class="text-muted d-block mt-2">
+                                        Current: {{ $item->logo }}
+                                    </small>
                                     @endif
                                 </div>
 
                                 <div class="mb-3">
                                     <label>Testimonial</label>
                                     <textarea name="testimonial" class="form-control" rows="3">
-                                        {{ $item->testimonial }}
+                                    {{ $item->testimonial }}
                                     </textarea>
                                 </div>
 
@@ -138,7 +138,7 @@
                                 <div class="mb-3">
                                     <label>Order</label>
                                     <input type="number" name="display_order" class="form-control"
-                                           value="{{ $item->display_order }}">
+                                        value="{{ $item->display_order }}">
                                 </div>
 
                             </div>
