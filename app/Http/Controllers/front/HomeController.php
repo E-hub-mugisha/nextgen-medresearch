@@ -84,6 +84,13 @@ class HomeController extends Controller
         $resource = Resource::where('id', $id)->firstOrFail();
         return view('front.resources_detail', compact('resource'));
     }
+
+    public function programs()
+    {
+        $programs = \App\Models\Program::where('status', 'published')->orderBy('title')->get();
+
+        return view('front.programs', compact('programs'));
+    }
     public function programsDetail($slug)
     {
         $program = Program::where('slug', $slug)->firstOrFail();

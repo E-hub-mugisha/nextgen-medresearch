@@ -13,7 +13,7 @@
 
                     <!-- About Footer Content Start -->
                     <div class="about-footer-content">
-                        <p>NextGen MedResearch.org is a social innovation initiative dedicated to building the next generation of medical researchers in Africa.</p>
+                        <p>From Curiosity to Clinical Impact</p>
                     </div>
                     <!-- About Footer Content End -->
 
