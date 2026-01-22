@@ -12,6 +12,10 @@ return new class extends Migration {
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete(); // question asked by
             $table->string('title');
             $table->longText('question');
+            $table->foreignId('mentor_category_id')
+                ->nullable()
+                ->constrained('mentor_categories')
+                ->nullOnDelete();
             $table->enum('status', ['pending','answered','archived'])->default('pending');
             $table->boolean('featured')->default(false);
             $table->timestamps();

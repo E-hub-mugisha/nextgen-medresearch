@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ResourcesTableSeeder::class,
             EventsTableSeeder::class,
             ProjectsTableSeeder::class,
+            MentorCategorySeeder::class,
             MentorQuestionsSeeder::class,
             PartnersSeeder::class,
             ResearchSeeder::class,

@@ -22,9 +22,9 @@
                         <!-- Section Title End -->
 
                         <!-- Contact Info List Start -->
-                        <div class="contact-info-list">
+                        <div class="contact-info-list row">
                             <!-- Contact Info Item Start -->
-                            <div class="contact-info-item wow fadeInUp" data-wow-delay="0.4s">
+                            <div class="contact-info-item wow fadeInUp col-md-6" data-wow-delay="0.4s">
                                 <div class="icon-box">
                                     <img src="{{ asset('assets/images/icon-phone.svg')}}" alt="">
                                 </div>
@@ -36,7 +36,7 @@
                             <!-- Contact Info Item End -->
 
                             <!-- Contact Info Item Start -->
-                            <div class="contact-info-item wow fadeInUp" data-wow-delay="0.6s">
+                            <div class="contact-info-item wow fadeInUp col-md-6" data-wow-delay="0.6s">
                                 <div class="icon-box">
                                     <img src="{{ asset('assets/images/icon-mail.svg')}}" alt="">
                                 </div>
@@ -48,7 +48,7 @@
                             <!-- Contact Info Item End -->
 
                             <!-- Contact Info Item Start -->
-                            <div class="contact-info-item wow fadeInUp" data-wow-delay="0.8s">
+                            <div class="contact-info-item wow fadeInUp col-md-6" data-wow-delay="0.8s">
                                 <div class="icon-box">
                                     <img src="{{ asset('assets/images/icon-location.svg')}}" alt="">
                                 </div>
@@ -76,10 +76,10 @@
                                     color: #007bff;
                                 }
                             </style>
-                            <div class="footer-social-links mt-4">
+                            <div class="footer-social-links mt-4 col-md-6">
                                 <h3 class=" mb-3">Follow Us</h3>
                                 <ul>
-                                    <li><a href="https://x.com/HomegrownMR" style="color: #00697E;"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="https://x.com/HomegrownMR" style="color: #00697E;"><i class="fa-brands fa-x-twitter fa-lg"></i></a></li>
                                     <li><a href="https://www.linkedin.com/in/nextgen-medresearchers-840987366?utm_source=share_via&utm_content=profile&utm_medium=member_android" style="color: #00697E;"><i class="fab fa-linkedin-in"></i></a></li>
                                     <li>
                                         <a href="https://bsky.app/profile/mugangamukuru.bsky.social" target="_blank" aria-label="Bluesky" style="color: #00697E;">

@@ -2627,7 +2627,7 @@ header.main-header .header-sticky.active {
 	right: 0;
 	width: 30px;
 	height: 30px;
-	background: var(--accent-color);
+	/* background: var(--accent-color); */
 	border: none;
 	border-radius: 4px;
 	padding: 0;
@@ -2904,11 +2904,11 @@ header.main-header .header-sticky.active {
 }
 
 .our-core-value {
-	background-image: url('../images/section-bg-shape-6.png');
+	/* background-image: url('../images/section-bg-shape-6.png'); */
 	background-repeat: no-repeat;
 	background-position: right -20px top 100px;
 	background-size: auto;
-	padding: 100px 0;
+	padding: 100px 0 10px;
 }
 
 .value-image-box-1 {
@@ -3798,7 +3798,7 @@ header.main-header .header-sticky.active {
 /************************************/
 
 .page-case-study {
-	padding: 100px 0 70px;
+	padding: 10px 0 10px;
 }
 
 /************************************/

@@ -10,14 +10,25 @@ class MentorQuestion extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'title', 'question', 'status', 'featured'
+        'user_id',
+        'title',
+        'question',
+        'status',
+        'featured',
+        'mentor_category_id',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function answers() {
+    public function answers()
+    {
         return $this->hasMany(MentorAnswer::class);
+    }
+    public function category()
+    {
+        return $this->belongsTo(MentorCategory::class, 'mentor_category_id');
     }
 }

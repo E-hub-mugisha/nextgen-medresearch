@@ -41,7 +41,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
 
                                 <li class="nav-item">
                                     <a class="nav-link {{ activeRoute('partners') }}"
-                                        href="{{ route('partners') }}">Partners</a>
+                                        href="{{ route('partners') }}">Partnerships</a>
                                 </li>
 
                                 <li class="nav-item">
@@ -143,7 +143,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                     <h3 class="fw-bold mb-1" id="roleModalLabel">Welcome!</h3>
                     <p class="text-muted mb-0">Choose how you want to join</p>
                 </div>
-                <button type="button" class="btn-close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
             <!-- Body -->

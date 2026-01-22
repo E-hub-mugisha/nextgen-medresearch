@@ -111,7 +111,7 @@
                     <div class="footer-social-links mt-4">
                         <h2 class="h5 text-white mb-3">Follow Us</h2>
                         <ul>
-                            <li><a href="https://x.com/HomegrownMR"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="https://x.com/HomegrownMR"><i class="fa-brands fa-x-twitter fa-lg"></i></a></li>
                             <li><a href="https://www.linkedin.com/in/nextgen-medresearchers-840987366?utm_source=share_via&utm_content=profile&utm_medium=member_android"><i class="fab fa-linkedin-in"></i></a></li>
                             <li>
                                 <a href="https://bsky.app/profile/mugangamukuru.bsky.social" target="_blank" aria-label="Bluesky">
