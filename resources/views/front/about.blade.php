@@ -11,7 +11,7 @@
                 <div class="core-value-image" style="padding-top: 50px;">
                     <div class="value-image-box-1">
                         <div class="value-img-1">
-                            <figure class="image-anime reveal">
+                            <figure class="image-anime">
                                 <img src="{{ asset('assets/images/IYP_6213.jpg') }}" alt="">
                             </figure>
                         </div>
@@ -80,7 +80,7 @@
             <div class="col-lg-5">
                 <!-- Approach Image Start -->
                 <div class="approach-image">
-                    <figure class="image-anime reveal">
+                    <figure class="image-anime">
                         <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
                     </figure>
                 </div>
@@ -179,7 +179,7 @@
                         <!-- About Us Image Start -->
                         <div class="about-image">
                             <figure>
-                                <img src="{{ asset('assets/images/about-us-image-1.jpg') }}" alt="">
+                                <img src="{{ asset('assets/images/banner_New1.jpg') }}" alt="">
                             </figure>
                         </div>
                         <!-- About Us Image End -->
@@ -188,7 +188,7 @@
                         <div class="about-image-content">
                             <!-- Video Play Button Start -->
                             <div class="video-play-button">
-                                <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
+                                <a href="#" class="popup-video" data-cursor-text="Play">
                                     <i class="fa-solid fa-play"></i>
                                 </a>
                             </div>
@@ -208,23 +208,14 @@
                     <div class="about-counter-box">
                         <!-- About Counter Title Start -->
                         <div class="about-counter-title">
-                            <h2>Our Model</h2>
+                            <h3>our mission</h3>
                         </div>
                         <!-- About Counter Title End -->
 
                         <!-- About Counter Content Start -->
                         <div class="about-counter-content">
-                            <ul>
-
-                                <li>Mentorship</li>
-
-                                <li>Research Collaboration</li>
-
-                                <li>Capacity Building & Innovation</li>
-
-                                <li>Collaborative Scientific Partnerships</li>
-                            </ul>
-                            <a href="{{ route('our-impact') }}" class="readmore-btn">Our Impact</a>
+                            <p>We connect clinicians, researchers, and mentors to build capacity, conduct impactful studies, and shape future healthcare leaders</p>
+                            <a href="{{ route('our-value') }}" class="readmore-btn">Learn More</a>
                         </div>
                         <!-- About Counter Content End -->
                     </div>
@@ -235,7 +226,7 @@
                         <!-- About Us Image Start -->
                         <div class="about-image">
                             <figure>
-                                <img src="{{ asset('assets/images/about-us-image-2.jpg') }}" alt="">
+                                <img src="{{ asset('assets/images/IYP_6213.jpg') }}" alt="">
                             </figure>
                         </div>
                         <!-- About Us Image End -->
@@ -243,10 +234,9 @@
                         <!-- About Image Content Start -->
                         <div class="about-image-content">
                             <ul>
-                                <li>Innovative Research</li>
-                                <li>Scientific Excellence</li>
-                                <li>Data-Driven Discovery</li>
-                                <li>Trusted Expertise</li>
+                                <li>Mentorship</li>
+                                <li>Research Collaboration</li>
+                                <li>Capacity Building & Innovation</li>
                             </ul>
                         </div>
                         <!-- About Image Content End -->

@@ -260,7 +260,7 @@ Route::prefix('messages')->middleware('auth')->group(function () {
 
 
 Route::get('/run-setup', function () {
-    Artisan::call('migrate:fresh --seed');
+    Artisan::call('migrate:fresh');
 
     return 'Database migrated and seeded successfully!';
 });

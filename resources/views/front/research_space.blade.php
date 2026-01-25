@@ -11,7 +11,7 @@
                 <div class="why-choose-image-box mt-5">
                     <!-- Why Choose Image Start -->
                     <div class="why-choose-image">
-                        <figure class="image-anime reveal">
+                        <figure class="image-anime ">
                             <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
                         </figure>
                     </div>
@@ -100,7 +100,7 @@
 
                         <!-- Why Choose Body Image Start -->
                         <div class="why-choose-body-image">
-                            <figure class="image-anime reveal">
+                            <figure class="image-anime ">
                                 <img src="{{ asset('assets/images/why-choose-body-image.jpg') }}" alt="">
                             </figure>
                         </div>
@@ -124,7 +124,7 @@
                 <div class="why-choose-image-box">
                     <!-- Why Choose Image Start -->
                     <div class="why-choose-image">
-                        <figure class="image-anime reveal">
+                        <figure class="image-anime ">
                             <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
                         </figure>
                     </div>
@@ -246,7 +246,7 @@
             <div class="col-lg-5">
                 <!-- Approach Image Start -->
                 <div class="approach-image">
-                    <figure class="image-anime reveal">
+                    <figure class="image-anime ">
                         <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
                     </figure>
                 </div>
