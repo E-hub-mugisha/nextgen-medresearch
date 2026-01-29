@@ -88,11 +88,11 @@ body {
 	background: var(--primary-color);
 }
 
-::selection {
+/* ::selection {
 	color: var(--primary-color);
 	background-color: var(--accent-color);
 	filter: invert(1);
-}
+} */
 
 p {
 	line-height: 1.6em;
@@ -679,7 +679,7 @@ header.main-header .header-sticky.active {
     font-weight: 600;
 }
 .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-    color: #fff !important;
+    color: #ffffff !important;
 	border-bottom: 1px solid #fff;
 }
 
@@ -1166,7 +1166,7 @@ header.main-header .header-sticky.active {
 	background-repeat: no-repeat;
 	background-position: right -40px bottom 100px;
 	background-size: auto;
-	padding: 100px 0;
+	padding: 40px 0;
 }
 
 .about-us .section-row .section-title {
@@ -1423,7 +1423,7 @@ header.main-header .header-sticky.active {
 /************************************/
 
 .our-services {
-	padding: 100px 0;
+	padding: 40px 0;
 }
 
 .service-item {
@@ -1623,7 +1623,7 @@ header.main-header .header-sticky.active {
 	background-repeat: no-repeat;
 	background-position: left -60px bottom 100px;
 	background-size: auto;
-	padding: 100px 0;
+	padding: 100px 0 2px;
 }
 
 .why-choose-image-box {
@@ -1673,7 +1673,7 @@ header.main-header .header-sticky.active {
 }
 
 .why-choose-item-box {
-	width: calc(60% - 20px);
+	/* width: calc(60% - 20px); */
 }
 
 .why-choose-item {
@@ -1903,7 +1903,7 @@ header.main-header .header-sticky.active {
 	background-repeat: no-repeat;
 	background-position: right -20px bottom 120px;
 	background-size: auto;
-	padding: 100px 0 60px;
+	padding: 60px 0 60px;
 }
 
 .case-study-item {
@@ -2101,7 +2101,7 @@ header.main-header .header-sticky.active {
 	background-repeat: no-repeat;
 	background-position: left -30px bottom 100px;
 	background-size: auto;
-	padding: 100px 0;
+	padding: 100px 0 10px;
 }
 
 .how-work-image-box {
@@ -2154,8 +2154,8 @@ header.main-header .header-sticky.active {
 	align-items: start;
 	flex-wrap: wrap;
 	border-bottom: 1px solid var(--divider-color);
-	margin-bottom: 40px;
-	padding-bottom: 40px;
+	margin-bottom: 20px;
+	padding-bottom: 10px;
 }
 
 .work-steps-item:last-child {
@@ -2210,7 +2210,7 @@ header.main-header .header-sticky.active {
 	background-repeat: no-repeat;
 	background-position: bottom -20px left -20px;
 	background-size: auto;
-	padding: 100px 0;
+	padding: 30px 0;
 }
 
 .our-pricing-content {
@@ -2224,10 +2224,11 @@ header.main-header .header-sticky.active {
 }
 
 .pricing-item {
-	background: var(--white-color);
+	/* background: var(--white-color); */
 	border-radius: 20px;
 	margin-bottom: 30px;
 	padding: 40px;
+	color: #F8F8F8;
 }
 
 .pricing-item:last-child {
@@ -2293,7 +2294,7 @@ header.main-header .header-sticky.active {
 }
 
 .pricing-list ul li::marker {
-	color: var(--primary-color);
+	color: #F8F8F8;
 }
 
 /************************************/
@@ -2305,7 +2306,7 @@ header.main-header .header-sticky.active {
 	background-position: right -20px bottom 130px;
 	background-repeat: no-repeat;
 	background-size: auto;
-	padding: 100px 0;
+	padding: 10px 0;
 }
 
 .faqs-content {
@@ -2559,7 +2560,7 @@ header.main-header .header-sticky.active {
 /************************************/
 
 .main-footer {
-	padding: 100px 0 0;
+	padding: 50px 0 0;
 	margin-bottom: 50px;
 }
 
@@ -2718,7 +2719,7 @@ header.main-header .header-sticky.active {
 }
 
 .footer-links ul li a:hover {
-	color: var(--accent-color);
+	color: #F8F8F8;
 }
 
 .footer-working-hour-box ul {
@@ -2735,7 +2736,7 @@ header.main-header .header-sticky.active {
 .footer-copyright-text {
 	text-align: center;
 	border-top: 1px solid var(--dark-divider-color);
-	margin-top: 60px;
+	margin-top: 20px;
 	padding: 40px 0 60px;
 }
 
@@ -2811,7 +2812,7 @@ header.main-header .header-sticky.active {
 }
 
 .our-approach {
-	padding: 100px 0;
+	padding: 50px 0;
 }
 
 .approach-image {
@@ -2827,9 +2828,9 @@ header.main-header .header-sticky.active {
 
 .approach-image img {
 	width: 100%;
-	height: 100%;
+	/* height: 100%;
 	aspect-ratio: 1 / 1.061;
-	object-fit: cover;
+	object-fit: cover; */
 	border-radius: 20px;
 }
 
@@ -3238,7 +3239,7 @@ header.main-header .header-sticky.active {
 
 .sidebar-cta-box {
 	position: relative;
-	background: url('../images/sidebar-cta-bg.jpg') no-repeat;
+	background: url('../images/image-5.png') no-repeat;
 	background-position: center center;
 	background-size: cover;
 	border-radius: 20px;
@@ -4442,8 +4443,8 @@ header.main-header .header-sticky.active {
 	display: flex;
 	align-items: center;
 	border-bottom: 1px solid var(--divider-color);
-	margin-bottom: 40px;
-	padding-bottom: 40px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
 }
 
 .contact-info-item:last-child {
@@ -4584,7 +4585,7 @@ header.main-header .header-sticky.active {
 }
 
 .contact-form-map {
-	padding: 50px 0 100px;
+	padding: 20px 0 50px;
 }
 
 .contact-form-box {

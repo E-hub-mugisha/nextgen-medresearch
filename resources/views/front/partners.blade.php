@@ -2,7 +2,6 @@
 @section('title','Partnership & Collaboration')
 @section('content')
 
-
 <div class="how-it-work">
     <div class="container">
         <div class="row align-items-center">
@@ -12,51 +11,10 @@
                     <!-- How Work Image Start -->
                     <div class="how-work-image image-anime">
                         <figure>
-                            <img src="{{ asset('assets/images/why-choose-body-image.jpg') }}" alt="">
+                            <img src="{{ asset('assets/images/banner_New1.jpg') }}" alt="">
                         </figure>
                     </div>
                     <!-- How Work Image End -->
-
-                    <!-- Satisfy Client Box Start -->
-                    <div class="satisfy-client-box">
-                        <!-- Satisfy Client Images Start -->
-                        <div class="satisfy-client-images">
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-2.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-3.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-4.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-5.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- Satisfy Client Images End -->
-
-                        <!-- Satisfy Client Content Start -->
-                        <div class="satisfy-client-content">
-                            <h3>5+ Partners</h3>
-                            <p>Trusted by organizations, institutions, and researchers worldwide.</p>
-                        </div>
-                        <!-- Satisfy Client Content End -->
-                    </div>
-                    <!-- Satisfy Client Box End -->
                 </div>
                 <!-- How Work Image Box End -->
             </div>
@@ -132,7 +90,7 @@
                     <div class="section-title">
                         <h3 class="wow fadeInUp text-white" style="visibility: visible; animation-name: fadeInUp;" style="border: 1px solid #fff">Partnership</h3>
                         <h2 class="text-anime-style-3 text-white" data-cursor="-opaque" style="perspective: 400px;">
-                            Why Partner With Us?
+                            Why Partnership With Us?
                         </h2>
                         <p class="wow fadeInUp text-white" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Partner with us to expand mentorship and digital training across Africa.</p>
                     </div>

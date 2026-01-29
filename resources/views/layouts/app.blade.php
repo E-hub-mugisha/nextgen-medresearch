@@ -10,7 +10,7 @@
     <meta name="description"
         content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
     <link rel="shortcut icon" href="images/favicon.png">
-    <title>Dashboard | {{ config('app.name') }}</title>
+    <title>{{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('admin/assets/css/dashlitee1e3.css?ver=3.2.4') }}">
     <link id="skin-default" rel="stylesheet" href="{{ asset('admin/assets/css/themee1e3.css?ver=3.2.4') }}">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91615293-4"></script>
