@@ -32,7 +32,7 @@ Route::get('/mentorship_hub', [HomeController::class, 'mentorshipHub'])->name('m
 Route::get('/research_data', [HomeController::class, 'researchData'])->name('research_data');
 Route::get('/capacity_building', [HomeController::class, 'capacityBuilding'])->name('capacity_building');
 Route::get('/innovation_projects', [HomeController::class, 'innovationProjects'])->name('innovation_projects');
-Route::get('/partners', [HomeController::class, 'partners'])->name('partners');
+Route::get('/partnerships', [HomeController::class, 'partners'])->name('partners');
 Route::get('/our-impact', [HomeController::class, 'ourImpact'])->name('our-impact');
 Route::get('/rescue-sheets', [RescueSheetController::class, 'publicIndex'])->name('rescue.sheet.public');
 Route::get('/rescue/{slug}', [RescueSheetController::class, 'view'])->name('rescue.sheet.show');
