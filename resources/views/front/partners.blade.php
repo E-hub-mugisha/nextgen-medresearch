@@ -153,7 +153,6 @@
                 @else
                 <p>{{ $item->name }}</p>
                 @endif
-                <!-- <p class="mt-2">{{ $partner->name }}</p> -->
             </div>
             @endforeach
         </div>
