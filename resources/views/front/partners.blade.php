@@ -146,30 +146,17 @@
         </div>
         <!-- Partner Logos / Names -->
         <div class="row justify-content-center align-items-center mb-4">
-            @foreach($partners as $partner)
+            @foreach($partners as $item)
             <div class="col-6 col-md-2 text-center mb-3">
-                @if($partner->logo)
-                <img src="{{ asset('storage/' . $partner->logo) }}" alt="{{ $partner->name }}" class="img-fluid">
+                @if($item->logo)
+                <img src="{{ asset('storage/' . $item->logo) }}" alt="{{ $item->name }}" class="img-fluid">
                 @else
-                <p>{{ $partner->name }}</p>
+                <p>{{ $item->name }}</p>
                 @endif
                 <!-- <p class="mt-2">{{ $partner->name }}</p> -->
             </div>
             @endforeach
         </div>
-
-        <!-- Testimonial (if any) -->
-        @foreach($partners as $partner)
-        @if($partner->testimonial)
-        <div class="row justify-content-center mb-4">
-            <div class="col-md-8 text-center">
-                <blockquote class="blockquote">
-                    <p class="mb-0">{{ $partner->testimonial }}</p>
-                </blockquote>
-            </div>
-        </div>
-        @endif
-        @endforeach
     </div>
 </section>
 
