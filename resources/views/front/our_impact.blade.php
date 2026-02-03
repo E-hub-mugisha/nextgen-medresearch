@@ -12,48 +12,10 @@
                     <!-- Why Choose Image Start -->
                     <div class="why-choose-image">
                         <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
-                            <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="" style="transform: translate(0px, 0px);">
+                            <img src="{{ asset('assets/images/IYP_6213.jpg') }}" alt="" style="transform: translate(0px, 0px);">
                         </figure>
                     </div>
                     <!-- Why Choose Image End -->
-
-                    <!-- Satisfy Client Box Start -->
-                    <div class="satisfy-client-box">
-                        <!-- Satisfy Client Images Start -->
-                        <div class="satisfy-client-images">
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-2.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-3.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-4.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image add-more">
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                        </div>
-                        <!-- Satisfy Client Images End -->
-
-                        <!-- Satisfy Client Content Start -->
-                        <div class="satisfy-client-content">
-                            <h3>Proven Track Record</h3>
-                        </div>
-                        <!-- Satisfy Client Content End -->
-                    </div>
-                    <!-- Satisfy Client Box End -->
                 </div>
                 <!-- Why Choose Image Box End -->
             </div>
@@ -108,7 +70,7 @@
                         <!-- Why Choose Body Image Start -->
                         <div class="why-choose-body-image">
                             <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
-                                <img src="{{ asset('assets/images/why-choose-body-image.jpg') }}" alt="" style="transform: translate(0px, 0px);">
+                                <img src="{{ asset('assets/images/image-4.png') }}" alt="" style="transform: translate(0px, 0px);">
                             </figure>
                         </div>
                         <!-- Why Choose Body Image End -->

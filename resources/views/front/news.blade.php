@@ -31,7 +31,7 @@
                     <div class="post-featured-image">
                         <a href="{{ route('news.detail', $new->slug )}}" data-cursor-text="View">
                             <figure class="image-anime">
-                                <img src="{{ asset('assets/images/post-1.jpg') }}" alt="">
+                                <img src="{{ asset('storage/'.$new->featured_image) }}" alt="">
                             </figure>
                         </a>
                     </div>

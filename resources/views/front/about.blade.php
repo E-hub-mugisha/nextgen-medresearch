@@ -81,7 +81,7 @@
                 <!-- Approach Image Start -->
                 <div class="approach-image">
                     <figure class="image-anime">
-                        <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
+                        <img src="{{ asset('assets/images/image-3.png') }}" alt="">
                     </figure>
                 </div>
                 <!-- Approach Image End -->
@@ -128,7 +128,7 @@
 
                     <!-- Approach Button Start -->
                     <div class="approach-button wow fadeInUp" data-wow-delay="0.8s">
-                        <a href="#model" class="btn-default">our model</a>
+                        <a href="{{ route('our-impact') }}" class="btn-default">our Impact</a>
                     </div>
                     <!-- Approach Button End -->
                 </div>

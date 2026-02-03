@@ -35,17 +35,17 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                                 </li> -->
 
                                 <li class="nav-item">
-                                    <a class="nav-link {{ activeRoute('about') }}"
+                                    <a class="nav-link"
                                         href="{{ route('about') }}">Vision, Mission</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link {{ activeRoute('partners') }}"
+                                    <a class="nav-link"
                                         href="{{ route('partners') }}">Partnerships</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link {{ activeRoute('our-impact') }}"
+                                    <a class="nav-link"
                                         href="{{ route('our-impact') }}">Our Impact</a>
                                 </li>
                             </ul>

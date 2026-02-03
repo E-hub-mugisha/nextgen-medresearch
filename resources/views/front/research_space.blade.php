@@ -12,48 +12,10 @@
                     <!-- Why Choose Image Start -->
                     <div class="why-choose-image">
                         <figure class="image-anime ">
-                            <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
+                            <img src="{{ asset('assets/images/image-3.png') }}" alt="">
                         </figure>
                     </div>
                     <!-- Why Choose Image End -->
-
-                    <!-- Satisfy Client Box Start -->
-                    <div class="satisfy-client-box">
-                        <!-- Satisfy Client Images Start -->
-                        <div class="satisfy-client-images">
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-2.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-3.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-4.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image add-more">
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                        </div>
-                        <!-- Satisfy Client Images End -->
-
-                        <!-- Satisfy Client Content Start -->
-                        <div class="satisfy-client-content">
-                            <h3>Dissertation-Ready Research Topics</h3>
-                        </div>
-                        <!-- Satisfy Client Content End -->
-                    </div>
-                    <!-- Satisfy Client Box End -->
                 </div>
                 <!-- Why Choose Image Box End -->
             </div>
@@ -97,14 +59,6 @@
                             <!-- Why choose Button End -->
                         </div>
                         <!-- Why Choose Item Box End -->
-
-                        <!-- Why Choose Body Image Start -->
-                        <div class="why-choose-body-image">
-                            <figure class="image-anime ">
-                                <img src="{{ asset('assets/images/why-choose-body-image.jpg') }}" alt="">
-                            </figure>
-                        </div>
-                        <!-- Why Choose Body Image End -->
                     </div>
                     <!-- Why Choose Body End -->
                 </div>
@@ -116,7 +70,7 @@
 <!-- Why Choose Us Section End -->
 
 <!-- Why Choose Us Section Start -->
-<div class="why-choose-us">
+<div class="why-choose-us mb-3">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-5">
@@ -125,48 +79,11 @@
                     <!-- Why Choose Image Start -->
                     <div class="why-choose-image">
                         <figure class="image-anime ">
-                            <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
+                            <img src="{{ asset('assets/images/image-5.png') }}" alt="">
                         </figure>
                     </div>
                     <!-- Why Choose Image End -->
 
-                    <!-- Satisfy Client Box Start -->
-                    <div class="satisfy-client-box">
-                        <!-- Satisfy Client Images Start -->
-                        <div class="satisfy-client-images">
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-2.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-3.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-4.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image add-more">
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                        </div>
-                        <!-- Satisfy Client Images End -->
-
-                        <!-- Satisfy Client Content Start -->
-                        <div class="satisfy-client-content">
-                            <h3>Research Space Supports</h3>
-                        </div>
-                        <!-- Satisfy Client Content End -->
-                    </div>
-                    <!-- Satisfy Client Box End -->
                 </div>
                 <!-- Why Choose Image Box End -->
             </div>
@@ -191,34 +108,35 @@
                         <div class="why-choose-item-box">
                             <!-- Why Choose Item List Start -->
                             <div class="why-choose-item-list">
+                                <div class="row">
+                                    <p class="wow fadeInUp col-md-6" data-wow-delay="0.2s">
+                                        1. Medical students & interns
+                                    </p>
+                                    <p class="wow fadeInUp col-md-6" data-wow-delay="0.2s">
+                                        2. Residents & fellows
+                                    </p>
 
-                                <p class="wow fadeInUp" data-wow-delay="0.2s">
-                                    1. Medical students & interns
-                                </p>
-                                <p class="wow fadeInUp" data-wow-delay="0.2s">
-                                    2. Residents & fellows
-                                </p>
+                                    <p class="wow fadeInUp col-md-6" data-wow-delay="0.2s">
+                                        3. Early-career clinicians
+                                    </p>
+                                    <p class="wow fadeInUp col-md-6" data-wow-delay="0.2s">
+                                        4. Allied health professionals
+                                    </p>
 
-                                <p class="wow fadeInUp" data-wow-delay="0.2s">
-                                    3. Early-career clinicians
-                                </p>
-                                <p class="wow fadeInUp" data-wow-delay="0.2s">
-                                    4. Allied health professionals
-                                </p>
+                                    <p class="wow fadeInUp col-md-6" data-wow-delay="0.2s">
+                                        5. Academic institutions
+                                    </p>
 
-                                <p class="wow fadeInUp" data-wow-delay="0.2s">
-                                    5. Academic institutions
-                                </p>
+                                    <p class="wow fadeInUp col-md-6" data-wow-delay="0.2s">
+                                        6. Public health researchers
+                                    </p>
 
-                                <p class="wow fadeInUp" data-wow-delay="0.2s">
-                                    6. Public health researchers
-                                </p>
+                                    <p class="wow fadeInUp col-md-6" data-wow-delay="0.2s">
+                                        7. NGOs & policy partners
+                                    </p>
 
-                                <p class="wow fadeInUp" data-wow-delay="0.2s">
-                                    7. NGOs & policy partners
-                                </p>
-
-                                <p class="wow fadeInUp" data-wow-delay="0.2s"> 8. Independent researchers</p>
+                                    <p class="wow fadeInUp col-md-6" data-wow-delay="0.2s"> 8. Independent researchers</p>
+                                </div>
                             </div>
                             <!-- Why Choose Item List End -->
 
@@ -247,7 +165,7 @@
                 <!-- Approach Image Start -->
                 <div class="approach-image">
                     <figure class="image-anime ">
-                        <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
+                        <img src="{{ asset('assets/images/image-4.png') }}" alt="">
                     </figure>
                 </div>
                 <!-- Approach Image End -->
@@ -258,7 +176,7 @@
                 <div class="approach-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        
+
                         <h2 class="text-anime-style-3" data-cursor="-opaque" style="font-size: 30px;">Why This Space is Important</h2>
                         <p class="wow fadeInUp" data-wow-delay="0.2s">
                             Many students struggle with unclear topics, lack of direction, or choosing research ideas that are either too broad or not academically relevant.

@@ -4,7 +4,7 @@
                                 data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a><a href="#"
                                 class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex"
                                 data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a></div>
-                <div class="nk-sidebar-brand"><a href="index.html" class="logo-link nk-sidebar-logo"><img
+                <div class="nk-sidebar-brand"><a href="{{ route('dashboard')}}" class="logo-link nk-sidebar-logo"><img
                                         class="logo-light logo-img" src="{{ asset('assets/images/logo-white.png') }}" srcset="{{ asset('assets/images/logo-white.png') }} 2x"
                                         alt="logo"><img class="logo-dark logo-img" src="{{ asset('assets/images/logo-white.png') }}"
                                         srcset="{{ asset('assets/images/logo-dark.png') }} 2x" alt="logo-dark"></a></div>

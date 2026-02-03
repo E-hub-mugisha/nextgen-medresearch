@@ -255,48 +255,11 @@
                     <!-- Why Choose Image Start -->
                     <div class="why-choose-image">
                         <figure class="image-anime">
-                            <img src="{{ asset('assets/images/why-choose-image.jpg') }}" alt="">
+                            <img src="{{ asset('assets/images/image-3.png') }}" alt="">
                         </figure>
                     </div>
                     <!-- Why Choose Image End -->
 
-                    <!-- Satisfy Client Box Start -->
-                    <div class="satisfy-client-box">
-                        <!-- Satisfy Client Images Start -->
-                        <div class="satisfy-client-images">
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-2.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-3.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-4.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image add-more">
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-                        </div>
-                        <!-- Satisfy Client Images End -->
-
-                        <!-- Satisfy Client Content Start -->
-                        <div class="satisfy-client-content">
-                            <h3>Proven Track Record</h3>
-                        </div>
-                        <!-- Satisfy Client Content End -->
-                    </div>
-                    <!-- Satisfy Client Box End -->
                 </div>
                 <!-- Why Choose Image Box End -->
             </div>
@@ -363,7 +326,7 @@
                         <!-- Why Choose Body Image Start -->
                         <div class="why-choose-body-image">
                             <figure class="image-anime">
-                                <img src="{{ asset('assets/images/why-choose-body-image.jpg') }}" alt="">
+                                <img src="{{ asset('assets/images/image-1.png') }}" alt="">
                             </figure>
                         </div>
                         <!-- Why Choose Body Image End -->
@@ -592,46 +555,43 @@
 <!-- Our FAQs Section End -->
 
 <!-- Our Testimonial Section Start -->
+@if($testimonials->isNotEmpty())
 <div class="our-testimonials bg-section dark-section parallaxie">
     <div class="container">
         <div class="row section-row align-items-center">
             <div class="col-lg-12">
-                <!-- Section Title Start -->
                 <div class="section-title section-title-center">
                     <h3 class="wow fadeInUp">Our Testimonials</h3>
-                    <h2 class="text-anime-style-3" data-cursor="-opaque">What our community say about their experience with us</h2>
+                    <h2 class="text-anime-style-3" data-cursor="-opaque">
+                        What our community say about their experience with us
+                    </h2>
                 </div>
-                <!-- Section Title End -->
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-12">
-                <!-- Testimonial Slider Start -->
                 <div class="testimonial-slider">
                     <div class="swiper">
                         <div class="swiper-wrapper" data-cursor-text="Drag">
                             @foreach($testimonials as $testimonial)
-                            <!-- Testimonial Slide Start -->
                             <div class="swiper-slide">
                                 <div class="testimonial-item">
                                     <div class="author-image">
                                         <figure class="image-anime">
-                                            <img src="{{ asset('assets/images/author-1.jpg') }}" alt="">
+                                            <img src="{{ asset('assets/images/author-1.jpg') }}" alt="{{ $testimonial->name }}">
                                         </figure>
-                                        <!-- <div class="video-play-button">
-                                            <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
-                                                <i class="fa-solid fa-play"></i>
-                                            </a>
-                                        </div> -->
                                     </div>
+
                                     <div class="testimonial-content">
                                         <div class="testimonial-quote">
                                             <img src="{{ asset('assets/images/testimonial-quote.svg') }}" alt="">
                                         </div>
+
                                         <div class="testimonial-info">
                                             <p>{{ $testimonial->testimonial }}</p>
                                         </div>
+
                                         <div class="author-content">
                                             <h3>{{ $testimonial->name }}</h3>
                                             <p>{{ $testimonial->role }}</p>
@@ -639,17 +599,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Testimonial Slide End -->
                             @endforeach
                         </div>
+
                         <div class="testimonial-pagination"></div>
                     </div>
                 </div>
-                <!-- Testimonial Slider End -->
             </div>
         </div>
     </div>
 </div>
+@endif
+
 <!-- Our Testimonial Section End -->
 
 <!-- Our Blog Section Start -->
