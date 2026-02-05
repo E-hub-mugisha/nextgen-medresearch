@@ -86,7 +86,7 @@
                         <td>
                             @if($sheet->qr_code_path)
                             <a href="{{ route('rescue.sheet.show',$sheet->slug) }}" target="_blank">
-                                <img src="{{ asset('storage/'.$sheet->qr_code_path) }}" width="60" alt="QR Code">
+                                <img src="{{ asset($sheet->qr_code_path) }}" width="60" alt="QR Code">
                             </a>
                             @endif
                         </td>

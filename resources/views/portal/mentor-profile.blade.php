@@ -32,7 +32,7 @@
                         <!-- Team Single Image Start -->
                         <div class="team-single-image">
                             <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
-                                <img src="{{ asset('assets/images/team-2.jpg') }}" alt="" style="transform: translate(0px, 0px);">
+                                <img src="{{ asset('assets/images/default-profile.png') }}" alt="" style="transform: translate(0px, 0px);">
                             </figure>
                         </div>
                         <!-- Team Single Image End -->
@@ -223,7 +223,7 @@
                         <div class="team-image">
                             <a href="{{ route('mentor.profile',$simMentor->id) }}" data-cursor-text="View">
                                 <figure>
-                                    <img src="{{ asset('assets/images/team-1.jpg') }}" alt="">
+                                    <img src="{{ asset('assets/images/default-profile.png') }}" alt="">
                                 </figure>
                             </a>
 

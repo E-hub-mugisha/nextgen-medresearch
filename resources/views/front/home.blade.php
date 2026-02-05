@@ -198,7 +198,7 @@
                 <div class="service-item wow fadeInUp">
                     <!-- Service Image Start -->
                     <div class="service-image">
-                        <img src="{{ asset('storage/' . $program->icon) }}" alt="">
+                        <img src="{{ asset($program->icon) }}" alt="">
                     </div>
                     <!-- Service Image End -->
 
@@ -324,11 +324,11 @@
                         <!-- Why Choose Item Box End -->
 
                         <!-- Why Choose Body Image Start -->
-                        <div class="why-choose-body-image">
+                        <!-- <div class="why-choose-body-image">
                             <figure class="image-anime">
                                 <img src="{{ asset('assets/images/image-1.png') }}" alt="">
                             </figure>
-                        </div>
+                        </div> -->
                         <!-- Why Choose Body Image End -->
                     </div>
                     <!-- Why Choose Body End -->
@@ -478,7 +478,7 @@
                     <!-- Case Study Image Start-->
                     <div class="case-study-image">
                         <figure class="image-anime">
-                            <img src="{{ asset('storage/'.$research->featured_image) }}" alt="">
+                            <img src="{{ asset($research->featured_image) }}" alt="">
                         </figure>
 
                         <!-- Case Study Button Start-->
@@ -645,7 +645,7 @@
                         <a href="{{ route('news.detail', $new->slug )}}" data-cursor-text="View">
                             <figure class="image-anime">
                                 @if ($new->featured_image)
-                                <img src="{{ asset('storage/'.$new->featured_image) }}" alt="">
+                                <img src="{{ asset($new->featured_image) }}" alt="">
                                 @else
                                 <span class="text-muted">No Image</span>
                                 @endif

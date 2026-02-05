@@ -14,9 +14,7 @@
             <a href="{{ route('admin.events.index') }}" class="btn btn-outline-secondary btn-sm p-3">
                 ← Back
             </a>
-            <a href="{{ route('admin.events.edit', $event) }}" class="btn btn-primary btn-sm p-3">
-                <i class="bi bi-pencil"></i> Edit
-            </a>
+            
         </div>
     </div>
 
@@ -31,7 +29,7 @@
                     @if($event->banner)
                         <div class="mb-4">
                             <img
-                                src="{{ asset('storage/' . $event->banner) }}"
+                                src="{{ asset($event->banner) }}"
                                 alt="{{ $event->title }}"
                                 class="img-fluid rounded w-100"
                                 style="max-height: 320px; object-fit: cover;"

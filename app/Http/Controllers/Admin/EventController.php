@@ -36,9 +36,23 @@ class EventController extends Controller
 
 
         if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
-            $data['banner'] = $request
-                ->file('banner')
-                ->store('events', 'public');
+
+            $image     = $request->file('banner');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/events
+            $destinationPath = public_path('events');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['banner'] = 'events/' . $fileName;
         }
 
         Event::create($data);
@@ -69,9 +83,24 @@ class EventController extends Controller
         ]);
 
         if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
-            $data['banner'] = $request
-                ->file('banner')
-                ->store('events', 'public');
+
+            // Delete old image
+            if ($event->banner && file_exists(public_path($event->banner))) {
+                unlink(public_path($event->banner));
+            }
+
+            $image    = $request->file('banner');
+            $fileName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('events');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $image->move($destinationPath, $fileName);
+
+            $data['banner'] = 'events/' . $fileName;
         }
 
         $event->update($data);
@@ -81,7 +110,9 @@ class EventController extends Controller
 
     public function destroy(Event $event)
     {
-
+        if ($event->banner && file_exists(public_path($event->banner))) {
+            unlink(public_path($event->banner));
+        }
         $event->delete();
 
         return back()->with('success', 'Event deleted successfully.');

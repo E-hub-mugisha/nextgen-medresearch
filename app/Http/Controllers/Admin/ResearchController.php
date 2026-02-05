@@ -43,12 +43,44 @@ class ResearchController extends Controller
         $data['slug'] = $slug;
         $data['created_by'] = auth()->id();
 
-        if ($request->hasFile('document')) {
-            $data['document'] = $request->file('document')->store('research/docs', 'public');
+        if ($request->hasFile('document') && $request->file('document')->isValid()) {
+
+            $image     = $request->file('document');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/research
+            $destinationPath = public_path('research');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['document'] = 'research/' . $fileName;
         }
 
-        if ($request->hasFile('featured_image')) {
-            $data['featured_image'] = $request->file('featured_image')->store('research/images', 'public');
+        if ($request->hasFile('featured_image') && $request->file('featured_image')->isValid()) {
+
+            $image     = $request->file('featured_image');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/research
+            $destinationPath = public_path('research');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['featured_image'] = 'research/' . $fileName;
         }
 
         Research::create($data);
@@ -75,12 +107,44 @@ class ResearchController extends Controller
         $data['slug'] = Str::slug($request->title);
         $data['updated_by'] = auth()->id();
 
-        if ($request->hasFile('document')) {
-            $data['document'] = $request->file('document')->store('research/docs', 'public');
+        if ($request->hasFile('document') && $request->file('document')->isValid()) {
+
+            $image     = $request->file('document');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/research
+            $destinationPath = public_path('research');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['document'] = 'research/' . $fileName;
         }
 
-        if ($request->hasFile('featured_image')) {
-            $data['featured_image'] = $request->file('featured_image')->store('research/images', 'public');
+        if ($request->hasFile('featured_image') && $request->file('featured_image')->isValid()) {
+
+            $image     = $request->file('featured_image');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/research
+            $destinationPath = public_path('research');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['featured_image'] = 'research/' . $fileName;
         }
 
         $research->update($data);

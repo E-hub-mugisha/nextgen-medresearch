@@ -26,13 +26,30 @@ class PartnerController extends Controller
         ]);
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
-            $data['logo'] = $request->file('logo')->store('partners', 'public');
+
+            $image     = $request->file('logo');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/partners
+            $destinationPath = public_path('partners');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['logo'] = 'partners/' . $fileName;
         }
 
         Partner::create($data);
 
         return back()->with('success', 'Partner added successfully.');
     }
+
 
     public function update(Request $request, Partner $partner)
     {
@@ -45,7 +62,24 @@ class PartnerController extends Controller
         ]);
 
         if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
-            $data['logo'] = $request->file('logo')->store('partners', 'public');
+
+            // Delete old image
+            if ($partner->logo && file_exists(public_path($partner->logo))) {
+                unlink(public_path($partner->logo));
+            }
+
+            $image    = $request->file('logo');
+            $fileName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('partners');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $image->move($destinationPath, $fileName);
+
+            $data['logo'] = 'partners/' . $fileName;
         }
 
         $partner->update($data);
@@ -53,10 +87,11 @@ class PartnerController extends Controller
         return back()->with('success', 'Partner updated successfully.');
     }
 
+
     public function destroy(Partner $partner)
     {
-        if ($partner->logo && file_exists('uploads/partners/'.$partner->logo)) {
-            unlink('uploads/partners/'.$partner->logo);
+        if ($partner->logo && file_exists(public_path($partner->logo))) {
+            unlink(public_path($partner->logo));
         }
 
         $partner->delete();

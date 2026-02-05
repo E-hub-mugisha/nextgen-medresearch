@@ -24,9 +24,11 @@ class ResearchKitController extends Controller
     public function download($id)
     {
         $kit = ResearchKit::findOrFail($id);
+
         if (!$kit->file_path || !file_exists(public_path($kit->file_path))) {
             return redirect()->back()->with('error', 'File not found.');
         }
+
         return response()->download(public_path($kit->file_path));
     }
 
@@ -39,16 +41,26 @@ class ResearchKitController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'required|in:active,inactive',
+            'title'         => 'required|string|max:255',
+            'description'   => 'nullable|string',
+            'status'        => 'required|in:active,inactive',
             'display_order' => 'nullable|integer',
-            'file' => 'nullable|file|mimes:pdf,zip,doc,docx',
+            'file'          => 'nullable|file|mimes:pdf,zip,doc,docx',
         ]);
 
-        if ($request->hasFile('file')) {
-            $data['file_path'] = $request->file('file')
-                ->store('research_kits', 'public');
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+
+            $destinationPath = public_path('research_kits');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $file     = $request->file('file');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $fileName);
+
+            $data['file_path'] = 'research_kits/' . $fileName;
         }
 
         ResearchKit::create($data);
@@ -59,19 +71,31 @@ class ResearchKitController extends Controller
     public function update(Request $request, ResearchKit $researchKit)
     {
         $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'required|in:active,inactive',
+            'title'         => 'required|string|max:255',
+            'description'   => 'nullable|string',
+            'status'        => 'required|in:active,inactive',
             'display_order' => 'nullable|integer',
-            'file' => 'nullable|file|mimes:pdf,zip,doc,docx',
+            'file'          => 'nullable|file|mimes:pdf,zip,doc,docx',
         ]);
 
-        if ($request->hasFile('file')) {
-            if ($researchKit->file_path) {
-                Storage::disk('public')->delete($researchKit->file_path);
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+
+            // Delete old file
+            if ($researchKit->file_path && file_exists(public_path($researchKit->file_path))) {
+                unlink(public_path($researchKit->file_path));
             }
-            $data['file_path'] = $request->file('file')
-                ->store('research_kits', 'public');
+
+            $destinationPath = public_path('research_kits');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $file     = $request->file('file');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($destinationPath, $fileName);
+
+            $data['file_path'] = 'research_kits/' . $fileName;
         }
 
         $researchKit->update($data);
@@ -81,8 +105,8 @@ class ResearchKitController extends Controller
 
     public function destroy(ResearchKit $researchKit)
     {
-        if ($researchKit->file_path) {
-            Storage::disk('public')->delete($researchKit->file_path);
+        if ($researchKit->file_path && file_exists(public_path($researchKit->file_path))) {
+            unlink(public_path($researchKit->file_path));
         }
 
         $researchKit->delete();

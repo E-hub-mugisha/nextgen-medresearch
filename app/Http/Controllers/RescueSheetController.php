@@ -26,42 +26,56 @@ class RescueSheetController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title'         => 'required|string|max:255',
             'vehicle_model' => 'nullable|string|max:255',
-            'file' => 'required|file|mimes:pdf,png,jpg,jpeg',
-            'language' => 'nullable',
+            'file'          => 'required|file|mimes:pdf,png,jpg,jpeg',
+            'language'      => 'nullable',
         ]);
 
-        // Ensure qr_codes folder exists
-        if (!Storage::disk('public')->exists('qr_codes')) {
-            Storage::disk('public')->makeDirectory('qr_codes');
+        // Ensure folders exist
+        $rescuePath = public_path('rescue_sheets');
+        $qrPathDir  = public_path('qr_codes');
+
+        if (!file_exists($rescuePath)) {
+            mkdir($rescuePath, 0755, true);
         }
 
-        // Upload file
-        $filePath = $request->file('file')->store('rescue_sheets', 'public');
+        if (!file_exists($qrPathDir)) {
+            mkdir($qrPathDir, 0755, true);
+        }
+
+        // Upload file to public/rescue_sheets
+        $file      = $request->file('file');
+        $fileName  = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        $file->move($rescuePath, $fileName);
+
+        $filePath = 'rescue_sheets/' . $fileName; // DB path
 
         // Generate unique slug
         $slug = Str::slug($request->title) . '-' . time();
 
-        // Generate QR Code
+        // Generate QR Code (SVG)
         $qrFileName = $slug . '.svg';
-        $qrPath = 'qr_codes/' . $qrFileName;
+        $qrFullPath = $qrPathDir . '/' . $qrFileName;
 
         $qrImage = QrCode::format('svg')
             ->size(200)
             ->generate(route('rescue.sheet.show', $slug));
 
-        Storage::disk('public')->put($qrPath, $qrImage);   // ✅ FIX
+        // Save QR code to public/qr_codes
+        file_put_contents($qrFullPath, $qrImage);
+
+        $qrPath = 'qr_codes/' . $qrFileName; // DB path
 
         // Save record
         RescueSheet::create([
-            'title' => $request->title,
+            'title'         => $request->title,
             'vehicle_model' => $request->vehicle_model,
-            'langugage' => $request->language,
-            'slug' => $slug,
-            'file_path' => $filePath,
-            'qr_code_path' => $qrPath,
-            'status' => 'published',
+            'langugage'     => $request->language, // (typo preserved from your model)
+            'slug'          => $slug,
+            'file_path'     => $filePath,
+            'qr_code_path'  => $qrPath,
+            'status'        => 'published',
         ]);
 
         return back()->with('success', 'Rescue sheet uploaded successfully!');
@@ -80,39 +94,75 @@ class RescueSheetController extends Controller
     /**
      * Update the specified rescue sheet
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, RescueSheet $rescueSheet)
     {
-        $sheet = RescueSheet::findOrFail($id);
-
         $request->validate([
-            'title' => 'required|string|max:255',
-            'language' => 'nullable',
+            'title'         => 'required|string|max:255',
             'vehicle_model' => 'nullable|string|max:255',
-            'file' => 'nullable|file|mimes:pdf,png,jpg,jpeg',
+            'file'          => 'nullable|file|mimes:pdf,png,jpg,jpeg',
+            'language'      => 'nullable',
         ]);
 
-        $sheet->title = $request->title;
-        $sheet->vehicle_model = $request->vehicle_model;
-        $sheet->language = $request->language;
+        $data = $request->only(['title', 'vehicle_model', 'language']);
 
-        // If a new file is uploaded
-        if ($request->hasFile('file')) {
-            // Delete old file
-            if ($sheet->file_path && Storage::disk('public')->exists($sheet->file_path)) {
-                Storage::disk('public')->delete($sheet->file_path);
-            }
-            $filePath = $request->file('file')->store('rescue_sheets', 'public');
-            $sheet->file_path = $filePath;
+        // Ensure folders exist
+        $rescuePath = public_path('rescue_sheets');
+        $qrPathDir  = public_path('qr_codes');
 
-            // Regenerate QR code
-            $publicUrl = url('/rescue/' . $sheet->slug);
-            $qrFileName = $sheet->slug . '.png';
-            $qrPath = 'qr_codes/' . $qrFileName;
-            QrCode::format('png')->size(300)->generate($publicUrl, storage_path('app/public/' . $qrPath));
-            $sheet->qr_code_path = $qrPath;
+        if (!file_exists($rescuePath)) {
+            mkdir($rescuePath, 0755, true);
         }
 
-        $sheet->save();
+        if (!file_exists($qrPathDir)) {
+            mkdir($qrPathDir, 0755, true);
+        }
+
+        // Regenerate slug if title changed
+        if ($request->title !== $rescueSheet->title) {
+            $slug = Str::slug($request->title) . '-' . time();
+            $data['slug'] = $slug;
+
+            // Regenerate QR code
+            $qrFileName = $slug . '.svg';
+            $qrFullPath = $qrPathDir . '/' . $qrFileName;
+
+            $qrImage = QrCode::format('svg')
+                ->size(200)
+                ->generate(route('rescue.sheet.show', $slug));
+
+            // Delete old QR
+            if ($rescueSheet->qr_code_path && file_exists(public_path($rescueSheet->qr_code_path))) {
+                unlink(public_path($rescueSheet->qr_code_path));
+            }
+
+            file_put_contents($qrFullPath, $qrImage);
+            $data['qr_code_path'] = 'qr_codes/' . $qrFileName;
+        }
+
+        // Replace uploaded file if new file provided
+        if ($request->hasFile('file') && $request->file('file')->isValid()) {
+
+            // Delete old file
+            if ($rescueSheet->file_path && file_exists(public_path($rescueSheet->file_path))) {
+                unlink(public_path($rescueSheet->file_path));
+            }
+
+            $file     = $request->file('file');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move($rescuePath, $fileName);
+
+            $data['file_path'] = 'rescue_sheets/' . $fileName;
+        }
+
+        // Update DB
+        $rescueSheet->update([
+            'title'         => $data['title'],
+            'vehicle_model' => $data['vehicle_model'] ?? null,
+            'langugage'     => $data['language'] ?? null, // keeping your column name
+            'slug'          => $data['slug'] ?? $rescueSheet->slug,
+            'file_path'     => $data['file_path'] ?? $rescueSheet->file_path,
+            'qr_code_path'  => $data['qr_code_path'] ?? $rescueSheet->qr_code_path,
+        ]);
 
         return back()->with('success', 'Rescue sheet updated successfully!');
     }
@@ -125,13 +175,13 @@ class RescueSheetController extends Controller
         $sheet = RescueSheet::findOrFail($id);
 
         // Delete file
-        if ($sheet->file_path && Storage::disk('public')->exists($sheet->file_path)) {
-            Storage::disk('public')->delete($sheet->file_path);
+        if ($sheet->file_path && file_exists(public_path($sheet->file_path))) {
+            unlink(public_path($sheet->file_path));
         }
 
         // Delete QR code
-        if ($sheet->qr_code_path && Storage::disk('public')->exists($sheet->qr_code_path)) {
-            Storage::disk('public')->delete($sheet->qr_code_path);
+        if ($sheet->qr_code_path && file_exists(public_path($sheet->qr_code_path))) {
+            unlink(public_path($sheet->qr_code_path));
         }
 
         $sheet->delete();
@@ -145,9 +195,19 @@ class RescueSheetController extends Controller
     public function view($slug)
     {
         $sheet = RescueSheet::where('slug', $slug)->firstOrFail();
+
+        // Count QR scans
         $sheet->increment('scan_count');
-        return response()->file(storage_path('app/public/' . $sheet->file_path));
+
+        $filePath = public_path($sheet->file_path);
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found');
+        }
+
+        return response()->file($filePath);
     }
+
 
     public function publicIndex(Request $request)
     {

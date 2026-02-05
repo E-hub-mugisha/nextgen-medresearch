@@ -87,7 +87,7 @@
                         <label>Icon</label><br>
 
                         @if($program->icon)
-                        <img src="{{ asset('storage/' . $program->icon) }}"
+                        <img src="{{ asset($program->icon) }}"
                             height="80" class="mb-2 rounded">
                         @endif
 

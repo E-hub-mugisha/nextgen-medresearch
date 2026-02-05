@@ -41,13 +41,13 @@
 
                 @if($research->document)
                     <p><strong>Document:</strong> 
-                        <a href="{{ asset('storage/'.$research->document) }}" target="_blank" class="btn btn-sm btn-outline-primary">Download</a>
+                        <a href="{{ asset($research->document) }}" target="_blank" class="btn btn-sm btn-outline-primary">Download</a>
                     </p>
                 @endif
 
                 @if($research->featured_image)
                     <p><strong>Featured Image:</strong></p>
-                    <img src="{{ asset('storage/'.$research->featured_image) }}" class="img-fluid rounded" alt="Featured Image">
+                    <img src="{{ asset($research->featured_image) }}" class="img-fluid rounded" alt="Featured Image">
                 @endif
             </div>
         </div>

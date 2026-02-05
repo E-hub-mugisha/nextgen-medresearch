@@ -13,7 +13,7 @@
                     <!-- Case Study Image Start-->
                     <div class="case-study-image">
                         <figure class="image-anime">
-                            <img src="{{ asset('storage/' . $project->banner) }}" alt="">
+                            <img src="{{ asset($project->banner) }}" alt="">
                         </figure>
 
                         <!-- Case Study Button Start-->

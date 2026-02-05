@@ -103,29 +103,9 @@
                 <!-- RIGHT SIDE -->
                 <div class="d-flex align-items-center gap-3">
 
-                    <!-- Notifications -->
-                    <div class="dropdown">
-                        <i class="fa-solid fa-bell fs-5 notification-bell" data-bs-toggle="dropdown"></i>
-                        <span class="badge bg-danger">3</span>
-
-                        <ul class="dropdown-menu dropdown-menu-end shadow">
-                            <li class="dropdown-header fw-bold">Notifications</li>
-                            <li>
-                                <hr>
-                            </li>
-                            <li><a class="dropdown-item">New collaboration request</a></li>
-                            <li><a class="dropdown-item">Project update received</a></li>
-                            <li><a class="dropdown-item">New message from mentor</a></li>
-                            <li>
-                                <hr>
-                            </li>
-                            <li><a class="dropdown-item text-center text-primary">View All</a></li>
-                        </ul>
-                    </div>
-
                     <!-- Profile Dropdown -->
                     <div class="dropdown">
-                        <img src="https://i.pravatar.cc/150?img=12" class="profile-img" data-bs-toggle="dropdown">
+                        <img src="{{ asset('assets/images/default-profile.png') }}" alt="Profile" class="profile-img" data-bs-toggle="dropdown">
 
                         <ul class="dropdown-menu dropdown-menu-end shadow">
                             <li class="dropdown-header text-center">

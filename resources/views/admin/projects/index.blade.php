@@ -46,7 +46,7 @@
 
                 <td>
                     @if($project->banner)
-                    <img src="{{ asset('storage/' . $project->banner) }}" width="70" class="rounded shadow-sm">
+                    <img src="{{ asset($project->banner) }}" width="70" class="rounded shadow-sm">
                     @else
                     <span class="text-muted">No banner</span>
                     @endif

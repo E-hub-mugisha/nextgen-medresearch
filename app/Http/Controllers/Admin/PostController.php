@@ -29,10 +29,24 @@ class PostController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        $image = null;
+        if ($request->hasFile('featured_image') && $request->file('featured_image')->isValid()) {
 
-        if ($request->hasFile('featured_image')) {
-            $image = $request->file('featured_image')->store('posts', 'public');
+            $image     = $request->file('featured_image');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/posts
+            $destinationPath = public_path('posts');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['featured_image'] = 'posts/' . $fileName;
         }
 
         Post::create([
@@ -41,7 +55,7 @@ class PostController extends Controller
             'category_id'  => $request->category_id,
             'excerpt'      => $request->excerpt,
             'content'      => $request->content,
-            'featured_image' => $image,
+            'featured_image' => $data['featured_image'] ?? null,
             'status'       => $request->status,
             'featured'     => $request->featured ? 1 : 0,
             'publish_at'   => $request->publish_at,
@@ -64,11 +78,27 @@ class PostController extends Controller
             'category_id' => 'required',
         ]);
 
-        if ($request->hasFile('featured_image')) {
-            $image = $request->file('featured_image')->store('posts', 'public');
-        } else {
-            $image = $post->featured_image;
+        if ($request->hasFile('featured_image') && $request->file('featured_image')->isValid()) {
+
+            // Delete old image
+            if ($post->featured_image && file_exists(public_path($post->featured_image))) {
+                unlink(public_path($post->featured_image));
+            }
+
+            $image    = $request->file('featured_image');
+            $fileName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            $destinationPath = public_path('posts');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $image->move($destinationPath, $fileName);
+
+            $data['featured_image'] = 'posts/' . $fileName;
         }
+
 
         $post->update([
             'title'        => $request->title,
@@ -76,7 +106,7 @@ class PostController extends Controller
             'category_id'  => $request->category_id,
             'excerpt'      => $request->excerpt,
             'content'      => $request->content,
-            'featured_image' => $image,
+            'featured_image' => $data['featured_image'] ?? $post->featured_image,
             'status'       => $request->status,
             'featured'     => $request->featured ? 1 : 0,
             'publish_at'   => $request->publish_at,

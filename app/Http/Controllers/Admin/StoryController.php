@@ -31,10 +31,24 @@ class StoryController extends Controller
             'featured'    => 'boolean',
         ]);
 
-        if ($request->hasFile('image')) {
-            $filename = time() . '.' . $request->image->extension();
-            $request->image->move('uploads/stories/', $filename);
-            $data['image'] = $filename;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $image     = $request->file('image');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/resources
+            $destinationPath = public_path('resources');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['image'] = 'resources/' . $fileName;
         }
 
         Story::create($data);
@@ -55,14 +69,24 @@ class StoryController extends Controller
             'featured'    => 'boolean',
         ]);
 
-        if ($request->hasFile('image')) {
-            if ($story->image && file_exists('uploads/stories/' . $story->image)) {
-                unlink('uploads/stories/' . $story->image);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $image     = $request->file('image');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/resources
+            $destinationPath = public_path('resources');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
             }
 
-            $filename = time() . '.' . $request->image->extension();
-            $request->image->move('uploads/stories/', $filename);
-            $data['image'] = $filename;
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['image'] = 'resources/' . $fileName;
         }
 
         $story->update($data);
@@ -72,8 +96,8 @@ class StoryController extends Controller
 
     public function destroy(Story $story)
     {
-        if ($story->image && file_exists('uploads/stories/' . $story->image)) {
-            unlink('uploads/stories/' . $story->image);
+        if ($story->image && file_exists(public_path($story->image))) {
+            unlink(public_path($story->image));
         }
 
         $story->delete();

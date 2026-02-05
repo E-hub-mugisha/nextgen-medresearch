@@ -28,9 +28,23 @@ class ResourceController extends Controller
         ]);
 
         if ($request->hasFile('file_path') && $request->file('file_path')->isValid()) {
-            $data['file_path'] = $request
-                ->file('file_path')
-                ->store('resources', 'public');
+
+            $image     = $request->file('file_path');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/resources
+            $destinationPath = public_path('resources');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['file_path'] = 'resources/' . $fileName;
         }
 
         Resource::create($data);

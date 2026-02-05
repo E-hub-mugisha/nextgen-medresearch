@@ -43,7 +43,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
-                        <img src="{{ $member->photo ? asset('storage/'.$member->photo) : asset('images/default-avatar.png') }}"
+                        <img src="{{ $member->photo ? asset($member->photo) : asset('images/default-avatar.png') }}"
                              class="rounded-circle border" width="50" height="50" style="object-fit:cover;">
                     </td>
                     <td class="fw-semibold">{{ $member->name }}</td>
@@ -85,7 +85,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
                             <div class="modal-body text-center">
-                                <img src="{{ $member->photo ? asset('storage/'.$member->photo) : asset('images/default-avatar.png') }}"
+                                <img src="{{ $member->photo ? asset($member->photo) : asset('images/default-avatar.png') }}"
                                      class="rounded-circle mb-3" width="120" height="120" style="object-fit:cover;">
                                 <h4>{{ $member->name }}</h4>
                                 <p class="text-muted">{{ $member->position }}</p>

@@ -53,7 +53,23 @@ class ProgramController extends Controller
         $data['featured'] = $request->boolean('featured');
 
         if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
-            $data['icon'] = $request->file('icon')->store('programs', 'public');
+
+            $image     = $request->file('icon');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/programs
+            $destinationPath = public_path('programs');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['icon'] = 'programs/' . $fileName;
         }
 
         Program::create($data);
@@ -96,7 +112,23 @@ class ProgramController extends Controller
 
         // Handle icon upload
         if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
-            $data['icon'] = $request->file('icon')->store('programs', 'public');
+
+            $image     = $request->file('icon');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/programs
+            $destinationPath = public_path('programs');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['icon'] = 'programs/' . $fileName;
         }
 
         $program->update($data);

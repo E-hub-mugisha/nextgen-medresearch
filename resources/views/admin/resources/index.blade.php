@@ -52,7 +52,7 @@
 
                 <td>
                     @if($item->file_path)
-                    <a href="{{ asset('storage/' . $item->file_path) }}" target="_blank" class="btn btn-sm btn-secondary">
+                    <a href="{{ asset($item->file_path) }}" target="_blank" class="btn btn-sm btn-secondary">
                         View File
                     </a>
                     @else

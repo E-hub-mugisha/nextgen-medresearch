@@ -14,9 +14,7 @@
             <a href="{{ route('admin.stories.index') }}" class="btn btn-outline-secondary btn-sm p-3">
                 ← Back
             </a>
-            <a href="{{ route('admin.stories.edit', $story) }}" class="btn btn-primary btn-sm p-3">
-                <i class="bi bi-pencil"></i> Edit
-            </a>
+            
         </div>
     </div>
 
@@ -31,7 +29,7 @@
                     @if($story->image)
                     <div class="text-center mb-4">
                         <img
-                            src="{{ asset('uploads/stories/' . $story->image) }}"
+                            src="{{ asset($story->image) }}"
                             alt="{{ $story->title }}"
                             class="img-fluid rounded"
                             style="max-height: 300px;">

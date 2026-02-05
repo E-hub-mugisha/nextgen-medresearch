@@ -31,7 +31,7 @@
                     @if($program->icon)
                         <div class="mb-4 text-center">
                             <img 
-                                src="{{ asset('storage/' . $program->icon) }}" 
+                                src="{{ asset($program->icon) }}" 
                                 alt="{{ $program->title }}"
                                 class="img-fluid rounded"
                                 style="max-height: 220px;"

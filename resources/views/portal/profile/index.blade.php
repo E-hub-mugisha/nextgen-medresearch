@@ -7,7 +7,7 @@
         {{-- Profile Sidebar --}}
         <div class="col-md-4 mb-4">
             <div class="card shadow-sm text-center p-4">
-                <img src="{{ $mentee->avatar ?? 'https://via.placeholder.com/150' }}" 
+                <img src="{{ asset('assets/images/default-profile.png') }}" 
                      class="rounded-circle mb-3" width="120" height="120" alt="Avatar">
                 <h4 class="fw-bold">{{ $mentee->name }}</h4>
                 <p class="text-muted">{{ $mentee->email }}</p>

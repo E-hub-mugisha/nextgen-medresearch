@@ -19,7 +19,7 @@
                 <!-- Featured Image -->
                 @if($post->featured_image)
                     <img 
-                        src="{{ asset('storage/' . $post->featured_image) }}" 
+                        src="{{ asset($post->featured_image) }}" 
                         class="card-img-top rounded-top"
                         alt="{{ $post->title }}"
                     >

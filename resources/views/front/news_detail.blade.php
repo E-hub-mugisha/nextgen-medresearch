@@ -11,7 +11,7 @@
                 <div class="post-image" style="margin-top: 2rem;">
                     <figure class="image-anime ">
                         @if ($new->featured_image)
-                        <img src="{{ asset('storage/'.$new->featured_image) }}" alt="">
+                        <img src="{{ asset($new->featured_image) }}" alt="">
                         @else
                         <span class="text-muted">No Image</span>
                         @endif

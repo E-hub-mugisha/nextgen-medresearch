@@ -49,7 +49,7 @@
                     <!-- Page Single image Start -->
                     <div class="page-single-image">
                         <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
-                            <img src="{{ asset('storage/' . $project->banner) }}" alt="" style="transform: translate(0px, 0px);">
+                            <img src="{{ asset($project->banner) }}" alt="" style="transform: translate(0px, 0px);">
                         </figure>
                     </div>
                     <!-- Page Single image End -->

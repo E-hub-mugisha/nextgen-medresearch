@@ -26,7 +26,7 @@
                         <div class="team-image">
                             <a href="{{ route('mentor.profile',$mentor->id) }}" data-cursor-text="View">
                                 <figure>
-                                    <img src="{{ asset('assets/images/team-1.jpg') }}" alt="">
+                                    <img src="{{ asset('assets/images/default-profile.png') }}" alt="">
                                 </figure>
                             </a>
 

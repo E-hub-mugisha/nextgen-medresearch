@@ -38,7 +38,23 @@ class ProjectController extends Controller
         ]);
 
         if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
-            $data['banner'] = $request->file('banner')->store('projects', 'public');
+
+            $image     = $request->file('banner');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/projects
+            $destinationPath = public_path('projects');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['banner'] = 'projects/' . $fileName;
         }
 
         Project::create($data);
@@ -69,7 +85,23 @@ class ProjectController extends Controller
         ]);
 
         if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
-            $data['banner'] = $request->file('banner')->store('projects', 'public');
+
+            $image     = $request->file('banner');
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Destination: public/projects
+            $destinationPath = public_path('projects');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['banner'] = 'projects/' . $fileName;
         }
 
         $project->update($data);
@@ -79,8 +111,8 @@ class ProjectController extends Controller
 
     public function destroy(Project $project)
     {
-        if ($project->banner && file_exists('uploads/projects/' . $project->banner)) {
-            unlink('uploads/projects/' . $project->banner);
+        if ($project->banner && file_exists(public_path($project->banner))) {
+            unlink(public_path($project->banner));
         }
 
         $project->delete();

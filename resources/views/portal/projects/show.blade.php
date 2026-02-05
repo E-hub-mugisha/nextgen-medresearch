@@ -77,7 +77,7 @@
 
                     <!-- Attachments -->
                     @if($milestone->attachment)
-                    <a href="{{ asset('storage/'.$milestone->attachment) }}" target="_blank" class="btn btn-sm btn-outline-dark mt-2">
+                    <a href="{{ asset($milestone->attachment) }}" target="_blank" class="btn btn-sm btn-outline-dark mt-2">
                         View Attachment
                     </a>
                     @endif

@@ -30,8 +30,24 @@ class TeamMemberController extends Controller
             'status'        => 'required|in:active,inactive',
         ]);
 
-        if ($request->hasFile('photo')) {
-            $data['photo'] = $request->file('photo')->store('team', 'public');
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+
+            $photo     = $request->file('photo');
+            $fileName  = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
+
+            // Destination: public/team
+            $destinationPath = public_path('team');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move photo to public folder
+            $photo->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['photo'] = 'team/' . $fileName;
         }
 
         TeamMember::create($data);
@@ -54,11 +70,24 @@ class TeamMemberController extends Controller
             'status'        => 'required|in:active,inactive',
         ]);
 
-        if ($request->hasFile('photo')) {
-            if ($teamMember->photo) {
-                Storage::disk('public')->delete($teamMember->photo);
+        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+
+            $photo     = $request->file('photo');
+            $fileName  = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
+
+            // Destination: public/team
+            $destinationPath = public_path('team');
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
             }
-            $data['photo'] = $request->file('photo')->store('team', 'public');
+
+            // Move photo to public folder
+            $photo->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['photo'] = 'team/' . $fileName;
         }
 
         $teamMember->update($data);
@@ -69,7 +98,7 @@ class TeamMemberController extends Controller
     public function destroy(TeamMember $teamMember)
     {
         if ($teamMember->photo) {
-            Storage::disk('public')->delete($teamMember->photo);
+            unlink(public_path($teamMember->photo));
         }
 
         $teamMember->delete();
