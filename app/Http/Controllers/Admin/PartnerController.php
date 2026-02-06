@@ -25,13 +25,9 @@ class PartnerController extends Controller
             'logo'           => 'required|image|mimes:png,jpg,jpeg,webp|max:3000',
         ]);
 
-        if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
-
-            $image     = $request->file('logo');
+        if ($image = $request->file('logo')) {
+            $destinationPath = 'image/partners/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            // Destination: public/partners
-            $destinationPath = public_path('partners');
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
@@ -42,7 +38,7 @@ class PartnerController extends Controller
             $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['logo'] = 'partners/' . $fileName;
+            $data['logo'] = "$fileName";
         }
 
         Partner::create($data);
