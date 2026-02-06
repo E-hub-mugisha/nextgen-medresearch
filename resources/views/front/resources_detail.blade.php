@@ -50,7 +50,7 @@
                         <!-- Sidebar CTA Contact Start -->
                         <div class="sidebar-cta-content">
                             <p>Partner with us to drive innovation and shape a healthier future.</p>
-                            <a href="contact.html" class="btn-default btn-highlighted">Join Our Research</a>
+                            <a href="#" class="btn-default btn-highlighted">Join Our Research</a>
                         </div>
                         <!-- Sidebar CTA Contact End -->
                     </div>
@@ -64,9 +64,7 @@
                 <div class="case-study-single-content">
                     <!-- Page Single image Start -->
                     <div class="page-single-image">
-                        <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
-                            <img src="{{ asset('assets/images/case-study-1.jpg') }}" alt="" style="transform: translate(0px, 0px);">
-                        </figure>
+                        
                     </div>
                     <!-- Page Single image End -->
 

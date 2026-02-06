@@ -28,24 +28,20 @@ class TestimonialsController extends Controller
             'featured'    => 'boolean',
         ]);
 
-        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
-
-            $photo     = $request->file('photo');
-            $fileName  = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
-
-            // Destination: public/team
-            $destinationPath = public_path('team');
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'image/testimonials/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
             }
 
-            // Move photo to public folder
-            $photo->move($destinationPath, $fileName);
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['photo'] = 'team/' . $fileName;
+            $data['photo'] = "$fileName";
         }
 
         Testimonial::create($data);
@@ -66,24 +62,20 @@ class TestimonialsController extends Controller
             'featured'    => 'boolean',
         ]);
 
-        if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
-
-            $photo     = $request->file('photo');
-            $fileName  = time() . '_' . uniqid() . '.' . $photo->getClientOriginalExtension();
-
-            // Destination: public/team
-            $destinationPath = public_path('team');
+        if ($image = $request->file('photo')) {
+            $destinationPath = 'image/testimonials/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
             }
 
-            // Move photo to public folder
-            $photo->move($destinationPath, $fileName);
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['photo'] = 'team/' . $fileName;
+            $data['photo'] = "$fileName";
         }
 
         $testimonial->update($data);

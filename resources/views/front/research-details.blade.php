@@ -49,7 +49,7 @@
                         <!-- Sidebar CTA Contact Start -->
                         <div class="sidebar-cta-content">
                             <p>Partner with us to drive innovation and shape a healthier future.</p>
-                            <a href="{{ url('contact') }}" class="btn-default btn-highlighted">Join Our Research</a>
+                            <a href="{{asset('file/researches')}}/{{ $research->document }}" class="btn-default btn-highlighted">Research Document</a>
                         </div>
                         <!-- Sidebar CTA Contact End -->
                     </div>
@@ -64,7 +64,7 @@
                     <!-- Page Single image Start -->
                     <div class="page-single-image">
                         <figure class="image-anime">
-                            <img src="{{ asset($research->featured_image) }}" alt="">
+                            <img src="{{asset('image/researches')}}/{{ $research->featured_image }}" alt="">
                         </figure>
                     </div>
                     <!-- Page Single image End -->

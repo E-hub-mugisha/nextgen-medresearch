@@ -18,7 +18,7 @@
                 <div class="service-item wow fadeInUp">
                     <!-- Service Image Start -->
                     <div class="service-image">
-                        <img src="{{ asset($program->icon) }}" alt="">
+                        <img src="{{asset('image/programs')}}/{{ $program->icon }}" alt="">
                     </div>
                     <!-- Service Image End -->
 

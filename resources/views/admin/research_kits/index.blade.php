@@ -38,7 +38,7 @@
                         </td>
                         <td>
                             @if($kit->file_path)
-                            <a href="{{ asset($kit->file_path) }}" target="_blank">View</a>
+                            <a href="{{asset('file/research_kits')}}/{{ $kit->file_path }}" target="_blank">View</a>
                             @else
                             <span class="text-muted">None</span>
                             @endif

@@ -106,7 +106,7 @@
 
                         @if($post->featured_image)
                         <div class="mb-2">
-                            <img src="{{ asset('uploads/posts/' . $post->featured_image) }}" height="120" class="rounded">
+                            <img src="{{asset('image/posts')}}/{{ $post->featured_image }}" height="120" class="rounded">
                         </div>
                         @endif
 

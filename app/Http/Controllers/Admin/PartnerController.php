@@ -57,25 +57,20 @@ class PartnerController extends Controller
             'logo'           => 'nullable|image|mimes:png,jpg,jpeg,webp|max:3000',
         ]);
 
-        if ($request->hasFile('logo') && $request->file('logo')->isValid()) {
+        if ($image = $request->file('logo')) {
+            $destinationPath = 'image/partners/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-            // Delete old image
-            if ($partner->logo && file_exists(public_path($partner->logo))) {
-                unlink(public_path($partner->logo));
-            }
-
-            $image    = $request->file('logo');
-            $fileName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            $destinationPath = public_path('partners');
-
+            // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
             }
 
+            // Move image to public folder
             $image->move($destinationPath, $fileName);
 
-            $data['logo'] = 'partners/' . $fileName;
+            // Save relative path in DB
+            $data['logo'] = "$fileName";
         }
 
         $partner->update($data);

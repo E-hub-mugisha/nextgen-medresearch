@@ -44,7 +44,7 @@
 
                     <td>
                         @if ($post->featured_image)
-                        <img src="{{ asset($post->featured_image) }}" width="50" height="40" style="object-fit: cover">
+                        <img src="{{asset('image/posts')}}/{{ $post->featured_image }}" width="50" height="40" style="object-fit: cover">
                         @else
                         <span class="text-muted">No Image</span>
                         @endif

@@ -29,7 +29,7 @@
                     @if($event->banner)
                         <div class="mb-4">
                             <img
-                                src="{{ asset($event->banner) }}"
+                                src="{{asset('image/events')}}/{{ $event->banner }}"
                                 alt="{{ $event->title }}"
                                 class="img-fluid rounded w-100"
                                 style="max-height: 320px; object-fit: cover;"

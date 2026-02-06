@@ -29,7 +29,7 @@
                     @if($story->image)
                     <div class="text-center mb-4">
                         <img
-                            src="{{ asset($story->image) }}"
+                            src="{{asset('image/stories')}}/{{ $story->image }}"
                             alt="{{ $story->title }}"
                             class="img-fluid rounded"
                             style="max-height: 300px;">

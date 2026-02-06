@@ -29,13 +29,9 @@ class PostController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        if ($request->hasFile('featured_image') && $request->file('featured_image')->isValid()) {
-
-            $image     = $request->file('featured_image');
+        if ($image = $request->file('featured_image')) {
+            $destinationPath = 'image/posts/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            // Destination: public/posts
-            $destinationPath = public_path('posts');
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
@@ -46,7 +42,7 @@ class PostController extends Controller
             $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['featured_image'] = 'posts/' . $fileName;
+            $data['featured_image'] = "$fileName";
         }
 
         Post::create([
@@ -78,25 +74,20 @@ class PostController extends Controller
             'category_id' => 'required',
         ]);
 
-        if ($request->hasFile('featured_image') && $request->file('featured_image')->isValid()) {
+        if ($image = $request->file('featured_image')) {
+            $destinationPath = 'image/posts/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
-            // Delete old image
-            if ($post->featured_image && file_exists(public_path($post->featured_image))) {
-                unlink(public_path($post->featured_image));
-            }
-
-            $image    = $request->file('featured_image');
-            $fileName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            $destinationPath = public_path('posts');
-
+            // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
             }
 
+            // Move image to public folder
             $image->move($destinationPath, $fileName);
 
-            $data['featured_image'] = 'posts/' . $fileName;
+            // Save relative path in DB
+            $data['featured_image'] = "$fileName";
         }
 
 

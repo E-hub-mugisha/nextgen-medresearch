@@ -149,7 +149,7 @@
             @foreach($partners as $item)
             <div class="col-6 col-md-2 text-center mb-3">
                 @if($item->logo)
-                <img src="{{ asset($item->logo) }}" alt="{{ $item->name }}" class="img-fluid">
+                <img src="{{asset('image/partners')}}/{{ $item->logo }}" alt="{{ $item->name }}" class="img-fluid">
                 @else
                 <p>{{ $item->name }}</p>
                 @endif

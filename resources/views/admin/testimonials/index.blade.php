@@ -15,16 +15,16 @@
 
     <div class="card">
         <div class="card-body p-0">
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>There were some errors:</strong>
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>There were some errors:</strong>
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             <table class="table table-striped mb-0">
                 <thead>
@@ -53,9 +53,9 @@
                         </td>
                         <td>
                             @if($testimonial->featured)
-                                <span class="badge bg-success">Yes</span>
+                            <span class="badge bg-success">Yes</span>
                             @else
-                                <span class="badge bg-secondary">No</span>
+                            <span class="badge bg-secondary">No</span>
                             @endif
                         </td>
                         <td>
@@ -81,10 +81,10 @@
 </div>
 
 @foreach($testimonials as $testimonial)
-    <!-- Edit Modal INCLUDE -->
-    @include('admin.testimonials.modals.edit', ['testimonial' => $testimonial])
-    <!-- Delete Modal INCLUDE -->
-    @include('admin.testimonials.modals.delete', ['testimonial' => $testimonial])
+<!-- Edit Modal INCLUDE -->
+@include('admin.testimonials.modals.edit', ['testimonial' => $testimonial])
+<!-- Delete Modal INCLUDE -->
+@include('admin.testimonials.modals.delete', ['testimonial' => $testimonial])
 @endforeach
 
 <!-- Add Modal INCLUDE -->

@@ -127,7 +127,7 @@
                                     <label>Banner</label>
                                     <input type="file" name="banner" class="form-control">
                                     @if($event->banner)
-                                    <img src="{{ asset('uploads/events/'.$event->banner) }}" class="img-fluid mt-2" height="100">
+                                    <img src="{{asset('image/events')}}/{{ $event->banner }}" class="img-fluid mt-2" height="100">
                                     @endif
                                 </div>
 

@@ -27,13 +27,9 @@ class ResourceController extends Controller
             'status'        => 'required|string',
         ]);
 
-        if ($request->hasFile('file_path') && $request->file('file_path')->isValid()) {
-
-            $image     = $request->file('file_path');
+        if ($image = $request->file('file_path')) {
+            $destinationPath = 'files/resources/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            // Destination: public/resources
-            $destinationPath = public_path('resources');
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
@@ -44,7 +40,7 @@ class ResourceController extends Controller
             $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['file_path'] = 'resources/' . $fileName;
+            $data['file_path'] = "$fileName";
         }
 
         Resource::create($data);
@@ -62,10 +58,20 @@ class ResourceController extends Controller
             'status'        => 'required|string',
         ]);
 
-        if ($request->hasFile('file_path') && $request->file('file_path')->isValid()) {
-            $data['file_path'] = $request
-                ->file('file_path')
-                ->store('resources', 'public');
+        if ($image = $request->file('file_path')) {
+            $destinationPath = 'files/resources/';
+            $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+            // Create folder if it doesn't exist
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Move image to public folder
+            $image->move($destinationPath, $fileName);
+
+            // Save relative path in DB
+            $data['file_path'] = "$fileName";
         }
 
         $resource->update($data);

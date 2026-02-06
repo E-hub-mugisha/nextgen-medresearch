@@ -43,7 +43,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
-                        <img src="{{ $member->photo ? asset($member->photo) : asset('images/default-avatar.png') }}"
+                        <img src="{{asset('image/team')}}/{{ $member->photo ? $member->photo : 'default-avatar.png' }}"
                              class="rounded-circle border" width="50" height="50" style="object-fit:cover;">
                     </td>
                     <td class="fw-semibold">{{ $member->name }}</td>

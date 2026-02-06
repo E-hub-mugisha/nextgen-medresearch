@@ -59,13 +59,13 @@
         <!-- List View -->
         <div class="list-group shadow-sm">
             @forelse($sheets as $sheet)
-            <a href="{{ route('rescue.sheet.show', $sheet->slug) }}"
+            <a href="{{asset('file/rescuesheets')}}/{{ $sheet->file_path }}"
                 target="_blank"
                 class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
 
                 <div class="d-flex align-items-center gap-3">
                     @if($sheet->qr_code_path)
-                    <img src="{{ asset($sheet->qr_code_path) }}" width="55" alt="QR">
+                    <img src="{{asset('image/rescuesheets')}}/{{ $sheet->qr_code_path }}" width="55" alt="QR">
                     @endif
                     <div>
                         <h6 class="mb-0">{{ $sheet->title }}</h6>

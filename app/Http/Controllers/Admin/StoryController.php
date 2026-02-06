@@ -31,13 +31,9 @@ class StoryController extends Controller
             'featured'    => 'boolean',
         ]);
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-
-            $image     = $request->file('image');
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/stories/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            // Destination: public/resources
-            $destinationPath = public_path('resources');
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
@@ -48,7 +44,7 @@ class StoryController extends Controller
             $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['image'] = 'resources/' . $fileName;
+            $data['image'] = "$fileName";
         }
 
         Story::create($data);
@@ -69,13 +65,9 @@ class StoryController extends Controller
             'featured'    => 'boolean',
         ]);
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-
-            $image     = $request->file('image');
+        if ($image = $request->file('image')) {
+            $destinationPath = 'image/stories/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            // Destination: public/resources
-            $destinationPath = public_path('resources');
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
@@ -86,7 +78,7 @@ class StoryController extends Controller
             $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['image'] = 'resources/' . $fileName;
+            $data['image'] = "$fileName";
         }
 
         $story->update($data);
@@ -96,9 +88,6 @@ class StoryController extends Controller
 
     public function destroy(Story $story)
     {
-        if ($story->image && file_exists(public_path($story->image))) {
-            unlink(public_path($story->image));
-        }
 
         $story->delete();
 

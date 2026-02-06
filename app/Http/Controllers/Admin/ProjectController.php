@@ -37,13 +37,9 @@ class ProjectController extends Controller
             'display_order' => 'integer|min:0',
         ]);
 
-        if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
-
-            $image     = $request->file('banner');
+        if ($image = $request->file('banner')) {
+            $destinationPath = 'image/projects/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            // Destination: public/projects
-            $destinationPath = public_path('projects');
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
@@ -54,7 +50,7 @@ class ProjectController extends Controller
             $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['banner'] = 'projects/' . $fileName;
+            $data['banner'] = "$fileName";
         }
 
         Project::create($data);
@@ -84,13 +80,9 @@ class ProjectController extends Controller
             'display_order' => 'integer|min:0',
         ]);
 
-        if ($request->hasFile('banner') && $request->file('banner')->isValid()) {
-
-            $image     = $request->file('banner');
+        if ($image = $request->file('banner')) {
+            $destinationPath = 'image/projects/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            // Destination: public/projects
-            $destinationPath = public_path('projects');
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
@@ -101,7 +93,7 @@ class ProjectController extends Controller
             $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['banner'] = 'projects/' . $fileName;
+            $data['banner'] = "$fileName";
         }
 
         $project->update($data);

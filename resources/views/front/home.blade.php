@@ -198,7 +198,7 @@
                 <div class="service-item wow fadeInUp">
                     <!-- Service Image Start -->
                     <div class="service-image">
-                        <img src="{{ asset($program->icon) }}" alt="">
+                        <img src="{{asset('image/programs')}}/{{ $program->icon }}" alt="">
                     </div>
                     <!-- Service Image End -->
 
@@ -478,7 +478,7 @@
                     <!-- Case Study Image Start-->
                     <div class="case-study-image">
                         <figure class="image-anime">
-                            <img src="{{ asset($research->featured_image) }}" alt="">
+                            <img src="{{asset('image/research')}}/{{ $research->featured_image }}" alt="">
                         </figure>
 
                         <!-- Case Study Button Start-->
@@ -577,11 +577,6 @@
                             @foreach($testimonials as $testimonial)
                             <div class="swiper-slide">
                                 <div class="testimonial-item">
-                                    <div class="author-image">
-                                        <figure class="image-anime">
-                                            <img src="{{ asset('assets/images/author-1.jpg') }}" alt="{{ $testimonial->name }}">
-                                        </figure>
-                                    </div>
 
                                     <div class="testimonial-content">
                                         <div class="testimonial-quote">
@@ -645,7 +640,7 @@
                         <a href="{{ route('news.detail', $new->slug )}}" data-cursor-text="View">
                             <figure class="image-anime">
                                 @if ($new->featured_image)
-                                <img src="{{ asset($new->featured_image) }}" alt="">
+                                <img src="{{asset('image/posts')}}/{{ $new->featured_image }}" alt="">
                                 @else
                                 <span class="text-muted">No Image</span>
                                 @endif

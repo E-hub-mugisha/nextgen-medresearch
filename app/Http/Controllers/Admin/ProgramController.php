@@ -52,13 +52,9 @@ class ProgramController extends Controller
         $data['slug'] = Str::slug($data['title']);
         $data['featured'] = $request->boolean('featured');
 
-        if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
-
-            $image     = $request->file('icon');
+        if ($image = $request->file('icon')) {
+            $destinationPath = 'image/programs/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            // Destination: public/programs
-            $destinationPath = public_path('programs');
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
@@ -69,7 +65,7 @@ class ProgramController extends Controller
             $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['icon'] = 'programs/' . $fileName;
+            $data['icon'] = "$fileName";
         }
 
         Program::create($data);
@@ -110,14 +106,9 @@ class ProgramController extends Controller
             $data['slug'] = Str::slug($request->title);
         }
 
-        // Handle icon upload
-        if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
-
-            $image     = $request->file('icon');
+        if ($image = $request->file('icon')) {
+            $destinationPath = 'image/programs/';
             $fileName  = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-
-            // Destination: public/programs
-            $destinationPath = public_path('programs');
 
             // Create folder if it doesn't exist
             if (!file_exists($destinationPath)) {
@@ -128,7 +119,7 @@ class ProgramController extends Controller
             $image->move($destinationPath, $fileName);
 
             // Save relative path in DB
-            $data['icon'] = 'programs/' . $fileName;
+            $data['icon'] = "$fileName";
         }
 
         $program->update($data);

@@ -31,7 +31,7 @@
                     @if($project->banner)
                         <div class="mb-4">
                             <img
-                                src="{{ asset($project->banner) }}"
+                                src="{{asset('image/projects')}}/{{ $project->banner }}"
                                 alt="{{ $project->title }}"
                                 class="img-fluid rounded w-100"
                                 style="max-height: 320px; object-fit: cover;"

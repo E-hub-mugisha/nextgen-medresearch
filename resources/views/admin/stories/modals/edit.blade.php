@@ -68,7 +68,7 @@
                     <label>Image</label><br>
 
                     @if($story->image)
-                        <img src="{{ asset('uploads/stories/'.$story->image) }}" height="80" class="rounded mb-2">
+                        <img src="{{asset('image/stories')}}/{{ $story->image }}" height="80" class="rounded mb-2">
                     @endif
 
                     <input type="file" name="image" class="form-control mt-2">

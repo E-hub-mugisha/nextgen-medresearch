@@ -11,7 +11,7 @@
                     <!-- How Work Image Start -->
                     <div class="how-work-image image-anime">
                         <figure>
-                            <img src="{{ asset($program->icon) }}" alt="">
+                            <img src="{{asset('image/programs')}}/{{ $program->icon }}" alt="">
                         </figure>
                     </div>
                     <!-- How Work Image End -->

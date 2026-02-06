@@ -50,7 +50,7 @@
             <label>Banner</label>
             <input type="file" name="banner" class="form-control">
             @if($project->banner)
-            <img src="{{ asset($project->banner) }}" class="img-fluid mt-2" height="100">
+            <img src="{{asset('image/projects')}}/{{ $project->banner }}" class="img-fluid mt-2" height="100">
             @endif
         </div>
 
