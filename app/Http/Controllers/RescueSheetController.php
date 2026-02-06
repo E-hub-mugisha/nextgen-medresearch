@@ -30,6 +30,7 @@ class RescueSheetController extends Controller
             'vehicle_model' => 'nullable|string|max:255',
             'file'          => 'required|file|mimes:pdf,png,jpg,jpeg',
             'language'      => 'nullable',
+            'category'      => 'nullable|in:car,truck,bus,ev',
         ]);
 
         // Ensure folders exist
@@ -76,6 +77,7 @@ class RescueSheetController extends Controller
             'file_path'     => $filePath,
             'qr_code_path'  => $qrPath,
             'status'        => 'published',
+            'category'      => $request->category,
         ]);
 
         return back()->with('success', 'Rescue sheet uploaded successfully!');
@@ -101,6 +103,7 @@ class RescueSheetController extends Controller
             'vehicle_model' => 'nullable|string|max:255',
             'file'          => 'nullable|file|mimes:pdf,png,jpg,jpeg',
             'language'      => 'nullable',
+            'category'      => 'nullable|in:car,truck,bus,ev',
         ]);
 
         $data = $request->only(['title', 'vehicle_model', 'language']);
@@ -162,6 +165,7 @@ class RescueSheetController extends Controller
             'slug'          => $data['slug'] ?? $rescueSheet->slug,
             'file_path'     => $data['file_path'] ?? $rescueSheet->file_path,
             'qr_code_path'  => $data['qr_code_path'] ?? $rescueSheet->qr_code_path,
+            'category'      => $request->category ?? $rescueSheet->category,
         ]);
 
         return back()->with('success', 'Rescue sheet updated successfully!');
@@ -211,14 +215,21 @@ class RescueSheetController extends Controller
 
     public function publicIndex(Request $request)
     {
-        $query = RescueSheet::query()->where('status', 'published');
+        $query = RescueSheet::query();
 
-        if ($request->search) {
-            $query->where('title', 'like', '%' . $request->search . '%')
-                ->orWhere('slug', 'like', '%' . $request->search . '%');
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->search . '%')
+                    ->orWhere('vehicle_model', 'like', '%' . $request->search . '%');
+            });
         }
 
-        $sheets = $query->orderBy('created_at', 'desc')->paginate(12);
+        if ($request->filled('category')) {
+            $query->where('category', $request->category);
+        }
+
+        $sheets = $query->latest()->paginate(12);
+
 
         return view('front.rescue_sheets', compact('sheets'));
     }

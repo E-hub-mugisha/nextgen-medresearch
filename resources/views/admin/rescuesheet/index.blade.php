@@ -25,6 +25,7 @@
                 <th>#</th>
                 <th>Title</th>
                 <th>Vehicle Model</th>
+                <th>Category</th>
                 <th>language</th>
                 <th>QR Code</th>
                 <th>Scans</th>
@@ -37,6 +38,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $sheet->title }}</td>
                 <td>{{ $sheet->vehicle_model ?? '-' }}</td>
+                <td>{{ ucfirst($sheet->category) ?? '-' }}</td>
                 <td>{{ $sheet->language ?? '-' }}</td>
                 <td>
                     @if($sheet->qr_code_path)
@@ -87,6 +89,17 @@
                     <label>Vehicle Model</label>
                     <input type="text" name="vehicle_model" class="form-control"
                         value="{{ $sheet->vehicle_model }}">
+                </div>
+
+                <div class="mb-2">
+                    <label>Category</label>
+                    <select name="category" class="form-control">
+                        <option value="">Select Category (optional)</option>
+                        <option value="car" {{ $sheet->category == 'car' ? 'selected' : '' }}>Car</option>
+                        <option value="truck" {{ $sheet->category == 'truck' ? 'selected' : '' }}>Truck</option>
+                        <option value="bus" {{ $sheet->category == 'bus' ? 'selected' : '' }}>Bus</option>
+                        <option value="ev" {{ $sheet->category == 'ev' ? 'selected' : '' }}>EV</option>
+                    </select>
                 </div>
                 <div class="mb-2">
                     <label>language</label>
@@ -150,6 +163,17 @@
                 <div class="mb-2">
                     <label>Vehicle Model</label>
                     <input type="text" name="vehicle_model" class="form-control">
+                </div>
+
+                <div class="mb-2">
+                    <label>Category</label>
+                    <select name="category" class="form-control">
+                        <option value="">Select Category (optional)</option>
+                        <option value="car">Car</option>
+                        <option value="truck">Truck</option>
+                        <option value="bus">Bus</option>
+                        <option value="ev">EV</option>
+                    </select>
                 </div>
                 <div class="mb-2">
                     <label>language</label>

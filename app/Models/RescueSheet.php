@@ -10,6 +10,7 @@ class RescueSheet extends Model
         'title',
         'slug',
         'vehicle_model',
+        'category',
         'file_path',
         'language',
         'qr_code_path',
