@@ -46,7 +46,7 @@
 
                 <td>
                     @if($item->logo)
-                    <img src="{{ asset($item->logo) }}" alt="{{ $item->name }} Logo"
+                    <img src="{{asset('image/partners')}}/{{ $item->logo }}" alt="{{ $item->name }} Logo"
                         width="70" class="rounded shadow-sm">
                     @else
                     <span class="text-muted">No logo</span>
