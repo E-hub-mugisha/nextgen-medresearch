@@ -265,6 +265,12 @@ Route::get('/run-setup', function () {
     return 'Database migrated and seeded successfully!';
 });
 
+Route::get('/run-migration', function () {
+    Artisan::call('migrate');
+
+    return 'Database migrated successfully!';
+});
+
 Route::get('/run-storage-link', function () {
     Artisan::call('storage:link');
     return 'Storage link created!';
