@@ -73,22 +73,9 @@
 <div class="why-choose-us mb-3">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-5">
-                <!-- Why Choose Image Box Start -->
-                <div class="why-choose-image-box">
-                    <!-- Why Choose Image Start -->
-                    <div class="why-choose-image">
-                        <figure class="image-anime ">
-                            <img src="{{ asset('assets/images/image-5.png') }}" alt="">
-                        </figure>
-                    </div>
-                    <!-- Why Choose Image End -->
+            
 
-                </div>
-                <!-- Why Choose Image Box End -->
-            </div>
-
-            <div class="col-lg-7">
+            <div class="col-lg-10">
                 <!-- Why Choose Content Start -->
                 <div class="why-choose-content">
                     <!-- Section Title Start -->

@@ -3,7 +3,7 @@
 @section('title', 'Vehicle Rescue Sheets')
 
 @section('content')
-<div class="our-core-value mt-10">
+<div class="our-core-value mt-10" style="padding-top: 10rem;">
     <div class="container">
 
         <!-- Section Title -->
@@ -31,28 +31,28 @@
         <!-- Filter Button Menu -->
         <div class="d-flex flex-wrap gap-2 mb-4">
             <a href="{{ route('rescue.sheet.public', ['search' => request('search')]) }}"
-                class="btn btn-sm {{ !request('category') ? 'btn-primary' : 'btn-outline-primary' }}">
+                class="btn btn-sm {{ !request('category') ? 'btn-primary' : 'btn-outline-primary' }}" style="background: #00697E; color: #fff;">
                 All
             </a>
 
             <a href="{{ route('rescue.sheet.public', ['category' => 'car', 'search' => request('search')]) }}"
-                class="btn btn-sm {{ request('category') == 'car' ? 'btn-primary' : 'btn-outline-primary' }}">
-                🚗 Car
+                class="btn btn-sm {{ request('category') == 'car' ? 'btn-primary' : 'btn-outline-primary' }}" style="background: #00697E; color: #fff;">
+                Car
             </a>
 
             <a href="{{ route('rescue.sheet.public', ['category' => 'truck', 'search' => request('search')]) }}"
-                class="btn btn-sm {{ request('category') == 'truck' ? 'btn-primary' : 'btn-outline-primary' }}">
-                🚚 Truck
+                class="btn btn-sm {{ request('category') == 'truck' ? 'btn-primary' : 'btn-outline-primary' }}" style="background: #00697E; color: #fff;">
+                Truck
             </a>
 
             <a href="{{ route('rescue.sheet.public', ['category' => 'bus', 'search' => request('search')]) }}"
-                class="btn btn-sm {{ request('category') == 'bus' ? 'btn-primary' : 'btn-outline-primary' }}">
-                🚌 Bus
+                class="btn btn-sm {{ request('category') == 'bus' ? 'btn-primary' : 'btn-outline-primary' }}" style="background: #00697E; color: #fff;">
+                Bus
             </a>
 
             <a href="{{ route('rescue.sheet.public', ['category' => 'ev', 'search' => request('search')]) }}"
-                class="btn btn-sm {{ request('category') == 'ev' ? 'btn-primary' : 'btn-outline-primary' }}">
-                ⚡ EV
+                class="btn btn-sm {{ request('category') == 'ev' ? 'btn-primary' : 'btn-outline-primary' }}" style="background: #00697E; color: #fff;">
+                EV
             </a>
         </div>
 

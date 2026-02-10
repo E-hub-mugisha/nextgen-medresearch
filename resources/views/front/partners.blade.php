@@ -141,7 +141,7 @@
 <section id="partnerships" class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-4">
-            <h2 class="fw-bold">PARTNERSHIPS</h2>
+            <h2 class="fw-bold">PARTNERS</h2>
             <p class="lead">Our Collaborative Network</p>
         </div>
         <!-- Partner Logos / Names -->

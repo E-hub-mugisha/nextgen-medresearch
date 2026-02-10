@@ -872,7 +872,7 @@ header.main-header .header-sticky.active {
 	background: url('../images/IYP_6211.jpg') no-repeat;
 	background-position: center center;
 	background-size: cover;
-	padding: 250px 0 190px;
+	padding: 320px 0 190px;
 }
 
 .hero::before {
@@ -2574,7 +2574,7 @@ header.main-header .header-sticky.active {
 
 .footer-logo img {
 	width: 100%;
-	/* max-width: 130px; */
+	max-width: 183px;
 }
 
 .about-footer-content {
@@ -4782,11 +4782,11 @@ header.main-header .header-sticky.active {
 	}
 
 	.hero {
-		padding: 170px 0 80px;
+		padding: 270px 0 80px;
 	}
 
 	.hero.hero-slider-layout .hero-slide {
-		padding: 170px 0 80px;
+		padding: 270px 0 80px;
 	}
 
 	.hero-video-circle {

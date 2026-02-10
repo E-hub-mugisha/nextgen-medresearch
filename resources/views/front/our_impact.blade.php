@@ -12,7 +12,7 @@
                     <!-- Why Choose Image Start -->
                     <div class="why-choose-image">
                         <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
-                            <img src="{{ asset('assets/images/IYP_6213.jpg') }}" alt="" style="transform: translate(0px, 0px);">
+                            <img src="{{ asset('assets/images/IYP_6213.jpg') }}" alt="" style="transform: translate(0px, 0px); height: 20rem;">
                         </figure>
                     </div>
                     <!-- Why Choose Image End -->
@@ -66,14 +66,6 @@
                             <!-- Why choose Button End -->
                         </div>
                         <!-- Why Choose Item Box End -->
-
-                        <!-- Why Choose Body Image Start -->
-                        <div class="why-choose-body-image">
-                            <figure class="image-anime reveal" style="transform: translate(0px, 0px); opacity: 1; visibility: inherit;">
-                                <img src="{{ asset('assets/images/image-4.png') }}" alt="" style="transform: translate(0px, 0px);">
-                            </figure>
-                        </div>
-                        <!-- Why Choose Body Image End -->
                     </div>
                     <!-- Why Choose Body End -->
                 </div>

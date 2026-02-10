@@ -13,123 +13,121 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
 <header class="main-header">
     <div class="header-sticky">
         <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid d-flex flex-wrap align-items-center justify-content-between">
+                <!-- Logo Start -->
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    <img src="{{ asset('assets/images/logo-white.png') }}" alt="Logo" style="width: 100%; height:6rem">
+                </a>
+                <!-- Logo End -->
 
-            <!-- Logo Start -->
-            <a class="navbar-brand" href="{{ route('home')}}">
-                <img src="{{ asset('assets/images/logo-white.png') }}" alt="Logo" style="width: 100%; height:6rem">
-            </a>
-            <!-- Logo End -->
+                <!-- Mobile Toggle -->
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button> -->
 
-            <!-- Main Menu Start -->
-            <div class="collapse navbar-collapse main-menu">
-                <div class="nav-menu-wrapper">
-                    <ul class="navbar-nav mr-auto" id="menu">
-
-                        {{-- WHO WE ARE --}}
-                        <li class="nav-item submenu {{ activeRoute(['about','partners','our-impact']) }}">
-                            <a class="nav-link" href="#">About</a>
-                            <ul>
-                                <!-- <li class="nav-item">
+                <!-- Main Menu Start -->
+                <div class="collapse navbar-collapse flex-wrap main-menu" id="mainNavbar">
+                    <div class="nav-menu-wrapper">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-wrap align-items-center" id="menu">
+                            <!-- About -->
+                            <li class="nav-item submenu {{ activeRoute(['about','partners','our-impact']) }}">
+                                <a class="nav-link" href="#">About</a>
+                                <ul>
+                                    <!-- <li class="nav-item">
                                     <a class="nav-link {{ activeRoute('about') }}"
                                         href="{{ route('about') }}">About Us</a>
                                 </li> -->
 
-                                <li class="nav-item">
-                                    <a class="nav-link"
-                                        href="{{ route('about') }}">Vision, Mission</a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                            href="{{ route('about') }}">Vision, Mission</a>
+                                    </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link"
-                                        href="{{ route('partners') }}">Partnerships</a>
-                                </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                            href="{{ route('partners') }}">Partnerships</a>
+                                    </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link"
-                                        href="{{ route('our-impact') }}">Our Impact</a>
-                                </li>
-                            </ul>
-                        </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                            href="{{ route('our-impact') }}">Our Impact</a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                        {{-- PROGRAMS --}}
-                        <li class="nav-item submenu {{ activeRoute(['programs','programs.detail']) }}">
-                            <a class="nav-link {{ activeRoute('programs') }}"
-                                href="{{ route('programs') }}">Programs</a>
 
-                            <ul>
-                                @foreach($programs as $program)
-                                <li class="nav-item">
-                                    <a class="nav-link {{ request()->routeIs('programs.detail') && request()->slug === $program->slug ? 'active' : '' }}"
-                                        href="{{ route('programs.detail', $program->slug) }}">
-                                        {{ $program->title }}
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </li>
+                            <li class="nav-item submenu {{ activeRoute(['programs','programs.detail']) }}">
+                                <a class="nav-link {{ activeRoute('programs') }}"
+                                    href="#!">Programs</a>
 
-                        {{-- KNOWLEDGE HUB --}}
-                        <li class="nav-item submenu {{ activeRoute(['projects','resources','mentor_qna.*']) }}">
-                            <a class="nav-link" href="#">Knowledge Hub</a>
-                            <ul>
-                                <li class="nav-item">
-                                    <a class="nav-link {{ activeRoute('mentor_qna.*') }}"
-                                        href="{{ route('mentor_qna.index') }}">Ask a Mentor</a>
-                                </li>
+                                <ul>
+                                    @foreach($programs as $program)
+                                    <li class="nav-item">
+                                        <a class="nav-link "
+                                            href="{{ route('programs.detail', $program->slug) }}">
+                                            {{ $program->title }}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </li>
 
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('kits.index') }}">Research Kits</a>
-                                </li>
-                            </ul>
-                        </li>
 
-                        {{-- NEWS --}}
-                        <li class="nav-item">
-                            <a class="nav-link {{ activeRoute('news') }}"
-                                href="{{ route('news') }}">News</a>
-                        </li>
+                            <li class="nav-item submenu {{ activeRoute(['projects','resources','mentor_qna.*']) }}">
+                                <a class="nav-link" href="#">Knowledge Hub</a>
+                                <ul>
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                            href="{{ route('mentor_qna.index') }}">Ask a Mentor</a>
+                                    </li>
 
-                        {{-- RESEARCH SPACE --}}
-                        <li class="nav-item  {{ activeRoute('research.space') }}">
-                            <a class="nav-link "
-                                href="{{ route('research.space')}}">Research Space</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('kits.index') }}">Research Kits</a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                            <!-- <ul>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        Capacity Building workshops
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('research.space')}}"> Dissertation ready Research Topics</a>
-                                </li>
-                            </ul>
-                        </li>
--->
+
+                            <li class="nav-item">
+                                <a class="nav-link {{ activeRoute('news') }}"
+                                    href="{{ route('news') }}">News</a>
+                            </li>
+
+
+                            <li class="nav-item  {{ activeRoute('research.space') }}">
+                                <a class="nav-link " href="{{ route('research.space')}}">Research Space</a>
+                            </li>
                             {{-- CONTACT --}}
-                        <li class="nav-item">
-                            <a class="nav-link {{ activeRoute('contact') }}"
-                                href="{{ route('contact') }}">Contact</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ activeRoute('contact') }}"
+                                    href="{{ route('contact') }}">Contact</a>
+                            </li>
 
-                    </ul>
+                            <!-- Mobile Buttons -->
+                            <li class="nav-item d-lg-none mt-2">
+                                <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal" class="nav-link btn btn-default-2 btn-highlighted w-50 text-center" style="color: #fff; border: 1px solid #fff;">Join</a>
+                            </li>
+                            <li class="nav-item d-lg-none mt-2">
+                                <a href="{{ route('rescue.sheet.public') }}" class="nav-link btn btn-default btn-highlighted w-50 text-center" style="color: #00697E;">Rescue Sheets</a>
+                            </li>
+                        </ul>
+                    </div>
 
+                    <!-- Desktop Buttons -->
+                    <div class="header-btn d-none d-lg-flex ms-3 d-flex flex-wrap mt-2 mt-lg-0 ms-lg-3 ">
+                        <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal" class="btn btn-default-2 btn-highlighted me-2">Join</a>
+                        <a href="{{ route('rescue.sheet.public') }}" class="btn btn-default btn-highlighted">Rescue Sheets</a>
+                    </div>
                 </div>
-
-                <!-- Header Btn Start -->
-                <div class="header-btn">
-                    <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal" class="btn-default-2 btn-highlighted">Join</a>
-                    <a href="{{ route('rescue.sheet.public') }}" class="btn-default btn-highlighted">Rescue sheets</a>
-                </div>
-                <!-- Header Btn End -->
+                <!-- Main Menu End -->
+                <div class="navbar-toggle"></div>
             </div>
-            <!-- Main Menu End -->
-            <div class="navbar-toggle"></div>
-
         </nav>
         <div class="responsive-menu"></div>
     </div>
 </header>
+
 <!-- Header End -->
 
 <!-- Glass Role Selection Modal -->
