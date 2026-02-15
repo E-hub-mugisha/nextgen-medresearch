@@ -30,7 +30,7 @@
                         <ul>
                             <li><a href="{{ route('home') }}">Home</a></li>
                             <li><a href="{{ route('about') }}">About us</a></li>
-                            <li><a href="{{ route('projects') }}">Projects</a></li>
+                            <li><a href="{{ route('rescue.sheet.public') }}">Rescue Sheets</a></li>
                             <li><a href="{{ route('contact') }}">contact us</a></li>
                         </ul>
                     </div>

@@ -63,51 +63,10 @@
                     <!-- How Work Image Start -->
                     <div class="how-work-image image-anime">
                         <figure>
-                            <img src="{{ asset('assets/images/how-work-image.jpg') }}" alt="">
+                            <img src="{{ asset('assets/images/image-3.png') }}" alt="">
                         </figure>
                     </div>
                     <!-- How Work Image End -->
-
-                    <!-- Satisfy Client Box Start -->
-                    <div class="satisfy-client-box">
-                        <!-- Satisfy Client Images Start -->
-                        <div class="satisfy-client-images">
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-1.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-2.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-3.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-4.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="satisfy-client-image">
-                                <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/satisfy-client-img-5.jpg') }}" alt="">
-                                </figure>
-                            </div>
-                        </div>
-                        <!-- Satisfy Client Images End -->
-
-                        <!-- Satisfy Client Content Start -->
-                        <div class="satisfy-client-content">
-                            <h3>5K+ Satisfied Clients</h3>
-                            <p>Trusted by organizations, institutions, and researchers worldwide.</p>
-                        </div>
-                        <!-- Satisfy Client Content End -->
-                    </div>
-                    <!-- Satisfy Client Box End -->
                 </div>
                 <!-- How Work Image Box End -->
             </div>
@@ -162,9 +121,7 @@
                             </div>
                         </div>
                         <!-- How Steps Item End -->
-                        <div class="approach-button wow fadeInUp" data-wow-delay="0.8s">
-                            <a href="pricing.html" class="btn-default">Join as Mentee</a>
-                        </div>
+                        
                     </div>
                     <!-- Work Steps List End -->
                 </div>

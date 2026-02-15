@@ -52,6 +52,11 @@
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
             </div>
         </form>
+
+        <!-- register -->
+        <div class="mt-4 text-center">
+            <p class="text-sm text-gray-600">Don't have an account? <a href="{{ route('register') }}" class="underline hover:text-gray-900">Register here</a></p>
+        </div>
     </div>
 </div>
 

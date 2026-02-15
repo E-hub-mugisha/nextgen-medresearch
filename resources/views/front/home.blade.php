@@ -20,7 +20,6 @@
                     <!-- Hero Button Start -->
                     <div class="hero-btn wow fadeInUp" data-wow-delay="0.4s">
                         <a href="{{ route('about') }}" class="btn-default btn-highlighted">Learn more</a>
-                        <a href="{{ route('programs') }}" class="btn-default btn-border">Our Programs</a>
                     </div>
                     <!-- Hero Button End -->
 
@@ -28,15 +27,7 @@
                 <!-- Hero Content End -->
             </div>
 
-            <div class="col-lg-4">
-                <!-- Hero Video Circle Start -->
-                <div class="hero-video-circle">
-                    <a href="https://www.youtube.com/watch?v=Y-x0efG1seA" class="popup-video" data-cursor-text="Play">
-                        <img src="images/video-circle.svg" alt="">
-                    </a>
-                </div>
-                <!-- Hero Video Circle End -->
-            </div>
+            
         </div>
     </div>
 </div>
@@ -105,17 +96,10 @@
 
                         <!-- About Image Content Start -->
                         <div class="about-image-content">
-                            <!-- Video Play Button Start -->
-                            <div class="video-play-button">
-                                <a href="#" class="popup-video" data-cursor-text="Play">
-                                    <i class="fa-solid fa-play"></i>
-                                </a>
-                            </div>
-                            <!-- Video Play Button End -->
 
                             <!-- About Video Title Start -->
                             <div class="about-video-title">
-                                <h3>How Does it Work?</h3>
+                                <h3>NextGen MedResearch</h3>
                             </div>
                             <!-- About Video Title End -->
                         </div>
@@ -134,7 +118,7 @@
                         <!-- About Counter Content Start -->
                         <div class="about-counter-content">
                             <p>We connect clinicians, researchers, and mentors to build capacity, conduct impactful studies, and shape future healthcare leaders</p>
-                            <a href="{{ route('our-value') }}" class="readmore-btn">Learn More</a>
+                            <a href="{{ route('about') }}" class="readmore-btn">Learn More</a>
                         </div>
                         <!-- About Counter Content End -->
                     </div>

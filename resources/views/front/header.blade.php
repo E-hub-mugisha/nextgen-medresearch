@@ -16,7 +16,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
             <div class="container-fluid d-flex flex-wrap align-items-center justify-content-between">
                 <!-- Logo Start -->
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    <img src="{{ asset('assets/images/logo-white.png') }}" alt="Logo" style="width: 100%; height:6rem">
+                    <img src="{{ asset('assets/images/logo-white.png') }}" alt="Logo" style="width: 100%; height:5rem">
                 </a>
                 <!-- Logo End -->
 
@@ -249,3 +249,82 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
         });
     });
 </script>
+
+<!-- Membership Modal -->
+<div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content shadow-lg border-0">
+
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="membershipModalLabel">
+                    Membership Application
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form action="{{ route('membership.store') }}" method="POST">
+                @csrf
+
+                <div class="modal-body">
+                    <div class="row">
+
+                        <!-- Full Name -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" name="full_name" class="form-control" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" name="phone" class="form-control">
+                        </div>
+
+                        <!-- Membership Type -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Membership Type *</label>
+                            <select name="type" class="form-select" required>
+                                <option value="">Select Type</option>
+                                <option value="individual">Individual</option>
+                                <option value="trainer">Trainer</option>
+                                <option value="institutional">Institutional</option>
+                                <option value="corporate">Corporate</option>
+                                <option value="honorary">Honorary</option>
+                            </select>
+                        </div>
+
+                        <!-- Organization -->
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Organization (if applicable)</label>
+                            <input type="text" name="organization" class="form-control">
+                        </div>
+
+                        <!-- Motivation -->
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Why do you want to join?</label>
+                            <textarea name="motivation" class="form-control" rows="4"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Submit Application
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

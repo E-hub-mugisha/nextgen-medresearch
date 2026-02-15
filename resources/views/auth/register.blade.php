@@ -46,7 +46,7 @@
             <div class="form-group">
                 <div class="custom-control custom-control-xs custom-checkbox"><input
                         type="checkbox" class="custom-control-input" id="checkbox"><label
-                        class="custom-control-label" for="checkbox">I agree to Dashlite <a
+                        class="custom-control-label" for="checkbox">I agree to NextGen MedResearch <a
                             href="#">Privacy Policy</a> &amp; <a
                             href="#"></label></div>
             </div>

@@ -47,8 +47,8 @@ Route::get('/apply-membership', [MembershipController::class, 'create'])->name('
 Route::post('/apply-membership', [MembershipController::class, 'store'])->name('membership.store');
 Route::get('/programs', [HomeController::class, 'programs'])->name('programs');
 Route::get('/programs/detail/{slug}', [HomeController::class, 'programsDetail'])->name('programs.detail');
-Route::get('/research', [HomeController::class, 'research'])->name('research.index');
-Route::get('/research/detail/{slug}', [HomeController::class, 'researchDetail'])->name('research.detail');
+Route::get('/our-research', [HomeController::class, 'research'])->name('research.index');
+Route::get('/our-research/detail/{slug}', [HomeController::class, 'researchDetail'])->name('research.detail');
 Route::get('/faq', [HomeController::class, 'faqPage'])->name('faq.page');
 Route::post('/faq/question', [HomeController::class, 'storeQuestion'])->name('faq.question.store');
 // Route::get('/research_space', [HomeController::class, 'space'])->name('research.space');

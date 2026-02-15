@@ -33,6 +33,9 @@
     <!-- <link rel="stylesheet" href="{{ asset('assets/css/mousecursor.css') }}"> -->
     <!-- Main Custom Css -->
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" media="screen">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -76,5 +79,30 @@
     <!-- Main Custom js file -->
     <script src="{{ asset('assets/js/function.js') }}"></script>
     <script src="../../demo.awaikenthemes.com/assets/js/theme-panel.js"></script>
+
+    @if(session('success'))
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Application Submitted!',
+                text: "{{ session('success') }}",
+                confirmButtonColor: '#0d6efd',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+    @endif
+
+    @if ($errors->any())
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var membershipModal = new bootstrap.Modal(document.getElementById('membershipModal'));
+            membershipModal.show();
+        });
+    </script>
+    @endif
+
 </body>
+
 </html>
