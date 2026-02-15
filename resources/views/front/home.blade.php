@@ -207,7 +207,7 @@
                         <!-- Service Content Start -->
                         <div class="service-content">
                             <h3><a href="{{ route('programs.detail', $program->slug ) }}">{{ $program->title }}</a></h3>
-                            <p>{{ Str::limit($program->description, 100) }}</p>
+                            <p>{{ Str::limit($program->description, 30) }}</p>
                         </div>
                         <!-- Service Content End -->
                     </div>
