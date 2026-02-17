@@ -90,7 +90,7 @@
                     <div class="section-title">
                         <h3 class="wow fadeInUp text-white" style="visibility: visible; animation-name: fadeInUp;" style="border: 1px solid #fff">Partnership</h3>
                         <h2 class="text-anime-style-3 text-white" data-cursor="-opaque" style="perspective: 400px;">
-                            Why Partnership With Us?
+                            Why Partner With Us?
                         </h2>
                         <p class="wow fadeInUp text-white" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Partner with us to expand mentorship and digital training across Africa.</p>
                     </div>
