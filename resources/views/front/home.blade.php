@@ -27,7 +27,7 @@
                 <!-- Hero Content End -->
             </div>
 
-            
+
         </div>
     </div>
 </div>
@@ -68,7 +68,7 @@
                         <div class="satisfy-client-images customer-rating-images">
                             <div class="satisfy-client-image">
                                 <figure class="image-anime">
-                                    <img src="{{ asset('assets/images/founder.jpg') }}" alt="">
+                                    <img src="{{ asset('assets/images/founder-1.jpeg') }}" alt="">
                                 </figure>
                             </div>
                         </div>
@@ -110,14 +110,13 @@
                     <!-- About Counter Box Start -->
                     <div class="about-counter-box">
                         <!-- About Counter Title Start -->
-                        <div class="about-counter-title">
-                            <h3>our mission</h3>
-                        </div>
+                        
                         <!-- About Counter Title End -->
 
                         <!-- About Counter Content Start -->
                         <div class="about-counter-content">
-                            <p>We connect clinicians, researchers, and mentors to build capacity, conduct impactful studies, and shape future healthcare leaders</p>
+                            <h3  class="text-white">our mission</h3>
+                            <p>We connect clinicians, researchers, <br>and mentors to build capacity, <br>conduct impactful studies, <br>and shape future healthcare leaders</p>
                             <a href="{{ route('about') }}" class="readmore-btn">Learn More</a>
                         </div>
                         <!-- About Counter Content End -->
@@ -220,7 +219,7 @@
             <div class="col-lg-12">
                 <!-- Section Footer Text Start-->
                 <div class="section-footer-text wow fadeInUp" data-wow-delay="0.8s">
-                    <p class="text-white"><span>Free</span>Explore the research that shapes tomorrow - <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal">Apply for Membership!</a></p>
+                    <p class="text-white">Explore the research that shapes tomorrow - <a role="button" data-bs-toggle="modal" data-bs-target="#membershipModal" style="background: #fff; color: #00697E; padding: 6px; border-radius: 5px;">Apply for Membership!</a></p>
                 </div>
                 <!-- Section Footer Text End-->
             </div>

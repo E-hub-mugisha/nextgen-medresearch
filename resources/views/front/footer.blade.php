@@ -57,7 +57,7 @@
 
                     <!-- Footer Newsletter Form Start -->
                     <div class="footer-newsletter-form">
-                        <form id="newsletterForm" method="POST">
+                        <form method="POST" action="{{ route('newsletter.subscribe') }}">
                             @csrf
 
                             <div class="form-group d-flex align-items-center position-relative">
@@ -67,23 +67,24 @@
                                     class="form-control"
                                     placeholder="Enter your email address"
                                     required>
+
                                 <button type="submit" class="newsletter-btn text-white">
-                                    <img src="{{ asset('assets/images/arrow-primary.svg') }}" style="color: white;" alt="Submit">
+                                    <img src="{{ asset('assets/images/arrow-primary.svg') }}" alt="Submit">
                                 </button>
                             </div>
 
-                            <div class="form-group mt-2">
-                                <input type="checkbox" id="privacy" name="privacy" required>
-                                <label for="privacy" style="color: white;">
-                                    I agree to the <a href="#" style="color: white;">Privacy Policy</a>.
-                                </label>
-                            </div>
-
-                            <small class="text-success d-none" id="newsletterSuccess">
-                                Thank you for subscribing!
+                            @if(session('success'))
+                            <small class="text-success">
+                                {{ session('success') }}
                             </small>
-                        </form>
+                            @endif
 
+                            @error('email')
+                            <small class="text-danger">
+                                {{ $message }}
+                            </small>
+                            @enderror
+                        </form>
 
                     </div>
                     <!-- Footer Newsletter Form End -->
@@ -138,23 +139,23 @@
 <!-- Footer End -->
 
 <script>
-$('#newsletterForm').on('submit', function(e) {
-    e.preventDefault();
+    $('#newsletterForm').on('submit', function(e) {
+        e.preventDefault();
 
-    $.ajax({
-        url: "{{ route('newsletter.subscribe') }}",
-        method: "POST",
-        data: $(this).serialize(),
-        success: function () {
-            $('#newsletterSuccess').removeClass('d-none');
-            $('#newsletterForm')[0].reset();
-        },
-        error: function (xhr) {
-            alert(
-                xhr.responseJSON?.message ??
-                'Subscription failed. Please try again.'
-            );
-        }
+        $.ajax({
+            url: "{{ route('newsletter.subscribe') }}",
+            method: "POST",
+            data: $(this).serialize(),
+            success: function() {
+                $('#newsletterSuccess').removeClass('d-none');
+                $('#newsletterForm')[0].reset();
+            },
+            error: function(xhr) {
+                alert(
+                    xhr.responseJSON?.message ??
+                    'Subscription failed. Please try again.'
+                );
+            }
+        });
     });
-});
 </script>

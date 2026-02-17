@@ -162,7 +162,6 @@ class HomeController extends Controller
     {
         $validated = $request->validate([
             'email'   => 'required|email',
-            'privacy' => 'accepted',
         ]);
 
         // Send notification email
@@ -174,6 +173,6 @@ class HomeController extends Controller
             }
         );
 
-        return response()->json(['success' => true]);
+       return back()->with('success', 'Thank you for subscribing!');
     }
 }

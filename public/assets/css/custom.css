@@ -1030,15 +1030,15 @@ header.main-header .header-sticky.active {
 
 .satisfy-client-image figure {
 	display: block;
-	width: 50px;
-	height: 50px;
+	width: 100px;
+	height: 100px;
 	border: 1px solid var(--white-color);
-	border-radius: 50%;
+	border-radius: 14%;
 }
 
 .satisfy-client-image img {
 	width: 100%;
-	border-radius: 50%;
+	/* border-radius: 50%; */
 }
 
 .satisfy-client-image.add-more {
@@ -1205,8 +1205,8 @@ header.main-header .header-sticky.active {
 }
 
 .customer-rating-images {
-	background: var(--white-color);
-	box-shadow: 0px 0px 20px 0px rgba(23, 44, 69, 0.10);
+	/* background: var(--white-color); */
+	/* box-shadow: 0px 0px 20px 0px rgba(23, 44, 69, 0.10); */
 	border-radius: 100px;
 	padding: 10px;
 }
@@ -1219,11 +1219,11 @@ header.main-header .header-sticky.active {
 	margin-left: 0;
 }
 
-.customer-rating-images .satisfy-client-image.add-more,
+/* .customer-rating-images .satisfy-client-image.add-more,
 .customer-rating-images .satisfy-client-image figure {
 	width: 40px;
 	height: 40px;
-}
+} */
 
 .about-us-boxes {
 	display: flex;
@@ -4429,14 +4429,14 @@ header.main-header .header-sticky.active {
 	gap: 30px;
 	/* background-color: var(--secondary-color); */
 	border-radius: 20px;
-	padding: 40px;
+	padding: 20px;
 }
 
 .contact-us-content {
 	/* width: calc(50% - 15px); */
 	background-color: var(--white-color);
 	border-radius: 20px;
-	padding: 40px;
+	padding: 20px;
 }
 
 .contact-info-item {
@@ -4455,8 +4455,8 @@ header.main-header .header-sticky.active {
 
 .contact-info-item .icon-box {
 	position: relative;
-	height: 60px;
-	width: 60px;
+	height: 40px;
+	width: 40px;
 	background-color: var(--accent-color);
 	border-radius: 50%;
 	display: flex;
@@ -4506,7 +4506,7 @@ header.main-header .header-sticky.active {
 }
 
 .contact-item-content h3 {
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .contact-item-content h3 a {
@@ -4597,12 +4597,12 @@ header.main-header .header-sticky.active {
 
 .contact-form-box .contact-us-form,
 .google-map {
-	width: 50%;
+	/* width: 50%; */
 }
 
 .contact-us-form {
 	background-color: var(--primary-color);
-	padding: 40px;
+	padding: 20px;
 }
 
 .contact-us-form .section-title h2,

@@ -41,7 +41,7 @@ Route::get('/projects/detail/{id}', [HomeController::class, 'projectsDetail'])->
 Route::get('/resources', [HomeController::class, 'resources'])->name('resources');
 Route::get('/resources/detail/{id}', [HomeController::class, 'resourcesDetail'])->name('resources.detail');
 Route::get('/ask-a-mentor', [MentorQnAController::class, 'askForm'])->name('mentor_qna.ask');
-Route::post('/ask-a-mentor', [MentorQnAController::class, 'storeQuestion'])->middleware('auth')->name('mentor_qna.store');
+Route::post('/ask-a-mentor', [MentorQnAController::class, 'storeQuestion'])->name('mentor_qna.store');
 Route::get('/mentor-qna', [MentorQnAController::class, 'index'])->name('mentor_qna.index');
 Route::get('/apply-membership', [MembershipController::class, 'create'])->name('membership.create');
 Route::post('/apply-membership', [MembershipController::class, 'store'])->name('membership.store');
@@ -58,7 +58,6 @@ Route::get('/research-space', [ResearchSpaceController::class, 'index'])
 Route::post('/contact/send', [HomeController::class, 'send'])->name('contact.send');
 Route::post('/newsletter/subscribe', [HomeController::class, 'subscribe'])
     ->name('newsletter.subscribe');
-
 Route::get('/research-kits', [ResearchKitController::class, 'index'])->name('kits.index');
 Route::get('/research-kits/{id}', [ResearchKitController::class, 'show'])->name('kits.show');
 Route::get('/research-kits/{id}/download', [ResearchKitController::class, 'download'])->name('kits.download');

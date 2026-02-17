@@ -21,13 +21,17 @@ class MentorQnAController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'question' => 'required|string',
-            'mentor_category_id' => 'required',
+            'mentor_category_name' => 'required',
+        ]);
+
+        $category = MentorCategory::create([
+            'name' => $request->mentor_category_name
         ]);
 
         MentorQuestion::create([
-            'user_id' => Auth::id(),
+            'user_id' => 1,
             'title' => $request->title,
-            'mentor_category_id' => $request->mentor_category_id,
+            'mentor_category_id' => $category->id,
             'question' => $request->question,
             'status' => 'pending',
         ]);
@@ -52,7 +56,7 @@ class MentorQnAController extends Controller
         ])->get();
 
 
-        return view('front.mentor_qna', compact('questions','categories'));
+        return view('front.mentor_qna', compact('questions', 'categories'));
     }
 
     // Admin / Mentor: answer question

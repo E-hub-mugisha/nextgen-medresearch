@@ -115,13 +115,13 @@
                             <!-- Pricing List Start -->
                             <div class="pricing-list">
                                 <ul>
-                                    <li>build sustainable research capacity</li>
+                                    <li>Build sustainable research capacity</li>
 
-                                    <li>connect emerging and senior professionals</li>
+                                    <li>Connect emerging and senior professionals</li>
 
-                                    <li>deliver measurable outcomes</li>
+                                    <li>Deliver measurable outcomes</li>
 
-                                    <li>drive innovation and community impact</li>
+                                    <li>Drive innovation and community impact</li>
                                 </ul>
                             </div>
                             <!-- Pricing List End -->
@@ -141,7 +141,7 @@
 <section id="partnerships" class="py-5 bg-light">
     <div class="container">
         <div class="text-center mb-4">
-            <h2 class="fw-bold">PARTNERS</h2>
+            <h2 class="fw-bold">Partnership with us</h2>
             <p class="lead">Our Collaborative Network</p>
         </div>
         <!-- Partner Logos / Names -->
