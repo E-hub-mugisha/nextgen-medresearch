@@ -39,7 +39,6 @@
 <body>
 
     <div class="container">
-        <h1 class="text-center">NextGen MedResearchers – Professional Clinical Data Collector Application Form</h1>
         <div class="responsive-form">
             <iframe 
                 src="https://docs.google.com/forms/d/e/1FAIpQLSe4h9EF8FMt_E0jELMBJlcIUVTwnf-yv3IwQJIGLk3ybqXPFA/viewform?embedded=true">
