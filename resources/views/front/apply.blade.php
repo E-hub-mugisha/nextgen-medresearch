@@ -10,11 +10,11 @@
 
     <style>
         /* Responsive iframe container */
-        .responsive-form {
+        /* .responsive-form {
             position: relative;
             overflow: hidden;
-            padding-top: 120%; /* Adjust based on form length */
-        }
+            padding-top: 120%; 
+        } */
         .responsive-form iframe {
             position: absolute;
             top: 0;
