@@ -63,6 +63,9 @@ Route::get('/research-kits/{id}', [ResearchKitController::class, 'show'])->name(
 Route::get('/research-kits/{id}/download', [ResearchKitController::class, 'download'])->name('kits.download');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/application-form', function () {
+    return view('front.apply');
+});
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
