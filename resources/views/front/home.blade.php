@@ -182,26 +182,10 @@
 
                     <!-- Service Body Start -->
                     <div class="service-body">
-                        <!-- Service Body Header Start -->
-                        <div class="service-body-header">
-                            <!-- Icon Box Start -->
-                            <div class="icon-box">
-                                <img src="{{ asset('assets/images/icon-service-1.svg') }}" alt="">
-                            </div>
-                            <!-- Icon Box End -->
-
-                            <!-- Service Readmore Button Start -->
-                            <div class="service-readmore-btn">
-                                <a href="{{ route('programs.detail', $program->slug ) }}"><img src="{{ asset('assets/images/arrow-white.svg') }}" alt=""></a>
-                            </div>
-                            <!-- Service Readmore Button End -->
-                        </div>
-                        <!-- Service Body Header End -->
-
                         <!-- Service Content Start -->
                         <div class="service-content">
                             <h3><a href="{{ route('programs.detail', $program->slug ) }}">{{ $program->title }}</a></h3>
-                            <p>{{ Str::limit($program->description, 30) }}</p>
+                            <p>{{ Str::limit($program->description, 60) }}</p>
                             <a href="{{ route('programs.detail', $program->slug )}}" class="readmore-btn">learn more</a>
                         </div>
                         <!-- Service Content End -->

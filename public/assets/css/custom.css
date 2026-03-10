@@ -1430,7 +1430,7 @@ header.main-header .header-sticky.active {
 	position: relative;
 	background: var(--white-color);
 	border-radius: 20px;
-	aspect-ratio: 1 / 1.15;
+	/* aspect-ratio: 1 / 1.15; */
 	height: calc(87% - 14px);
 	margin-bottom: 8px;
 	padding: 46px 22px;
@@ -1439,12 +1439,12 @@ header.main-header .header-sticky.active {
 
 .service-item:before {
 	content: '';
-	position: absolute;
+	/* position: absolute; */
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: var(--white-color);
+	/* background: var(--white-color); */
 	border-radius: 20px;
 	width: 100%;
 	height: 21%;
@@ -1472,7 +1472,7 @@ header.main-header .header-sticky.active {
 	opacity: 1;
 }
 
-/* .service-image::after {
+.service-image::after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -1482,7 +1482,7 @@ header.main-header .header-sticky.active {
 	background: linear-gradient(180deg, rgba(23, 44, 69, 0.00) 39.29%, var(--primary-color) 100%);
 	width: 100%;
 	height: 100%;
-} */
+}
 
 .service-image img {
 	width: 100%;
@@ -1580,7 +1580,7 @@ header.main-header .header-sticky.active {
 .service-item:hover .service-content h3,
 .service-item.active .service-content p,
 .service-item:hover .service-content p {
-	color: var(--white-color);
+	color: var(--primary-color);
 }
 
 .section-footer-text {
@@ -4868,8 +4868,8 @@ header.main-header .header-sticky.active {
 	}
 
 	.service-item {
-		aspect-ratio: 1 / 1.03;
-		padding: 30px;
+		/* aspect-ratio: 1 / 1.03; */
+		padding: 40px;
 	}
 
 	.section-footer-text {
