@@ -1472,7 +1472,7 @@ header.main-header .header-sticky.active {
 	opacity: 1;
 }
 
-.service-image::after {
+/* .service-image::after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -1482,7 +1482,7 @@ header.main-header .header-sticky.active {
 	background: linear-gradient(180deg, rgba(23, 44, 69, 0.00) 39.29%, var(--primary-color) 100%);
 	width: 100%;
 	height: 100%;
-}
+} */
 
 .service-image img {
 	width: 100%;
