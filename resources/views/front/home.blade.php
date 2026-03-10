@@ -179,11 +179,6 @@
             <div class="col-lg-3 col-md-6">
                 <!-- Service Item Start -->
                 <div class="service-item wow fadeInUp">
-                    <!-- Service Image Start -->
-                    <div class="service-image">
-                        <img src="{{asset('image/programs')}}/{{ $program->icon }}" alt="">
-                    </div>
-                    <!-- Service Image End -->
 
                     <!-- Service Body Start -->
                     <div class="service-body">
@@ -207,6 +202,7 @@
                         <div class="service-content">
                             <h3><a href="{{ route('programs.detail', $program->slug ) }}">{{ $program->title }}</a></h3>
                             <p>{{ Str::limit($program->description, 30) }}</p>
+                            <a href="{{ route('programs.detail', $program->slug )}}" class="readmore-btn">learn more</a>
                         </div>
                         <!-- Service Content End -->
                     </div>
