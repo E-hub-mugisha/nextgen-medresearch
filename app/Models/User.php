@@ -47,15 +47,6 @@ class User extends Authenticatable
         ];
     }
 
-    public function mentorProfile()
-    {
-        return $this->hasOne(MentorProfile::class);
-    }
-
-    public function menteeProfile()
-    {
-        return $this->hasOne(MenteeProfile::class);
-    }
 
     public function interests()
     {
@@ -134,5 +125,36 @@ class User extends Authenticatable
             ResearchInterest::class,
             'research_interest_user' // pivot table
         );
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'owner_id');
+    }
+
+    public function collaborations()
+    {
+        return $this->belongsToMany(Project::class, 'project_collaborators');
+    }
+
+    // In User.php
+
+    public function mentorProfile()
+    {
+        return $this->hasOne(MentorProfile::class);
+    }
+
+    public function menteeProfile()
+    {
+        return $this->hasOne(MenteeProfile::class);
+    }
+
+
+    // Helper to get the right profile regardless of role
+    public function profile()
+    {
+        return $this->role === 'mentor'
+            ? $this->mentorProfile
+            : $this->menteeProfile;
     }
 }

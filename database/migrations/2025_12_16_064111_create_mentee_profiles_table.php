@@ -13,12 +13,18 @@ return new class extends Migration
     {
         Schema::create('mentee_profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('education_level');
-            $table->text('research_goals')->nullable();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            // From your registration form fields
             $table->text('bio')->nullable();
-            $table->string('location')->nullable();
-             $table->string('image')->nullable();
+            $table->string('research_goal')->nullable();
+            $table->string('education_level')->nullable();
+
+            // Extra useful fields
+            $table->string('institution')->nullable();       // university/school
+            $table->string('country')->nullable();
+            $table->string('availability')->nullable();      // part-time / full-time
+            $table->string('profile_photo')->nullable();
             $table->timestamps();
         });
     }

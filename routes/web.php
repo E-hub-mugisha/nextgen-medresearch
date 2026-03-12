@@ -181,10 +181,19 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::delete('/research-kits/{researchKit}', [ResearchKitController::class, 'destroy'])->name('research_kits.destroy');
 });
 
+// Step 1 — Role selection modal lives on the home/welcome page
+// Step 2 — Show the registration form based on role
+Route::get('/onboarding', [MentorController::class, 'showForm'])
+    ->name('register');
+
+// Step 3 — Handle registration form submission (AJAX)
+Route::post('/onboarding', [MentorController::class, 'register'])
+    ->name('onboarding.register');
+
 // Role-based onboarding
-Route::get('/onboarding/{role}', [MentorController::class, 'index'])->name('onboarding.index');
-Route::post('/onboarding/save-step', [MentorController::class, 'saveStep'])->name('onboarding.saveStep');
-Route::post('/onboarding/register', [MentorController::class, 'registerUser'])->name('onboarding.register');
+// Route::get('/onboarding/{role}', [MentorController::class, 'index'])->name('onboarding.index');
+// Route::post('/onboarding/save-step', [MentorController::class, 'saveStep'])->name('onboarding.saveStep');
+// Route::post('/onboarding/register', [MentorController::class, 'registerUser'])->name('onboarding.register');
 
 // Mentor listing & request
 Route::get('/mentors', [MentorController::class, 'mentorLists'])->name('mentors.list');

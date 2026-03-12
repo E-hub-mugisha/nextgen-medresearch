@@ -10,11 +10,20 @@ class MentorProfile extends Model
         'user_id',
         'bio',
         'expertise',
-        'country',
-        'available',
         'organization',
+        'country',
         'experience_years',
-        'max_mentees'
+        'max_mentees',
+        'available',
+        'academic_title',
+        'linkedin_url',
+        'google_scholar_url',
+        'profile_photo',
+        'mentee_count'
+    ];
+
+    protected $casts = [
+        'available' => 'boolean',
     ];
 
     public function user()

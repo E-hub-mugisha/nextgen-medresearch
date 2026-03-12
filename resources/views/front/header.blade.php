@@ -128,58 +128,89 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
 
 <!-- Header End -->
 
-<!-- Glass Role Selection Modal -->
+<!-- Role Selection Modal -->
 <div class="modal fade" id="roleModal" tabindex="-1" aria-labelledby="roleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content glass-modal border-0 rounded-4">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 560px;">
+        <div class="modal-content border-0 rounded-4 shadow-lg">
 
             <!-- Header -->
-            <div class="modal-header border-0 px-4 pt-4">
+            <div class="modal-header border-0 px-4 pt-4 pb-0 align-items-start">
                 <div>
-                    <h3 class="fw-bold mb-1" id="roleModalLabel">Welcome!</h3>
-                    <p class="text-muted mb-0">Choose how you want to join</p>
+                    <p class="text-uppercase fw-semibold text-muted mb-1" style="font-size: 11px; letter-spacing: 0.08em;">
+                        Research Portal
+                    </p>
+                    <h4 class="fw-semibold mb-1" id="roleModalLabel">How will you contribute?</h4>
+                    <p class="text-muted mb-0" style="font-size: 14px;">Select your role to get started</p>
                 </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <!-- Body -->
-            <div class="modal-body px-4 pb-4">
-                <div class="row g-4">
+            <div class="modal-body px-4 pb-4 pt-3">
+                <div class="row g-3 mb-3">
 
-                    <!-- Mentee -->
-                    <div class="col-md-6">
-                        <div class="role-card mentee text-center p-4 rounded-4 h-100"
-                            id="join-mentee" role="button">
-                            <div class="icon mb-3">
-                                <i class="bi bi-mortarboard-fill"></i>
+                    <!-- Mentee Card -->
+                    <div class="col-6">
+                        <div class="role-card p-3 rounded-3 h-100 border"
+                            id="card-mentee"
+                            data-role="mentee"
+                            role="button"
+                            onclick="selectRole('mentee')">
+                            <div class="role-icon mb-3 d-flex align-items-center justify-content-center rounded-3"
+                                style="width:42px;height:42px;background:#E1F5EE;">
+                                <i class="bi bi-mortarboard-fill" style="color:#0F6E56;font-size:18px;"></i>
                             </div>
-                            <h5 class="fw-bold">Join as Mentee</h5>
-                            <p class="text-muted small">
-                                Get guidance, explore research, and grow faster.
+                            <p class="fw-semibold mb-1" style="font-size:15px;">Join as Mentee</p>
+                            <p class="text-muted mb-3" style="font-size:12px;line-height:1.5;">
+                                Explore research, get guidance and grow faster with expert support.
                             </p>
-                            <span class="badge bg-success px-3 py-2">Get Mentored</span>
+                            <span class="badge rounded-pill px-3 py-2"
+                                style="background:#E1F5EE;color:#0F6E56;font-size:11px;">
+                                Get mentored
+                            </span>
                         </div>
                     </div>
 
-                    <!-- Mentor -->
-                    <div class="col-md-6">
-                        <div class="role-card mentor text-center p-4 rounded-4 h-100"
-                            id="join-mentor" role="button">
-                            <div class="icon mb-3">
-                                <i class="bi bi-person-workspace"></i>
+                    <!-- Mentor Card -->
+                    <div class="col-6">
+                        <div class="role-card p-3 rounded-3 h-100 border"
+                            id="card-mentor"
+                            data-role="mentor"
+                            role="button"
+                            onclick="selectRole('mentor')">
+                            <div class="role-icon mb-3 d-flex align-items-center justify-content-center rounded-3"
+                                style="width:42px;height:42px;background:#E6F1FB;">
+                                <i class="bi bi-person-check-fill" style="color:#185FA5;font-size:18px;"></i>
                             </div>
-                            <h5 class="fw-bold">Join as Mentor</h5>
-                            <p class="text-muted small">
-                                Share expertise and shape future researchers.
+                            <p class="fw-semibold mb-1" style="font-size:15px;">Join as Mentor</p>
+                            <p class="text-muted mb-3" style="font-size:12px;line-height:1.5;">
+                                Share expertise, guide researchers and shape the next generation.
                             </p>
-                            <span class="badge bg-info px-3 py-2">Become a Guide</span>
+                            <span class="badge rounded-pill px-3 py-2"
+                                style="background:#E6F1FB;color:#185FA5;font-size:11px;">
+                                Become a guide
+                            </span>
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-center text-center">
-                        <p class="mb-3 px-2">already joined the platform? click below to enter into the account!</p>
-                        <a href="{{ route('login') }}" class="btn-default mb-3">Login</a>
-                    </div>
+                </div>
+
+                <!-- Continue Button (hidden until role selected) -->
+                <div id="continueWrapper" class="mb-3" style="display:none;">
+                    <a id="continueBtn" href="#" class="btn w-100 py-2 fw-semibold text-white rounded-3"
+                        style="font-size:14px;">
+                        Continue
+                    </a>
+                </div>
+
+                <!-- Login Divider -->
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                    <p class="text-muted mb-0" style="font-size:13px;">Already have an account?</p>
+                    <a href="{{ route('login') }}"
+                        class="btn btn-sm btn-outline-secondary rounded-3 px-3"
+                        style="font-size:13px;">
+                        Sign in
+                    </a>
                 </div>
             </div>
 
@@ -188,64 +219,45 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
 </div>
 
 <style>
-    /* Glass Modal Effect */
-    .glass-modal {
-        background: rgba(255, 255, 255, 0.75);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
-    }
-
-    /* Role Cards */
     .role-card {
         cursor: pointer;
-        transition: all 0.35s ease;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        background: rgba(255, 255, 255, 0.6);
-    }
-
-    .role-card .icon {
-        font-size: 3rem;
-        color: #6c757d;
+        transition: border-color 0.15s ease, background 0.15s ease;
+        border-color: #dee2e6 !important;
     }
 
     .role-card:hover {
-        transform: translateY(-8px) scale(1.02);
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+        background: #f8f9fa;
     }
 
-    .role-card.mentee:hover {
-        border-color: #28a745;
+    .role-card.selected-mentee {
+        border: 2px solid #1D9E75 !important;
+        background: rgba(225, 245, 238, 0.3) !important;
     }
 
-    .role-card.mentee:hover .icon {
-        color: #28a745;
-    }
-
-    .role-card.mentor:hover {
-        border-color: #0dcaf0;
-    }
-
-    .role-card.mentor:hover .icon {
-        color: #0dcaf0;
-    }
-
-    /* Modal Backdrop (subtle blur) */
-    .modal-backdrop.show {
-        backdrop-filter: blur(10px);
-        background-color: rgba(0, 0, 0, 0.35);
+    .role-card.selected-mentor {
+        border: 2px solid #185FA5 !important;
+        background: rgba(230, 241, 251, 0.3) !important;
     }
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('join-mentee').addEventListener('click', function() {
-            window.location.href = "{{ route('onboarding.index', 'mentee') }}";
-        });
-        document.getElementById('join-mentor').addEventListener('click', function() {
-            window.location.href = "{{ route('mentor.onboarding', 'mentor') }}";
-        });
-    });
+    function selectRole(role) {
+        // Reset both cards
+        document.getElementById('card-mentee').className = 'role-card p-3 rounded-3 h-100 border';
+        document.getElementById('card-mentor').className = 'role-card p-3 rounded-3 h-100 border';
+
+        // Highlight selected
+        document.getElementById('card-' + role).classList.add('selected-' + role);
+
+        // Update continue button
+        const btn = document.getElementById('continueBtn');
+        const wrapper = document.getElementById('continueWrapper');
+        const routeBase = "{{ url('/onboarding') }}";
+
+        btn.href = routeBase + '?role=' + role;
+        btn.style.background = role === 'mentee' ? '#0F6E56' : '#185FA5';
+        wrapper.style.display = 'block';
+    }
 </script>
 
 <!-- Membership Modal -->

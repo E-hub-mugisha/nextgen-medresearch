@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('research_projects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mentee_id');
+            $table->foreignId('owner_id')->constrained('users')->cascadeOnDelete();
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('research_area')->nullable();
@@ -21,8 +21,6 @@ return new class extends Migration
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();
-
-            $table->foreign('mentee_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -8,14 +8,15 @@ class MenteeProfile extends Model
 {
     protected $fillable = [
         'user_id',
-        'research_goals',
-        'education_level',
         'bio',
-        'location',
-        'image'
+        'research_goal',
+        'education_level',
+        'institution',
+        'country',
+        'availability',
+        'profile_photo'
     ];
 
-    // Relationship to the user
     public function user()
     {
         return $this->belongsTo(User::class);

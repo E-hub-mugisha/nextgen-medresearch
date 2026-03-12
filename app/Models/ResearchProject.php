@@ -10,7 +10,7 @@ class ResearchProject extends Model
     use HasFactory;
 
     protected $fillable = [
-        'mentee_id',
+        'owner_id',
         'title',
         'description',
         'research_area',
@@ -19,10 +19,9 @@ class ResearchProject extends Model
         'end_date'
     ];
 
-    // Project belongs to a mentee
-    public function mentee()
+    public function owner()
     {
-        return $this->belongsTo(User::class, 'mentee_id');
+        return $this->belongsTo(User::class, 'owner_id');
     }
 
     // Project has many milestones
@@ -34,6 +33,6 @@ class ResearchProject extends Model
     // Project has many collaborators (mentors or other users)
     public function collaborators()
     {
-        return $this->hasMany(ProjectCollaborator::class, 'project_id');
+        return $this->belongsToMany(User::class, 'project_collaborators')->withPivot('role', 'status')->withTimestamps();
     }
 }

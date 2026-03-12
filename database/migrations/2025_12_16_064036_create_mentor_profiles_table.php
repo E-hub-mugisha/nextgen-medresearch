@@ -13,14 +13,23 @@ return new class extends Migration
     {
         Schema::create('mentor_profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            // From your mentor registration form fields
             $table->text('bio')->nullable();
-            $table->string('expertise')->nullable();        // used in filters
-            $table->string('country')->nullable();          // used in filters
-            $table->boolean('available')->default(true);    // availability filter
+            $table->string('expertise')->nullable();
             $table->string('organization')->nullable();
-            $table->integer('experience_years')->nullable();
-            $table->integer('max_mentees')->default(3);
+            $table->string('country')->nullable();
+            $table->unsignedInteger('experience_years')->default(0);
+            $table->unsignedInteger('max_mentees')->default(1);
+            $table->boolean('available')->default(true);
+
+            // Extra useful fields
+            $table->string('academic_title')->nullable();    // Prof, Dr, etc.
+            $table->string('linkedin_url')->nullable();
+            $table->string('google_scholar_url')->nullable();
+            $table->string('profile_photo')->nullable();
+            $table->unsignedInteger('mentee_count')->default(0); // track current mentees
             $table->timestamps();
         });
     }

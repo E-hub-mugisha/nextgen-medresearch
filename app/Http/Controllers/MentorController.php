@@ -16,9 +16,12 @@ use Illuminate\Support\Str;
 
 class MentorController extends Controller
 {
-    public function index($role)
+    public function showForm(Request $request)
     {
-        if (!in_array($role, ['mentee', 'mentor'])) abort(404);
+        // Validate the role query param — default to mentee if missing or invalid
+        $role = in_array($request->query('role'), ['mentor', 'mentee'])
+            ? $request->query('role')
+            : 'mentee';
 
         $researchInterests = ResearchInterest::all();
         return view('onboarding.index', compact('role', 'researchInterests'));
@@ -205,5 +208,129 @@ class MentorController extends Controller
             'success'  => true,
             'redirect' => route('portal.dashboard'),
         ]);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | HANDLE REGISTRATION (AJAX)
+    | POST /register
+    |--------------------------------------------------------------------------
+    */
+    public function register(Request $request)
+    {
+        // ── 1. Base validation (shared by both roles) ─────────────────────
+        $rules = [
+            'role'              => ['required', 'in:mentor,mentee'],
+            'name'              => ['required', 'string', 'max:255'],
+            'email'             => ['required', 'email', 'unique:users,email'],
+            'password'          => ['required', 'confirmed', Password::min(8)],
+            'bio'               => ['nullable', 'string', 'max:1000'],
+            'research_goal'     => ['nullable', 'string', 'max:500'],
+            'education_level'   => ['nullable', 'string', 'max:100'],
+            'country'           => ['nullable', 'string', 'max:100'],
+            'interests'         => ['nullable', 'array'],
+            'interests.*'       => ['nullable'],
+        ];
+
+        // ── 2. Extra validation for mentors only ──────────────────────────
+        if ($request->role === 'mentor') {
+            $rules = array_merge($rules, [
+                'expertise'          => ['required', 'string', 'max:255'],
+                'organization'       => ['required', 'string', 'max:255'],
+                'academic_title'     => ['nullable', 'string', 'max:100'],
+                'experience_years'   => ['required', 'integer', 'min:0', 'max:60'],
+                'max_mentees'        => ['required', 'integer', 'min:1', 'max:100'],
+                'available'          => ['nullable', 'boolean'],
+                'linkedin_url'       => ['nullable', 'url', 'max:255'],
+                'google_scholar_url' => ['nullable', 'url', 'max:255'],
+            ]);
+        }
+
+        $validated = $request->validate($rules);
+
+
+        // ── 3. Create the user ────────────────────────────────────────────
+        $user = User::create([
+            'name'     => $validated['name'],
+            'email'    => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role'     => $validated['role'],
+        ]);
+
+
+        // ── 4. Create the role-specific profile ───────────────────────────
+        if ($validated['role'] === 'mentor') {
+
+            MentorProfile::create([
+                'user_id'            => $user->id,
+                'bio'                => $validated['bio']               ?? null,
+                'expertise'          => $validated['expertise'],
+                'organization'       => $validated['organization'],
+                'academic_title'     => $validated['academic_title']    ?? null,
+                'country'            => $validated['country']           ?? null,
+                'experience_years'   => $validated['experience_years'],
+                'max_mentees'        => $validated['max_mentees'],
+                'available'          => $request->boolean('available'),
+                'linkedin_url'       => $validated['linkedin_url']       ?? null,
+                'google_scholar_url' => $validated['google_scholar_url'] ?? null,
+            ]);
+
+        } else {
+
+            MenteeProfile::create([
+                'user_id'         => $user->id,
+                'bio'             => $validated['bio']             ?? null,
+                'research_goal'   => $validated['research_goal']   ?? null,
+                'education_level' => $validated['education_level'] ?? null,
+                'country'         => $validated['country']         ?? null,
+            ]);
+
+        }
+
+
+        // ── 5. Attach research interests ──────────────────────────────────
+        if (!empty($validated['interests'])) {
+
+            $existingIds = [];
+            $customNames = [];
+
+            foreach ($validated['interests'] as $value) {
+                // Numeric = existing ResearchInterest ID from DB
+                if (is_numeric($value)) {
+                    $existingIds[] = (int) $value;
+
+                // Prefixed with "custom_" = user typed it manually
+                } elseif (str_starts_with($value, 'custom_')) {
+                    $label = trim(str_replace('custom_', '', $value));
+                    if ($label) $customNames[] = $label;
+                }
+            }
+
+            // Sync existing interests
+            if ($existingIds) {
+                $user->researchInterests()->sync($existingIds);
+            }
+
+            // Create and attach custom interests
+            foreach ($customNames as $name) {
+                $interest = ResearchInterest::firstOrCreate(
+                    ['slug' => \Illuminate\Support\Str::slug($name)],
+                    ['name' => $name]
+                );
+                $user->researchInterests()->syncWithoutDetaching([$interest->id]);
+            }
+        }
+
+
+        // ── 6. Log the user in ────────────────────────────────────────────
+        Auth::login($user);
+
+
+        // ── 7. Return JSON response for the AJAX form ─────────────────────
+        return response()->json([
+            'success'  => true,
+            'message'  => 'Account created successfully.',
+            'redirect' => route('dashboard'),
+        ], 201);
     }
 }

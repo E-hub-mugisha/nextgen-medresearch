@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('user_id'); // mentee or mentor
             $table->enum('role', ['mentee', 'mentor', 'collaborator'])->default('mentee');
+            $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('research_projects')->onDelete('cascade');
