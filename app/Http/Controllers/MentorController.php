@@ -67,7 +67,7 @@ class MentorController extends Controller
         // Return JSON for AJAX
         return response()->json([
             'success' => true,
-            'redirect' => route('portal.dashboard'), // redirect after successful registration
+            'redirect' => route('portal.dashboard.index'), // redirect after successful registration
         ]);
     }
 

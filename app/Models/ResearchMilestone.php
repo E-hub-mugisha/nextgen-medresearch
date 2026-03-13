@@ -7,23 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class ResearchMilestone extends Model
 {
-    use HasFactory;
+    protected $table = 'research_milestones';
 
     protected $fillable = [
         'project_id',
         'title',
         'description',
         'status',
-        'due_date'
+        'due_date',
     ];
 
-    // Milestone belongs to a project
+    protected $casts = [
+        'due_date' => 'date',
+    ];
+
     public function project()
     {
         return $this->belongsTo(ResearchProject::class, 'project_id');
     }
 
-    // Milestone has many comments
     public function comments()
     {
         return $this->hasMany(MilestoneComment::class, 'milestone_id');

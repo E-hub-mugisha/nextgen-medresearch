@@ -15,7 +15,15 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RescueSheetController;
 use App\Http\Controllers\ResearchProjectController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\Portal\CollaboratorController;
+use App\Http\Controllers\Portal\CollaboratorController as PortalCollaboratorController;
+use App\Http\Controllers\Portal\CommentController;
+use App\Http\Controllers\Portal\DashboardController as PortalDashboardController;
+use App\Http\Controllers\Portal\MilestoneController;
+use App\Http\Controllers\Portal\PeopleController;
 use App\Http\Controllers\Portal\PortalMessageController;
+use App\Http\Controllers\Portal\ResearchInterestController;
+use App\Http\Controllers\Portal\ResearchProjectController as PortalResearchProjectController;
 use App\Http\Controllers\ResearchKitController;
 use App\Http\Controllers\ResearchSpaceController;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -190,6 +198,83 @@ Route::get('/onboarding', [MentorController::class, 'showForm'])
 Route::post('/onboarding', [MentorController::class, 'register'])
     ->name('onboarding.register');
 
+Route::get('/portal/dashboard', [PortalDashboardController::class, 'index'])->name('portal.dashboard.index');
+Route::get('/portal/discover', [PortalResearchProjectController::class, 'discover'])->name('portal.projects.discover');
+Route::get('/portal/profile',       [PeopleController::class, 'show'])->name('portal.profile.show');
+Route::get('/portal/profile/edit',  [PeopleController::class, 'edit'])->name('portal.profile.edit');
+Route::patch('/portal/profile',      [PeopleController::class, 'update'])->name('portal.profile.update');
+Route::get('/portal/users/{user}', [PeopleController::class, 'viewUser'])->name('portal.users.show');
+Route::get('portal/projects', [PortalResearchProjectController::class, 'index'])->name('portal.projects.index');
+Route::get('portal/projects/create', [PortalResearchProjectController::class, 'create'])->name('portal.projects.create');
+Route::post('portal/projects', [PortalResearchProjectController::class, 'store'])->name('portal.projects.store');
+Route::get('portal/projects/{project}', [PortalResearchProjectController::class, 'show'])->name('portal.projects.show');
+Route::get('portal/projects/{project}/edit', [PortalResearchProjectController::class, 'edit'])->name('portal.projects.edit');
+Route::patch('portal/projects/{project}', [PortalResearchProjectController::class, 'update'])->name('portal.projects.update');
+Route::delete('portal/projects/{project}', [PortalResearchProjectController::class, 'destroy'])->name('portal.projects.destroy');
+// Route::resource('portal/projects', PortalResearch
+// Registers:
+//   GET    /projects                → projects.index
+//   GET    /projects/create         → projects.create
+//   POST   /projects                → projects.store
+//   GET    /projects/{project}       → projects.show
+//   GET    /projects/{project}/edit  → projects.edit
+//   PATCH  /projects/{project}       → projects.update
+//   DELETE /projects/{project}       → projects.destroy
+
+
+/*
+    |----------------------------------------------------------------------
+    | COLLABORATORS
+    |----------------------------------------------------------------------
+    */
+Route::middleware('auth')->prefix('portal')->name('portal.')->group(function () {
+    Route::get('/people', [PeopleController::class, 'index'])->name('people.index');
+
+    // Collaborators ← full group with index
+    Route::prefix('projects/{project}/collaborators')->name('collaborators.')->group(function () {
+        Route::get('/',                [PortalCollaboratorController::class, 'index'])->name('index');
+        Route::post('request',         [PortalCollaboratorController::class, 'sendRequest'])->name('request');
+        Route::patch('{user}/accept',  [PortalCollaboratorController::class, 'accept'])->name('accept');
+        Route::patch('{user}/reject',  [PortalCollaboratorController::class, 'reject'])->name('reject');
+        Route::delete('{user}/remove', [PortalCollaboratorController::class, 'remove'])->name('remove');
+        Route::post('{user}/invite',   [PortalCollaboratorController::class, 'invite'])->name('invite');
+    });
+
+    Route::get('/topics',                   [ResearchInterestController::class, 'index'])->name('interests.index');
+    Route::post('/topics/{interest}/toggle', [ResearchInterestController::class, 'toggle'])->name('interests.toggle');
+    Route::post('/topics/sync',             [ResearchInterestController::class, 'sync'])->name('interests.sync');
+    Route::get('/topics/{interest}/projects', [ResearchInterestController::class, 'projects'])->name('interests.projects');
+});
+
+
+/*
+    |----------------------------------------------------------------------
+    | MILESTONES
+    |----------------------------------------------------------------------
+    */
+Route::resource('projects.milestones', MilestoneController::class)->shallow();
+// shallow() generates:
+//   GET    /projects/{project}/milestones          → milestones.index
+//   GET    /projects/{project}/milestones/create   → milestones.create
+//   POST   /projects/{project}/milestones          → milestones.store
+//   GET    /milestones/{milestone}                 → milestones.show
+//   GET    /milestones/{milestone}/edit            → milestones.edit
+//   PATCH  /milestones/{milestone}                 → milestones.update
+//   DELETE /milestones/{milestone}                 → milestones.destroy
+
+// Quick status update via AJAX
+Route::patch('/milestones/{milestone}/status', [MilestoneController::class, 'updateStatus'])
+    ->name('milestones.status');
+
+
+/*
+    |----------------------------------------------------------------------
+    | COMMENTS
+    |----------------------------------------------------------------------
+    */
+Route::post('/milestones/{milestone}/comments',  [CommentController::class, 'store'])->name('comments.store');
+Route::patch('/comments/{comment}',              [CommentController::class, 'update'])->name('comments.update');
+Route::delete('/comments/{comment}',             [CommentController::class, 'destroy'])->name('comments.destroy');
 // Role-based onboarding
 // Route::get('/onboarding/{role}', [MentorController::class, 'index'])->name('onboarding.index');
 // Route::post('/onboarding/save-step', [MentorController::class, 'saveStep'])->name('onboarding.saveStep');
@@ -208,57 +293,6 @@ Route::prefix('mentor-onboarding')->group(function () {
     Route::post('/register', [MentorController::class, 'registerMentor'])->name('mentor.onboarding.register');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/mentee/dashboard', [MentorDashboardController::class, 'menteeDashboard'])->name('mentee.dashboard');
-    Route::get('/mentor/dashboard', [MentorDashboardController::class, 'mentorDashboard'])->name('mentor.dashboard');
-    Route::get('/portal/dashboard', [MentorDashboardController::class, 'dashboard'])->name('portal.dashboard');
-    Route::get('/mentee/profile', [MenteeProjectController::class, 'showProfile'])->name('mentee.profile');
-
-    // Update mentee profile (modal form submission)
-    Route::put('/mentee/profile/{id}', [MenteeProjectController::class, 'updateProfile'])->name('mentee.update');
-    // Requests
-    Route::get('/mentor/requests', [MentorPortalController::class, 'index'])->name('mentor.requests.index');
-    Route::post('/requests/{id}/action', [MentorPortalController::class, 'action'])->name('requests.action');
-    Route::delete('/requests/{id}/cancel', [MentorPortalController::class, 'cancel'])
-        ->name('mentee.request.cancel');
-    Route::get('/mentors/{mentor}/profile', [MentorPortalController::class, 'mentorProfile'])->name('mentor.details');
-
-    Route::get('/portal/projects', [MenteeProjectController::class, 'index'])->name('projects.index'); // list all projects
-    Route::get('/portal/projects/create', [MenteeProjectController::class, 'create'])->name('projects.create'); // form to create
-    Route::post('/portal/projects', [MenteeProjectController::class, 'store'])->name('projects.store'); // save new project
-    Route::get('/portal/projects/{project}', [MenteeProjectController::class, 'show'])->name('projects.show'); // view project details
-
-    // Milestones
-    Route::get('/portal/projects/{project}/milestones/create', [MenteeProjectController::class, 'createMilestone'])->name('milestones.create'); // form to add milestone
-    Route::post('/portal/projects/{project}/milestones', [MenteeProjectController::class, 'storeMilestone'])->name('milestones.store'); // save milestone
-    // Update milestone
-    Route::put('milestones/{milestone}', [MenteeProjectController::class, 'updateMilestone'])
-        ->name('milestones.update');
-
-    // Delete milestone
-    Route::delete('milestones/{milestone}', [MenteeProjectController::class, 'destroyMilestone'])
-        ->name('milestones.destroy');
-    // Collaborators
-    Route::get('/portal/projects/{project}/collaborators/create', [MenteeProjectController::class, 'createCollaborator'])->name('collaborators.create'); // form to add collaborator
-    Route::post('/portal/projects/{project}/collaborators', [MenteeProjectController::class, 'storeCollaborator'])->name('collaborators.store'); // save collaborator
-    Route::delete('/portal/projects/{project}/collaborators', [MenteeProjectController::class, 'destroyCollaborator'])->name('collaborators.destroy'); // save collaborator
-    Route::post('/projects/messages', [MenteeProjectController::class, 'storeSend'])
-        ->name('messages.send');
-    // Comments
-    Route::post('/portal/milestones/{milestone}/comments', [MenteeProjectController::class, 'storeComment'])->name('comments.store'); // add comment
-    Route::post('/projects/{project}/export', [MenteeProjectController::class, 'export'])
-        ->name('projects.export');
-
-    //  Research Spaces
-    Route::get('/portal/research-spaces', [ResearchSpaceController::class, 'listResearchSpaces'])
-        ->name('portal.research_spaces.index');
-    Route::post('/portal/research-spaces/{researchSpace}/select', [ResearchSpaceController::class, 'selectResearchSpace'])
-        ->name('portal.research_spaces.select');
-    Route::get('/my-topics', [ResearchSpaceController::class, 'myTopics'])
-        ->name('portal.research_spaces.my_topics');
-    Route::post('/research-spaces/{researchSpace}/deselect', [ResearchSpaceController::class, 'deselectTopic'])
-        ->name('portal.research_spaces.deselect');
-});
 
 Route::prefix('messages')->middleware('auth')->group(function () {
     Route::get('/', [PortalMessageController::class, 'index'])->name('messages.index');

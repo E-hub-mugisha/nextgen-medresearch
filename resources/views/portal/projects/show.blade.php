@@ -1,422 +1,342 @@
 @extends('layouts.portal')
+@section('title', $project->title)
+
 @section('content')
 
-<div class="container mt-5">
+{{-- Flash --}}
+@if(session('success'))
+<div class="alert alert-success mb-4">
+    <i class="bi bi-check-circle me-2"></i>{{ session('success') }}
+</div>
+@endif
 
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h3 class="fw-bold">{{ $project->title }}</h3>
-            <p class="text-muted mb-0">
-                <i class="fa-solid fa-flask"></i>
-                {{ $project->research_area }}
-            </p>
+{{-- PAGE HEADER --}}
+<div class="page-header-row">
+    <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="status-badge status-{{ str_replace(' ', '_', $project->status) }}">
+                {{ ucfirst($project->status) }}
+            </span>
+            @if($project->research_area)
+            <span class="project-area-tag">
+                <i class="bi bi-tag me-1"></i>{{ $project->research_area }}
+            </span>
+            @endif
         </div>
-
-        <a href="{{ route('projects.index') }}" class="btn btn-light shadow-sm">
-            <i class="fa-solid fa-arrow-left"></i> Back
+        <h1 class="page-title">{{ $project->title }}</h1>
+        <p class="page-subtitle">
+            By {{ $project->owner->name }}
+            @if($project->start_date)
+            · {{ optional($project->start_date)->format('M Y') }}
+            @if($project->end_date)
+            — {{ optional($project->end_date)->format('M Y') }}
+            @endif
+            @endif
+        </p>
+    </div>
+    <div class="d-flex gap-2">
+        @if($isOwner)
+        <a href="{{ route('portal.projects.edit', $project) }}"
+            class="btn btn-secondary btn-sm">
+            <i class="bi bi-pencil"></i> Edit
         </a>
-        <button class="btn btn-primary shadow-sm"
-            data-bs-toggle="modal"
-            data-bs-target="#exportProjectModal">
-            <i class="fa-solid fa-file-export"></i>
-            Export Project
+        <a href="{{ route('projects.milestones.create', $project) }}"
+            class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-lg"></i> Add Milestone
+        </a>
+
+        @elseif($isCollaborator)
+        {{-- Already an accepted collaborator — show leave button --}}
+        <form method="POST"
+            action="{{ route('portal.collaborators.remove', ['project' => $project, 'user' => auth()->user()]) }}"
+            onsubmit="return confirm('Leave this project?')">
+            @csrf @method('DELETE')
+            <button type="submit" class="btn btn-secondary btn-sm">
+                <i class="bi bi-box-arrow-left me-1"></i> Leave Project
+            </button>
+        </form>
+
+        @elseif($hasRequested)
+        {{-- Pending request --}}
+        <button class="btn btn-secondary btn-sm" disabled>
+            <i class="bi bi-clock me-1"></i> Request Pending
         </button>
+
+        @else
+        {{-- Not yet requested — show the button ✅ --}}
+        <form method="POST"
+            action="{{ route('portal.collaborators.request', $project) }}">
+            @csrf
+            <button type="submit" class="btn btn-primary btn-sm">
+                <i class="bi bi-person-plus me-1"></i> Request to Join
+            </button>
+        </form>
+
+        @endif
     </div>
+</div>
 
-    <!-- Project Overview -->
-    <div class="card shadow-sm p-4 mb-4 rounded-4">
-        <p class="text-muted">{{ $project->description }}</p>
+{{-- MAIN LAYOUT --}}
+<div class="project-show-layout">
 
-        <div class="d-flex justify-content-between mt-3">
-            <small class="text-muted">Created: {{ $project->created_at->format('M d, Y') }}</small>
-            <small class="text-muted">Updated: {{ $project->updated_at->diffForHumans() }}</small>
+    {{-- LEFT — Main Content --}}
+    <div class="project-show-main">
+
+        {{-- Description --}}
+        <div class="panel mb-4">
+            <div class="panel-header">
+                <span class="panel-title"><i class="bi bi-file-text me-2"></i>About this Project</span>
+            </div>
+            <div class="panel-body py-3">
+                <p style="font-size:.9rem;line-height:1.8;color:var(--gray-700);">
+                    {{ $project->description }}
+                </p>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <!-- Milestones -->
-        <div class="col-lg-8">
-            <div class="card shadow-sm p-4 rounded-4 mb-4">
-                <h5 class="fw-bold mb-3">
-                    Milestones
-                    <button class="btn btn-sm btn-primary float-end"
-                        data-bs-toggle="modal" data-bs-target="#addMilestoneModal">
-                        <i class="fa-solid fa-plus"></i> Add Milestone
-                    </button>
-                </h5>
+        {{-- Milestones --}}
+        <div class="panel">
+            <div class="panel-header">
+                <span class="panel-title">
+                    <i class="bi bi-check2-square me-2"></i>Milestones
+                    <span class="ms-badge ms-2">{{ $project->milestones->count() }}</span>
+                </span>
+                @if($isOwner || $isCollaborator)
+                <a href="{{ route('projects.milestones.create', $project) }}"
+                    class="btn btn-primary btn-sm">
+                    <i class="bi bi-plus-lg"></i> Add
+                </a>
+                @endif
+            </div>
 
-                @forelse($project->milestones as $milestone)
-                <div class="milestone-item mb-4 p-3 rounded-4 border">
-
-                    <div class="d-flex justify-content-between">
-                        <h6 class="fw-bold mb-1">{{ $milestone->title }}</h6>
-
-                        <span class="badge 
-                            {{ $milestone->status == 'completed' ? 'bg-success' :
-                               ($milestone->status == 'ongoing' ? 'bg-primary' : 'bg-warning text-dark') }}">
-                            {{ ucfirst($milestone->status) }}
-                        </span>
+            @if($project->milestones->isEmpty())
+            <div class="panel-empty">
+                <i class="bi bi-check2-square"></i>
+                No milestones yet.
+                @if($isOwner)
+                <a href="{{ route('projects.milestones.create', $project) }}"
+                    class="d-block mt-1 text-teal fw-medium">
+                    Add the first milestone →
+                </a>
+                @endif
+            </div>
+            @else
+            <div class="panel-body">
+                @foreach($project->milestones as $milestone)
+                <div class="milestone-show-row">
+                    <div class="ms-check {{ $milestone->status === 'done' ? 'done' : '' }}">
+                        @if($milestone->status === 'done')
+                        <i class="bi bi-check"></i>
+                        @endif
                     </div>
-
-                    <p class="text-muted mb-2">{{ $milestone->description }}</p>
-
-                    <small class="text-muted">
-                        <i class="fa-solid fa-calendar"></i>
-                        Due: {{ \Carbon\Carbon::parse($milestone->due_date)->format('M d, Y') }}
-                    </small>
-                    <!-- Progress -->
-                    <div class="mt-2">
-                        <label class="small text-muted">Progress</label>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" style="width: {{ $milestone->progress ?? 0 }}%">
-                                {{ $milestone->progress ?? 0 }}%
-                            </div>
+                    <div class="milestone-show-info">
+                        <a href="{{ route('milestones.show', $milestone) }}"
+                            class="milestone-show-title {{ $milestone->status === 'done' ? 'done' : '' }}">
+                            {{ $milestone->title }}
+                        </a>
+                        <div class="d-flex align-items-center gap-3 mt-1">
+                            <span class="status-badge status-{{ $milestone->status }}">
+                                {{ ucfirst(str_replace('_', ' ', $milestone->status)) }}
+                            </span>
+                            @if($milestone->due_date)
+                            <span class="ms-due {{ $milestone->due_date->isPast() && $milestone->status !== 'done' ? 'overdue' : '' }}">
+                                <i class="bi bi-calendar2 me-1"></i>
+                                {{ $milestone->due_date->format('M d, Y') }}
+                            </span>
+                            @endif
+                            <span class="ms-due">
+                                <i class="bi bi-chat me-1"></i>
+                                {{ $milestone->comments_count }} comment{{ $milestone->comments_count !== 1 ? 's' : '' }}
+                            </span>
                         </div>
                     </div>
-
-                    <!-- Attachments -->
-                    @if($milestone->attachment)
-                    <a href="{{ asset($milestone->attachment) }}" target="_blank" class="btn btn-sm btn-outline-dark mt-2">
-                        View Attachment
+                    @if($isOwner || $isCollaborator)
+                    <a href="{{ route('milestones.show', $milestone) }}"
+                        class="btn btn-secondary btn-sm ms-auto">
+                        View
                     </a>
                     @endif
-
-                    <!-- Actions -->
-                    <div class="text-end mt-4">
-                        <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
-                            data-bs-target="#editMilestoneModal{{ $milestone->id }}">Edit</button>
-
-                        <form action="{{ route('milestones.destroy',$milestone->id) }}"
-                            method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-outline-danger"
-                                onclick="return confirm('Delete this milestone?')">Delete</button>
-                        </form>
-                    </div>
-                    <!-- Edit Milestone Modal -->
-                    <div class="modal fade" id="editMilestoneModal{{ $milestone->id }}" tabindex="-1">
-                        <div class="modal-dialog">
-                            <form action="{{ route('milestones.update',$milestone->id) }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5>Edit Milestone</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                    </div>
-
-                                    <div class="modal-body">
-                                        <div class="mb-3">
-                                            <label>Title</label>
-                                            <input type="text" name="title" value="{{ $milestone->title }}" class="form-control">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label>Description</label>
-                                            <textarea name="description" class="form-control">{{ $milestone->description }}</textarea>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label>Progress (%)</label>
-                                            <input type="number" name="progress" value="{{ $milestone->progress ?? 0 }}" class="form-control" min="0" max="100">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label>Attachment</label>
-                                            <input type="file" name="attachment" class="form-control">
-                                        </div>
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button class="btn btn-secondary">Close</button>
-                                        <button class="btn btn-gradient-primary">Save Changes</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <hr>
-
-                    <!-- Comments -->
-                    <h6 class="fw-semibold mb-2">Comments</h6>
-
-                    <div class="comment-box mb-2">
-                        @forelse($milestone->comments as $comment)
-                        <div class="p-2 mb-2 rounded-3 bg-light">
-                            <strong>{{ $comment->user->name }}:</strong>
-                            <span class="text-muted">{{ $comment->comment }}</span>
-                        </div>
-                        @empty
-                        <p class="text-muted">No comments yet.</p>
-                        @endforelse
-                    </div>
-
-                    <form action="{{ route('comments.store', $milestone->id) }}"
-                        method="POST"
-                        class="d-flex">
-                        @csrf
-                        <input type="text"
-                            name="comment"
-                            class="form-control rounded-pill me-2"
-                            placeholder="Write a comment..."
-                            required>
-                        <button class="btn btn-primary rounded-pill">
-                            Send
-                        </button>
-                    </form>
                 </div>
-                @empty
-                <p class="text-muted text-center">No milestones yet.</p>
-                @endforelse
+                @endforeach
+            </div>
+            @endif
+        </div>
+
+    </div>
+
+    {{-- RIGHT — Sidebar --}}
+    <div class="project-show-sidebar">
+
+        {{-- Project Info --}}
+        <div class="panel mb-3">
+            <div class="panel-header">
+                <span class="panel-title"><i class="bi bi-info-circle me-2"></i>Details</span>
+            </div>
+            <div class="panel-body">
+                <table class="details-table">
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                            <span class="status-badge status-{{ str_replace(' ', '_', $project->status) }}">
+                                {{ ucfirst($project->status) }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Research Area</td>
+                        <td>{{ $project->research_area ?? '—' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Start Date</td>
+                        <td>{{ $project->start_date?->format('M d, Y') ?? '—' }}</td>
+                    </tr>
+                    <tr>
+                        <td>End Date</td>
+                        <td>{{ $project->end_date?->format('M d, Y') ?? '—' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Milestones</td>
+                        <td>{{ $project->milestones->count() }}</td>
+                    </tr>
+                </table>
             </div>
         </div>
 
-        <!-- Collaborators -->
-        <div class="col-lg-4">
-            <div class="card shadow-sm p-4 rounded-4">
-                <h5 class="fw-bold mb-3">
-                    Collaborators
-                    <button class="btn btn-sm btn-primary float-end"
-                        data-bs-toggle="modal"
-                        data-bs-target="#addCollaboratorModal">
-                        <i class="fa-solid fa-user-plus"></i> Add
-                    </button>
-                </h5>
-                {{-- Validation Errors --}}
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+        {{-- Owner --}}
+        <div class="panel mb-3">
+            <div class="panel-header">
+                <span class="panel-title"><i class="bi bi-person-badge me-2"></i>Owner</span>
+            </div>
+            <div class="panel-body">
+                <div class="person-row pt-0 border-0">
+                    <div class="person-avatar">
+                        {{ strtoupper(substr($project->owner->name, 0, 2)) }}
+                    </div>
+                    <div class="person-info">
+                        <span class="person-name">{{ $project->owner->name }}</span>
+                        <span class="person-role">{{ ucfirst($project->owner->role) }}</span>
+                    </div>
+                    <a href="{{ route('portal.users.show', $project->owner) }}" class="btn-connect">Profile</a>
                 </div>
+            </div>
+        </div>
+
+        {{-- Collaborators --}}
+        {{-- Collaborators --}}
+        <div class="panel">
+            <div class="panel-header">
+                <span class="panel-title">
+                    <i class="bi bi-people me-2"></i>Collaborators
+                    <span class="ms-badge ms-2">
+                        {{ $project->collaborators->where('pivot.status','accepted')->count() }}
+                    </span>
+                </span>
+                @if($isOwner)
+                <a href="{{ route('portal.collaborators.index', $project) }}"
+                    class="panel-link">Manage →</a>
                 @endif
-                @forelse($project->collaborators as $collab)
-                <div class="d-flex align-items-center mb-3">
-                    <img src="{{ $collab->user->profile_photo ?? 'https://ui-avatars.com/api/?name='.urlencode($collab->user->name).'&background=0D6EFD&color=fff' }}"
-                        class="avatar-lg">
+            </div>
+            <div class="panel-body">
 
-                    <div class="ms-2">
-                        <strong>{{ $collab->user->name }}</strong>
-                        <p class="text-muted small mb-0">{{ $collab->role }}</p>
+                @php
+                $mentors = $project->collaborators
+                ->where('pivot.status','accepted')
+                ->where('role','mentor');
+                $mentees = $project->collaborators
+                ->where('pivot.status','accepted')
+                ->where('role','mentee');
+                @endphp
+
+                {{-- Mentors --}}
+                @if($mentors->isNotEmpty())
+                <p class="collab-group-label">
+                    <i class="bi bi-person-check me-1"></i>Mentors
+                </p>
+                @foreach($mentors as $c)
+                <div class="person-row">
+                    <div class="person-avatar blue">
+                        {{ strtoupper(substr($c->name, 0, 2)) }}
                     </div>
-                    <div class="mt-4">
-                        <button class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#messageModal{{ $collab->id }}">
-                            Message
-                        </button>
+                    <div class="person-info">
+                        <span class="person-name">{{ $c->name }}</span>
+                        <span class="person-role">
+                            {{ $c->mentorProfile->expertise ?? 'Mentor' }}
+                        </span>
+                    </div>
+                    <a href="{{ route('portal.users.show', $c) }}"
+                        class="btn-connect">View</a>
+                </div>
+                @endforeach
+                @endif
 
-                        <form action="{{ route('collaborators.destroy',$collab->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-outline-danger">Remove</button>
+                {{-- Mentees --}}
+                @if($mentees->isNotEmpty())
+                <p class="collab-group-label mt-2">
+                    <i class="bi bi-mortarboard me-1"></i>Mentees
+                </p>
+                @foreach($mentees as $c)
+                <div class="person-row">
+                    <div class="person-avatar">
+                        {{ strtoupper(substr($c->name, 0, 2)) }}
+                    </div>
+                    <div class="person-info">
+                        <span class="person-name">{{ $c->name }}</span>
+                        <span class="person-role">
+                            {{ $c->menteeProfile->education_level ?? 'Mentee' }}
+                        </span>
+                    </div>
+                    <a href="{{ route('portal.users.show', $c) }}"
+                        class="btn-connect">View</a>
+                </div>
+                @endforeach
+                @endif
+
+                @if($mentors->isEmpty() && $mentees->isEmpty())
+                <p class="text-muted text-center py-2" style="font-size:.82rem;">
+                    No collaborators yet.
+                </p>
+                @endif
+
+                {{-- Pending requests (owner only) --}}
+                @if($isOwner)
+                @php $pending = $project->collaborators->where('pivot.status','pending'); @endphp
+                @if($pending->count() > 0)
+                <div class="section-label mt-3"><span>Pending ({{ $pending->count() }})</span></div>
+                @foreach($pending as $requester)
+                <div class="person-row">
+                    <div class="person-avatar {{ $requester->role === 'mentor' ? 'blue' : '' }}">
+                        {{ strtoupper(substr($requester->name, 0, 2)) }}
+                    </div>
+                    <div class="person-info">
+                        <span class="person-name">{{ $requester->name }}</span>
+                        <span class="person-role">
+                            <span class="role-pill {{ $requester->role }}">
+                                {{ ucfirst($requester->role) }}
+                            </span>
+                        </span>
+                    </div>
+                    <div class="req-actions">
+                        <form method="POST"
+                            action="{{ route('portal.collaborators.accept', ['project' => $project, 'user' => $requester]) }}">
+                            @csrf @method('PATCH')
+                            <button class="btn-accept"><i class="bi bi-check"></i></button>
+                        </form>
+                        <form method="POST"
+                            action="{{ route('portal.collaborators.reject', ['project' => $project, 'user' => $requester]) }}">
+                            @csrf @method('PATCH')
+                            <button class="btn-reject"><i class="bi bi-x"></i></button>
                         </form>
                     </div>
                 </div>
-                <!-- Messaging Modal -->
-                <div class="modal fade" id="messageModal{{ $collab->id }}" tabindex="-1">
-                    <div class="modal-dialog">
-                        <form action="{{ route('messages.send') }}" method="POST">
-                            @csrf
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5>Message {{ $collab->user->name }}</h5>
-                                    <button class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <input type="hidden" name="project_title" value="{{ $project->title }}">
-                                <input type="hidden" name="receiver_id" value="{{ $collab->user->id }}">
-                                <input type="hidden" name="project_id" value="{{ $project->id }}">
-                                <div class="modal-body">
-                                    <textarea name="body" class="form-control" rows="4"
-                                        placeholder="Type your message..." required></textarea>
-                                </div>
+                @endforeach
+                @endif
+                @endif
 
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                        Close
-                                    </button>
-                                    <button type="submit" class="btn btn-gradient-primary">
-                                        Send
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-                @empty
-                <p class="text-muted text-center">No collaborators yet.</p>
-                @endforelse
             </div>
         </div>
+
     </div>
+
 </div>
-
-<!-- ================= MODALS ================= -->
-
-<!-- Add Milestone -->
-<div class="modal fade" id="addMilestoneModal" tabindex="-1">
-    <div class="modal-dialog">
-        <form action="{{ route('milestones.store', $project->id) }}" method="POST">
-            @csrf
-            <div class="modal-content rounded-4">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold">Add Milestone</h5>
-                    <button type="button" class="btn-close"
-                        data-bs-dismiss="modal"></button>
-                </div>
-
-                <div class="modal-body pt-0">
-                    <div class="mb-3">
-                        <label class="fw-semibold">Title</label>
-                        <input type="text" name="title"
-                            class="form-control rounded-pill" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="fw-semibold">Description</label>
-                        <textarea name="description"
-                            class="form-control rounded-4"
-                            rows="3"></textarea>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="fw-semibold">Due Date</label>
-                        <input type="date" name="due_date"
-                            class="form-control rounded-pill" required>
-                    </div>
-                </div>
-
-                <div class="modal-footer border-0">
-                    <button class="btn btn-light"
-                        data-bs-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary">Add Milestone</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<!-- Add Collaborator -->
-<div class="modal fade" id="addCollaboratorModal" tabindex="-1">
-    <div class="modal-dialog">
-        <form action="{{ route('collaborators.store', $project->id) }}" method="POST">
-            @csrf
-            <div class="modal-content rounded-4">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold">Add Collaborator</h5>
-                    <button type="button" class="btn-close"
-                        data-bs-dismiss="modal"></button>
-                </div>
-
-                <div class="modal-body pt-0">
-                    <div class="mb-3">
-                        <label class="fw-semibold">Select User</label>
-                        <select name="user_id"
-                            class="form-select rounded-pill" required>
-                            @foreach($users as $user)
-                            <option value="{{ $user->id }}">
-                                {{ $user->name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="fw-semibold">Role</label>
-                        <select name="role"
-                            class="form-select rounded-pill" required>
-                            <option value="mentee">mentee</option>
-                            <option value="mentor">mentor</option>
-                            <option value="collaborator">collaborator</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="modal-footer border-0">
-                    <button class="btn btn-light"
-                        data-bs-dismiss="modal">Cancel</button>
-                    <button class="btn btn-primary">Add Collaborator</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="modal fade" id="exportProjectModal" tabindex="-1">
-    <div class="modal-dialog">
-        <form action="{{ route('projects.export', $project->id) }}" method="POST">
-            @csrf
-            <div class="modal-content rounded-4">
-
-                <div class="modal-header">
-                    <h5 class="modal-title fw-bold">
-                        Export Project Document
-                    </h5>
-                    <button type="button" class="btn-close"
-                        data-bs-dismiss="modal"></button>
-                </div>
-
-                <div class="modal-body">
-                    <p>Select the document format you want to generate:</p>
-
-                    <div class="form-check mb-2">
-                        <input class="form-check-input"
-                            type="radio"
-                            name="format"
-                            value="pdf"
-                            checked>
-                        <label class="form-check-label">
-                            Generate PDF
-                        </label>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input"
-                            type="radio"
-                            name="format"
-                            value="word">
-                        <label class="form-check-label">
-                            Generate Word (.docx)
-                        </label>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button class="btn btn-light"
-                        data-bs-dismiss="modal">
-                        Cancel
-                    </button>
-
-                    <button class="btn btn-primary">
-                        Generate
-                    </button>
-                </div>
-
-            </div>
-        </form>
-    </div>
-</div>
-
-<style>
-    .card {
-        border-radius: 18px;
-    }
-
-    .milestone-item:hover {
-        background: #f8faff;
-        transition: .3s;
-    }
-
-    .avatar-lg {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 2px solid #fff;
-    }
-</style>
 
 @endsection

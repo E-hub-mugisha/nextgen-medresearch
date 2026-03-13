@@ -21,4 +21,9 @@ class MenteeProfile extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function projects()
+    {
+        // Go through the user, not directly
+        return $this->hasMany(ResearchProject::class, 'owner_id', 'user_id');
+    }
 }

@@ -19,6 +19,11 @@ class ResearchProject extends Model
         'end_date'
     ];
 
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date'   => 'date',
+    ];
+    
     public function owner()
     {
         return $this->belongsTo(User::class, 'owner_id');
@@ -30,9 +35,10 @@ class ResearchProject extends Model
         return $this->hasMany(ResearchMilestone::class, 'project_id');
     }
 
-    // Project has many collaborators (mentors or other users)
     public function collaborators()
     {
-        return $this->belongsToMany(User::class, 'project_collaborators')->withPivot('role', 'status')->withTimestamps();
+        return $this->belongsToMany(User::class, 'project_collaborators', 'project_id', 'user_id')
+            ->withPivot('role', 'status')
+            ->withTimestamps();
     }
 }
