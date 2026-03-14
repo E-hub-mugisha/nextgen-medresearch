@@ -72,7 +72,7 @@ class RescueSheetController extends Controller
         RescueSheet::create([
             'title'         => $request->title,
             'vehicle_model' => $request->vehicle_model,
-            'langugage'     => $request->language, // (typo preserved from your model)
+            'language'     => $request->language, // (typo preserved from your model)
             'slug'          => $slug,
             'file_path'     => $filePath,
             'qr_code_path'  => $qrPath,
@@ -96,80 +96,96 @@ class RescueSheetController extends Controller
     /**
      * Update the specified rescue sheet
      */
-    public function update(Request $request, RescueSheet $rescueSheet)
-    {
-        $request->validate([
-            'title'         => 'required|string|max:255',
-            'vehicle_model' => 'nullable|string|max:255',
-            'file'          => 'nullable|file|mimes:pdf,png,jpg,jpeg',
-            'language'      => 'nullable',
-            'category'      => 'nullable|in:car,truck,bus,ev',
-        ]);
+    public function update(Request $request, $id)
+{
+    $rescueSheet = RescueSheet::findOrFail($id);
 
-        $data = $request->only(['title', 'vehicle_model', 'language']);
+    $request->validate([
+        'title'         => 'required|string|max:255',
+        'vehicle_model' => 'nullable|string|max:255',
+        'file'          => 'nullable|file|mimes:pdf,png,jpg,jpeg|max:10240',
+        'language'      => 'nullable|string|max:50',
+        'category'      => 'nullable|in:car,truck,bus,ev',
+    ]);
 
-        // Ensure folders exist
-        $rescuePath = public_path('rescue_sheets');
-        $qrPathDir  = public_path('qr_codes');
+    $data = [
+        'title'         => $request->title,
+        'vehicle_model' => $request->vehicle_model,
+        'language'      => $request->language,
+        'category'      => $request->category,
+    ];
 
-        if (!file_exists($rescuePath)) {
-            mkdir($rescuePath, 0755, true);
-        }
+    $rescuePath = public_path('rescue_sheets');
+    $qrPathDir  = public_path('qr_codes');
 
-        if (!file_exists($qrPathDir)) {
-            mkdir($qrPathDir, 0755, true);
-        }
-
-        // Regenerate slug if title changed
-        if ($request->title !== $rescueSheet->title) {
-            $slug = Str::slug($request->title) . '-' . time();
-            $data['slug'] = $slug;
-
-            // Regenerate QR code
-            $qrFileName = $slug . '.svg';
-            $qrFullPath = $qrPathDir . '/' . $qrFileName;
-
-            $qrImage = QrCode::format('svg')
-                ->size(200)
-                ->generate(route('rescue.sheet.show', $slug));
-
-            // Delete old QR
-            if ($rescueSheet->qr_code_path && file_exists(public_path($rescueSheet->qr_code_path))) {
-                unlink(public_path($rescueSheet->qr_code_path));
-            }
-
-            file_put_contents($qrFullPath, $qrImage);
-            $data['qr_code_path'] = 'qr_codes/' . $qrFileName;
-        }
-
-        // Replace uploaded file if new file provided
-        if ($request->hasFile('file') && $request->file('file')->isValid()) {
-
-            // Delete old file
-            if ($rescueSheet->file_path && file_exists(public_path($rescueSheet->file_path))) {
-                unlink(public_path($rescueSheet->file_path));
-            }
-
-            $file     = $request->file('file');
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move($rescuePath, $fileName);
-
-            $data['file_path'] = 'rescue_sheets/' . $fileName;
-        }
-
-        // Update DB
-        $rescueSheet->update([
-            'title'         => $data['title'],
-            'vehicle_model' => $data['vehicle_model'] ?? null,
-            'langugage'     => $data['language'] ?? null, // keeping your column name
-            'slug'          => $data['slug'] ?? $rescueSheet->slug,
-            'file_path'     => $data['file_path'] ?? $rescueSheet->file_path,
-            'qr_code_path'  => $data['qr_code_path'] ?? $rescueSheet->qr_code_path,
-            'category'      => $request->category ?? $rescueSheet->category,
-        ]);
-
-        return back()->with('success', 'Rescue sheet updated successfully!');
+    if (!file_exists($rescuePath)) {
+        mkdir($rescuePath, 0755, true);
     }
+
+    if (!file_exists($qrPathDir)) {
+        mkdir($qrPathDir, 0755, true);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | SLUG + QR CODE REGENERATION
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->title !== $rescueSheet->title) {
+
+        $slug = Str::slug($request->title) . '-' . time();
+        $data['slug'] = $slug;
+
+        $qrFileName = $slug . '.svg';
+        $qrFullPath = $qrPathDir . '/' . $qrFileName;
+
+        $qrImage = QrCode::format('svg')
+            ->size(200)
+            ->generate(route('rescue.sheet.show', $slug));
+
+        // delete old QR
+        if ($rescueSheet->qr_code_path && file_exists(public_path($rescueSheet->qr_code_path))) {
+            unlink(public_path($rescueSheet->qr_code_path));
+        }
+
+        file_put_contents($qrFullPath, $qrImage);
+
+        $data['qr_code_path'] = 'qr_codes/' . $qrFileName;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | FILE REPLACEMENT
+    |--------------------------------------------------------------------------
+    */
+
+    if ($request->hasFile('file') && $request->file('file')->isValid()) {
+
+        // delete old file
+        if ($rescueSheet->file_path && file_exists(public_path($rescueSheet->file_path))) {
+            unlink(public_path($rescueSheet->file_path));
+        }
+
+        $file = $request->file('file');
+
+        $fileName = time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
+
+        $file->move($rescuePath, $fileName);
+
+        $data['file_path'] = 'rescue_sheets/'.$fileName;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | UPDATE DATABASE
+    |--------------------------------------------------------------------------
+    */
+
+    $rescueSheet->update($data);
+
+    return redirect()->back()->with('success', 'Rescue sheet updated successfully!');
+}
 
     /**
      * Remove the specified rescue sheet

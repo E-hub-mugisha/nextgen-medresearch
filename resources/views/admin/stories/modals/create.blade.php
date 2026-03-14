@@ -22,7 +22,7 @@
 
                 <div class="col-md-12 mb-3">
                     <label>Story</label>
-                    <textarea name="story" rows="4" class="form-control"></textarea>
+                    <textarea name="story" id="editor-story" rows="4" class="form-control"></textarea>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -71,3 +71,11 @@
         </form>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor-story'))
+        .catch(error => console.error(error));
+</script>
+@endpush

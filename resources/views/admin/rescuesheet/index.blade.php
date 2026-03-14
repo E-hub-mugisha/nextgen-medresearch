@@ -117,8 +117,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button class="btn btn-success">Update</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-success">Update</button>
             </div>
         </form>
     </div>
@@ -178,8 +178,7 @@
                 </div>
                 <div class="mb-2">
                     <label>language</label>
-                    <input type="text" name="language" class="form-control"
-                        >
+                    <input type="text" name="language" class="form-control">
                 </div>
                 <div class="mb-2">
                     <label>Upload PDF File</label>

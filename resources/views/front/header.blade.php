@@ -83,6 +83,12 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('kits.index') }}">Research Kits</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('projects') }}">Projects</a>
+                                    </li>
+                                     <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('research.index') }}">Research</a>
+                                    </li>
                                 </ul>
                             </li>
 
@@ -265,7 +271,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content shadow-lg border-0">
 
-            <div class="modal-header bg-primary text-white">
+            <div class="modal-header border-0 px-4 pt-4 pb-0">
                 <h5 class="modal-title" id="membershipModalLabel">
                     Membership Application
                 </h5>

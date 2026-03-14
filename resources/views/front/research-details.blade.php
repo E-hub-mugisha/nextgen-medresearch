@@ -64,7 +64,7 @@
                     <!-- Page Single image Start -->
                     <div class="page-single-image">
                         <figure class="image-anime">
-                            <img src="{{asset('image/researches')}}/{{ $research->featured_image }}" alt="">
+                            <img src="{{asset('image/research')}}/{{ $research->featured_image }}" alt="">
                         </figure>
                     </div>
                     <!-- Page Single image End -->

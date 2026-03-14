@@ -37,12 +37,12 @@
 
                 <div class="mb-3">
                     <label>Short Description</label>
-                    <textarea name="excerpt" class="form-control"></textarea>
+                    <textarea name="excerpt" id="editor-excerpt" class="form-control"></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label>Content</label>
-                    <textarea name="content" class="form-control" rows="5"></textarea>
+                    <textarea name="content" id="editor-description" class="form-control" rows="5"></textarea>
                 </div>
 
                 <div class="mb-3 col-md-4">
@@ -77,4 +77,13 @@
     <button class="btn btn-primary">Create Post</button>
 </form>
 
+@push('scripts')
+<script>
+    ['editor-description', 'editor-excerpt', 'editor-content'].forEach(id => {
+        ClassicEditor
+            .create(document.querySelector('#' + id))
+            .catch(error => console.error(error));
+    });
+</script>
+@endpush
 @endsection

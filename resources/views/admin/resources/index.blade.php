@@ -111,7 +111,7 @@
 
                                 <div class="mb-3">
                                     <label>Description</label>
-                                    <textarea name="description" class="form-control" rows="4">{{ $item->description }}</textarea>
+                                    <textarea name="description" id="editor-description" class="form-control" rows="4">{{ $item->description }}</textarea>
                                 </div>
 
                                 <div class="mb-3">
@@ -180,7 +180,7 @@
 
                     <div class="mb-3">
                         <label>Description</label>
-                        <textarea name="description" class="form-control" rows="4"></textarea>
+                        <textarea name="description" id="editor-description" class="form-control" rows="4"></textarea>
                     </div>
 
                     <div class="mb-3">
@@ -208,5 +208,13 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor-description'))
+        .catch(error => console.error(error));
+</script>
+@endpush
 
 @endsection

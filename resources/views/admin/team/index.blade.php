@@ -135,7 +135,7 @@
 
                                     <div class="col-12">
                                         <label>Bio</label>
-                                        <textarea name="bio" class="form-control" rows="3">{{ $member->bio }}</textarea>
+                                        <textarea name="bio" id="editor-bio" class="form-control" rows="3">{{ $member->bio }}</textarea>
                                     </div>
 
                                     <div class="col-md-4">
@@ -238,7 +238,7 @@
 
                     <div class="col-12">
                         <label>Bio</label>
-                        <textarea name="bio" class="form-control" rows="3"></textarea>
+                        <textarea name="bio" id="editor-bio" class="form-control" rows="3"></textarea>
                     </div>
 
                     <div class="col-md-4">
@@ -277,5 +277,13 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor-bio'))
+        .catch(error => console.error(error));
+</script>
+@endpush
 
 @endsection

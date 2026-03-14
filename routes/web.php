@@ -44,9 +44,9 @@ Route::get('/partnerships', [HomeController::class, 'partners'])->name('partners
 Route::get('/our-impact', [HomeController::class, 'ourImpact'])->name('our-impact');
 Route::get('/rescue-sheets', [RescueSheetController::class, 'publicIndex'])->name('rescue.sheet.public');
 Route::get('/rescue/{slug}', [RescueSheetController::class, 'view'])->name('rescue.sheet.show');
-Route::get('/projects', [HomeController::class, 'projects'])->name('projects');
+Route::get('/get/projects', [HomeController::class, 'projects'])->name('projects');
 Route::get('/projects/detail/{id}', [HomeController::class, 'projectsDetail'])->name('projects.detail');
-Route::get('/resources', [HomeController::class, 'resources'])->name('resources');
+Route::get('/get/resources', [HomeController::class, 'resources'])->name('resources');
 Route::get('/resources/detail/{id}', [HomeController::class, 'resourcesDetail'])->name('resources.detail');
 Route::get('/ask-a-mentor', [MentorQnAController::class, 'askForm'])->name('mentor_qna.ask');
 Route::post('/ask-a-mentor', [MentorQnAController::class, 'storeQuestion'])->name('mentor_qna.store');
@@ -69,7 +69,6 @@ Route::post('/newsletter/subscribe', [HomeController::class, 'subscribe'])
 Route::get('/research-kits', [ResearchKitController::class, 'index'])->name('kits.index');
 Route::get('/research-kits/{id}', [ResearchKitController::class, 'show'])->name('kits.show');
 Route::get('/research-kits/{id}/download', [ResearchKitController::class, 'download'])->name('kits.download');
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/application-form', function () {
     return view('front.apply');
@@ -89,6 +88,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::put('/rescue-sheets/{id}', [RescueSheetController::class, 'update'])->name('rescue.update');
     Route::delete('/rescue-sheets/{id}', [RescueSheetController::class, 'destroy'])->name('rescue.destroy');
 });
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // Admin / Mentor (protected)
 Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
@@ -189,10 +190,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::delete('/research-kits/{researchKit}', [ResearchKitController::class, 'destroy'])->name('research_kits.destroy');
 });
 
-// Step 1 — Role selection modal lives on the home/welcome page
-// Step 2 — Show the registration form based on role
+
 Route::get('/onboarding', [MentorController::class, 'showForm'])
-    ->name('register');
+    ->name('portal.register');
 
 // Step 3 — Handle registration form submission (AJAX)
 Route::post('/onboarding', [MentorController::class, 'register'])

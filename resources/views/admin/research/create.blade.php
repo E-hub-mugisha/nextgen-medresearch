@@ -33,12 +33,12 @@
 
     <div class="mb-3">
         <label>Summary</label>
-        <textarea name="summary" class="form-control"></textarea>
+        <textarea name="summary" id="editor-summary" class="form-control"></textarea>
     </div>
 
     <div class="mb-3">
         <label>Content</label>
-        <textarea name="content" class="form-control" rows="6"></textarea>
+        <textarea name="content" id="editor-content" class="form-control" rows="6"></textarea>
     </div>
 
     <div class="mb-3">
@@ -68,4 +68,15 @@
     <button class="btn btn-success">Save</button>
     <a href="{{ route('admin.research.index') }}" class="btn btn-secondary">Back</a>
 </form>
+
+@push('scripts')
+<script>
+    ['editor-summary', 'editor-content'].forEach(id => {
+        ClassicEditor
+            .create(document.querySelector('#' + id))
+            .catch(error => console.error(error));
+    });
+</script>
+@push('scripts')
+
 @endsection

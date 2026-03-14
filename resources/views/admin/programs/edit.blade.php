@@ -97,7 +97,7 @@
                     <!-- DESCRIPTION -->
                     <div class="col-md-12 mb-3">
                         <label>Description</label>
-                        <textarea name="description" rows="5"
+                        <textarea name="description" id="editor-description" rows="5"
                             class="form-control">{{ old('description', $program->description) }}</textarea>
                     </div>
 
@@ -110,4 +110,12 @@
     </div>
 
 </div>
+
+@push('scripts')
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor-description'))
+        .catch(error => console.error(error));
+</script>
+@endpush
 @endsection

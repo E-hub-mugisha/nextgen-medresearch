@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-12 mb-3">
                     <label>Testimonial/Message</label>
-                    <textarea name="testimonial" rows="4" class="form-control">{{ $testimonial->testimonial }}</textarea>
+                    <textarea name="testimonial" id="editor-testimonial" rows="4" class="form-control">{{ $testimonial->testimonial }}</textarea>
                 </div>
 
                 <div class="col-md-6 mb-3">
@@ -79,3 +79,11 @@
         </form>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor-testimonial'))
+        .catch(error => console.error(error));
+</script>
+@endpush

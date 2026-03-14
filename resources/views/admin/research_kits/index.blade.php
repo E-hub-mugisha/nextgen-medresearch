@@ -82,7 +82,7 @@
 
                                         <div class="mb-3">
                                             <label class="form-label">Description</label>
-                                            <textarea name="description" class="form-control" rows="3">{{ $kit->description ?? '' }}</textarea>
+                                            <textarea name="description" id="edit-description" class="form-control" rows="3">{{ $kit->description ?? '' }}</textarea>
                                         </div>
 
                                         <div class="row">
@@ -140,7 +140,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Description</label>
-                        <textarea name="description" class="form-control" rows="3">{{ $kit->description ?? '' }}</textarea>
+                        <textarea name="description" id="editor-description" class="form-control" rows="3">{{ $kit->description ?? '' }}</textarea>
                     </div>
 
                     <div class="row">
@@ -173,5 +173,14 @@
     </div>
 </div>
 
+@push('scripts')
+<script>
+    ['edit-description', 'editor-description'].forEach(id => {
+        ClassicEditor
+            .create(document.querySelector('#' + id))
+            .catch(error => console.error(error));
+    });
+</script>
+@endpush
 
 @endsection

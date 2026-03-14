@@ -88,16 +88,16 @@
 
                     {{-- EXCERPT --}}
                     <div class="col-md-12 mb-3">
-                        <label class="form-label">Excerpt</label>
-                        <textarea name="excerpt" rows="3"
+                        <label class="form-label">Short Description</label>
+                        <textarea name="excerpt" id="editor-excerpt" rows="3"
                             class="form-control">{{ old('excerpt', $post->excerpt) }}</textarea>
                     </div>
 
                     {{-- CONTENT --}}
                     <div class="col-md-12 mb-3">
                         <label class="form-label">Content</label>
-                        <textarea name="content" id="editor"
-                            rows="10" class="form-control">{{ old('content', $post->content) }}</textarea>
+                        <textarea name="content" id="editor-content" rows="10"
+                            class="form-control">{{ old('content', $post->content) }}</textarea>
                     </div>
 
                     {{-- IMAGE --}}
@@ -125,4 +125,14 @@
     </div>
 
 </div>
+
+@push('scripts')
+<script>
+    ['editor-description', 'editor-excerpt', 'editor-content'].forEach(id => {
+        ClassicEditor
+            .create(document.querySelector('#' + id))
+            .catch(error => console.error(error));
+    });
+</script>
+@endpush
 @endsection

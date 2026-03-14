@@ -94,16 +94,7 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label small fw-medium">Country</label>
-                                <select name="country" class="form-select">
-                                    <option value="">Select country</option>
-                                    <option>Philippines</option>
-                                    <option>United States</option>
-                                    <option>United Kingdom</option>
-                                    <option>Australia</option>
-                                    <option>Canada</option>
-                                    <option>Germany</option>
-                                    <option>Japan</option>
-                                </select>
+                                <input type="text" name="country" class="form-control" placeholder="e.g. Rwanda" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label small fw-medium">Education level</label>

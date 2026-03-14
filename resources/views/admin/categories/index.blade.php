@@ -96,7 +96,7 @@
 
                 <div class="mb-3">
                     <label>Description</label>
-                    <textarea name="description" class="form-control">{{ $cat->description }}</textarea>
+                    <textarea name="description" id="editor-description" class="form-control">{{ $cat->description }}</textarea>
                 </div>
 
                 <div class="mb-3">
@@ -164,7 +164,7 @@
 
                 <div class="mb-3">
                     <label>Description</label>
-                    <textarea name="description" class="form-control"></textarea>
+                    <textarea name="description" id="editor-description" class="form-control"></textarea>
                 </div>
 
                 <div class="mb-3">
@@ -183,4 +183,13 @@
     </div>
 </div>
 
+@push('scripts')
+<script>
+    ['editor-description', 'editor-importance', 'editor-impact'].forEach(id => {
+        ClassicEditor
+            .create(document.querySelector('#' + id))
+            .catch(error => console.error(error));
+    });
+</script>
+@endpush
 @endsection
