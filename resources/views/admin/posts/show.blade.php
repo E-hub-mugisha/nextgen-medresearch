@@ -1,10 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style>
+    .aspect-ratio {
+    width: 400px;
+    aspect-ratio: 4000 / 2667;
+}
+
+.aspect-ratio img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+</style>
 <div class="container my-5">
 
     <div class="row justify-content-center">
-        <div class="col-lg-10">
+        <div class="col-lg-12">
 
             <!-- Back Button -->
             <div class="mb-3">
@@ -67,13 +80,13 @@
                     @if($post->excerpt)
                         <div class="alert alert-light border-start border-4 border-primary">
                             <strong>Summary</strong><br>
-                            {{ $post->excerpt }}
+                            {!! $post->excerpt !!}
                         </div>
                     @endif
 
                     <!-- Content -->
                     <div class="post-content fs-6 lh-lg">
-                        {!! nl2br(e($post->content)) !!}
+                        {!! $post->content !!}
                     </div>
 
                 </div>

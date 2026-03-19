@@ -185,7 +185,7 @@
                         <!-- Service Content Start -->
                         <div class="service-content">
                             <h3><a href="{{ route('programs.detail', $program->slug ) }}">{{ $program->title }}</a></h3>
-                            <p>{{ Str::limit($program->description, 60) }}</p>
+                            <p class="mb-4">{!! Str::limit($program->description, 60) !!}</p>
                             <a href="{{ route('programs.detail', $program->slug )}}" class="readmore-btn">learn more</a>
                         </div>
                         <!-- Service Content End -->
@@ -525,9 +525,6 @@
             <div class="col-lg-12">
                 <div class="section-title section-title-center">
                     <h3 class="wow fadeInUp">Our Testimonials</h3>
-                    <h2 class="text-anime-style-3" data-cursor="-opaque">
-                        What our community say about their experience with us
-                    </h2>
                 </div>
             </div>
         </div>
@@ -547,7 +544,7 @@
                                         </div>
 
                                         <div class="testimonial-info">
-                                            <p>{{ $testimonial->testimonial }}</p>
+                                            <p>{!! str::limit($testimonial->testimonial, 100) !!}</p>
                                         </div>
 
                                         <div class="author-content">

@@ -25,11 +25,9 @@
                     <!-- Section Title Start -->
                     <div class="section-title">
                         <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">{{ $program->title }}</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">
-                            {{ $program->title }}
-                        </h2>
+                        
                         <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                            {!! nl2br(e($program->description)) !!}
+                            {!! $program->description !!}
                         </p>
                     </div>
                     <!-- Section Title End -->

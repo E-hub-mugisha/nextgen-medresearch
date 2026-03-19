@@ -25,10 +25,8 @@
                 <div class="why-choose-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Impact That Matters</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                            Our Impact That Matters
-                        </h2>
+                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Our Impact</h3>
+                        
                         <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                             NextGen MedResearch measures success through real-world outcomes: stronger research capacity, published studies, improved clinical practice, and empowered healthcare professionals.
                         </p>
@@ -84,7 +82,7 @@
                     <!-- Section Title Start -->
                     <div class="section-title">
                         <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Help us expand our reach and empower more researchers.</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">Support the growth of Africa’s next generation of medical researchers.</h2>
+                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px; font-size: 1.75rem; line-height: 1.2; font-weight: bold;">Support the growth of Africa’s next generation of medical researchers.</h2>
                         <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Help us expand our reach and empower more researchers. Support the growth of Africa’s next generation of medical researchers.</p>
                     </div>
                     <!-- Section Title End -->

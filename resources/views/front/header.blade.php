@@ -49,7 +49,7 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link"
-                                            href="{{ route('partners') }}">Partnerships</a>
+                                            href="{{ route('partners') }}">Our Partners</a>
                                     </li>
                                 </ul>
                             </li>
@@ -75,27 +75,31 @@ $programs = \App\Models\Program::where('status', 'published')->orderBy('title')-
                             <li class="nav-item submenu {{ activeRoute(['projects','resources','mentor_qna.*']) }}">
                                 <a class="nav-link" href="#">Knowledge Hub</a>
                                 <ul>
-                                    <li class="nav-item">
-                                        <a class="nav-link"
-                                            href="{{ route('mentor_qna.index') }}">Ask a Mentor</a>
-                                    </li>
 
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('research.index') }}">Research Projects</a>
+                                    </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ route('kits.index') }}">Research Kits</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('projects') }}">Projects</a>
-                                    </li>
-                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('research.index') }}">Research</a>
+                                        <a class="nav-link"
+                                            href="{{ route('mentor_qna.index') }}">Ask a Mentor</a>
                                     </li>
                                 </ul>
                             </li>
 
+                            <li class="nav-item submenu {{ activeRoute(['projects','resources','mentor_qna.*']) }}">
+                                <a class="nav-link" href="#">Updates</a>
+                                <ul>
 
-                            <li class="nav-item">
-                                <a class="nav-link {{ activeRoute('news') }}"
-                                    href="{{ route('news') }}">News</a>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('research.index') }}">News</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('kits.index') }}">Events</a>
+                                    </li>
+                                </ul>
                             </li>
 
 

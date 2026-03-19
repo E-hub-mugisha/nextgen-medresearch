@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
         if ($user->role === 'mentor' || $user->role === 'mentee') {
             return redirect()->route('portal.dashboard.index'); // mentor/mentee dashboard
         } else {
-            return redirect()->route('admin.dashboard'); // admin or other roles
+            return redirect()->route('dashboard'); // admin or other roles
         }
     }
 

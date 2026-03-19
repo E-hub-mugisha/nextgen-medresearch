@@ -21,12 +21,14 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
+            'role' => 'required|in:user,admin',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         return back()->with('success', 'User created successfully!');
@@ -39,10 +41,13 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => "required|email|unique:users,email,$id",
+            'password' => 'nullable|min:6',
+            'role' => 'required|in:user,admin',
         ]);
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->role = $request->role;
 
         if ($request->password) {
             $user->password = Hash::make($request->password);

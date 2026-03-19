@@ -18,7 +18,6 @@
                                     <!-- Section Title Start -->
                                     <div class="section-title">
                                         <h3 class="wow fadeInUp">Contact us</h3>
-                                        <h2 class="text-anime-style-3" data-cursor="-opaque">Contact us</h2>
                                     </div>
                                     <!-- Section Title End -->
 
@@ -78,13 +77,13 @@
 
                             </div>
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7" style="margin-top: 30px;">
                             <!-- Google Map End -->
                             <!-- Contact Form Box End -->
                             <div class="contact-us-form">
                                 <!-- Section Title Start -->
                                 <div class="section-title">
-                                    <h2 class="text-anime-style-3" data-cursor="-opaque">Get in touch with us</h2>
+                                    <h2 class="text-anime-style-3" data-cursor="-opaque">Get in touch</h2>
                                     <p class="wow fadeInUp" data-wow-delay="0.2s">We're here to answer your questions & explore new possibilities together.</p>
                                 </div>
                                 <!-- Section Title End -->

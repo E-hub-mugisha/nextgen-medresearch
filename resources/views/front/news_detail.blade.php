@@ -24,12 +24,8 @@
                     <!-- Post Entry Start -->
                     <div class="post-entry">
                         <h2 class="wow fadeInUp">{{ $new->title}}</h2>
-
-                        <p class="wow fadeInUp" data-wow-delay="0.2s"> {!! nl2br(e($new->content)) !!}</p>
-
-                        <blockquote class="wow fadeInUp" data-wow-delay="0.4s">
-                            <p class="text-white">{{ $new->excerpt}}</p>
-                        </blockquote>
+                        <p>{!! $new->excerpt !!}</p>
+                        <p class="wow fadeInUp" data-wow-delay="0.2s"> {!! $new->content !!}</p>
 
                     </div>
                     <!-- Post Entry End -->

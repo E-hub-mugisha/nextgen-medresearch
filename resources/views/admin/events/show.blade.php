@@ -50,7 +50,7 @@
                     <div class="mt-4">
                         <h6 class="fw-semibold">Description</h6>
                         <p class="text-muted mb-0">
-                            {{ $event->description ?: 'No description provided.' }}
+                            {!! $event->description ?: 'No description provided.' !!}
                         </p>
                     </div>
 

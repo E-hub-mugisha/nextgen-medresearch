@@ -9,14 +9,14 @@
     </button>
 </div>
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <strong>There were some errors:</strong>
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <strong>There were some errors:</strong>
+    <ul class="mb-0">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
 
 <div class="card">
@@ -27,6 +27,7 @@
                     <th>#ID</th>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Role</th>
                     <th>Created</th>
                     <th width="15%">Actions</th>
                 </tr>
@@ -37,6 +38,7 @@
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ ucfirst($user->role) }}</td>
                     <td>{{ $user->created_at->format('Y-m-d') }}</td>
                     <td>
                         <button class="btn btn-sm btn-warning"
@@ -85,6 +87,15 @@
                 <div class="mb-3">
                     <label>Email</label>
                     <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
+                </div>
+
+                <!-- role -->
+                <div class="mb-3">
+                    <label>Role</label>
+                    <select name="role" class="form-control" required>
+                        <option value="user" {{ $user->role === 'user' ? 'selected' : '' }}>User</option>
+                        <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
+                    </select>
                 </div>
 
                 <div class="mb-3">
@@ -190,6 +201,14 @@
                 <div class="mb-3">
                     <label>Password *</label>
                     <input type="password" name="password" class="form-control" required>
+                </div>
+                <!-- role -->
+                <div class="mb-3">
+                    <label>Role</label>
+                    <select name="role" class="form-control" required>
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
                 </div>
             </div>
 

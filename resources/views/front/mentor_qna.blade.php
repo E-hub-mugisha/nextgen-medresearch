@@ -6,26 +6,18 @@
 <!-- Page Header -->
 <div class="page-header parallaxie">
     <div class="container">
-        <h1 class="text-anime-style-3 text-center">Ask a Mentor Q&A</h1>
+        <h1 class="text-anime-style-3 text-center text-white">Ask a Mentor </h1>
+        <button class="btn-default btn-highlighted justify-items-center mt-4" style="display: block; margin: 0 auto;"
+            data-bs-toggle="modal"
+            data-bs-target="#askMentorModal">
+            Ask a Mentor
+        </button>
     </div>
 </div>
 
 <div class="page-faqs">
     <div class="container">
         <div class="row">
-
-            <div class="col-lg-10">
-                <div class="sidebar-cta-box wow fadeInUp mt-4">
-                    <div class="sidebar-cta-content text-center">
-                        <p>Have a question? Our mentors are here to help.</p>
-                        <button class="btn-default btn-highlighted"
-                            data-bs-toggle="modal"
-                            data-bs-target="#askMentorModal">
-                            Ask a Mentor
-                        </button>
-                    </div>
-                </div>
-            </div>
             <!-- Sidebar Categories -->
             <div class="col-lg-4">
                 <div class="page-single-sidebar mt-4">

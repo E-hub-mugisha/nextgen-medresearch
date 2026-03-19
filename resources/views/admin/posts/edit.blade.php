@@ -128,11 +128,31 @@
 
 @push('scripts')
 <script>
-    ['editor-description', 'editor-excerpt', 'editor-content'].forEach(id => {
+const editors = ['editor-description','editor-excerpt','editor-content'];
+
+editors.forEach(id => {
+
+    const element = document.querySelector('#'+id);
+
+    if(element){
+
         ClassicEditor
-            .create(document.querySelector('#' + id))
-            .catch(error => console.error(error));
-    });
+        .create(element, {
+            simpleUpload: {
+                uploadUrl: "{{ route('ckeditor.upload') }}",
+
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                }
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+    }
+
+});
 </script>
 @endpush
 @endsection

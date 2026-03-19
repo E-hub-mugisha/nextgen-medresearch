@@ -25,8 +25,7 @@
                 <div class="why-choose-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp">Research Space</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Dissertation-Ready Research Topics</h2>
+                        <h3 class="wow fadeInUp">Dissertation-Ready Research Topics</h3>
                         <p class="wow fadeInUp" data-wow-delay="0.2s">
                             Dissertation-Ready Topics are developed through literature reviews, analysis of existing
                             university research repositories, and consultations with experienced clinicians and researchers
@@ -72,16 +71,13 @@
 <!-- Why Choose Us Section Start -->
 <div class="why-choose-us mb-3">
     <div class="container">
-        <div class="row align-items-center">
-            
-
-            <div class="col-lg-10">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
                 <!-- Why Choose Content Start -->
                 <div class="why-choose-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp">Research Space</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Who This Research Space Supports</h2>
+                        <h3 class="wow fadeInUp">Research Space Targets</h3>
                         <p class="wow fadeInUp" data-wow-delay="0.2s">
                             This research space is designed to support learners and professionals who want strong,
                             realistic and academically defensible dissertation topics

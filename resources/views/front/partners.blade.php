@@ -24,10 +24,8 @@
                 <div class="how-work-content">
                     <!-- Section Title Start -->
                     <div class="section-title">
-                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">our partnership</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                            Partnership & Collaboration
-                        </h2>
+                        <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Partnership & Collaboration</h3>
+
                         <p class="wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
                             At NextGen MedResearch, we believe that meaningful impact in Africa’s health sector is achieved through collaboration.
                             We work hand-in-hand with academic institutions, hospitals, professional associations, and global partners to strengthen research capacity, mentorship, and innovation.
@@ -89,16 +87,13 @@
                     <!-- Section Title Start -->
                     <div class="section-title">
                         <h3 class="wow fadeInUp text-white" style="visibility: visible; animation-name: fadeInUp;" style="border: 1px solid #fff">Partnership</h3>
-                        <h2 class="text-anime-style-3 text-white" data-cursor="-opaque" style="perspective: 400px;">
-                            Why Partner With Us?
-                        </h2>
                         <p class="wow fadeInUp text-white" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">Partner with us to expand mentorship and digital training across Africa.</p>
                     </div>
                     <!-- Section Title End -->
 
                     <!-- Pricing Button Start -->
                     <div class="our-pricing-btn wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
-                        <a data-bs-toggle="modal" data-bs-target="#membershipModal" role="button" class="btn-default">Become a Partner</a>
+                        <a data-bs-toggle="modal" data-bs-target="#partnershipModal" role="button" class="btn-default">Become a Partner</a>
                     </div>
                     <!-- Pricing Button End -->
                 </div>
@@ -144,18 +139,111 @@
             <h2 class="fw-bold">our Partners</h2>
         </div>
         <!-- Partner Logos / Names -->
+        <style>
+            .partner-logo {
+                height: 70px;
+                width: 100%;
+                max-width: 120px;
+                object-fit: contain;
+            }
+        </style>
+
         <div class="row justify-content-center align-items-center mb-4">
             @foreach($partners as $item)
-            <div class="col-6 col-md-2 text-center mb-3">
+            <div class="col-6 col-md-2 text-center mb-3 d-flex justify-content-center align-items-center">
+
                 @if($item->logo)
-                <img src="{{asset('image/partners')}}/{{ $item->logo }}" alt="{{ $item->name }}" class="img-fluid">
+                <img
+                    src="{{ asset('image/partners/'.$item->logo) }}"
+                    alt="{{ $item->name }}"
+                    class="partner-logo">
                 @else
-                <p>{{ $item->name }}</p>
+                <p class="mb-0">{{ $item->name }}</p>
                 @endif
+
             </div>
             @endforeach
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="partnershipModal" tabindex="-1" aria-labelledby="partnershipModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content shadow-lg border-0">
+
+            <div class="modal-header border-0 px-4 pt-4 pb-0">
+                <h5 class="modal-title" id="partnershipModalLabel">
+                    Partnership Application
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form action="{{ route('membership.store') }}" method="POST">
+                @csrf
+
+                <div class="modal-body">
+                    <div class="row">
+
+                        <!-- Full Name -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" name="full_name" class="form-control" required>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" name="phone" class="form-control">
+                        </div>
+
+                        <!-- Partners Type -->
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Partnership Type *</label>
+                            <select name="type" class="form-select" required>
+                                <option value="">Select Type</option>
+                                <option value="public_private">Public & Private</option>
+                                <option value="academic_industrial">Academic & Industrial</option>
+                                <option value="non_profit">Non-Profit</option>
+                                <option value="strategic">Strategic</option>
+                                <option value="clinical_hospital">Clinical & Hospital</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+
+                        <!-- Organization -->
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Organization (if applicable)</label>
+                            <input type="text" name="organization" class="form-control">
+                        </div>
+
+                        <!-- Motivation -->
+                        <div class="col-12 mb-3">
+                            <label class="form-label">Why do you want to join? (Specific contribution)</label>
+                            <textarea name="motivation" class="form-control" rows="4"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        Submit Application
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
 
 @endsection

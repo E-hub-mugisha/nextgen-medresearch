@@ -23,7 +23,7 @@
                                 <img src="{{ asset('assets/images/icon-experience.svg') }}" alt="">
                             </div>
                             <div class="experience-box-content">
-                                <h2><span class="counter">12</span>+</h2>
+                                <h2><span class="counter">5</span>+</h2>
                                 <p>Years of experience</p>
                             </div>
                         </div>
@@ -45,7 +45,6 @@
                     <!-- Section Title Start -->
                     <div class="section-title">
                         <h3 class="wow fadeInUp">About us</h3>
-                        <h2 class="text-anime-style-3" data-cursor="-opaque">Who We Are</h2>
                     </div>
                     <!-- Section Title End -->
 
@@ -139,16 +138,15 @@
 </div>
 <!-- Our Approach Section End -->
 
+<!-- About Us Section Start -->
 <div class="about-us">
     <div class="container">
         <div class="row section-row align-items-center">
             <div class="col-lg-7">
                 <!-- Section Title Start -->
                 <div class="section-title">
-                    <h3 class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">Message</h3>
-                    <h2 class="text-anime-style-3" data-cursor="-opaque" style="perspective: 400px;">
-                        Founder's message
-                    </h2>
+                    <h3 class="wow fadeInUp">About Our Vision</h3>
+                    <h2 class="text-anime-style-3" data-cursor="-opaque">To transform medical research in Africa through mentorship, innovation, and collaboration</h2>
                 </div>
                 <!-- Section Title End -->
             </div>
@@ -157,14 +155,30 @@
                 <!-- Section Content Button Start -->
                 <div class="section-content-btn">
                     <!-- Section Title Content Start -->
-                    <div class="section-title-content wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                        <p>
-                            Born from the challenges of limited research mentorship in Rwanda, NextGen MedResearch emerged to bridge gaps in mentorship,
-                            training, and research collaboration.
-                            We believe that every motivated clinician and researcher deserves access to guidance, opportunities,
-                            and resources that enable them to contribute meaningfully to Africa’s health systems.</p>
+                    <div class="section-title-content wow fadeInUp" data-wow-delay="0.2s">
+                        <p>“Born from the challenges of limited research mentorship in Rwanda, NextGen MedResearch emerged to bridge gaps in mentorship, training, and research collaboration.”</p>
                     </div>
                     <!-- Section Content Button End -->
+
+                    <!-- Customer Rating Box Start -->
+                    <div class="customer-rating-box">
+                        <!-- Customer Rating Content Start -->
+                        <div class="customer-rating-content">
+                            <p>Founder’s Message</p>
+                        </div>
+                        <!-- Customer Rating Content End -->
+
+                        <!-- Satisfy Client Images Start -->
+                        <div class="satisfy-client-images customer-rating-images">
+                            <div class="satisfy-client-image">
+                                <figure class="image-anime">
+                                    <img src="{{ asset('assets/images/founder-1.jpeg') }}" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- Satisfy Client Images End -->
+                    </div>
+                    <!-- Customer Rating Box End -->
                 </div>
                 <!-- Section Content Button End -->
             </div>
@@ -186,17 +200,10 @@
 
                         <!-- About Image Content Start -->
                         <div class="about-image-content">
-                            <!-- Video Play Button Start -->
-                            <div class="video-play-button">
-                                <a href="#" class="popup-video" data-cursor-text="Play">
-                                    <i class="fa-solid fa-play"></i>
-                                </a>
-                            </div>
-                            <!-- Video Play Button End -->
 
                             <!-- About Video Title Start -->
                             <div class="about-video-title">
-                                <h3>How Does it Work?</h3>
+                                <h3>NextGen MedResearch</h3>
                             </div>
                             <!-- About Video Title End -->
                         </div>
@@ -207,15 +214,14 @@
                     <!-- About Counter Box Start -->
                     <div class="about-counter-box">
                         <!-- About Counter Title Start -->
-                        <div class="about-counter-title">
-                            <h3>our mission</h3>
-                        </div>
+                        
                         <!-- About Counter Title End -->
 
                         <!-- About Counter Content Start -->
                         <div class="about-counter-content">
-                            <p>We connect clinicians, researchers, and mentors to build capacity, conduct impactful studies, and shape future healthcare leaders</p>
-                            <a href="{{ route('our-value') }}" class="readmore-btn">Learn More</a>
+                            <h3  class="text-white">our mission</h3>
+                            <p>We connect clinicians, researchers, <br>and mentors to build capacity, <br>conduct impactful studies, <br>and shape future healthcare leaders</p>
+                            <a href="{{ route('about') }}" class="readmore-btn">Learn More</a>
                         </div>
                         <!-- About Counter Content End -->
                     </div>
@@ -248,6 +254,7 @@
         </div>
     </div>
 </div>
+<!-- About Us Section End -->
 
 
 @endsection

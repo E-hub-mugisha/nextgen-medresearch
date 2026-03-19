@@ -20,14 +20,14 @@ class MembershipController extends Controller
             'full_name' => 'required|string|max:255',
             'email'     => 'required|email|unique:memberships,email',
             'phone'     => 'nullable|string|max:20',
-            'type'      => 'required|in:individual,trainer,institutional,corporate,honorary',
+            'type'      => 'required|string|max:255',
             'organization' => 'nullable|string|max:255',
             'motivation'   => 'nullable|string|max:2000',
         ]);
 
         Membership::create($request->all());
 
-        return back()->with('success', 'Your membership application has been submitted!');
+        return back()->with('success', 'Your application has been submitted!');
     }
 
     // Admin: list all applications

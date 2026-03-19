@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminResearchSpaceController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\CkeditorController;
 use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\Mentor\MentorDashboardController;
@@ -98,6 +99,8 @@ Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
     Route::post('/mentor-qna/{question}/answer', [MentorQnAController::class, 'storeAnswer'])->name('mentor_qna.store_answer');
     Route::post('/mentor-qna/{question}/archive', [MentorQnAController::class, 'archive'])->name('mentor_qna.archive');
 });
+
+Route::post('/ckeditor-upload', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
 
 // Admin routes
 Route::prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
