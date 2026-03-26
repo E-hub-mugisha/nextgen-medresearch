@@ -187,7 +187,8 @@
                             style="font-size:11px;letter-spacing:.07em;">Availability & Links</p>
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox"
-                                name="available" id="chkAvailable" checked>
+                                name="available" id="chkAvailable" value="1"
+                                {{ old('available', $mentor->available ?? true) ? 'checked' : '' }}>
                             <label class="form-check-label small" for="chkAvailable">
                                 I am currently available for mentoring
                             </label>
@@ -199,9 +200,9 @@
                                     placeholder="https://linkedin.com/in/...">
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-medium">Google Scholar</label>
+                                <label class="form-label small fw-medium">Research Gate</label>
                                 <input type="url" name="google_scholar_url" class="form-control"
-                                    placeholder="https://scholar.google.com/...">
+                                    placeholder="Research Gate link">
                             </div>
                         </div>
                     </div>

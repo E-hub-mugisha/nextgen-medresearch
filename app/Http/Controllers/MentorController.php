@@ -58,7 +58,7 @@ class MentorController extends Controller
             'country' => $request->input('country'),
             'experience_years' => $request->input('experience_years'),
             'max_mentees' => $request->input('max_mentees'),
-            'available' => $request->has('available'), // checkbox handling
+            'available' => $request->has('available') ? true : false,
         ]);
 
         // Log the user in

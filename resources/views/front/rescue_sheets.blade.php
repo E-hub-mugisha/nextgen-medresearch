@@ -59,26 +59,77 @@
         <!-- List View -->
         <div class="list-group shadow-sm">
             @forelse($sheets as $sheet)
-            <a href="{{ asset('rescue_sheets/' . $sheet->file_path) }}"
-    target="_blank"
-    class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+            {{-- List Item --}}
+            <div class="list-group-item d-flex align-items-center justify-content-between">
 
-    <div class="d-flex align-items-center gap-3">
-        @if($sheet->qr_code_path)
-            <img src="{{ asset('qr_codes/' . $sheet->qr_code_path) }}" width="55" alt="QR">
-        @endif
-        <div>
-            <h6 class="mb-0">{{ $sheet->title }}</h6>
-            <small class="text-muted">
-                {{ $sheet->vehicle_model }} • {{ ucfirst($sheet->category) }}
-            </small>
-        </div>
-    </div>
+                <div class="d-flex align-items-center gap-3">
 
-    <span class="badge bg-primary rounded-pill">
-        {{ $sheet->scan_count ?? 0 }} scans
-    </span>
-</a>
+                    {{-- QR Code → opens modal --}}
+                    @if($sheet->qr_code_path)
+                    <img src="{{ asset('qr_codes/' . $sheet->qr_code_path) }}"
+                        width="55" alt="QR" role="button"
+                        data-bs-toggle="modal"
+                        data-bs-target="#qrModal{{ $sheet->id }}"
+                        title="Click to scan QR">
+                    @endif
+
+                    {{-- Title → opens file --}}
+                    <div>
+                        <a href="{{ asset('rescue_sheets/' . $sheet->file_path) }}"
+                            target="_blank" class="text-decoration-none text-dark">
+                            <h6 class="mb-0">{{ $sheet->title }}</h6>
+                        </a>
+                        <small class="text-muted">
+                            {{ $sheet->vehicle_model }} • {{ ucfirst($sheet->category) }}
+                        </small>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary rounded-pill">
+                        {{ $sheet->scan_count ?? 0 }} scans
+                    </span>
+
+                    {{-- Open file button --}}
+                    <a href="{{ asset('rescue_sheets/' . $sheet->file_path) }}"
+                        target="_blank"
+                        class="btn btn-sm btn-outline-secondary">
+                        <i class="bi bi-file-earmark-arrow-down"></i> Open
+                    </a>
+                </div>
+            </div>
+
+            {{-- QR Modal --}}
+            @if($sheet->qr_code_path)
+            <div class="modal fade" id="qrModal{{ $sheet->id }}" tabindex="-1"
+                aria-labelledby="qrModalLabel{{ $sheet->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content text-center">
+
+                        <div class="modal-header border-0 pb-0">
+                            <h6 class="modal-title w-100 fw-semibold" id="qrModalLabel{{ $sheet->id }}">
+                                {{ $sheet->title }}
+                            </h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <div class="modal-body py-3">
+                            <img src="{{ asset('qr_codes/' . $sheet->qr_code_path) }}"
+                                class="img-fluid" style="max-width:200px;" alt="QR Code">
+                            <p class="text-muted small mt-2 mb-0">Scan to open rescue sheet</p>
+                        </div>
+
+                        <div class="modal-footer border-0 pt-0 justify-content-center">
+                            <a href="{{ asset('rescue_sheets/' . $sheet->file_path) }}"
+                                target="_blank" class="btn btn-sm btn-primary">
+                                <i class="bi bi-file-earmark-arrow-down"></i> Open File
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            @endif
             @empty
             <div class="text-center text-muted p-4">
                 No rescue sheets found.
