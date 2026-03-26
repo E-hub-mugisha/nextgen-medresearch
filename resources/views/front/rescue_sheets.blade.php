@@ -59,26 +59,26 @@
         <!-- List View -->
         <div class="list-group shadow-sm">
             @forelse($sheets as $sheet)
-            <a href="{{ asset($sheet->file_path) }}"
-                target="_blank"
-                class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+            <a href="{{ asset('rescue_sheets/' . $sheet->file_path) }}"
+    target="_blank"
+    class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
 
-                <div class="d-flex align-items-center gap-3">
-                    @if($sheet->qr_code_path)
-                    <img src="{{ asset($sheet->qr_code_path) }}" width="55" alt="QR">
-                    @endif
-                    <div>
-                        <h6 class="mb-0">{{ $sheet->title }}</h6>
-                        <small class="text-muted">
-                            {{ $sheet->vehicle_model }} • {{ ucfirst($sheet->category) }}
-                        </small>
-                    </div>
-                </div>
+    <div class="d-flex align-items-center gap-3">
+        @if($sheet->qr_code_path)
+            <img src="{{ asset('qr_codes/' . $sheet->qr_code_path) }}" width="55" alt="QR">
+        @endif
+        <div>
+            <h6 class="mb-0">{{ $sheet->title }}</h6>
+            <small class="text-muted">
+                {{ $sheet->vehicle_model }} • {{ ucfirst($sheet->category) }}
+            </small>
+        </div>
+    </div>
 
-                <span class="badge bg-primary rounded-pill">
-                    {{ $sheet->scan_count ?? 0 }} scans
-                </span>
-            </a>
+    <span class="badge bg-primary rounded-pill">
+        {{ $sheet->scan_count ?? 0 }} scans
+    </span>
+</a>
             @empty
             <div class="text-center text-muted p-4">
                 No rescue sheets found.

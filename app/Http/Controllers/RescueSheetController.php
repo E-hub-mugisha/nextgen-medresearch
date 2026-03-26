@@ -24,64 +24,64 @@ class RescueSheetController extends Controller
      * Store a newly created rescue sheet in storage
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'title'         => 'required|string|max:255',
-            'vehicle_model' => 'nullable|string|max:255',
-            'file'          => 'required|file|mimes:pdf,png,jpg,jpeg',
-            'language'      => 'nullable',
-            'category'      => 'nullable|in:car,truck,bus,ev',
-        ]);
+{
+    $request->validate([
+        'title'         => 'required|string|max:255',
+        'vehicle_model' => 'nullable|string|max:255',
+        'file'          => 'required|file|mimes:pdf,png,jpg,jpeg',
+        'language'      => 'nullable',
+        'category'      => 'nullable|in:car,truck,bus,ev',
+    ]);
 
-        // Ensure folders exist
-        $rescuePath = public_path('rescue_sheets');
-        $qrPathDir  = public_path('qr_codes');
+    // Handle rescue sheet file upload
+    $filePath = null;
+    if ($file = $request->file('file')) {
+        $destinationPath = 'rescue_sheets/';
+        $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
 
-        if (!file_exists($rescuePath)) {
-            mkdir($rescuePath, 0755, true);
+        if (!file_exists($destinationPath)) {
+            mkdir($destinationPath, 0755, true);
         }
 
-        if (!file_exists($qrPathDir)) {
-            mkdir($qrPathDir, 0755, true);
-        }
+        $file->move($destinationPath, $fileName);
 
-        // Upload file to public/rescue_sheets
-        $file      = $request->file('file');
-        $fileName  = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-        $file->move($rescuePath, $fileName);
-
-        $filePath = 'rescue_sheets/' . $fileName; // DB path
-
-        // Generate unique slug
-        $slug = Str::slug($request->title) . '-' . time();
-
-        // Generate QR Code (SVG)
-        $qrFileName = $slug . '.svg';
-        $qrFullPath = $qrPathDir . '/' . $qrFileName;
-
-        $qrImage = QrCode::format('svg')
-            ->size(200)
-            ->generate(route('rescue.sheet.show', $slug));
-
-        // Save QR code to public/qr_codes
-        file_put_contents($qrFullPath, $qrImage);
-
-        $qrPath = 'qr_codes/' . $qrFileName; // DB path
-
-        // Save record
-        RescueSheet::create([
-            'title'         => $request->title,
-            'vehicle_model' => $request->vehicle_model,
-            'language'     => $request->language, // (typo preserved from your model)
-            'slug'          => $slug,
-            'file_path'     => $filePath,
-            'qr_code_path'  => $qrPath,
-            'status'        => 'published',
-            'category'      => $request->category,
-        ]);
-
-        return back()->with('success', 'Rescue sheet uploaded successfully!');
+        $filePath = $fileName;
     }
+
+    // Generate unique slug
+    $slug = Str::slug($request->title) . '-' . time();
+
+    // Handle QR code generation & storage
+    $qrPath = null;
+    $qrDestinationPath = 'qr_codes/';
+    $qrFileName = $slug . '.svg';
+
+    if (!file_exists($qrDestinationPath)) {
+        mkdir($qrDestinationPath, 0755, true);
+    }
+
+    $qrImage = QrCode::format('svg')
+        ->size(200)
+        ->generate(route('rescue.sheet.show', $slug));
+
+    file_put_contents($qrDestinationPath . $qrFileName, $qrImage);
+
+    $qrPath = $qrFileName;
+
+    // Save record
+    RescueSheet::create([
+        'title'         => $request->title,
+        'vehicle_model' => $request->vehicle_model,
+        'language'      => $request->language,
+        'slug'          => $slug,
+        'file_path'     => $filePath,
+        'qr_code_path'  => $qrPath,
+        'status'        => 'published',
+        'category'      => $request->category,
+    ]);
+
+    return back()->with('success', 'Rescue sheet uploaded successfully!');
+}
 
 
     /**
