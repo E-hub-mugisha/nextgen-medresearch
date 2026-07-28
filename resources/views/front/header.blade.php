@@ -12,7 +12,8 @@ if (! function_exists('activeRoute')) {
 <header class="main-header">
     <div class="header-sticky">
         <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid d-flex flex-wrap align-items-center justify-content-between">
+            <!-- Changed to container to constrain width and center content -->
+            <div class="container position-relative d-flex flex-wrap align-items-center justify-content-between">
 
                 <!-- Logo Start -->
                 <a class="navbar-brand" href="{{ route('home') }}">
@@ -20,7 +21,7 @@ if (! function_exists('activeRoute')) {
                 </a>
                 <!-- Logo End -->
 
-                <!-- Mobile Toggle -->
+                <!-- Mobile Toggle (Redesigned) -->
                 <button class="navbar-toggler" type="button" aria-controls="mainNavbar"
                     aria-expanded="false" aria-label="Toggle navigation" id="navToggler">
                     <span class="toggler-bar"></span>
@@ -30,132 +31,131 @@ if (! function_exists('activeRoute')) {
 
                 <!-- Main Menu Start -->
                 <div class="collapse navbar-collapse main-menu" id="mainNavbar">
-                    <div class="nav-menu-wrapper">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-wrap align-items-center" id="menu">
+                    <!-- mx-auto centers the navigation on desktop -->
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex align-items-center" id="menu">
 
-                            <!-- About -->
-                            <li class="nav-item submenu {{ activeRoute(['about','partners','our-impact']) }}">
-                                <a class="nav-link submenu-toggle" href="#">
-                                    About <i class="bi bi-chevron-down submenu-caret"></i>
-                                </a>
-                                <ul class="submenu-panel submenu-panel--simple">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('about') }}">
-                                            <i class="bi bi-compass"></i> Vision, Mission
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('our-impact') }}">
-                                            <i class="bi bi-graph-up-arrow"></i> Our Impact
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('partners') }}">
-                                            <i class="bi bi-diagram-3"></i> Our Partners
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                        <!-- About -->
+                        <li class="nav-item submenu {{ activeRoute(['about','partners','our-impact']) }}">
+                            <a class="nav-link submenu-toggle" href="#">
+                                About <i class="bi bi-chevron-down submenu-caret"></i>
+                            </a>
+                            <ul class="submenu-panel submenu-panel--simple">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('about') }}">
+                                        <i class="bi bi-compass"></i> Vision, Mission
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('our-impact') }}">
+                                        <i class="bi bi-graph-up-arrow"></i> Our Impact
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('partners') }}">
+                                        <i class="bi bi-diagram-3"></i> Our Partners
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
-                            <!-- Programs -->
-                            <li class="nav-item submenu {{ activeRoute(['programs','programs.detail']) }}">
-                                <a class="nav-link submenu-toggle" href="#">
-                                    Programs <i class="bi bi-chevron-down submenu-caret"></i>
-                                </a>
-                                <ul class="submenu-panel submenu-panel--simple">
-                                    @forelse($programs as $program)
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('programs.detail', $program->slug) }}">
-                                            <i class="bi bi-journal-bookmark"></i> {{ $program->title }}
-                                        </a>
-                                    </li>
-                                    @empty
-                                    <li class="nav-item">
-                                        <span class="nav-link text-muted">No active programs</span>
-                                    </li>
-                                    @endforelse
-                                </ul>
-                            </li>
+                        <!-- Programs -->
+                        <li class="nav-item submenu {{ activeRoute(['programs','programs.detail']) }}">
+                            <a class="nav-link submenu-toggle" href="#">
+                                Programs <i class="bi bi-chevron-down submenu-caret"></i>
+                            </a>
+                            <ul class="submenu-panel submenu-panel--simple">
+                                @forelse($programs as $program)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('programs.detail', $program->slug) }}">
+                                        <i class="bi bi-journal-bookmark"></i> {{ $program->title }}
+                                    </a>
+                                </li>
+                                @empty
+                                <li class="nav-item">
+                                    <span class="nav-link text-muted">No active programs</span>
+                                </li>
+                                @endforelse
+                            </ul>
+                        </li>
 
-                            <!-- Resources -->
-                            <li class="nav-item submenu {{ activeRoute(['research.index','kits.index','mentor_qna.*']) }}">
-                                <a class="nav-link submenu-toggle" href="#">
-                                    Resources <i class="bi bi-chevron-down submenu-caret"></i>
-                                </a>
-                                <div class="submenu-panel submenu-panel--mega">
-                                    <div class="mega-col">
-                                        <p class="mega-col-title">Knowledge Hub</p>
-                                        <a class="mega-link" href="{{ route('research.index') }}">
-                                            <span class="mega-icon"><i class="bi bi-search"></i></span>
-                                            <span>
-                                                <span class="mega-link-title">Research Projects</span>
-                                                <span class="mega-link-desc">Ongoing studies &amp; findings</span>
-                                            </span>
-                                        </a>
-                                        <a class="mega-link" href="{{ route('kits.index') }}">
-                                            <span class="mega-icon"><i class="bi bi-box-seam"></i></span>
-                                            <span>
-                                                <span class="mega-link-title">Research Kits</span>
-                                                <span class="mega-link-desc">Templates &amp; toolkits</span>
-                                            </span>
-                                        </a>
-                                        <a class="mega-link" href="{{ route('mentor_qna.index') }}">
-                                            <span class="mega-icon"><i class="bi bi-chat-dots"></i></span>
-                                            <span>
-                                                <span class="mega-link-title">Ask a Mentor</span>
-                                                <span class="mega-link-desc">Get expert guidance</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div class="mega-col mega-col--divide">
-                                        <p class="mega-col-title">Latest</p>
-                                        <a class="mega-link" href="{{ route('research.index') }}">
-                                            <span class="mega-icon"><i class="bi bi-newspaper"></i></span>
-                                            <span>
-                                                <span class="mega-link-title">News</span>
-                                                <span class="mega-link-desc">Updates from the community</span>
-                                            </span>
-                                        </a>
-                                        <a class="mega-link" href="{{ route('kits.index') }}">
-                                            <span class="mega-icon"><i class="bi bi-calendar-event"></i></span>
-                                            <span>
-                                                <span class="mega-link-title">Events</span>
-                                                <span class="mega-link-desc">Workshops &amp; meetups</span>
-                                            </span>
-                                        </a>
-                                    </div>
+                        <!-- Resources -->
+                        <li class="nav-item submenu {{ activeRoute(['research.index','kits.index','mentor_qna.*']) }}">
+                            <a class="nav-link submenu-toggle" href="#">
+                                Resources <i class="bi bi-chevron-down submenu-caret"></i>
+                            </a>
+                            <div class="submenu-panel submenu-panel--mega">
+                                <div class="mega-col">
+                                    <p class="mega-col-title">Knowledge Hub</p>
+                                    <a class="mega-link" href="{{ route('research.index') }}">
+                                        <span class="mega-icon"><i class="bi bi-search"></i></span>
+                                        <span>
+                                            <span class="mega-link-title">Research Projects</span>
+                                            <span class="mega-link-desc">Ongoing studies &amp; findings</span>
+                                        </span>
+                                    </a>
+                                    <a class="mega-link" href="{{ route('kits.index') }}">
+                                        <span class="mega-icon"><i class="bi bi-box-seam"></i></span>
+                                        <span>
+                                            <span class="mega-link-title">Research Kits</span>
+                                            <span class="mega-link-desc">Templates &amp; toolkits</span>
+                                        </span>
+                                    </a>
+                                    <a class="mega-link" href="{{ route('mentor_qna.index') }}">
+                                        <span class="mega-icon"><i class="bi bi-chat-dots"></i></span>
+                                        <span>
+                                            <span class="mega-link-title">Ask a Mentor</span>
+                                            <span class="mega-link-desc">Get expert guidance</span>
+                                        </span>
+                                    </a>
                                 </div>
-                            </li>
+                                <div class="mega-col mega-col--divide">
+                                    <p class="mega-col-title">Latest</p>
+                                    <a class="mega-link" href="{{ route('research.index') }}">
+                                        <span class="mega-icon"><i class="bi bi-newspaper"></i></span>
+                                        <span>
+                                            <span class="mega-link-title">News</span>
+                                            <span class="mega-link-desc">Updates from the community</span>
+                                        </span>
+                                    </a>
+                                    <a class="mega-link" href="{{ route('kits.index') }}">
+                                        <span class="mega-icon"><i class="bi bi-calendar-event"></i></span>
+                                        <span>
+                                            <span class="mega-link-title">Events</span>
+                                            <span class="mega-link-desc">Workshops &amp; meetups</span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
 
-                            <!-- Research Space -->
-                            <li class="nav-item {{ activeRoute('research.space') }}">
-                                <a class="nav-link" href="{{ route('research.space') }}">Research Space</a>
-                            </li>
+                        <!-- Research Space -->
+                        <li class="nav-item {{ activeRoute('research.space') }}">
+                            <a class="nav-link" href="{{ route('research.space') }}">Research Space</a>
+                        </li>
 
-                            <!-- Contact -->
-                            <li class="nav-item">
-                                <a class="nav-link {{ activeRoute('contact') }}" href="{{ route('contact') }}">Contact</a>
-                            </li>
+                        <!-- Contact -->
+                        <li class="nav-item">
+                            <a class="nav-link {{ activeRoute('contact') }}" href="{{ route('contact') }}">Contact</a>
+                        </li>
 
-                            <!-- Mobile Buttons -->
-                            <li class="nav-item d-lg-none mt-3 w-100">
-                                <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal"
-                                    class="nav-link btn btn-nav-primary w-100 text-center">Join</a>
-                            </li>
-                            <li class="nav-item d-lg-none mt-2 w-100 mb-1">
-                                <a href="{{ route('rescue.sheet.public') }}"
-                                    class="nav-link btn btn-nav-secondary w-100 text-center">Rescue Sheets</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Desktop Buttons -->
-                    <div class="header-btn d-none d-lg-flex ms-3 flex-wrap mt-2 mt-lg-0 ms-lg-3">
-                        <a href="{{ route('rescue.sheet.public') }}" class="btn btn-nav-secondary me-2">Rescue Sheets</a>
-                        <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal" class="btn btn-nav-primary">Join</a>
-                    </div>
+                        <!-- Mobile Buttons -->
+                        <li class="nav-item d-lg-none mt-4 w-100">
+                            <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal"
+                                class="btn btn-nav-primary w-100 text-center">Join the Community</a>
+                        </li>
+                        <li class="nav-item d-lg-none mt-2 w-100 mb-1">
+                            <a href="{{ route('rescue.sheet.public') }}"
+                                class="btn btn-nav-secondary w-100 text-center">Rescue Sheets</a>
+                        </li>
+                    </ul>
                 </div>
                 <!-- Main Menu End -->
+
+                <!-- Desktop Buttons (Absolutely positioned to the right) -->
+                <div class="header-btn d-none d-lg-flex position-absolute end-0 flex-wrap">
+                    <a href="{{ route('rescue.sheet.public') }}" class="btn btn-nav-secondary me-2">Rescue Sheets</a>
+                    <a role="button" data-bs-toggle="modal" data-bs-target="#roleModal" class="btn btn-nav-primary">Join</a>
+                </div>
             </div>
         </nav>
     </div>
@@ -168,28 +168,30 @@ if (! function_exists('activeRoute')) {
         --brand-teal-light: #0C8AA3;
         --brand-teal-50: rgba(0, 105, 126, 0.08);
         --brand-white: #ffffff;
-        --header-radius: 0.85rem;
+        --header-radius: 0.65rem;
     }
 
     /* ============ HEADER SHELL ============ */
     .main-header {
-        background: linear-gradient(180deg, var(--brand-teal-dark) 0%, var(--brand-teal) 100%);
+        background: var(--brand-teal);
     }
 
     .header-sticky {
         position: sticky;
         top: 0;
         z-index: 1030;
-        background: rgba(0, 78, 95, 0.72);
-        backdrop-filter: blur(14px) saturate(160%);
-        -webkit-backdrop-filter: blur(14px) saturate(160%);
-        box-shadow: 0 8px 24px rgba(0, 20, 25, 0.18);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--brand-teal);
+        box-shadow: 0 4px 20px rgba(0, 20, 25, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .navbar {
-        padding-top: 0.7rem;
-        padding-bottom: 0.7rem;
+        padding-top: 0.85rem;
+        padding-bottom: 0.85rem;
+    }
+
+    .navbar > .container {
+        position: relative; /* Needed for absolute positioning of desktop buttons */
     }
 
     /* ============ LOGO ============ */
@@ -197,88 +199,91 @@ if (! function_exists('activeRoute')) {
         height: 2.5rem;
         width: auto;
         max-width: 100%;
+        filter: brightness(0) invert(1);
     }
 
-    @media (min-width: 576px) { .site-logo { height: 2.9rem; } }
-    @media (min-width: 992px) { .site-logo { height: 3.5rem; } }
+    @media (min-width: 576px) { .site-logo { height: 2.8rem; } }
+    @media (min-width: 992px) { .site-logo { height: 3.2rem; } }
 
     /* ============ NAV LINKS ============ */
     #menu .nav-link {
         color: var(--brand-white);
         font-weight: 500;
-        font-size: 0.94rem;
+        font-size: 0.95rem;
         letter-spacing: 0.01em;
-        padding: 0.65rem 1rem;
-        border-radius: 999px;
+        padding: 0.55rem 1.1rem;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         gap: 0.35rem;
-        opacity: 0.88;
-        transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+        opacity: 0.85;
+        transition: all 0.2s ease;
     }
 
     #menu .nav-link:hover,
     #menu .nav-link:focus {
         opacity: 1;
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.12);
     }
 
     #menu .nav-item.active > .nav-link {
         opacity: 1;
-        font-weight: 700;
-        background-color: rgba(255, 255, 255, 0.14);
+        font-weight: 600;
+        background-color: rgba(255, 255, 255, 0.15);
     }
 
     .submenu-caret {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         transition: transform 0.2s ease;
+        opacity: 0.7;
     }
 
-    /* ============ CUSTOM TOGGLE BUTTON (Mobile) ============ */
+    /* ============ MOBILE TOGGLE (Redesigned) ============ */
     .navbar-toggler {
-        border: 1px solid rgba(255, 255, 255, 0.45);
-        padding: 0.45rem 0.6rem;
-        border-radius: 0.5rem;
+        border: none;
+        padding: 0;
         background: transparent;
+        width: 40px;
+        height: 40px;
         display: flex;
         flex-direction: column;
-        gap: 4px;
-        align-items: center;
         justify-content: center;
-        width: 38px;
-        height: 34px;
+        align-items: center;
+        gap: 6px;
+        border-radius: 8px;
         transition: background 0.2s ease;
     }
 
     .navbar-toggler:hover {
-        background: rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.1);
     }
 
     .navbar-toggler:focus {
-        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
         outline: none;
     }
 
     .toggler-bar {
         display: block;
-        width: 20px;
-        height: 2px;
+        width: 24px;
+        height: 2.5px;
         background: var(--brand-white);
-        border-radius: 2px;
-        transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+        border-radius: 4px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
     }
 
     .navbar-toggler[aria-expanded="true"] .toggler-bar:nth-child(1) {
-        transform: translateY(6px) rotate(45deg);
+        transform: translateY(8.5px) rotate(45deg);
     }
 
     .navbar-toggler[aria-expanded="true"] .toggler-bar:nth-child(2) {
         opacity: 0;
-        width: 0;
+        transform: scaleX(0);
     }
 
     .navbar-toggler[aria-expanded="true"] .toggler-bar:nth-child(3) {
-        transform: translateY(-6px) rotate(-45deg);
+        transform: translateY(-8.5px) rotate(-45deg);
     }
 
     /* ============ DESKTOP DROPDOWNS ============ */
@@ -288,10 +293,10 @@ if (! function_exists('activeRoute')) {
         .submenu-panel {
             opacity: 0;
             visibility: hidden;
-            transform: translateY(8px);
-            transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+            transform: translateY(10px);
+            transition: all 0.2s ease;
             position: absolute;
-            top: calc(100% + 0.65rem);
+            top: calc(100% + 0.85rem);
             left: 0;
             z-index: 1040;
         }
@@ -305,6 +310,7 @@ if (! function_exists('activeRoute')) {
 
         .nav-item.submenu:hover .submenu-caret {
             transform: rotate(180deg);
+            opacity: 1;
         }
 
         /* Simple dropdown */
@@ -312,41 +318,45 @@ if (! function_exists('activeRoute')) {
             list-style: none;
             margin: 0;
             padding: 0.5rem;
-            min-width: 230px;
+            min-width: 240px;
             background: var(--brand-white);
             border-radius: var(--header-radius);
-            box-shadow: 0 18px 40px rgba(0, 20, 25, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 20, 25, 0.15);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .submenu-panel--simple .nav-link {
-            color: var(--brand-teal-dark) !important;
+            color: #2c3e50 !important;
             opacity: 1;
-            padding: 0.6rem 0.75rem;
-            border-radius: 0.6rem;
+            padding: 0.6rem 0.8rem;
+            border-radius: 0.4rem;
             font-size: 0.9rem;
             font-weight: 500;
-            gap: 0.6rem;
+            gap: 0.65rem;
         }
 
         .submenu-panel--simple .nav-link i {
             color: var(--brand-teal);
             font-size: 0.95rem;
-            width: 1.1rem;
+            width: 1.2rem;
+            text-align: center;
         }
 
         .submenu-panel--simple .nav-link:hover {
             background: var(--brand-teal-50);
+            color: var(--brand-teal) !important;
         }
 
         /* Mega menu */
         .submenu-panel--mega {
             display: flex;
             gap: 0;
-            min-width: 480px;
-            padding: 0.9rem;
+            min-width: 500px;
+            padding: 1rem;
             background: var(--brand-white);
             border-radius: var(--header-radius);
-            box-shadow: 0 18px 40px rgba(0, 20, 25, 0.2);
+            box-shadow: 0 15px 40px rgba(0, 20, 25, 0.15);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .mega-col {
@@ -355,26 +365,26 @@ if (! function_exists('activeRoute')) {
         }
 
         .mega-col--divide {
-            border-left: 1px solid #ecebe9;
+            border-left: 1px solid #eef2f5;
         }
 
         .mega-col-title {
             text-transform: uppercase;
             font-size: 11px;
             font-weight: 700;
-            letter-spacing: 0.06em;
-            color: #9aa3a6;
-            margin: 0 0 0.55rem 0.15rem;
+            letter-spacing: 0.08em;
+            color: #95a5a6;
+            margin: 0 0 0.75rem 0.15rem;
         }
 
         .mega-link {
             display: flex;
             align-items: flex-start;
-            gap: 0.7rem;
-            padding: 0.5rem 0.5rem;
-            border-radius: 0.65rem;
+            gap: 0.75rem;
+            padding: 0.65rem 0.5rem;
+            border-radius: 0.5rem;
             text-decoration: none;
-            transition: background-color 0.15s ease;
+            transition: background-color 0.2s ease;
         }
 
         .mega-link:hover {
@@ -383,80 +393,116 @@ if (! function_exists('activeRoute')) {
 
         .mega-icon {
             flex: 0 0 auto;
-            width: 34px;
-            height: 34px;
-            border-radius: 0.55rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 0.4rem;
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--brand-teal-50);
             color: var(--brand-teal);
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
 
         .mega-link-title {
             display: block;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            color: #1c2b2f;
+            color: #2c3e50;
+            margin-bottom: 0.1rem;
         }
 
         .mega-link-desc {
             display: block;
-            font-size: 0.76rem;
-            color: #8a9396;
-            margin-top: 0.1rem;
+            font-size: 0.78rem;
+            color: #7f8c8d;
         }
 
-        /* Desktop: hide mobile-only elements */
+        /* Hide mobile elements on desktop */
         .nav-item.d-lg-none { display: none !important; }
-        .header-btn.d-none.d-lg-flex { display: flex !important; }
     }
 
-    /* ============ MOBILE MENU ============ */
+    /* ============ MOBILE MENU (Full-Screen App Drawer Style) ============ */
     @media (max-width: 991.98px) {
-
-        /* ---- Menu panel ---- */
+        /* Override Bootstrap collapse to create a slide-down full screen overlay */
         .main-menu {
-            background: var(--brand-teal-dark);
-            border-radius: var(--header-radius);
-            padding: 0.85rem 1rem 1.1rem;
-            margin-top: 0.65rem;
-            max-height: calc(100vh - 80px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh !important; 
+            background: linear-gradient(180deg, var(--brand-teal) 0%, var(--brand-teal-dark) 100%);
+            padding: 6rem 1.5rem 2rem; /* Top padding clears the header logo/toggle */
+            z-index: 1020; /* Sits below the sticky header */
             overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+            transform: translateY(-100%); /* Hidden by default */
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
         }
 
-        /* Fix: allow overflow for submenu expansion inside collapse */
-        .main-menu.collapsing,
-        .main-menu.collapse.show {
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+        .main-menu.show {
+            transform: translateY(0); /* Slide into view */
         }
 
-        .nav-menu-wrapper { width: 100%; }
+        /* Fix Bootstrap collapsing transition to use transform instead of height */
+        .main-menu.collapsing {
+            height: 100vh !important;
+            transform: translateY(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .main-menu.collapsing.show {
+            transform: translateY(0);
+        }
 
-        #menu { width: 100%; }
+        #menu {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+        }
 
         #menu .nav-item {
             width: 100%;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        #menu .nav-item:last-of-type { border-bottom: none; }
+        #menu > .nav-item:last-of-type {
+            border-bottom: none;
+        }
+
+        #menu > .nav-item > .nav-link {
+            color: var(--brand-white) !important;
+            opacity: 1;
+            padding: 1.2rem 0.5rem;
+            font-size: 1.25rem; /* Large, modern typography */
+            font-weight: 600;
+            border-radius: 0;
+        }
+
+        #menu > .nav-item > .nav-link:hover,
+        #menu > .nav-item.active > .nav-link {
+            background: transparent;
+            color: var(--brand-teal-light) !important;
+        }
 
         .submenu-toggle {
             justify-content: space-between;
             width: 100%;
         }
 
-        /* ---- Submenu panels: accordion ---- */
+        /* ---- Submenu panels (Mobile) ---- */
         .submenu-panel,
         .submenu-panel--mega {
             display: none;
             padding: 0;
             margin: 0;
             list-style: none;
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            margin: 0.25rem 0 0.75rem 0;
+            padding: 0.5rem;
         }
 
         .nav-item.submenu.open > .submenu-panel,
@@ -468,61 +514,50 @@ if (! function_exists('activeRoute')) {
             transform: rotate(180deg);
         }
 
-        /* ---- Simple dropdown links (mobile) ---- */
         .submenu-panel--simple .nav-link {
-            color: rgba(255, 255, 255, 0.9) !important;
-            opacity: 1;
-            padding: 0.55rem 0.9rem 0.55rem 1.6rem;
-            border-radius: 0.5rem;
-            font-size: 0.88rem;
-            font-weight: 400;
-            gap: 0.55rem;
+            color: rgba(255, 255, 255, 0.85) !important;
+            padding: 0.75rem 1rem 0.75rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
         }
 
         .submenu-panel--simple .nav-link:hover {
             background: rgba(255, 255, 255, 0.08);
-            opacity: 1;
+            color: #fff !important;
         }
 
         .submenu-panel--simple .nav-link i {
-            font-size: 0.85rem;
+            font-size: 1rem;
             color: var(--brand-teal-light);
         }
 
-        /* ---- Mega menu (mobile) ---- */
+        /* Mega menu (Mobile) */
         .submenu-panel--mega {
-            padding: 0.5rem 0 0.25rem 0;
+            padding: 1rem;
+            flex-direction: column;
+            gap: 1rem;
         }
 
         .mega-col {
-            padding: 0 0.5rem;
+            padding: 0;
         }
 
         .mega-col--divide {
             border-left: none;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 0.4rem;
-            padding-top: 0.4rem;
+            padding-top: 1rem;
+            margin-top: 0.5rem;
         }
 
         .mega-col-title {
-            text-transform: uppercase;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            color: rgba(255, 255, 255, 0.5);
-            margin: 0.5rem 0.9rem 0.2rem;
-            padding: 0;
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 0 0.5rem 0;
         }
 
         .mega-link {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.65rem;
-            padding: 0.5rem 0.9rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: background 0.15s ease;
+            padding: 0.75rem;
+            border-radius: 8px;
         }
 
         .mega-link:hover {
@@ -530,100 +565,98 @@ if (! function_exists('activeRoute')) {
         }
 
         .mega-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 0.45rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(12, 138, 163, 0.15);
-            color: var(--brand-teal-light);
-            font-size: 0.85rem;
-            flex-shrink: 0;
-        }
-
-        .mega-link-title {
-            display: block;
-            font-size: 0.88rem;
-            font-weight: 600;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
             color: var(--brand-white);
         }
 
-        .mega-link-desc {
-            display: block;
-            font-size: 0.72rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 0.05rem;
+        .mega-link-title {
+            color: var(--brand-white);
+            font-size: 1rem;
         }
 
-        /* ---- Mobile buttons ---- */
+        .mega-link-desc {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ---- Mobile buttons (Push to bottom) ---- */
         .header-btn.d-none.d-lg-flex { display: none !important; }
-        .nav-item.d-lg-none { display: block !important; }
+        .nav-item.d-lg-none { 
+            display: block !important; 
+            margin-top: auto !important; /* Pushes buttons to the bottom of the screen */
+            padding-top: 2rem;
+        }
 
         .btn-nav-primary,
         .btn-nav-secondary {
             font-weight: 600;
-            font-size: 0.9rem;
-            border-radius: 999px;
-            padding: 0.6rem 1.4rem;
-            transition: transform 0.15s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-            white-space: nowrap;
+            font-size: 1rem;
+            border-radius: 12px;
+            padding: 1rem;
+            transition: all 0.2s ease;
+            width: 100%;
+            display: block;
+            margin-bottom: 1rem;
         }
 
         .btn-nav-primary {
             background: var(--brand-white);
             color: var(--brand-teal) !important;
             border: 1px solid var(--brand-white);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
 
-        .btn-nav-primary:hover,
-        .btn-nav-primary:focus {
-            background: transparent;
+        .btn-nav-primary:hover {
+            background: var(--brand-teal-light);
             color: var(--brand-white) !important;
-            border-color: var(--brand-white);
-            transform: translateY(-1px);
+            border-color: var(--brand-teal-light);
         }
 
         .btn-nav-secondary {
             background: transparent;
             color: var(--brand-white) !important;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
-        .btn-nav-secondary:hover,
-        .btn-nav-secondary:focus {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.7);
-            transform: translateY(-1px);
+        .btn-nav-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--brand-white);
         }
     }
 
-    /* ============ DESKTOP BUTTONS (shared) ============ */
+    /* ============ DESKTOP BUTTONS ============ */
     @media (min-width: 992px) {
+        .header-btn {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
         .btn-nav-primary,
         .btn-nav-secondary {
             font-weight: 600;
             font-size: 0.9rem;
-            border-radius: 999px;
-            padding: 0.6rem 1.4rem;
-            transition: transform 0.15s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 8px;
+            padding: 0.6rem 1.35rem;
+            transition: all 0.2s ease;
             white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-nav-primary {
             background: var(--brand-white);
             color: var(--brand-teal) !important;
             border: 1px solid var(--brand-white);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
-        .btn-nav-primary:hover,
-        .btn-nav-primary:focus {
-            background: transparent;
+        .btn-nav-primary:hover {
+            background: var(--brand-teal-light);
             color: var(--brand-white) !important;
-            border-color: var(--brand-white);
+            border-color: var(--brand-teal-light);
             transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
 
         .btn-nav-secondary {
@@ -632,10 +665,9 @@ if (! function_exists('activeRoute')) {
             border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        .btn-nav-secondary:hover,
-        .btn-nav-secondary:focus {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.7);
+        .btn-nav-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.8);
             transform: translateY(-1px);
         }
     }
@@ -872,7 +904,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .role-badge--mentee { background: #E1F5EE; color: #0F6E56; }
     .role-badge--mentor { background: #E6F1FB; color: #185FA5; }
 
-    .continue-btn { background-color: var(--brand-teal); }
+    .continue-btn { background-color: var(--brand-teal); border: none; }
     .continue-btn:hover { background-color: var(--brand-teal-dark); color: var(--brand-white); }
 </style>
 

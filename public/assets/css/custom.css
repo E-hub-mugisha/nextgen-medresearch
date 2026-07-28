@@ -109,7 +109,7 @@ h6 {
 	font-family: var(--accent-font);
 	font-weight: 600;
 	line-height: 1.2em;
-	color: var(--primary-color);
+	/* color: var(--primary-color); */
 }
 
 figure {
@@ -2590,7 +2590,7 @@ header.main-header .header-sticky.active {
 
 .main-footer {
 	padding: 50px 0 0;
-	margin-bottom: 50px;
+	/* margin-bottom: 50px; */
 }
 
 .about-footer {
