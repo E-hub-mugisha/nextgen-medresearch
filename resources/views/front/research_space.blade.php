@@ -1038,6 +1038,54 @@
                             </a>
                         </div>
                     </div>
+
+                    <!-- 8 -->
+                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-8', this)">
+                        <div class="resource-icon ppt-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
+                        </div>
+                        <div class="resource-info">
+                            <div class="resource-title">The Resident Research Space</div>
+                            <div class="resource-author">Dr. Menelas N. MD, MMed, MSc</div>
+                        </div>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                    <div class="rs-inline-preview" id="ppt-8">
+                        <div class="preview-placeholder">
+                            <div class="preview-info">
+                                <div class="preview-icon-sm">📊</div>
+                                <p>Google Drive Presentation <small>Click to open in new tab</small></p>
+                            </div>
+                            <a href="https://docs.google.com/presentation/d/1o4E8eDQl5hR4h0ZUGMYiF3fBpNQ2rqIu/edit?usp=sharing&ouid=116808387962001444555&rtpof=true&sd=true" target="_blank" class="rs-btn-sm">
+                                Open
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 9 -->
+                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-9', this)">
+                        <div class="resource-icon ppt-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
+                        </div>
+                        <div class="resource-info">
+                            <div class="resource-title">Conceptual Alignment Strategic Literature search</div>
+                            <div class="resource-author">Daniel BYIRINGIRO MD, MMSc GHD (Cand)</div>
+                        </div>
+                        <span class="resource-arrow">→</span>
+                    </div>
+                    <div class="rs-inline-preview" id="ppt-9">
+                        <div class="preview-placeholder">
+                            <div class="preview-info">
+                                <div class="preview-icon-sm">📊</div>
+                                <p>Google Drive Presentation <small>Click to open in new tab</small></p>
+                            </div>
+                            <a href="https://drive.google.com/file/d/1QKIaMuMqdiPXhKsS80Rz95rCG0h6tlIl/view?usp=sharing" target="_blank" class="rs-btn-sm">
+                                Open
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
