@@ -521,76 +521,122 @@
         transform: translateX(2px);
     }
 
-    /* ---- Inline Preview ---- */
-    .rs-inline-preview {
+    /* ---- Fitted Viewer (lightbox) ---- */
+    .rs-viewer-overlay {
         display: none;
-        margin-top: 0.5rem;
-        margin-left: 1rem;
-        padding: 1rem 1.25rem;
-        background: var(--bg-light);
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius-md);
-        animation: slideDown 0.3s ease;
+        position: fixed;
+        inset: 0;
+        z-index: 2000;
+        background: rgba(15, 23, 42, 0.82);
+        backdrop-filter: blur(2px);
+        padding: clamp(0.75rem, 3vw, 2.5rem);
+        align-items: center;
+        justify-content: center;
+        animation: fadeInOverlay 0.2s ease;
     }
 
-    .rs-inline-preview.active {
-        display: block;
+    .rs-viewer-overlay.active {
+        display: flex;
     }
 
-    @keyframes slideDown {
-        from { opacity: 0; transform: translateY(-6px); }
-        to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInOverlay {
+        from { opacity: 0; }
+        to { opacity: 1; }
     }
 
-    .rs-inline-preview .preview-placeholder {
+    .rs-viewer-box {
+        width: 100%;
+        max-width: 1400px;
+        height: 100%;
+        max-height: 92vh;
+        background: #0b1220;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        box-shadow: var(--shadow-xl);
+    }
+
+    .rs-viewer-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
+        padding: 0.85rem 1.25rem;
+        background: var(--bg-white);
+        border-bottom: 1px solid var(--border-color);
+        flex-shrink: 0;
     }
 
-    .rs-inline-preview .preview-info {
+    .rs-viewer-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .rs-viewer-note {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.35rem;
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        flex-shrink: 0;
+        white-space: nowrap;
     }
 
-    .rs-inline-preview .preview-info .preview-icon-sm {
-        width: 32px;
-        height: 32px;
+    .rs-viewer-close {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--orange-bg);
-        border: 1px solid var(--orange-border);
+        width: 32px;
+        height: 32px;
         border-radius: var(--radius-sm);
-        color: var(--orange);
-        font-size: 0.85rem;
-    }
-
-    .rs-inline-preview .preview-info p {
-        margin: 0;
-        font-size: 0.8rem;
+        border: 1px solid var(--border-color);
+        background: var(--bg-white);
         color: var(--text-secondary);
-    }
-
-    .rs-inline-preview .preview-info p small {
-        display: block;
-        font-size: 0.7rem;
-        color: var(--text-muted);
-    }
-
-    .rs-toggle-preview {
         cursor: pointer;
-        user-select: none;
+        flex-shrink: 0;
+        transition: all 0.2s ease;
     }
 
-    .rs-toggle-preview .resource-arrow {
-        transition: transform 0.3s ease;
+    .rs-viewer-close:hover {
+        background: var(--bg-light);
+        color: var(--text-primary);
     }
 
-    .rs-toggle-preview.expanded .resource-arrow {
-        transform: rotate(90deg);
+    .rs-viewer-body {
+        position: relative;
+        flex: 1;
+        min-height: 0;
+        background: #000;
+    }
+
+    .rs-viewer-body iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    .rs-viewer-loading {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #cbd5e1;
+        font-size: 0.8rem;
+        background: #0b1220;
+    }
+
+    @media (max-width: 768px) {
+        .rs-viewer-overlay { padding: 0; }
+        .rs-viewer-box { max-height: 100vh; border-radius: 0; }
+        .rs-viewer-title { max-width: 55vw; }
     }
 
     /* ---- Resources Grid ---- */
@@ -872,7 +918,7 @@
 
                 <div class="rs-resource-list">
                     <!-- 1 -->
-                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-1', this)">
+                    <div class="rs-resource-item" onclick="openViewer('https://docs.google.com/presentation/d/1G8ael2_TtIwdRPhS78jGdhaidhrnf-1Q/embed?start=false&amp;loop=false&amp;delayms=3000&amp;rm=minimal', 'Research as a Career Anchor')">
                         <div class="resource-icon ppt-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
                         </div>
@@ -882,21 +928,9 @@
                         </div>
                         <span class="resource-arrow">→</span>
                     </div>
-                    <div class="rs-inline-preview" id="ppt-1">
-                        <div class="preview-placeholder">
-                            <div class="preview-info">
-                                <div class="preview-icon-sm">📊</div>
-                                <p>Google Slides Presentation <small>Click to open in new tab</small></p>
-                            </div>
-                            <a href="https://docs.google.com/presentation/d/1G8ael2_TtIwdRPhS78jGdhaidhrnf-1Q/edit?usp=drive_link" target="_blank" class="rs-btn-sm">
-                                Open
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            </a>
-                        </div>
-                    </div>
 
                     <!-- 2 -->
-                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-2', this)">
+                    <div class="rs-resource-item" onclick="openViewer('https://drive.google.com/file/d/16nEeLWqo71-6CGIFatY6cm8BnI7f2o24/preview', 'Research Concept Development')">
                         <div class="resource-icon ppt-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
                         </div>
@@ -906,21 +940,9 @@
                         </div>
                         <span class="resource-arrow">→</span>
                     </div>
-                    <div class="rs-inline-preview" id="ppt-2">
-                        <div class="preview-placeholder">
-                            <div class="preview-info">
-                                <div class="preview-icon-sm">📊</div>
-                                <p>Google Drive Presentation <small>Click to open in new tab</small></p>
-                            </div>
-                            <a href="https://drive.google.com/file/d/16nEeLWqo71-6CGIFatY6cm8BnI7f2o24/view?usp=drive_link" target="_blank" class="rs-btn-sm">
-                                Open
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            </a>
-                        </div>
-                    </div>
 
                     <!-- 3 -->
-                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-3', this)">
+                    <div class="rs-resource-item" onclick="openViewer('https://drive.google.com/file/d/1M9uW6zihM3hKp68VXwURKUMLrb6AKpFg/preview', 'How to Protect Your Resident Research from Bias, Bad Charts, and Tiny Samples')">
                         <div class="resource-icon ppt-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
                         </div>
@@ -930,21 +952,9 @@
                         </div>
                         <span class="resource-arrow">→</span>
                     </div>
-                    <div class="rs-inline-preview" id="ppt-3">
-                        <div class="preview-placeholder">
-                            <div class="preview-info">
-                                <div class="preview-icon-sm">📊</div>
-                                <p>Google Drive Presentation <small>Click to open in new tab</small></p>
-                            </div>
-                            <a href="https://drive.google.com/file/d/1M9uW6zihM3hKp68VXwURKUMLrb6AKpFg/view?usp=drive_link" target="_blank" class="rs-btn-sm">
-                                Open
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            </a>
-                        </div>
-                    </div>
 
                     <!-- 4 -->
-                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-4', this)">
+                    <div class="rs-resource-item" onclick="openViewer('https://drive.google.com/file/d/15UYQ6-RielG4awsx08F3gj87ZeBb3cik/preview', 'How to Stop Guessing Your Sample Size and Start Convincing the IRB')">
                         <div class="resource-icon ppt-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
                         </div>
@@ -954,21 +964,9 @@
                         </div>
                         <span class="resource-arrow">→</span>
                     </div>
-                    <div class="rs-inline-preview" id="ppt-4">
-                        <div class="preview-placeholder">
-                            <div class="preview-info">
-                                <div class="preview-icon-sm">📊</div>
-                                <p>Google Drive Presentation <small>Click to open in new tab</small></p>
-                            </div>
-                            <a href="https://drive.google.com/file/d/15UYQ6-RielG4awsx08F3gj87ZeBb3cik/view?usp=sharing" target="_blank" class="rs-btn-sm">
-                                Open
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            </a>
-                        </div>
-                    </div>
 
                     <!-- 5 -->
-                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-5', this)">
+                    <div class="rs-resource-item" onclick="openViewer('https://drive.google.com/file/d/1WqKpylgI5UIXnHfoiF5OFBb7F5xVLqwb/preview', 'Your Checklist for Flawless Analysis, Management, and Reporting')">
                         <div class="resource-icon ppt-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
                         </div>
@@ -978,21 +976,9 @@
                         </div>
                         <span class="resource-arrow">→</span>
                     </div>
-                    <div class="rs-inline-preview" id="ppt-5">
-                        <div class="preview-placeholder">
-                            <div class="preview-info">
-                                <div class="preview-icon-sm">📊</div>
-                                <p>Google Drive Presentation <small>Click to open in new tab</small></p>
-                            </div>
-                            <a href="https://drive.google.com/file/d/1WqKpylgI5UIXnHfoiF5OFBb7F5xVLqwb/view?usp=sharing" target="_blank" class="rs-btn-sm">
-                                Open
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            </a>
-                        </div>
-                    </div>
 
                     <!-- 6 -->
-                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-6', this)">
+                    <div class="rs-resource-item" onclick="openViewer('https://drive.google.com/file/d/1G-MrwOEEUpr4im3_qw1XV_D6tb8dLRlu/preview', 'Writing High-Quality Results Sections')">
                         <div class="resource-icon ppt-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
                         </div>
@@ -1002,21 +988,9 @@
                         </div>
                         <span class="resource-arrow">→</span>
                     </div>
-                    <div class="rs-inline-preview" id="ppt-6">
-                        <div class="preview-placeholder">
-                            <div class="preview-info">
-                                <div class="preview-icon-sm">📊</div>
-                                <p>Google Drive Presentation <small>Click to open in new tab</small></p>
-                            </div>
-                            <a href="https://drive.google.com/file/d/1G-MrwOEEUpr4im3_qw1XV_D6tb8dLRlu/view?usp=sharing" target="_blank" class="rs-btn-sm">
-                                Open
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            </a>
-                        </div>
-                    </div>
 
                     <!-- 7 -->
-                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-7', this)">
+                    <div class="rs-resource-item" onclick="openViewer('https://drive.google.com/file/d/1XYV_WIZhDWeRyI54WT9Su3A6VmE9bJXL/preview', 'Writing Discussion Sections Seminar')">
                         <div class="resource-icon ppt-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
                         </div>
@@ -1026,21 +1000,9 @@
                         </div>
                         <span class="resource-arrow">→</span>
                     </div>
-                    <div class="rs-inline-preview" id="ppt-7">
-                        <div class="preview-placeholder">
-                            <div class="preview-info">
-                                <div class="preview-icon-sm">📊</div>
-                                <p>Google Drive Presentation <small>Click to open in new tab</small></p>
-                            </div>
-                            <a href="https://drive.google.com/file/d/1XYV_WIZhDWeRyI54WT9Su3A6VmE9bJXL/view?usp=sharing" target="_blank" class="rs-btn-sm">
-                                Open
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            </a>
-                        </div>
-                    </div>
 
                     <!-- 8 -->
-                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-8', this)">
+                    <div class="rs-resource-item" onclick="openViewer('https://docs.google.com/presentation/d/1o4E8eDQl5hR4h0ZUGMYiF3fBpNQ2rqIu/embed?start=false&amp;loop=false&amp;delayms=3000&amp;rm=minimal', 'The Resident Research Space')">
                         <div class="resource-icon ppt-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
                         </div>
@@ -1050,21 +1012,9 @@
                         </div>
                         <span class="resource-arrow">→</span>
                     </div>
-                    <div class="rs-inline-preview" id="ppt-8">
-                        <div class="preview-placeholder">
-                            <div class="preview-info">
-                                <div class="preview-icon-sm">📊</div>
-                                <p>Google Drive Presentation <small>Click to open in new tab</small></p>
-                            </div>
-                            <a href="https://docs.google.com/presentation/d/1o4E8eDQl5hR4h0ZUGMYiF3fBpNQ2rqIu/edit?usp=sharing&ouid=116808387962001444555&rtpof=true&sd=true" target="_blank" class="rs-btn-sm">
-                                Open
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            </a>
-                        </div>
-                    </div>
 
                     <!-- 9 -->
-                    <div class="rs-resource-item rs-toggle-preview" onclick="togglePreview('ppt-9', this)">
+                    <div class="rs-resource-item" onclick="openViewer('https://drive.google.com/file/d/1QKIaMuMqdiPXhKsS80Rz95rCG0h6tlIl/preview', 'Conceptual Alignment Strategic Literature search')">
                         <div class="resource-icon ppt-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="m8 21 4-4 4 4"/></svg>
                         </div>
@@ -1074,130 +1024,138 @@
                         </div>
                         <span class="resource-arrow">→</span>
                     </div>
-                    <div class="rs-inline-preview" id="ppt-9">
-                        <div class="preview-placeholder">
-                            <div class="preview-info">
-                                <div class="preview-icon-sm">📊</div>
-                                <p>Google Drive Presentation <small>Click to open in new tab</small></p>
-                            </div>
-                            <a href="https://drive.google.com/file/d/1QKIaMuMqdiPXhKsS80Rz95rCG0h6tlIl/view?usp=sharing" target="_blank" class="rs-btn-sm">
-                                Open
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <!-- Recordings -->
-            <div class="fade-up" style="transition-delay:0.2s">
+            <!-- <div class="fade-up" style="transition-delay:0.2s">
                 <div class="rs-resource-group-title">
                     <span class="icon-circle rec">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
                     </span>
-                    Session Recordings
+                    Recordings
                 </div>
 
                 <div class="rs-resource-list">
-                    <a href="https://us06web.zoom.us/rec/share/q8mwH_W5vlTHs1dbj0NZz-h-9ViEL6Rpdmg6vRpkJBYVBebjRYnn-6xEsm7IpK-d._tzgk9lc0XgMY3x1" target="_blank" class="rs-resource-item">
+                   <div class="rs-resource-item" onclick="openViewer('https://us06web.zoom.us/rec/share/q8mwH_W5vlTHs1dbj0NZz-h-9ViEL6Rpdmg6vRpkJBYVBebjRYnn-6xEsm7IpK-d._tzgk9lc0XgMY3x1', 'Identifying Meaningful Research Gaps and Refining Research Ideas')">
                         <div class="resource-icon rec-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                         </div>
                         <div class="resource-info">
                             <div class="resource-title">Identifying Meaningful Research Gaps and Refining Research Ideas</div>
-                            <div class="resource-author">Zoom Recording</div>
+                            <div class="resource-author">Recording</div>
                         </div>
-                        <span class="resource-arrow">↗</span>
-                    </a>
+                        <span class="resource-arrow">→</span>
+                    </div>
 
-                    <a href="https://us06web.zoom.us/rec/share/RvM1klu48KdXuDAiZ0MAL2pfYIntEK9NNVWHhEwMG_Nvo4JBK9S0HLOZzvcwYnw.Qn7UNWb4hUhd6mrE" target="_blank" class="rs-resource-item">
+                    <div class="rs-resource-item" onclick="openViewer('https://us06web.zoom.us/rec/share/RvM1klu48KdXuDAiZ0MAL2pfYIntEK9NNVWHhEwMG_Nvo4JBK9S0HLOZzvcwYnw.Qn7UNWb4hUhd6mrE', 'Effective Search Strategies: Keywords, Boolean Operators & MeSH Terms')">
                         <div class="resource-icon rec-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                         </div>
                         <div class="resource-info">
                             <div class="resource-title">Effective Search Strategies: Keywords, Boolean Operators & MeSH Terms</div>
-                            <div class="resource-author">Zoom Recording</div>
+                            <div class="resource-author">Recording</div>
                         </div>
-                        <span class="resource-arrow">↗</span>
-                    </a>
+                        <span class="resource-arrow">→</span>
+                    </div>
 
-                    <a href="https://us06web.zoom.us/rec/share/Wq4gfw7ddaG8iiptGxyxxAWRDxZym8vPBDyyuNmzzoGOYjbFslShiPRFzJoivkcy.Jy3ZScGChs9suSoX" target="_blank" class="rs-resource-item">
+                    <div class="rs-resource-item" onclick="openViewer('https://us06web.zoom.us/rec/share/Wq4gfw7ddaG8iiptGxyxxAWRDxZym8vPBDyyuNmzzoGOYjbFslShiPRFzJoivkcy.Jy3ZScGChs9suSoX', 'How to Formulate a Clear Problem Statement / Research Gap')">
                         <div class="resource-icon rec-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                         </div>
                         <div class="resource-info">
                             <div class="resource-title">How to Formulate a Clear Problem Statement / Research Gap</div>
-                            <div class="resource-author">Zoom Recording</div>
+                            <div class="resource-author">Recording</div>
                         </div>
-                        <span class="resource-arrow">↗</span>
-                    </a>
+                        <span class="resource-arrow">→</span>
+                    </div>
 
-                    <a href="https://us06web.zoom.us/rec/share/bX1fxVYgxMFEopxWxHyuch-zzDQYvpq6CiRJv5_aovIDdpEGbM1DSYjNHSdDuCAG.a2hV3xEqY2kGBHqZ" target="_blank" class="rs-resource-item">
+                    <div class="rs-resource-item" onclick="openViewer('https://us06web.zoom.us/rec/share/bX1fxVYgxMFEopxWxHyuch-zzDQYvpq6CiRJv5_aovIDdpEGbM1DSYjNHSdDuCAG.a2hV3xEqY2kGBHqZ', 'Translating a Refined Research Question into Variables, Data Sources & Study Design')">
                         <div class="resource-icon rec-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                         </div>
                         <div class="resource-info">
                             <div class="resource-title">Translating a Refined Research Question into Variables, Data Sources & Study Design</div>
-                            <div class="resource-author">Zoom Recording</div>
+                            <div class="resource-author">Recording</div>
                         </div>
-                        <span class="resource-arrow">↗</span>
-                    </a>
+                        <span class="resource-arrow">→</span>
+                    </div>
 
-                    <a href="https://us06web.zoom.us/rec/share/rov9jg84VemVWctWtqRfTQg4L2q97LpDsWp5ku3dRRHQxVEStzV_puQ0kUAR9rd4.M5RFvNkUPDOygAxV" target="_blank" class="rs-resource-item">
+                    <div class="rs-resource-item" onclick="openViewer('https://us06web.zoom.us/rec/share/rov9jg84VemVWctWtqRfTQg4L2q97LpDsWp5ku3dRRHQxVEStzV_puQ0kUAR9rd4.M5RFvNkUPDOygAxV', 'Your Checklist for Flawless Analysis, Management, and Reporting')">
                         <div class="resource-icon rec-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                         </div>
                         <div class="resource-info">
                             <div class="resource-title">Your Checklist for Flawless Analysis, Management, and Reporting</div>
-                            <div class="resource-author">Dr. Mojeed Gbadamosi — Zoom Recording</div>
+                            <div class="resource-author">Dr. Mojeed Gbadamosi — Recording</div>
                         </div>
-                        <span class="resource-arrow">↗</span>
-                    </a>
+                        <span class="resource-arrow">→</span>
+                    </div>
 
-                    <a href="https://us06web.zoom.us/rec/share/Jcon6MycIERa-kEVDznc3mrFZrEO0558yGjE4mD6YlpyHvoadK2muN-SGcg6JFEw.GRLijtPlQUlA8zae" target="_blank" class="rs-resource-item">
+                    <div class="rs-resource-item" onclick="openViewer('https://us06web.zoom.us/rec/share/Jcon6MycIERa-kEVDznc3mrFZrEO0558yGjE4mD6YlpyHvoadK2muN-SGcg6JFEw.GRLijtPlQUlA8zae', 'How to Protect Your Resident Research from Bias, Bad Charts, and Tiny Samples')">
                         <div class="resource-icon rec-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                         </div>
                         <div class="resource-info">
                             <div class="resource-title">How to Protect Your Resident Research from Bias, Bad Charts, and Tiny Samples</div>
-                            <div class="resource-author">Dr. Mojeed Gbadamosi — Zoom Recording</div>
+                            <div class="resource-author">Dr. Mojeed Gbadamosi — Recording</div>
                         </div>
-                        <span class="resource-arrow">↗</span>
-                    </a>
+                        <span class="resource-arrow">→</span>
+                    </div>
 
-                    <a href="https://us06web.zoom.us/rec/share/HtWLxubhlia_QuHAftqW42kUhpOEER8AIQ1ZhESR_ZoRDzDq_uL6jLzXGEsK0x7i.JFAVSwpu8oriHw-_" target="_blank" class="rs-resource-item">
+                    <div class="rs-resource-item" onclick="openViewer('https://us06web.zoom.us/rec/share/HtWLxubhlia_QuHAftqW42kUhpOEER8AIQ1ZhESR_ZoRDzDq_uL6jLzXGEsK0x7i.JFAVSwpu8oriHw-_', 'How to Stop Guessing Your Sample Size and Start Convincing the IRB')">
                         <div class="resource-icon rec-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                         </div>
                         <div class="resource-info">
                             <div class="resource-title">How to Stop Guessing Your Sample Size and Start Convincing the IRB</div>
-                            <div class="resource-author">Dr. Mojeed Gbadamosi — Zoom Recording</div>
+                            <div class="resource-author">Dr. Mojeed Gbadamosi — Recording</div>
                         </div>
-                        <span class="resource-arrow">↗</span>
-                    </a>
+                        <span class="resource-arrow">→</span>
+                    </div>
 
-                    <a href="https://us06web.zoom.us/rec/share/7i5k_tlEDTQVyPWkvKpFtkWOLR9zqxU9H2UHlHXXaoTaV4Y-I56i6c9tmIEs_DEa.2t7qzYnc1M_SJxKe" target="_blank" class="rs-resource-item">
+                    <div class="rs-resource-item" onclick="openViewer('https://us06web.zoom.us/rec/share/7i5k_tlEDTQVyPWkvKpFtkWOLR9zqxU9H2UHlHXXaoTaV4Y-I56i6c9tmIEs_DEa.2t7qzYnc1M_SJxKe', 'Writing Discussion Sections Seminar')">
                         <div class="resource-icon rec-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                         </div>
                         <div class="resource-info">
                             <div class="resource-title">Writing Discussion Sections Seminar</div>
-                            <div class="resource-author">Dr. David Ikwuka — Zoom Recording</div>
+                            <div class="resource-author">Dr. David Ikwuka — Recording</div>
                         </div>
-                        <span class="resource-arrow">↗</span>
-                    </a>
+                        <span class="resource-arrow">→</span>
+                    </div>
 
-                    <a href="https://us06web.zoom.us/rec/share/vdJoRL5prs-9BnVWRAJwodwLmbXFEQxSLIqEpWnk7VCrx7zRwyy7lLbb_k8tTmpr.SJ2f5pf36ONgOBvf" target="_blank" class="rs-resource-item">
+                    <div class="rs-resource-item" onclick="openViewer('https://us06web.zoom.us/rec/share/vdJoRL5prs-9BnVWRAJwodwLmbXFEQxSLIqEpWnk7VCrx7zRwyy7lLbb_k8tTmpr.SJ2f5pf36ONgOBvf', 'Writing High-Quality Results Sections')">
                         <div class="resource-icon rec-icon">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                         </div>
                         <div class="resource-info">
                             <div class="resource-title">Writing High-Quality Results Sections</div>
-                            <div class="resource-author">Dr. David Ikwuka — Zoom Recording</div>
+                            <div class="resource-author">Dr. David Ikwuka — Recording</div>
                         </div>
-                        <span class="resource-arrow">↗</span>
-                    </a>
+                        <span class="resource-arrow">→</span>
+                    </div>
                 </div>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Fitted inline viewer for presentations & recordings -->
+    <div class="rs-viewer-overlay" id="rsViewerOverlay" onclick="if(event.target===this) closeViewer()">
+        <div class="rs-viewer-box">
+            <div class="rs-viewer-header">
+                <div class="rs-viewer-title" id="rsViewerTitle">Presentation</div>
+                <div class="rs-viewer-note">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    View only — downloading is disabled
+                </div>
+                <button type="button" class="rs-viewer-close" onclick="closeViewer()" aria-label="Close viewer">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="rs-viewer-body">
+                <div class="rs-viewer-loading" id="rsViewerLoading">Loading…</div>
+                <iframe id="rsViewerFrame" allowfullscreen referrerpolicy="no-referrer" onload="document.getElementById('rsViewerLoading').style.display='none'"></iframe>
             </div>
         </div>
     </div>
@@ -1280,22 +1238,32 @@
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     });
 
-    function togglePreview(id, triggerEl) {
-        const preview = document.getElementById(id);
-        const allPreviews = document.querySelectorAll('.rs-inline-preview');
-        const allTriggers = document.querySelectorAll('.rs-toggle-preview');
+    function openViewer(embedUrl, title) {
+        const overlay = document.getElementById('rsViewerOverlay');
+        const frame = document.getElementById('rsViewerFrame');
+        const titleEl = document.getElementById('rsViewerTitle');
+        const loading = document.getElementById('rsViewerLoading');
 
-        allPreviews.forEach(p => {
-            if (p.id !== id) p.classList.remove('active');
-        });
+        titleEl.textContent = title || 'Viewer';
+        loading.style.display = 'flex';
+        frame.setAttribute('src', embedUrl);
 
-        allTriggers.forEach(t => {
-            if (t !== triggerEl) t.classList.remove('expanded');
-        });
-
-        preview.classList.toggle('active');
-        triggerEl.classList.toggle('expanded');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // lock background scroll while fitted to screen
     }
+
+    function closeViewer() {
+        const overlay = document.getElementById('rsViewerOverlay');
+        const frame = document.getElementById('rsViewerFrame');
+
+        overlay.classList.remove('active');
+        frame.removeAttribute('src'); // stop playback and free resources
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeViewer();
+    });
 </script>
 
 @endsection
