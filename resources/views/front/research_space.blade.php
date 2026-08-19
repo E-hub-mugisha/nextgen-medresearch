@@ -259,6 +259,27 @@
         display: block;
     }
 
+    /* ---- Team Strip ---- */
+    .rs-team-strip {
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .rs-team-strip img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .rs-team-caption {
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 0.75rem;
+    }
+
     /* ---- Target Grid ---- */
     .rs-target-grid {
         display: grid;
@@ -828,7 +849,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="rs-hero-image fade-up" style="transition-delay:0.3s">
-                    <img src="{{ asset('assets/images/image-3.png') }}" alt="Research Space">
+                    <img src="{{ asset('assets/images/research-space-flyer.jpeg') }}" alt="The Research Space — From Class-Based Learning to a Research Mentorship Continuum">
                 </div>
             </div>
         </div>
@@ -1165,7 +1186,7 @@
     <div class="container">
         <div class="rs-feature-split">
             <div class="rs-feature-image fade-up">
-                <img src="{{ asset('assets/images/image-4.png') }}" alt="Why This Space Matters">
+                <img src="{{ asset('assets/images/research-space-session.jpeg') }}" alt="A weekly Research Space session in progress, presenter walking attendees through the mentorship continuum model">
             </div>
             <div>
                 <div class="rs-section-label fade-up">
@@ -1193,7 +1214,25 @@
     </div>
 </section>
 
-
+<!-- ==================== THE TEAM BEHIND IT ==================== -->
+<section class="rs-section-sm" style="background-color: var(--bg-light);">
+    <div class="container">
+        <div class="text-center mb-4">
+            <div class="rs-section-label fade-up">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                The People Behind It
+            </div>
+            <h2 class="rs-section-title fade-up" style="transition-delay:0.1s">Architects of the Next Generation of Researchers</h2>
+            <p class="rs-section-desc mx-auto fade-up" style="transition-delay:0.2s">
+                A partnership between NextGen MedResearch, OHMO, 2E Research Ventures, and Oazis Health — bringing mentors and partners together for every weekly session.
+            </p>
+        </div>
+        <div class="rs-team-strip fade-up" style="transition-delay:0.25s; max-width: 720px; margin: 0 auto;">
+            <img src="{{ asset('assets/images/research-space-team.jpeg') }}" alt="The NextGen MedResearch team and partners at a Research Space session">
+        </div>
+        <p class="rs-team-caption fade-up" style="transition-delay:0.3s">The NextGen MedResearch team with partners from Sanofi's Global Health Unit and KIPHARMA</p>
+    </div>
+</section>
 
 <!-- ==================== CTA ==================== -->
 <section class="rs-section" style="background-color: var(--bg-white);">
